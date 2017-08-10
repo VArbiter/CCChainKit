@@ -1,7 +1,9 @@
 use_frameworks!
 
 target 'CCChainKit_Example' do
-  pod 'CCChainKit', :path => '../'
+#  pod 'CCChainKit', :path => '../'
+
+    pod 'MBProgressHUD', '~> 1.0.0'
 
   target 'CCChainKit_Tests' do
     inherit! :search_paths
