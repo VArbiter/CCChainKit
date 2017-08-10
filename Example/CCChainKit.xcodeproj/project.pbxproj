@@ -43,6 +43,7 @@
 		70D63D291F3C361500945CA2 /* UIGestureRecognizer+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70D63D0D1F3C361500945CA2 /* UIGestureRecognizer+CCChain.m */; };
 		70D63D2A1F3C361500945CA2 /* UIImage+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70D63D101F3C361500945CA2 /* UIImage+CCChain.m */; };
 		70D63D2B1F3C361500945CA2 /* UIView+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70D63D131F3C361500945CA2 /* UIView+CCChain.m */; };
+		70D63D331F3C4CC200945CA2 /* NSTimer+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70D63D321F3C4CC200945CA2 /* NSTimer+CCChain.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		7E337B412AB1404489C6F112 /* Pods_CCChainKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DAC55CBE883A0E3AF952BD /* Pods_CCChainKit_Example.framework */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
@@ -128,6 +129,8 @@
 		70D63D2D1F3C41A400945CA2 /* CCChianData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCChianData.h; sourceTree = "<group>"; };
 		70D63D2E1F3C41B400945CA2 /* CCChainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCChainView.h; sourceTree = "<group>"; };
 		70D63D2F1F3C41F400945CA2 /* CCChainRuntime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCChainRuntime.h; sourceTree = "<group>"; };
+		70D63D311F3C4CC200945CA2 /* NSTimer+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+CCChain.h"; sourceTree = "<group>"; };
+		70D63D321F3C4CC200945CA2 /* NSTimer+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+CCChain.m"; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7B8E8CDA998BCBD8FB075B87 /* Pods-CCChainKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCChainKit_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-CCChainKit_Example/Pods-CCChainKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -301,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				70D63D2D1F3C41A400945CA2 /* CCChianData.h */,
+				70D63D301F3C4CB200945CA2 /* NSTimer */,
 				70D63CD21F3C361500945CA2 /* NSArray */,
 				70D63CD51F3C361500945CA2 /* NSAttributedString */,
 				70D63CD81F3C361500945CA2 /* NSBundle */,
@@ -530,6 +534,15 @@
 			path = UIView;
 			sourceTree = "<group>";
 		};
+		70D63D301F3C4CB200945CA2 /* NSTimer */ = {
+			isa = PBXGroup;
+			children = (
+				70D63D311F3C4CC200945CA2 /* NSTimer+CCChain.h */,
+				70D63D321F3C4CC200945CA2 /* NSTimer+CCChain.m */,
+			);
+			path = NSTimer;
+			sourceTree = "<group>";
+		};
 		BBC439B42938937EA648FF94 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -739,6 +752,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70D63D331F3C4CC200945CA2 /* NSTimer+CCChain.m in Sources */,
 				70D63D191F3C361500945CA2 /* NSBundle+CCChain.m in Sources */,
 				70D63D2A1F3C361500945CA2 /* UIImage+CCChain.m in Sources */,
 				70D63D1C1F3C361500945CA2 /* NSNumber+CCChain.m in Sources */,
