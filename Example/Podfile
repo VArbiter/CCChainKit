@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'CCChainKit_Example' do
+  pod 'CCChainKit', :path => '../'
+
+  target 'CCChainKit_Tests' do
+    inherit! :search_paths
+
+    pod 'FBSnapshotTestCase'
+  end
+end
