@@ -17,8 +17,14 @@
 @property (nonatomic , copy , readonly) NSString *(^timeSince1970)(NSTimeInterval interval); // yyyy-MM-dd HH:mm
 
 /// break has the topest priority .
-@property (nonatomic , copy , readonly) NSString *(^merge)(BOOL isBreak , BOOL isSpace , NSArray <NSString *> * array) ;
-@property (nonatomic , copy , readonly) NSString *(^mergeR)(BOOL isBreak , BOOL isSpace , NSString * string , ...);
+@property (nonatomic , class , copy , readonly) NSString *(^mergeC)(BOOL isBreak , BOOL isSpace , NSArray <NSString *> * array) ;
+@property (nonatomic , class , copy , readonly) NSString *(^mergeR)(BOOL isBreak , BOOL isSpace , NSString * string , ...);
+
+/// for localizedString
+@property (nonatomic , class , copy , readonly) NSString *(^localize)(NSString *sKey , NSString *sComment);
+@property (nonatomic , class , copy , readonly) NSString *(^localizeB)(NSString * sKey , NSBundle * bundle , NSString *sComment );
+/// key , strings file , bundle , comment
+@property (nonatomic , class , copy , readonly) NSString *(^localizeS)(NSString * sKey , NSString * sStrings , NSBundle * bundle , NSString *sComment );
 
 @property (nonatomic , copy , readonly) NSMutableAttributedString *(^colorAttribute)(UIColor *color);
 

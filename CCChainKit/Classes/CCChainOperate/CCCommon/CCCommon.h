@@ -19,7 +19,7 @@
 #define ccString(VALUE) [NSString stringWithFormat:@"%@",VALUE]
 
 /// manually control debug mode .
-/// if not CC_SET_DEBUG_MODE , returns 0 if debug , 1 if release.
+/// if not CC_SET_DEBUG_MODE , returns 1 if debug , 0 if release.
 static int _CC_DEBUG_MODE_;
 
 #if _CC_DEBUG_MODE_
@@ -34,6 +34,8 @@ static NSString * _CC_UUID_;
 @interface CCCommon : NSObject
 
 void CC_SET_DEBUG_MODE(BOOL isOn);
+
+BOOL CC_IS_MAIN_QUEUE();
 
 BOOL CC_Available_C(double version);
 void CC_Available_S(double version , void(^s)() , void(^f)());

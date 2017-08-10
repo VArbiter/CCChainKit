@@ -100,7 +100,6 @@
 		70D63CE91F3C361500945CA2 /* NSPredicate+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPredicate+CCChain.m"; sourceTree = "<group>"; };
 		70D63CEB1F3C361500945CA2 /* NSString+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CCChain.h"; sourceTree = "<group>"; };
 		70D63CEC1F3C361500945CA2 /* NSString+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CCChain.m"; sourceTree = "<group>"; };
-		70D63CEE1F3C361500945CA2 /* CCChainOperateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCChainOperateProtocol.h; sourceTree = "<group>"; };
 		70D63CEF1F3C361500945CA2 /* NSObject+CCProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+CCProtocol.h"; sourceTree = "<group>"; };
 		70D63CF01F3C361500945CA2 /* NSObject+CCProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+CCProtocol.m"; sourceTree = "<group>"; };
 		70D63CF31F3C361500945CA2 /* CCRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRuntime.h; sourceTree = "<group>"; };
@@ -126,6 +125,9 @@
 		70D63D121F3C361500945CA2 /* UIView+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CCChain.h"; sourceTree = "<group>"; };
 		70D63D131F3C361500945CA2 /* UIView+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CCChain.m"; sourceTree = "<group>"; };
 		70D63D2C1F3C362700945CA2 /* CCChainKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCChainKit.h; sourceTree = "<group>"; };
+		70D63D2D1F3C41A400945CA2 /* CCChianData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCChianData.h; sourceTree = "<group>"; };
+		70D63D2E1F3C41B400945CA2 /* CCChainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCChainView.h; sourceTree = "<group>"; };
+		70D63D2F1F3C41F400945CA2 /* CCChainRuntime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCChainRuntime.h; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7B8E8CDA998BCBD8FB075B87 /* Pods-CCChainKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCChainKit_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-CCChainKit_Example/Pods-CCChainKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 		70D63CD11F3C361500945CA2 /* CCData */ = {
 			isa = PBXGroup;
 			children = (
+				70D63D2D1F3C41A400945CA2 /* CCChianData.h */,
 				70D63CD21F3C361500945CA2 /* NSArray */,
 				70D63CD51F3C361500945CA2 /* NSAttributedString */,
 				70D63CD81F3C361500945CA2 /* NSBundle */,
@@ -395,7 +398,6 @@
 		70D63CED1F3C361500945CA2 /* CCProtocol */ = {
 			isa = PBXGroup;
 			children = (
-				70D63CEE1F3C361500945CA2 /* CCChainOperateProtocol.h */,
 				70D63CEF1F3C361500945CA2 /* NSObject+CCProtocol.h */,
 				70D63CF01F3C361500945CA2 /* NSObject+CCProtocol.m */,
 			);
@@ -405,6 +407,7 @@
 		70D63CF11F3C361500945CA2 /* CCRuntime */ = {
 			isa = PBXGroup;
 			children = (
+				70D63D2F1F3C41F400945CA2 /* CCChainRuntime.h */,
 				70D63CF21F3C361500945CA2 /* NSObject */,
 			);
 			path = CCRuntime;
@@ -422,6 +425,7 @@
 		70D63CF51F3C361500945CA2 /* CCView */ = {
 			isa = PBXGroup;
 			children = (
+				70D63D2E1F3C41B400945CA2 /* CCChainView.h */,
 				70D63CF61F3C361500945CA2 /* MBProgressHud */,
 				70D63CF91F3C361500945CA2 /* UIAlertController */,
 				70D63CFC1F3C361500945CA2 /* UIBarButtonItem */,

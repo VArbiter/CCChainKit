@@ -8,8 +8,6 @@
 
 #import "NSString+CCChain.h"
 
-#import "CCCommonTools.h"
-
 #import "NSObject+CCChain.h"
 #import "NSPredicate+CCChain.h"
 #import "NSAttributedString+CCChain.h"
@@ -55,7 +53,7 @@
     };
 }
 
-- (NSString *(^)(BOOL, BOOL, NSArray<NSString *> *))merge {
++ (NSString *(^)(BOOL, BOOL, NSArray<NSString *> *))mergeC {
     return ^NSString *(BOOL isBreak , BOOL isSpace , NSArray <NSString *> * array){
         __block NSString *stringResult = @"";
         if (isBreak) {
@@ -77,7 +75,7 @@
     };
 }
 
-- (NSString *(^)(BOOL, BOOL, NSString *, ...))mergeR {
++ (NSString *(^)(BOOL, BOOL, NSString *, ...))mergeR {
     return ^NSString *(BOOL isBreak , BOOL isSpace , NSString * string , ...) {
         if (!string || !string.length) return nil;
         
@@ -92,7 +90,28 @@
             }
             va_end(argumentList);
         }
-        return self.merge(isBreak, isSpace, arrayStrings);
+        return self.mergeC(isBreak, isSpace, arrayStrings);
+    };
+}
+
++ (NSString *(^)(NSString *, NSString *))localize {
+    return ^NSString *(NSString *sKey , NSString *s) {
+        return self.localizeB(sKey , NSBundle.mainBundle , nil);
+    };
+}
+
++ (NSString *(^)(NSString *, NSBundle *, NSString *))localizeB {
+    return ^NSString *(NSString *sKey , NSBundle *bundle , NSString * s) {
+        if (!bundle) bundle = NSBundle.mainBundle;
+        return self.localizeS(sKey, @"Localizable", bundle, nil);
+    };
+}
+
++ (NSString *(^)(NSString *, NSString *, NSBundle *, NSString *))localizeS {
+    return ^NSString *(NSString *sKey, NSString *sStrings, NSBundle *bundle, NSString *s) {
+        if (!bundle) bundle = NSBundle.mainBundle;
+        if (!sStrings) sStrings = @"Localizable";
+        return NSLocalizedStringFromTableInBundle(sKey, sStrings, bundle, nil);
     };
 }
 
@@ -155,16 +174,16 @@
         return [formatter stringFromDate:date];
     }
     else if (timeInterval / (60 * 60 * 24) >= 1) {
-        return [NSString stringWithFormat:@"%ld %@",interval / (60 * 60 * 24) , ccLocalize(@"_CC_DAYS_AGO_", "天前")];
+        return [NSString stringWithFormat:@"%ld %@",interval / (60 * 60 * 24) , NSString.localize(@"_CC_DAYS_AGO_", @"天前")];
     }
     else if (timeInterval / (60 * 60) >= 1) {
-        return [NSString stringWithFormat:@"%ld %@",interval / (60 * 60) , ccLocalize(@"_CC_HOURS_AGO_", "小时前")];
+        return [NSString stringWithFormat:@"%ld %@",interval / (60 * 60) , NSString.localize(@"_CC_HOURS_AGO_", @"小时前")];
     }
     else if (timeInterval / 60 >= 1) {
-        return [NSString stringWithFormat:@"%ld %@",interval / 60 , ccLocalize(@"_CC_MINUTES_AGO_", "分钟前")];
+        return [NSString stringWithFormat:@"%ld %@",interval / 60 , NSString.localize(@"_CC_MINUTES_AGO_", @"分钟前")];
     }
     else {
-        return ccLocalize(@"_CC_AGO_", "刚刚");
+        return NSString.localize(@"_CC_AGO_", @"刚刚");
     }
 }
 - (NSString *)md5 {
