@@ -22,8 +22,7 @@
     \
         static id _instance = nil; \
     \
-        + (instancetype)allocWithZone:(struct _NSZone *)zone \
-        { \
+        + (instancetype)allocWithZone:(struct _NSZone *)zone { \
             static dispatch_once_t onceToken; \
             dispatch_once(&onceToken, ^{ \
                 _instance = [[super allocWithZone:zone] init]; \
@@ -31,12 +30,11 @@
             return _instance; \
         } \
     \
-        - (id)copyWithZone:(NSZone *)zone{ \
+        - (id)copyWithZone:(NSZone *)zone { \
             return _instance; \
         } \
     \
-        - (id)mutableCopyWithZone:(NSZone *)zone \
-        { \
+        - (id)mutableCopyWithZone:(NSZone *)zone { \
             return _instance; \
         }
     #endif

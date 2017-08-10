@@ -69,7 +69,7 @@ static const char * _CC_NSTIMER_ASSOCIATE_SCHEDULED_KEY_ = "CC_NSTIMER_ASSOCIATE
     };
 }
 
-+(NSTimer *(^)(NSTimeInterval, id, BOOL, void (^)(NSTimer *)))scheduledU {
++ (NSTimer *(^)(NSTimeInterval, id, BOOL, void (^)(NSTimer *)))scheduledU {
     return ^ NSTimer *(NSTimeInterval interval, id userInfo, BOOL isRepeat, void (^t)(NSTimer *)){
         NSTimer *tTimer = [NSTimer scheduledTimerWithTimeInterval:interval
                                                            target:self

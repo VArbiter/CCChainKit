@@ -100,9 +100,9 @@ static CCRuntime *_instance = nil;
     };
 }
 
-- (CCRuntime *(^)(dispatch_queue_t, void (^)()))async {
+- (CCRuntime *(^)(CCQueue, void (^)()))async {
     __weak typeof(self) pSelf = self;
-    return ^CCRuntime *(dispatch_queue_t q, void (^t)()) {
+    return ^CCRuntime *(CCQueue q, void (^t)()) {
         if (!q) return pSelf;
         dispatch_async(q, ^{
             if (t) t();
@@ -110,9 +110,9 @@ static CCRuntime *_instance = nil;
         return pSelf;
     };
 }
-- (CCRuntime *(^)(dispatch_queue_t, void (^)()))sync {
+- (CCRuntime *(^)(CCQueue, void (^)()))sync {
     __weak typeof(self) pSelf = self;
-    return ^CCRuntime *(dispatch_queue_t q, void (^t)()) {
+    return ^CCRuntime *(CCQueue q, void (^t)()) {
         if (!q) return pSelf;
         dispatch_sync(q, ^{
             if (t) t();
@@ -132,6 +132,20 @@ static CCRuntime *_instance = nil;
 - (id (^)(id, const void *))getAssociate {
     return ^CCRuntime * (id o, const void *k){
         return objc_getAssociatedObject(o, k);
+    };
+}
+
+@end
+
+#pragma mark - -----
+
+@implementation CCRuntime (CCChain_Queue)
+
++ (CCQueue (^)(const char *, BOOL))createQ {
+    return ^CCQueue (const char * c, BOOL b){
+        if (UIDevice.currentDevice.systemVersion.floatValue >= 10.0) {
+            return dispatch_queue_create(c, b ? NULL : DISPATCH_QUEUE_CONCURRENT_WITH_AUTORELEASE_POOL);
+        } else return dispatch_queue_create(c, b ? NULL : DISPATCH_QUEUE_CONCURRENT);
     };
 }
 

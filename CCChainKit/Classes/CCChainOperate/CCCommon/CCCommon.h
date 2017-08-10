@@ -16,7 +16,7 @@
 
 /// formatStrings.
 #define ccStringFormat(...) [NSString stringWithFormat:__VA_ARGS__]
-#define ccString(VALUE) [NSString stringWithFormat:@"%@",VALUE]
+#define ccString(VALUE) [NSString stringWithFormat:@"%@",(VALUE)]
 
 /// manually control debug mode .
 /// if not CC_SET_DEBUG_MODE , returns 1 if debug , 0 if release.
