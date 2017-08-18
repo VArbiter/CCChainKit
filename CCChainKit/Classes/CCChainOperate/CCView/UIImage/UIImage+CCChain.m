@@ -255,7 +255,81 @@ CGFloat _CC_GAUSSIAN_BLUR_TINT_ALPHA_ = .25f;
 
 - (UIImage *(^)(CGFloat, NSInteger, UIColor *, void (^)(UIImage *, UIImage *)))gaussianAccA {
     __weak typeof(self) pSelf = self;
+    return ^UIImage *(CGFloat f, NSInteger i, UIColor *c, void (^t)(UIImage *, UIImage *)) {
+        void (^tp)() = ^ {
+            UIImage *m = pSelf.gaussianAccC(f, i, c);
+            if (NSThread.isMainThread) {
+                if (t) t(pSelf , m);
+            } else dispatch_sync(dispatch_get_main_queue(), ^{
+                if (t) t(pSelf , m);
+            });
+        };
+        
+        if (UIDevice.currentDevice.systemVersion.floatValue >= 10.f) {
+            dispatch_async(dispatch_queue_create("love.cc.love.home", DISPATCH_QUEUE_CONCURRENT_WITH_AUTORELEASE_POOL), ^{
+                if (tp) tp();
+            });
+        } else {
+            dispatch_async(dispatch_queue_create("love.cc.love.home", DISPATCH_QUEUE_CONCURRENT), ^{
+                if (tp) tp();
+            });
+        }
+        return pSelf;
+    };
+}
 
+- (UIImage *(^)())gaussianCI {
+    __weak typeof(self) pSelf = self;
+    return ^UIImage * {
+        return pSelf.gaussianCIS(_CC_GAUSSIAN_BLUR_VALUE_);
+    };
+}
+
+- (UIImage *(^)(CGFloat))gaussianCIS {
+    __weak typeof(self) pSelf = self;
+    return ^UIImage * (CGFloat f) {
+        UIImage *image = [pSelf copy];
+        if (!image) return pSelf;
+        
+        CIContext *context = [CIContext contextWithOptions:@{kCIContextPriorityRequestLow : @(YES)}];
+        CIImage *imageInput= [CIImage imageWithCGImage:image.CGImage];
+        CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
+        [filter setValue:imageInput forKey:kCIInputImageKey];
+        [filter setValue:@(f) forKey: @"inputRadius"];
+        
+        CIImage *imageResult = [filter valueForKey:kCIOutputImageKey];
+        CGImageRef imageOutput = [context createCGImage:imageResult
+                                               fromRect:[imageResult extent]];
+        UIImage *imageBlur = [UIImage imageWithCGImage:imageOutput];
+        CGImageRelease(imageOutput);
+        
+        return imageBlur;
+    };
+}
+
+- (UIImage *(^)(CGFloat, void (^)(UIImage *, UIImage *)))gaussianCIA {
+    __weak typeof(self) pSelf = self;
+    return ^UIImage *(CGFloat f , void (^t)(UIImage *, UIImage *)) {
+        void (^tp)() = ^ {
+            UIImage *m = pSelf.gaussianCIS(f);
+            if (NSThread.isMainThread) {
+                if (t) t(pSelf , m);
+            } else dispatch_sync(dispatch_get_main_queue(), ^{
+                if (t) t(pSelf , m);
+            });
+        };
+        
+        if (UIDevice.currentDevice.systemVersion.floatValue >= 10.f) {
+            dispatch_async(dispatch_queue_create("love.cc.love.home", DISPATCH_QUEUE_CONCURRENT_WITH_AUTORELEASE_POOL), ^{
+                if (tp) tp();
+            });
+        } else {
+            dispatch_async(dispatch_queue_create("love.cc.love.home", DISPATCH_QUEUE_CONCURRENT), ^{
+                if (tp) tp();
+            });
+        }
+        return pSelf;
+    };
 }
 
 @end

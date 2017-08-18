@@ -38,12 +38,14 @@
 
 @interface NSString (CCChain_Regex)
 
-@property (nonatomic , class , copy , readonly) BOOL (^accurateVerifyID)(NSString * sID);
-
-@property (nonatomic , readonly) NSString * isAccurateIdentity ;
 @property (nonatomic , readonly) NSString * isTime ; // YYYY-MM-DD HH:mm:ss
 @property (nonatomic , readonly) NSString * isMacAddress ;
 @property (nonatomic , readonly) NSString * isWebURL ;
+
+// only in china
+@property (nonatomic , class , copy , readonly) BOOL (^accurateVerifyID)(NSString * sID);
+
+@property (nonatomic , readonly) NSString * isAccurateIdentity ;
 @property (nonatomic , readonly) NSString * isCellPhone ;
 @property (nonatomic , readonly) NSString * isChinaMobile ;
 @property (nonatomic , readonly) NSString * isChinaUnicom ;
