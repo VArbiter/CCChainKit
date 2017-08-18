@@ -21,6 +21,8 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
+		70C8813B1F46E0B80007AD62 /* UIImagePickerController+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C8813A1F46E0B80007AD62 /* UIImagePickerController+CCChain.m */; };
+		70C881621F46F4840007AD62 /* CCAuthorize.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C881611F46F4840007AD62 /* CCAuthorize.m */; };
 		70D63D161F3C361500945CA2 /* CCCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 70D63CCF1F3C361500945CA2 /* CCCommon.m */; };
 		70D63D171F3C361500945CA2 /* NSArray+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70D63CD41F3C361500945CA2 /* NSArray+CCChain.m */; };
 		70D63D181F3C361500945CA2 /* NSAttributedString+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70D63CD71F3C361500945CA2 /* NSAttributedString+CCChain.m */; };
@@ -80,6 +82,10 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
+		70C881391F46E0B80007AD62 /* UIImagePickerController+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImagePickerController+CCChain.h"; sourceTree = "<group>"; };
+		70C8813A1F46E0B80007AD62 /* UIImagePickerController+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImagePickerController+CCChain.m"; sourceTree = "<group>"; };
+		70C881601F46F4840007AD62 /* CCAuthorize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAuthorize.h; sourceTree = "<group>"; };
+		70C881611F46F4840007AD62 /* CCAuthorize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCAuthorize.m; sourceTree = "<group>"; };
 		70D63CCE1F3C361500945CA2 /* CCCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCCommon.h; sourceTree = "<group>"; };
 		70D63CCF1F3C361500945CA2 /* CCCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCCommon.m; sourceTree = "<group>"; };
 		70D63CD01F3C361500945CA2 /* CCSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSingleton.h; sourceTree = "<group>"; };
@@ -260,6 +266,15 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		70C881381F46E0960007AD62 /* UIImagePickerController */ = {
+			isa = PBXGroup;
+			children = (
+				70C881391F46E0B80007AD62 /* UIImagePickerController+CCChain.h */,
+				70C8813A1F46E0B80007AD62 /* UIImagePickerController+CCChain.m */,
+			);
+			path = UIImagePickerController;
+			sourceTree = "<group>";
+		};
 		70D63CC71F3C361500945CA2 /* CCChainKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -295,6 +310,8 @@
 			children = (
 				70D63CCE1F3C361500945CA2 /* CCCommon.h */,
 				70D63CCF1F3C361500945CA2 /* CCCommon.m */,
+				70C881601F46F4840007AD62 /* CCAuthorize.h */,
+				70C881611F46F4840007AD62 /* CCAuthorize.m */,
 				70D63CD01F3C361500945CA2 /* CCSingleton.h */,
 			);
 			path = CCCommon;
@@ -439,6 +456,7 @@
 				70D63D081F3C361500945CA2 /* UIControl */,
 				70D63D0B1F3C361500945CA2 /* UIGestureRecognizer */,
 				70D63D0E1F3C361500945CA2 /* UIImage */,
+				70C881381F46E0960007AD62 /* UIImagePickerController */,
 				70D63D111F3C361500945CA2 /* UIView */,
 			);
 			path = CCView;
@@ -753,6 +771,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				70D63D331F3C4CC200945CA2 /* NSTimer+CCChain.m in Sources */,
+				70C881621F46F4840007AD62 /* CCAuthorize.m in Sources */,
 				70D63D191F3C361500945CA2 /* NSBundle+CCChain.m in Sources */,
 				70D63D2A1F3C361500945CA2 /* UIImage+CCChain.m in Sources */,
 				70D63D1C1F3C361500945CA2 /* NSNumber+CCChain.m in Sources */,
@@ -778,6 +797,7 @@
 				70D63D1E1F3C361500945CA2 /* NSPredicate+CCChain.m in Sources */,
 				70D63D271F3C361500945CA2 /* UIColor+CCChain.m in Sources */,
 				70D63D171F3C361500945CA2 /* NSArray+CCChain.m in Sources */,
+				70C8813B1F46E0B80007AD62 /* UIImagePickerController+CCChain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
