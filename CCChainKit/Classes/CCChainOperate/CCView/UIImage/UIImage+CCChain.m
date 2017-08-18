@@ -333,3 +333,83 @@ CGFloat _CC_GAUSSIAN_BLUR_TINT_ALPHA_ = .25f;
 }
 
 @end
+
+#pragma mark - -----
+
+@implementation UIImage (CCChain_Data)
+
+CGFloat _CC_IMAGE_JPEG_COMPRESSION_QUALITY_SIZE_ = 400.f;
+
+- (NSData *)toData {
+    NSData *d = nil;
+    if ((d = UIImagePNGRepresentation(self))) return d;
+    if ((d = UIImageJPEGRepresentation(self, .0f))) return d;
+    return d;
+}
+
+- (NSData *(^)(CGFloat))compresssJPEG {
+    __weak typeof(self) pSelf = self;
+    return ^NSData *(CGFloat f) {
+        NSData *dO = UIImageJPEGRepresentation(pSelf, .0f); // dataOrigin
+        if (!dO) return nil;
+        NSData *dC = dO ; // dataCompress
+        NSData *dR = dO; // dataResult
+        
+        long long lengthData = dC.length;
+        NSInteger i = 0;
+        for (NSInteger j = 0 ; j < 10; j ++) {
+            if (lengthData / 1024.f > f) {
+                NSData *dataTemp = UIImageJPEGRepresentation(self , 1.f - (++ i) * .1f);
+                dR = dataTemp;
+                lengthData = dR.length;
+                continue;
+            }
+            break;
+        }
+        return dR;
+    };
+}
+
+- (BOOL (^)(CGFloat))isOverLimitFor {
+    __weak typeof(self) pSelf = self;
+    return ^BOOL (CGFloat f) {
+        return pSelf.toData.length / powl(1024, 2) > f ;
+    };
+}
+
+@end
+
+#pragma mark - -----
+
+@implementation NSData (CCChain_UIImage)
+
+- (CCImageType)type {
+    NSData *data = [self copy];
+    if (!data) return CCImageTypeUnknow;
+    
+    UInt8 c = 0;
+    [data getBytes:&c length:1];
+    switch (c) {
+        case 0xFF:
+            return CCImageTypeJPEG;
+        case 0x89:
+            return CCImageTypePNG;
+        case 0x47:
+            return CCImageTypeGif;
+        case 0x49:
+        case 0x4D:
+            return CCImageTypeTiff;
+        case 0x52:
+            if (data.length < 12) {
+                return CCImageTypeUnknow;
+            }
+            
+        default:
+            return CCImageTypeUnknow;
+            break;
+    }
+    return CCImageTypeUnknow;
+}
+
+
+@end

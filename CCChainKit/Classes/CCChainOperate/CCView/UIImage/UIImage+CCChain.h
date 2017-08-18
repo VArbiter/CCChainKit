@@ -53,3 +53,32 @@ extern CGFloat _CC_GAUSSIAN_BLUR_TINT_ALPHA_ ;
 @property (nonatomic , copy , readonly) UIImage *(^gaussianCIA)(CGFloat fRadius , void(^)(UIImage *origin , UIImage *processed)); // async
 
 @end
+
+#pragma mark - -----
+
+typedef NS_ENUM(NSInteger , CCImageType) {
+    CCImageTypeUnknow = 0 ,
+    CCImageTypeJPEG ,
+    CCImageTypePNG ,
+    CCImageTypeGif ,
+    CCImageTypeTiff
+};
+
+@interface UIImage (CCChain_Data)
+
+extern CGFloat _CC_IMAGE_JPEG_COMPRESSION_QUALITY_SIZE_ ; // 400 kb
+
+// available for PNG && JPEG
+
+@property (nonatomic , readonly) NSData *toData ;
+/// compress and limit it with in a fitable range .
+@property (nonatomic , copy , readonly) NSData *(^compresssJPEG)(CGFloat fQuility);
+@property (nonatomic , copy , readonly) BOOL (^isOverLimitFor)(CGFloat fMBytes); // arguments with Mbytes .
+
+@end
+
+@interface NSData (CCChain_UIImage)
+
+@property (nonatomic , readonly) CCImageType type ;
+
+@end
