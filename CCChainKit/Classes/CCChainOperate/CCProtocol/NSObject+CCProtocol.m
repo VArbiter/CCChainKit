@@ -17,4 +17,9 @@
     return self;
 }
 
+- (instancetype)ccS:(void (^)(id))sameObject {
+    if (self && sameObject) sameObject(self);
+    return self;
+}
+
 @end

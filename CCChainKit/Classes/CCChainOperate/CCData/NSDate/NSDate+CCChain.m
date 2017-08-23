@@ -7,15 +7,12 @@
 //
 
 #import "NSDate+CCChain.h"
-#import "CCCommonDefine.h"
-#import "CCCommonTools.h"
 
 #import "NSObject+CCChain.h"
 
 @implementation NSDate (CCChain)
-
 - (NSDate *(^)())firstWeekDayInThisMonth {
-    ccWeakSelf;
+    __weak typeof(self) pSelf = self;
     return ^NSDate *() {
         NSCalendar *calendar = [NSCalendar currentCalendar];
         [calendar setFirstWeekday:1];//1.Sun. 2.Mon. 3.Thes. 4.Wed. 5.Thur. 6.Fri. 7.Sat.
@@ -33,7 +30,7 @@
 }
 
 - (NSDate *(^)())weekDay {
-    ccWeakSelf;
+    __weak typeof(self) pSelf = self;
     return ^NSDate *() {
         pSelf.bridge = ^id{
             return @((pSelf.firstWeekDayInThisMonth().toInt + pSelf.day().toInt - 1) % 7);
@@ -43,7 +40,7 @@
 }
 
 - (NSDate *(^)())day {
-    ccWeakSelf;
+    __weak typeof(self) pSelf = self;
     return ^NSDate *() {
         pSelf.bridge = ^id{
             return [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay)
@@ -56,29 +53,29 @@
 - (NSString *)toWeek {
     switch (self.weekDay().toInt) {
         case 1:{
-            return ccLocalize(@"_CC_MON_", "一");
+            return @"1";
         }break;
         case 2:{
-            return ccLocalize(@"_CC_TUE_", "二");
+            return @"2";
         }break;
         case 3:{
-            return ccLocalize(@"_CC_WEN_", "三");
+            return @"3";
         }break;
         case 4:{
-            return ccLocalize(@"_CC_THUR_", "四");
+            return @"4";
         }break;
         case 5:{
-            return ccLocalize(@"_CC_FRI_", "五");
+            return @"5";
         }break;
         case 6:{
-            return ccLocalize(@"_CC_SAT_", "六");
+            return @"6";
         }break;
         case 7:{
-            return ccLocalize(@"_CC_SUN_", "七");
+            return @"7";
         }break;
             
         default:{
-            return ccLocalize(@"_CC_MON_", "一");
+            return @"0";
         }break;
     }
 }
@@ -106,7 +103,7 @@
 }
 
 - (NSString *)toString {
-    return ccStringFormat(@"%@",self);
+    return [NSString stringWithFormat:@"%@",self];
 }
 
 @end

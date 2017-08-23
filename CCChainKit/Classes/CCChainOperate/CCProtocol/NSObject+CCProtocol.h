@@ -13,6 +13,8 @@
 - (instancetype) cc ;
 + (Class) cc;
 
+- (instancetype) ccS : (void (^)(id object)) sameObject;
+
 @end
 
 @interface NSObject (CCProtocol) < CCChainOperateProtocol >

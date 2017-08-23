@@ -28,6 +28,20 @@ static int _CC_DEBUG_MODE_;
     #define CCLog(fmt , ...) /* */
 #endif
 
+#define CC_CLASS(VALUE) typeof(VALUE) same##VALUE = VALUE
+
+#if _CC_DEBUG_MODE_
+    #define CC_WEAK_INSTANCE(VALUE) @autoreleasepool{} __unsafe_unretained __typeof__(VALUE) weak##VALUE = VALUE
+    #define CC_STRONG_INSTANCE(VALUE) @autoreleasepool{} __typeof__(VALUE) weak##VALUE = VALUE
+    #define CC_WEAK_SELF @autoreleasepool{} __weak __typeof__(&*self) weakSelf = self
+    #define CC_STRONG_SELF @autoreleasepool{} __typeof__(&*self) weakSelf = self
+#else
+    #define CC_WEAK_INSTANCE(VALUE) @try{} @finally{} {} __unsafe_unretained __typeof__(VALUE) weak##VALUE = VALUE
+    #define CC_STRONG_INSTANCE(VALUE) @try{} @finally{} {} __typeof__(VALUE) weak##VALUE = VALUE
+    #define CC_WEAK_SELF @try{} @finally{} {} __weak __typeof__(&*self) weakSelf = self
+    #define CC_STRONG_SELF @try{} @finally{} {} __typeof__(&*self) weakSelf = self
+#endif
+
 /// returns uuid
 static NSString * _CC_UUID_;
 
