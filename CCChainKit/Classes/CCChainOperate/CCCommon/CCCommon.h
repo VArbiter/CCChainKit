@@ -28,7 +28,7 @@ static int _CC_DEBUG_MODE_;
     #define CCLog(fmt , ...) /* */
 #endif
 
-#define CC_CLASS(VALUE) typeof(VALUE) same##VALUE = VALUE
+#define CC_CLASS(VALUE) typeof(VALUE) sameT##VALUE = VALUE
 
 #define CC_WEAK_INSTANCE(VALUE) __unsafe_unretained typeof(VALUE) weakT##VALUE = VALUE
 #define CC_WEAK_SELF __weak typeof(&*self) pSelf = self
@@ -60,5 +60,9 @@ void CC_DEBUG_M(int mark , void (^debug)() , void (^release)());
 
 /// if is SIMULATOR
 void CC_DETECT_SIMULATOR(void (^y)() , void (^n)());
+
+/// make sure that if a chain has started ,
+/// no 'nil' return for next chain actions . (if does , system will crash immediately) .
+void CC_SAFED_CHAIN(id object , void (^safe)(id object));
 
 @end

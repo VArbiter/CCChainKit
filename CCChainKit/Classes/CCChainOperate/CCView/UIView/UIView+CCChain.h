@@ -145,6 +145,7 @@ CGFloat CCHScale(CGFloat h);
 @property (nonatomic , readonly) UIControl * asUIControl;
 @property (nonatomic , readonly) UITextView * asUITextView;
 @property (nonatomic , readonly) UITextField * asUITextField;
+@property (nonatomic , readonly) UIProgressView * asUIProgressView;
 
 @end
 

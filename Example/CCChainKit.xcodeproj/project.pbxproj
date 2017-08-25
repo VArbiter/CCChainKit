@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37D8628A1F507DFA00417F5F /* CCEasyWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D862891F507DFA00417F5F /* CCEasyWebView.m */; };
 		4FB4DD77B5BA32B23EE5373F /* Pods_CCChainKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C097BD1F208A5060168ECC6A /* Pods_CCChainKit_Tests.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
@@ -63,6 +64,8 @@
 
 /* Begin PBXFileReference section */
 		2DDD8D1109EDCB35A1DAF804 /* Pods-CCChainKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCChainKit_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CCChainKit_Tests/Pods-CCChainKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		37D862881F507DFA00417F5F /* CCEasyWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEasyWebView.h; sourceTree = "<group>"; };
+		37D862891F507DFA00417F5F /* CCEasyWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCEasyWebView.m; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* CCChainKit_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCChainKit_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -175,6 +178,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		37D862861F507DA900417F5F /* CCCustom */ = {
+			isa = PBXGroup;
+			children = (
+				37D862871F507DED00417F5F /* CCEasyWebView */,
+			);
+			path = CCCustom;
+			sourceTree = "<group>";
+		};
+		37D862871F507DED00417F5F /* CCEasyWebView */ = {
+			isa = PBXGroup;
+			children = (
+				37D862881F507DFA00417F5F /* CCEasyWebView.h */,
+				37D862891F507DFA00417F5F /* CCEasyWebView.m */,
+			);
+			path = CCEasyWebView;
+			sourceTree = "<group>";
+		};
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
@@ -301,6 +321,7 @@
 				70D63CD11F3C361500945CA2 /* CCData */,
 				70D63CF11F3C361500945CA2 /* CCRuntime */,
 				70D63CF51F3C361500945CA2 /* CCView */,
+				37D862861F507DA900417F5F /* CCCustom */,
 			);
 			path = CCChainOperate;
 			sourceTree = "<group>";
@@ -795,6 +816,7 @@
 				70D63D201F3C361500945CA2 /* NSObject+CCProtocol.m in Sources */,
 				70D63D261F3C361500945CA2 /* UICollectionView+CCChain.m in Sources */,
 				70D63D281F3C361500945CA2 /* UIControl+CCChain.m in Sources */,
+				37D8628A1F507DFA00417F5F /* CCEasyWebView.m in Sources */,
 				70D63D241F3C361500945CA2 /* UIBarButtonItem+CCChain.m in Sources */,
 				6003F5A7195388D20070C39A /* CCViewController.m in Sources */,
 				70D63D211F3C361500945CA2 /* CCRuntime.m in Sources */,

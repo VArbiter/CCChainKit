@@ -76,6 +76,12 @@
     return (self && ![self isKindOfClass:[NSNull class]] && (self != NSNull.null));
 }
 
+id CC_NON_NULL(Class clazz , void (^setting)(id value)) {
+    id value = [[clazz alloc] init];
+    if (setting) setting(value);
+    return value;
+}
+
 @end
 
 @implementation NSObject (CCChainBridge)

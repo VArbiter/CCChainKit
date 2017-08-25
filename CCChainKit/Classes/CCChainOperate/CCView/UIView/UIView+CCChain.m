@@ -533,6 +533,11 @@ CGFloat CCHScale(CGFloat h) {
     return self;
 }
 
+- (UIProgressView *)asUIProgressView {
+    if ([self isKindOfClass:UIProgressView.class]) return (UIProgressView *) self;
+    return self;
+}
+
 @end
 
 #pragma clang diagnostic pop

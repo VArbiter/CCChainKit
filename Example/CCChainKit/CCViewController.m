@@ -8,6 +8,12 @@
 
 #import "CCViewController.h"
 
+#import "CCChainKit.h"
+
+//#import "NSObject+CCChain.h"
+#import "NSObject+CCProtocol.h"
+#import "UIView+CCChain.h"
+
 @interface CCViewController ()
 
 @end
@@ -17,8 +23,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    CC_WEAK_INSTANCE(self);
+    UIView *v;
+    [v ccS:^id(id object) {
+        return CC_TYPE(UIView *, object).leftS(10);
+    }];
 }
+
+
 
 - (void)didReceiveMemoryWarning
 {

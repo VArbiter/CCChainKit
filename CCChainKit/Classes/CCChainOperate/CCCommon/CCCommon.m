@@ -77,4 +77,8 @@ void CC_DETECT_SIMULATOR(void (^y)() , void (^n)()) {
     } else if (n) n();
 }
 
+void CC_SAFED_CHAIN(id object , void (^safe)(id object)) {
+    if (object && safe) safe(object);
+}
+
 @end
