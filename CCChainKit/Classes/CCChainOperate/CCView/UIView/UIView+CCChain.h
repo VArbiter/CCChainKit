@@ -128,6 +128,27 @@ CGFloat CCHScale(CGFloat h);
 @end
 
 #pragma mark - -----
+@import WebKit;
+
+@interface UIView (CCChain_Force)
+
+// if it's not the same type for force transfer ,
+// this property will return it self .
+
+@property (nonatomic , readonly) UILabel * asUILabel;
+@property (nonatomic , readonly) UIScrollView * asUIScrollView;
+@property (nonatomic , readonly) UITableView * asUITableView;
+@property (nonatomic , readonly) UICollectionView * asUICollectionView;
+@property (nonatomic , readonly) UIImageView * asUIImageView;
+@property (nonatomic , readonly) WKWebView * asWKWebView;
+@property (nonatomic , readonly) UIButton * asUIButton;
+@property (nonatomic , readonly) UIControl * asUIControl;
+@property (nonatomic , readonly) UITextView * asUITextView;
+@property (nonatomic , readonly) UITextField * asUITextField;
+
+@end
+
+#pragma mark - -----
 #import "MBProgressHUD+CCChain.h"
 
 @interface UIView (CCChain_Hud)

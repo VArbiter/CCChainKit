@@ -30,17 +30,9 @@ static int _CC_DEBUG_MODE_;
 
 #define CC_CLASS(VALUE) typeof(VALUE) same##VALUE = VALUE
 
-#if _CC_DEBUG_MODE_
-    #define CC_WEAK_INSTANCE(VALUE) @autoreleasepool{} __unsafe_unretained __typeof__(VALUE) weak##VALUE = VALUE
-    #define CC_STRONG_INSTANCE(VALUE) @autoreleasepool{} __typeof__(VALUE) weak##VALUE = VALUE
-    #define CC_WEAK_SELF @autoreleasepool{} __weak __typeof__(&*self) weakSelf = self
-    #define CC_STRONG_SELF @autoreleasepool{} __typeof__(&*self) weakSelf = self
-#else
-    #define CC_WEAK_INSTANCE(VALUE) @try{} @finally{} {} __unsafe_unretained __typeof__(VALUE) weak##VALUE = VALUE
-    #define CC_STRONG_INSTANCE(VALUE) @try{} @finally{} {} __typeof__(VALUE) weak##VALUE = VALUE
-    #define CC_WEAK_SELF @try{} @finally{} {} __weak __typeof__(&*self) weakSelf = self
-    #define CC_STRONG_SELF @try{} @finally{} {} __typeof__(&*self) weakSelf = self
-#endif
+#define CC_WEAK_INSTANCE(VALUE) __unsafe_unretained typeof(VALUE) weakT##VALUE = VALUE
+#define CC_WEAK_SELF __weak typeof(&*self) pSelf = self
+#define CC_TYPE(_type_ , _value_) ((_type_)_value_) // forced transfer with a specific type
 
 /// returns uuid
 static NSString * _CC_UUID_;

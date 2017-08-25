@@ -478,6 +478,67 @@ CGFloat CCHScale(CGFloat h) {
 
 #pragma mark - -----
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wincompatible-pointer-types"
+
+@implementation UIView (CCChain_Force)
+
+- (UILabel *)asUILabel {
+    if ([self isKindOfClass:UILabel.class]) return (UILabel *) self;
+    return self;
+}
+
+- (UIScrollView *)asUIScrollView {
+    if ([self isKindOfClass:UIScrollView.class]) return (UIScrollView *) self;
+    return self;
+}
+
+- (UITableView *)asUITableView {
+    if ([self isKindOfClass:UITableView.class]) return (UITableView *) self;
+    return self;
+}
+
+- (UICollectionView *)asUICollectionView {
+    if ([self isKindOfClass:UICollectionView.class]) return (UICollectionView *) self;
+    return self;
+}
+
+- (UIImageView *)asUIImageView {
+    if ([self isKindOfClass:UIImageView.class]) return (UIImageView *) self;
+    return self;
+}
+
+- (WKWebView *)asWKWebView {
+    if ([self isKindOfClass:WKWebView.class]) return (WKWebView *) self;
+    return self;
+}
+
+- (UIButton *)asUIButton {
+    if ([self isKindOfClass:UIButton.class]) return (UIButton *) self;
+    return self;
+}
+
+- (UIControl *)asUIControl {
+    if ([self isKindOfClass:UIControl.class]) return (UIControl *) self;
+    return self;
+}
+
+- (UITextView *)asUITextView {
+    if ([self isKindOfClass:UITextView.class]) return (UITextView *) self;
+    return self;
+}
+
+- (UITextField *)asUITextField {
+    if ([self isKindOfClass:UITextField.class]) return (UITextField *) self;
+    return self;
+}
+
+@end
+
+#pragma clang diagnostic pop
+
+#pragma mark - -----
+
 @implementation UIView (CCChain_Hud)
 
 - (MBProgressHUD *(^)())hud {
