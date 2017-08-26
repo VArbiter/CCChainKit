@@ -77,8 +77,9 @@
 #endif
 
 /// prevent if an nil occur and caused blocks crash
-/// note : if blocks was used by nil , app will went carash (bad singal)
-/// note : USE this macro CC(_value_) to ensure non blocks will used by nil .
+/// note : if blocks was used by nil , app will went crash (EXC_BAD_ACCESS)
+/// note : USE this macro CC_IN_METHOD(_value_) in methods impls
+/// to ensure non blocks will used by nil .
 #ifndef CC
     #if _CC_DEBUG_MODE_
         #define CC(_value_) \
@@ -88,7 +89,8 @@
             } \
             if (_value_ && [_value_ conformsToProtocol:@protocol(CCChainOperateProtocol)]) ([_value_ cc])
     #else
-        #define CC(_value_) if (_value_ && [_value_ conformsToProtocol:@protocol(CCChainOperateProtocol)]) ([_value_ cc])
+        #define CC(_value_) \
+            if (_value_ && [_value_ conformsToProtocol:@protocol(CCChainOperateProtocol)]) ([_value_ cc])
     #endif
 #endif
 

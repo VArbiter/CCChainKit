@@ -16,6 +16,8 @@
 
 @interface CCViewController ()
 
+@property (nonatomic , copy) void (^test)(id t);
+
 @end
 
 @implementation CCViewController
@@ -26,10 +28,14 @@
     CC_WEAK_INSTANCE(self);
 //    UIView *v = [[UIView alloc] init];
     UIView *v;
-    [v ccS:^id(id object) {
+    [v cc:^id(id object) {
         return CC_TYPE(UIView *, object).leftS(10);
     }];
-    CC(v).leftS(10);
+    CC(v).leftS(10); // not
+    if (self.test) self.test([v cc:^id(id sameObject) {
+        return CC_TYPE(UIView *, sameObject).leftS(1);
+    }]); // not
+    v.leftS(10); // crash , nil for block .
 }
 
 

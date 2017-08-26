@@ -8,6 +8,8 @@
 
 #import "NSObject+CCProtocol.h"
 
+#import "CCCommon.h"
+
 @implementation NSObject (CCProtocol)
 
 - (instancetype)cc {
@@ -17,7 +19,8 @@
     return self;
 }
 
-- (instancetype)ccS:(id (^)(id))sameObject {
+- (instancetype)cc:(id (^)(id))sameObject {
+    CC(self);
     if (self && sameObject) return sameObject(self);
     return self;
 }

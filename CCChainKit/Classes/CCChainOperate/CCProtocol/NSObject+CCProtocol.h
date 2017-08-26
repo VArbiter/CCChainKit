@@ -11,12 +11,13 @@
 @protocol CCChainOperateProtocol < NSObject >
 
 - (instancetype) cc ; // provide for macro (prevent crash)
-+ (Class) cc; // provide for macro (prevent crash)
++ (Class) cc; // provide for macro
 
 /// make sure that when blocks is deploy ,
 /// the object in blocks , was never can't be nil
 /// use CC_TYPE(_type_ , sameObject) to start a chain action .
-- (instancetype) ccS : (id (^)(id sameObject)) sameObject;
+/// also , as a reslution for some blocks can be run as params .
+- (instancetype) cc : (id (^)(id sameObject)) sameObject;
 
 /// just compare with 'end' ......
 - (instancetype) begin ;
