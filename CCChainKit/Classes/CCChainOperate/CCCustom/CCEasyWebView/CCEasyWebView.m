@@ -12,6 +12,8 @@
 
 @property (nonatomic , strong) WKWebViewConfiguration * config;
 @property (nonatomic , assign) CGRect frame ;
+@property (nonatomic , strong) WKUserContentController *userContentController ;
+@property (nonatomic , strong) CCScriptMessageDelegate *messageDelegate ;
 
 @property (nonatomic , assign) BOOL isTrustWithoutAnyDoubt;
 @property (nonatomic , copy) void (^challenge)(WKWebView *webView ,
@@ -19,10 +21,16 @@
                 void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * credential));
 @property (nonatomic , copy) void (^alertS)(UIAlertController *controller);
 
+@property (nonatomic , strong) NSMutableDictionary <NSString * , void (^)(WKUserContentController *, WKScriptMessage *)> *dictionaryMessage ;
+
 - (instancetype) init : (CGRect) frame ;
 
 - (instancetype) init : (CGRect) frame
         configuration : (WKWebViewConfiguration *) configuration ;
+
+@property (nonatomic , copy) void (^progress)(double);
+@property (nonatomic , copy) WKNavigationActionPolicy (^decision)(WKNavigationAction * action);
+@property (nonatomic , copy) WKNavigationResponsePolicy (^decisionR)(WKNavigationResponse *response);
 
 @end
 
@@ -59,8 +67,77 @@
         self.frame = frame;
         self.config = configuration;
         self.isTrustWithoutAnyDoubt = YES;
+        [self.webView addSubview:self.progressView];
     }
     return self;
+}
+
+- (CCEasyWebView *(^)(BOOL))authChallenge {
+    __weak typeof(self) pSelf = self;
+    return ^CCEasyWebView *(BOOL b) {
+        pSelf.isTrustWithoutAnyDoubt = b;
+        return pSelf;
+    };
+}
+
+- (CCEasyWebView *(^)(void (^)(WKWebView *, NSURLAuthenticationChallenge *, void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential *))))dealAuthChallenge {
+    __weak typeof(self) pSelf = self;
+    return ^CCEasyWebView * (void (^t)(WKWebView *, NSURLAuthenticationChallenge *, void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential *))) {
+        pSelf.challenge = [t copy];
+        return pSelf;
+    };
+}
+
+- (CCEasyWebView *(^)(void (^)(UIAlertController *)))decidedByUser {
+    __weak typeof(self) pSelf = self;
+    return ^CCEasyWebView *(void (^t)(UIAlertController *)) {
+        pSelf.alertS = [t copy];
+        return pSelf;
+    };
+}
+
+- (CCEasyWebView *(^)(WKNavigationActionPolicy (^)(WKNavigationAction *)))policyForAction {
+    __weak typeof(self) pSelf = self;
+    return ^CCEasyWebView *(WKNavigationActionPolicy (^t)(WKNavigationAction *)) {
+        pSelf.decision = [t copy];
+        return pSelf;
+    };
+}
+
+- (CCEasyWebView *(^)(WKNavigationResponsePolicy (^)(WKNavigationResponse *)))policyForResponse {
+    __weak typeof(self) pSelf = self;
+    return ^(WKNavigationResponsePolicy (^t)(WKNavigationResponse *)) {
+        pSelf.decisionR = [t copy];
+        return pSelf;
+    };
+}
+
+#warning TODO >>>
+
+- (CCEasyWebView *(^)(NSString *, void (^)(WKUserContentController *, WKScriptMessage *)))script {
+    __weak typeof(self) pSelf = self;
+    return ^CCEasyWebView *(NSString *s , void (^t)(WKUserContentController *, WKScriptMessage *)) {
+        if (s && s.length) {
+            [pSelf.userContentController addScriptMessageHandler:self.messageDelegate
+                                                            name:s];
+            [pSelf.dictionaryMessage setValue:t
+                                       forKey:s];
+        }
+        else if (!t && s && s.length) {
+            [pSelf.userContentController removeScriptMessageHandlerForName:s];
+            [pSelf.dictionaryMessage removeObjectForKey:s];
+        }
+        
+        return pSelf;
+    };
+}
+
+- (CCEasyWebView *(^)(void (^)(double)))loadingProgress {
+    __weak typeof(self) pSelf = self;
+    return ^CCEasyWebView *(void (^t)(double)) {
+        pSelf.progress = [t copy];
+        return pSelf;
+    };
 }
 
 #pragma mark - -----
@@ -174,6 +251,97 @@
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
 //    CCLog(@"%@",error);
+}
+
+#pragma mark - -----
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
+    void (^t)(WKUserContentController *, WKScriptMessage *) = self.dictionaryMessage[message.name];
+    if (t) t(userContentController , message);
+}
+
+#pragma mark - -----
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if (object == self.webView && [keyPath isEqualToString:@"estimatedProgress"]) {
+        if (self.progress) self.progress(self.webView.estimatedProgress);
+        [self.progressView setAlpha:1.0f];
+        [self.progressView setProgress:self.webView.estimatedProgress
+                              animated:YES];
+        if(self.webView.estimatedProgress >= 1.0f)
+            [UIView animateWithDuration:0.3
+                                  delay:0.3
+                                options:UIViewAnimationOptionCurveEaseOut
+                             animations:^{
+                                 [self.progressView setAlpha:0.0f];
+                             } completion:^(BOOL finished) {
+                                 [self.progressView setProgress:0.0f
+                                                       animated:NO];
+                             }];
+    }
+    else [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+}
+
+#pragma mark - -----
+- (NSMutableDictionary<NSString *,void (^)(WKUserContentController *, WKScriptMessage *)> *)dictionaryMessage {
+    if (_dictionaryMessage) return _dictionaryMessage;
+    NSMutableDictionary *d = [NSMutableDictionary dictionary];
+    _dictionaryMessage = d;
+    return _dictionaryMessage;
+}
+
+- (WKWebView *)webView{
+    if (_webView) return _webView;
+    if (!self.config) {
+        WKWebViewConfiguration * c = [[WKWebViewConfiguration alloc] init];
+        if (UIDevice.currentDevice.systemVersion.floatValue >= 9.f) {
+            c.allowsAirPlayForMediaPlayback = YES;
+        }
+        c.allowsInlineMediaPlayback = YES;
+        c.selectionGranularity = YES;
+        c.processPool = [[WKProcessPool alloc] init];
+        c.userContentController = self.userContentController;
+        self.config = c;
+    }
+    else self.config.userContentController = self.userContentController;
+    
+    WKWebView *v = [[WKWebView alloc] initWithFrame:(CGRect){0,0,self.frame.size.width,self.frame.size.height}
+                                      configuration:self.config];
+    _webView = v;
+    
+    [_webView addObserver:self
+               forKeyPath:@"estimatedProgress"
+                  options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+                  context:nil];
+    
+    return _webView;
+}
+
+- (UIProgressView *)progressView {
+    if (_progressView) return _progressView;
+    UIProgressView *v = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
+    v.frame = (CGRect){0,0, self.frame.size.width , 2};
+    _progressView = v;
+    return _progressView;
+}
+
+- (WKUserContentController *)userContentController {
+    if (_userContentController) return _userContentController;
+    WKUserContentController *c = [[WKUserContentController alloc] init];
+    _userContentController = c;
+    return _userContentController;
+}
+
+- (CCScriptMessageDelegate *)messageDelegate {
+    if (_messageDelegate) return _messageDelegate;
+    CCScriptMessageDelegate *delegate = [[CCScriptMessageDelegate alloc] init:self];
+    _messageDelegate = delegate;
+    return _messageDelegate;
+}
+
+- (void)dealloc {
+    [self.webView removeObserver:self
+                      forKeyPath:@"estimatedProgress"
+                         context:nil];
 }
 
 @end

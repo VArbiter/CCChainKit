@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3780F2831F51EA6F009B5C8C /* WKWebView+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 3780F2821F51EA6F009B5C8C /* WKWebView+CCChain.m */; };
 		37D8628A1F507DFA00417F5F /* CCEasyWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D862891F507DFA00417F5F /* CCEasyWebView.m */; };
 		4FB4DD77B5BA32B23EE5373F /* Pods_CCChainKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C097BD1F208A5060168ECC6A /* Pods_CCChainKit_Tests.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
@@ -64,6 +65,8 @@
 
 /* Begin PBXFileReference section */
 		2DDD8D1109EDCB35A1DAF804 /* Pods-CCChainKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCChainKit_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CCChainKit_Tests/Pods-CCChainKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		3780F2811F51EA6F009B5C8C /* WKWebView+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WKWebView+CCChain.h"; sourceTree = "<group>"; };
+		3780F2821F51EA6F009B5C8C /* WKWebView+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebView+CCChain.m"; sourceTree = "<group>"; };
 		37D862881F507DFA00417F5F /* CCEasyWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEasyWebView.h; sourceTree = "<group>"; };
 		37D862891F507DFA00417F5F /* CCEasyWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCEasyWebView.m; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* CCChainKit_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCChainKit_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -178,6 +181,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3780F2801F51EA56009B5C8C /* WKWebView */ = {
+			isa = PBXGroup;
+			children = (
+				3780F2811F51EA6F009B5C8C /* WKWebView+CCChain.h */,
+				3780F2821F51EA6F009B5C8C /* WKWebView+CCChain.m */,
+			);
+			path = WKWebView;
+			sourceTree = "<group>";
+		};
 		37D862861F507DA900417F5F /* CCCustom */ = {
 			isa = PBXGroup;
 			children = (
@@ -468,6 +480,7 @@
 			isa = PBXGroup;
 			children = (
 				70D63D2E1F3C41B400945CA2 /* CCChainView.h */,
+				3780F2801F51EA56009B5C8C /* WKWebView */,
 				70D63CF61F3C361500945CA2 /* MBProgressHud */,
 				70D63CF91F3C361500945CA2 /* UIAlertController */,
 				70D63CFC1F3C361500945CA2 /* UIBarButtonItem */,
@@ -830,6 +843,7 @@
 				70D63D1A1F3C361500945CA2 /* NSDate+CCChain.m in Sources */,
 				70D63D1E1F3C361500945CA2 /* NSPredicate+CCChain.m in Sources */,
 				70D63D271F3C361500945CA2 /* UIColor+CCChain.m in Sources */,
+				3780F2831F51EA6F009B5C8C /* WKWebView+CCChain.m in Sources */,
 				70D63D171F3C361500945CA2 /* NSArray+CCChain.m in Sources */,
 				70C8813B1F46E0B80007AD62 /* UIImagePickerController+CCChain.m in Sources */,
 			);

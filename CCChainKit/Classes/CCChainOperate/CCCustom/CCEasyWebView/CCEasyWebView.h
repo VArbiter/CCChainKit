@@ -6,8 +6,7 @@
 //  Copyright © 2017 ElwinFrederick. All rights reserved.
 //
 
-@import UIKit;
-@import WebKit;
+#import "WKWebView+CCChain.h"
 
 @interface CCEasyWebView : NSObject
 
@@ -15,6 +14,9 @@
 @property (nonatomic , class , copy , readonly) CCEasyWebView *(^commonS)(CGRect frame , WKWebViewConfiguration *configuration);
 
 @property (nonatomic , strong) WKWebView *webView;
+
+/// (CGRect){0,0,Screen Width , 2} , superview : webView
+/// alpha will be .0 when progress reach 1.f
 @property (nonatomic , strong) UIProgressView *progressView;
 
 @property (nonatomic , copy , readonly) CCEasyWebView *(^authChallenge)(BOOL isWithoutAnyDoubt); // default is YES
@@ -23,7 +25,19 @@
                 void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * credential)));
 @property (nonatomic , copy , readonly) CCEasyWebView *(^decidedByUser)(void (^alert)(UIAlertController *controller));
 
+@property (nonatomic , copy , readonly) CCEasyWebView *(^policyForAction)(WKNavigationActionPolicy(^decision)(WKNavigationAction * action));
+@property (nonatomic , copy , readonly) CCEasyWebView *(^policyForResponse)(WKNavigationResponsePolicy(^decisionR)(WKNavigationResponse *response));
+#warning TODO >>>
+@property (nonatomic , copy , readonly) CCEasyWebView *(^didCommit)(void (^commit)(WKWebView *webView , WKNavigation *navigation));
+@property (nonatomic , copy , readonly) CCEasyWebView *(^didStart)(void (^start)(WKWebView *webView , WKNavigation *navigation));
+@property (nonatomic , copy , readonly) CCEasyWebView *(^failProvisional)(void (^start)(WKWebView *webView , WKNavigation *navigation , NSError * error));
+@property (nonatomic , copy , readonly) CCEasyWebView *(^receiveRedirect)(void (^start)(WKWebView *webView , WKNavigation *navigation));
+@property (nonatomic , copy , readonly) CCEasyWebView *(^didFinish)(void (^start)(WKWebView *webView , WKNavigation *navigation));
+@property (nonatomic , copy , readonly) CCEasyWebView *(^didFail)(void (^start)(WKWebView *webView , WKNavigation *navigation , NSError * error));
+
+@property (nonatomic , copy , readonly) CCEasyWebView *(^loadingProgress)(void (^progress)(double progress));
+
 @property (nonatomic , copy , readonly) CCEasyWebView *(^loadR)(NSString * sContent , void (^load)(WKNavigation *navigation));
-@property (nonatomic , copy , readonly) CCEasyWebView *(^script)(NSString *sKey , void (^message)(WKScriptMessage *message));
+@property (nonatomic , copy , readonly) CCEasyWebView *(^script)(NSString *sKey , void (^message)(WKUserContentController * userContentController, WKScriptMessage *message));
 
 @end
