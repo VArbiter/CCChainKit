@@ -22,4 +22,9 @@
     return self;
 }
 
+- (instancetype)begin {
+    return self;
+}
+- (void)end {}
+
 @end

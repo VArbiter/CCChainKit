@@ -157,11 +157,11 @@
 }
 
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation {
-    CCLog(@"_START_LOADING_WEBVIEW_");
+//    CCLog(@"_START_LOADING_WEBVIEW_");
 }
 
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error{
-    CCLog(@"%@",error);
+//    CCLog(@"%@",error);
 }
 
 - (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(null_unspecified WKNavigation *)navigation {
@@ -169,11 +169,11 @@
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation {
-    CCLog(@"_FINISH_LOADING_WEBVIEW_");
+//    CCLog(@"_FINISH_LOADING_WEBVIEW_");
 }
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
-    CCLog(@"%@",error);
+//    CCLog(@"%@",error);
 }
 
 @end

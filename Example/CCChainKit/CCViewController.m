@@ -24,10 +24,12 @@
 {
     [super viewDidLoad];
     CC_WEAK_INSTANCE(self);
+//    UIView *v = [[UIView alloc] init];
     UIView *v;
     [v ccS:^id(id object) {
         return CC_TYPE(UIView *, object).leftS(10);
     }];
+    CC(v).leftS(10);
 }
 
 

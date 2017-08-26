@@ -14,17 +14,7 @@
 @implementation CCCommon
 
 + (void)load {
-#if DEBUG
-    _CC_DEBUG_MODE_ = 1;
-#else
-    _CC_DEBUG_MODE_ = 0;
-#endif
-    
     _CC_UUID_ = [UIDevice currentDevice].identifierForVendor.UUIDString;
-}
-
-void CC_SET_DEBUG_MODE(BOOL isOn) {
-    _CC_DEBUG_MODE_ = (int) isOn;
 }
 
 BOOL CC_Available_C(double version) {

@@ -10,14 +10,23 @@
 
 @protocol CCChainOperateProtocol < NSObject >
 
-- (instancetype) cc ;
-+ (Class) cc;
+- (instancetype) cc ; // provide for macro (prevent crash)
++ (Class) cc; // provide for macro (prevent crash)
 
-- (instancetype) ccS : (id (^)(id object)) sameObject;
+/// make sure that when blocks is deploy ,
+/// the object in blocks , was never can't be nil
+/// use CC_TYPE(_type_ , sameObject) to start a chain action .
+- (instancetype) ccS : (id (^)(id sameObject)) sameObject;
+
+/// just compare with 'end' ......
+- (instancetype) begin ;
+/// if you don't want a return value and can't ignore unused warning ,
+/// and don't know how to silent a unused warning with clang ignore ,
+/// use the property to make sure that returns nothing .
+@property (nonatomic , readonly) void end;
 
 @end
 
 @interface NSObject (CCProtocol) < CCChainOperateProtocol >
-
 @end
 
