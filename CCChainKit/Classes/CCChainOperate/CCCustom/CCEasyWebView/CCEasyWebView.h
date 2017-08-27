@@ -19,10 +19,20 @@
 /// alpha will be .0 when progress reach 1.f
 @property (nonatomic , strong) UIProgressView *progressView;
 
+// a chain bridge for WKNavigationDelegate
+
 @property (nonatomic , copy , readonly) CCEasyWebView *(^authChallenge)(BOOL isWithoutAnyDoubt); // default is YES
+
+/// if webview receive a auth challenge
+/// note : if not implemented 'dealAuthChallenge' ,
+/// webview will trust certificate without any doubt . (non process will be done)
 @property (nonatomic , copy , readonly) CCEasyWebView *(^dealAuthChallenge)(void (^challenge)(WKWebView *webView ,
                 NSURLAuthenticationChallenge * challenge,
                 void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * credential)));
+
+/// if decidedByUser was implemented .
+/// then the choice of whether trust a certificate or not , was decided by users .
+/// note : use modal to presented a alertcontroller .
 @property (nonatomic , copy , readonly) CCEasyWebView *(^decidedByUser)(void (^alert)(UIAlertController *controller));
 
 @property (nonatomic , copy , readonly) CCEasyWebView *(^policyForAction)(WKNavigationActionPolicy(^decision)(WKNavigationAction * action));
@@ -35,9 +45,19 @@
 @property (nonatomic , copy , readonly) CCEasyWebView *(^didFinish)(void (^finish)(WKWebView *webView , WKNavigation *navigation));
 @property (nonatomic , copy , readonly) CCEasyWebView *(^didFail)(void (^fail)(WKWebView *webView , WKNavigation *navigation , NSError * error));
 
-@property (nonatomic , copy , readonly) CCEasyWebView *(^loadingProgress)(void (^progress)(double progress));
+// chain for loading , only "http://" && "https://" will be loaded online
+// others will be loaded as html content .
+// nil to do nothing
 
 @property (nonatomic , copy , readonly) CCEasyWebView *(^loadR)(NSString * sContent , void (^load)(WKNavigation *navigation));
+
+/// pushing the loading progress of current page .
+@property (nonatomic , copy , readonly) CCEasyWebView *(^loadingProgress)(void (^progress)(double progress));
+
+// simple two-ways interact with JaveScript && Native in webview.
+
+/// Can deploy it for muti times .
+/// deploy nil for message block to unregist a recall
 @property (nonatomic , copy , readonly) CCEasyWebView *(^script)(NSString *sKey , void (^message)(WKUserContentController * userContentController, WKScriptMessage *message));
 
 @end
