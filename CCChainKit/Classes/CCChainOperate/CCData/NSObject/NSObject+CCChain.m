@@ -24,7 +24,9 @@
     if (self) {
         if ([self isKindOfClass:[NSString class]]) {
             NSString *string = (NSString *) self;
-            if (string.length && ![string isEqualToString:@"(null)"]) {
+            if (string.length
+                && ![string isEqualToString:@"(null)"]
+                && ![string isKindOfClass:NSNull.class]) {
                 return (NSString *)self;
             }
         }
@@ -74,12 +76,6 @@
 
 - (BOOL)isNull {
     return (self && ![self isKindOfClass:[NSNull class]] && (self != NSNull.null));
-}
-
-id CC_NON_NULL(Class clazz , void (^setting)(id value)) {
-    id value = [[clazz alloc] init];
-    if (setting) setting(value);
-    return value;
 }
 
 @end

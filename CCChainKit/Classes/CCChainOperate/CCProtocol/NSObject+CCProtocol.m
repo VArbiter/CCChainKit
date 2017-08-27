@@ -30,4 +30,16 @@
 }
 - (void)end {}
 
++ (instancetype)CC_Non_NULL:(void (^)(id))setting {
+    id value = [[self alloc] init];
+    if (setting && value) setting(value);
+    return value;
+}
+
+id CC_NON_NULL(Class clazz , void (^setting)(id value)) {
+    id value = [[clazz alloc] init];
+    if (setting) setting(value);
+    return value;
+}
+
 @end

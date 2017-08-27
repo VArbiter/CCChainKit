@@ -26,6 +26,11 @@
 /// use the property to make sure that returns nothing .
 @property (nonatomic , readonly) void end;
 
+/// intialize a value that definitly can't be nil
++ (instancetype) CC_Non_NULL : (void(^)(id value)) setting;
+/// c function type , same as + (instancetype)CC_Non_NULL:
+id CC_NON_NULL(Class clazz , void (^setting)(id value));
+
 @end
 
 @interface NSObject (CCProtocol) < CCChainOperateProtocol >

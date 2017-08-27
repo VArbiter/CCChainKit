@@ -27,13 +27,13 @@
 
 @property (nonatomic , copy , readonly) CCEasyWebView *(^policyForAction)(WKNavigationActionPolicy(^decision)(WKNavigationAction * action));
 @property (nonatomic , copy , readonly) CCEasyWebView *(^policyForResponse)(WKNavigationResponsePolicy(^decisionR)(WKNavigationResponse *response));
-#warning TODO >>>
+
 @property (nonatomic , copy , readonly) CCEasyWebView *(^didCommit)(void (^commit)(WKWebView *webView , WKNavigation *navigation));
 @property (nonatomic , copy , readonly) CCEasyWebView *(^didStart)(void (^start)(WKWebView *webView , WKNavigation *navigation));
-@property (nonatomic , copy , readonly) CCEasyWebView *(^failProvisional)(void (^start)(WKWebView *webView , WKNavigation *navigation , NSError * error));
-@property (nonatomic , copy , readonly) CCEasyWebView *(^receiveRedirect)(void (^start)(WKWebView *webView , WKNavigation *navigation));
-@property (nonatomic , copy , readonly) CCEasyWebView *(^didFinish)(void (^start)(WKWebView *webView , WKNavigation *navigation));
-@property (nonatomic , copy , readonly) CCEasyWebView *(^didFail)(void (^start)(WKWebView *webView , WKNavigation *navigation , NSError * error));
+@property (nonatomic , copy , readonly) CCEasyWebView *(^failProvisional)(void (^provisional)(WKWebView *webView , WKNavigation *navigation , NSError * error));
+@property (nonatomic , copy , readonly) CCEasyWebView *(^receiveRedirect)(void (^redirect)(WKWebView *webView , WKNavigation *navigation));
+@property (nonatomic , copy , readonly) CCEasyWebView *(^didFinish)(void (^finish)(WKWebView *webView , WKNavigation *navigation));
+@property (nonatomic , copy , readonly) CCEasyWebView *(^didFail)(void (^fail)(WKWebView *webView , WKNavigation *navigation , NSError * error));
 
 @property (nonatomic , copy , readonly) CCEasyWebView *(^loadingProgress)(void (^progress)(double progress));
 

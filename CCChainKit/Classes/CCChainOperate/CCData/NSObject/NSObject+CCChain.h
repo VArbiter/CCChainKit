@@ -19,11 +19,6 @@
 @property (nonatomic , strong , readonly) NSDecimalNumber * isDecimalValued ;
 @property (nonatomic , assign , readonly) BOOL isNull ;
 
-+ (instancetype) CC_Non_NULL : (id) value
-                             : (void(^)(id value)) setting;
-
-id CC_NON_NULL(Class clazz , void (^setting)(id value));
-
 @end
 
 @interface NSObject (CCChainBridge)

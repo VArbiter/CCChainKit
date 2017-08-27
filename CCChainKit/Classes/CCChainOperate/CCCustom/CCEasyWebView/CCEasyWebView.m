@@ -31,6 +31,12 @@
 @property (nonatomic , copy) void (^progress)(double);
 @property (nonatomic , copy) WKNavigationActionPolicy (^decision)(WKNavigationAction * action);
 @property (nonatomic , copy) WKNavigationResponsePolicy (^decisionR)(WKNavigationResponse *response);
+@property (nonatomic , copy) void (^commit)(WKWebView *webView , WKNavigation *navigation);
+@property (nonatomic , copy) void (^start)(WKWebView *webView , WKNavigation *navigation);
+@property (nonatomic , copy) void (^provisional)(WKWebView *webView , WKNavigation *navigation , NSError * error);
+@property (nonatomic , copy) void (^redirect)(WKWebView *webView , WKNavigation *navigation);
+@property (nonatomic , copy) void (^finish)(WKWebView *webView , WKNavigation *navigation);
+@property (nonatomic , copy) void (^fail)(WKWebView *webView , WKNavigation *navigation , NSError * error);
 
 @end
 
@@ -51,8 +57,13 @@
 - (CCEasyWebView *(^)(NSString *, void (^)(WKNavigation *)))loadR {
     __weak typeof(self) pSelf = self;
     return ^CCEasyWebView *(NSString * s , void (^t)(WKNavigation *)) {
-        WKNavigation *n = [pSelf.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:s]]];
-        if (n && t) t(n);
+        if (s && s.length) {
+            WKNavigation *n = nil;
+            if ([s hasPrefix:@"http://"] || [s hasPrefix:@"https://"]) {
+                n = [pSelf.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:s]]];
+            } else [pSelf.webView loadHTMLString:s baseURL:nil];
+            if (n && t) t(n);
+        }
         return pSelf;
     };
 }
@@ -83,7 +94,7 @@
 - (CCEasyWebView *(^)(void (^)(WKWebView *, NSURLAuthenticationChallenge *, void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential *))))dealAuthChallenge {
     __weak typeof(self) pSelf = self;
     return ^CCEasyWebView * (void (^t)(WKWebView *, NSURLAuthenticationChallenge *, void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential *))) {
-        pSelf.challenge = [t copy];
+        if (t) pSelf.challenge = [t copy];
         return pSelf;
     };
 }
@@ -91,7 +102,7 @@
 - (CCEasyWebView *(^)(void (^)(UIAlertController *)))decidedByUser {
     __weak typeof(self) pSelf = self;
     return ^CCEasyWebView *(void (^t)(UIAlertController *)) {
-        pSelf.alertS = [t copy];
+        if (t) pSelf.alertS = [t copy];
         return pSelf;
     };
 }
@@ -99,7 +110,7 @@
 - (CCEasyWebView *(^)(WKNavigationActionPolicy (^)(WKNavigationAction *)))policyForAction {
     __weak typeof(self) pSelf = self;
     return ^CCEasyWebView *(WKNavigationActionPolicy (^t)(WKNavigationAction *)) {
-        pSelf.decision = [t copy];
+        if (t) pSelf.decision = [t copy];
         return pSelf;
     };
 }
@@ -107,12 +118,58 @@
 - (CCEasyWebView *(^)(WKNavigationResponsePolicy (^)(WKNavigationResponse *)))policyForResponse {
     __weak typeof(self) pSelf = self;
     return ^(WKNavigationResponsePolicy (^t)(WKNavigationResponse *)) {
-        pSelf.decisionR = [t copy];
+        if (t) pSelf.decisionR = [t copy];
         return pSelf;
     };
 }
 
-#warning TODO >>>
+- (CCEasyWebView *(^)(void (^)(WKWebView *, WKNavigation *)))didCommit {
+    __weak typeof(self) pSelf = self;
+    return ^CCEasyWebView *(void (^t)(WKWebView *, WKNavigation *)) {
+        if (t) pSelf.commit = [t copy];
+        return pSelf;
+    };
+}
+
+- (CCEasyWebView *(^)(void (^)(WKWebView *, WKNavigation *)))didStart {
+    __weak typeof(self) pSelf = self;
+    return ^CCEasyWebView *(void (^t)(WKWebView *, WKNavigation *)) {
+        if (t) pSelf.start = [t copy];
+        return pSelf;
+    };
+}
+
+- (CCEasyWebView *(^)(void (^)(WKWebView *, WKNavigation *, NSError *)))failProvisional {
+    __weak typeof(self) pSelf = self;
+    return ^CCEasyWebView *(void (^t)(WKWebView *, WKNavigation *, NSError *)) {
+        if (t) pSelf.provisional = [t copy];
+        return pSelf;
+    };
+}
+
+- (CCEasyWebView *(^)(void (^)(WKWebView *, WKNavigation *)))receiveRedirect {
+    __weak typeof(self) pSelf = self;
+    return ^CCEasyWebView *(void (^t)(WKWebView *, WKNavigation *)) {
+        if (t) pSelf.redirect = [t copy];
+        return pSelf;
+    };
+}
+
+- (CCEasyWebView *(^)(void (^)(WKWebView *, WKNavigation *)))didFinish {
+    __weak typeof(self) pSelf = self;
+    return ^CCEasyWebView *(void (^t)(WKWebView *, WKNavigation *)) {
+        if (t) pSelf.finish = [t copy];
+        return pSelf;
+    };
+}
+
+- (CCEasyWebView *(^)(void (^)(WKWebView *, WKNavigation *, NSError *)))didFail {
+    __weak typeof(self) pSelf = self;
+    return ^CCEasyWebView *(void (^t)(WKWebView *, WKNavigation *, NSError *)) {
+        if (t) pSelf.fail = [t copy];
+        return pSelf;
+    };
+}
 
 - (CCEasyWebView *(^)(NSString *, void (^)(WKUserContentController *, WKScriptMessage *)))script {
     __weak typeof(self) pSelf = self;
@@ -222,35 +279,39 @@
 }
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-    decisionHandler(WKNavigationActionPolicyAllow);
+    if (self.decision) {
+        decisionHandler(self.decision(navigationAction));
+    } else decisionHandler(WKNavigationActionPolicyAllow);
 }
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
-    decisionHandler(WKNavigationResponsePolicyAllow);
+    if (self.decisionR) {
+        decisionHandler(self.decisionR(navigationResponse));
+    } else decisionHandler(WKNavigationResponsePolicyAllow);
 }
 
 - (void)webView:(WKWebView *)webView didCommitNavigation:(null_unspecified WKNavigation *)navigation {
-    
+    if (self.commit) self.commit(webView, navigation);
 }
 
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation {
-//    CCLog(@"_START_LOADING_WEBVIEW_");
+    if (self.start) self.start(webView, navigation);
 }
 
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error{
-//    CCLog(@"%@",error);
+    if (self.provisional) self.provisional(webView, navigation, error);
 }
 
 - (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(null_unspecified WKNavigation *)navigation {
-    
+    if (self.redirect) self.redirect(webView, navigation);
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation {
-//    CCLog(@"_FINISH_LOADING_WEBVIEW_");
+    if (self.finish) self.finish(webView, navigation);
 }
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
-//    CCLog(@"%@",error);
+    if (self.fail) self.fail(webView, navigation, error);
 }
 
 #pragma mark - -----
