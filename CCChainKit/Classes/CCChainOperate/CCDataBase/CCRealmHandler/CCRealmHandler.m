@@ -140,7 +140,6 @@ static const char * _CC_RLM_NOTIFICATION_KEY_ = "_CC_RLM_NOTIFICATION_KEY_";
 }
 
 - (id(^)(__unsafe_unretained Class, NSDictionary *))dictionary {
-    __weak typeof(self) pSelf = self;
     return ^CCRealmHandler *(Class clazz , NSDictionary *dictionary) {
         if ([clazz isSubclassOfClass:[RLMObject class]]) {
             id v = nil;
@@ -158,7 +157,6 @@ static const char * _CC_RLM_NOTIFICATION_KEY_ = "_CC_RLM_NOTIFICATION_KEY_";
 }
 
 - (id(^)(__unsafe_unretained Class, NSArray *))array {
-    __weak typeof(self) pSelf = self;
     return ^CCRealmHandler *(Class clazz , NSArray * array) {
         if ([clazz isSubclassOfClass:[RLMObject class]]) {
             id v = nil;
@@ -177,10 +175,15 @@ static const char * _CC_RLM_NOTIFICATION_KEY_ = "_CC_RLM_NOTIFICATION_KEY_";
     return ^CCRealmHandler *(id model) {
         if (![[model class] isSubclassOfClass:[RLMObject class]]) return pSelf;
         return CCRealmHandler.shared.operate(^{
+            void (^t)() = ^ {
+                [pSelf.realm addObject:model]; // if not , insert only
+            };
             if ([[model class] respondsToSelector:@selector(primaryKey)]) {
-                [pSelf.realm addOrUpdateObject:model]; // if has a primaryKey , it will be insert or update
+                id value = [[model class] performSelector:@selector(primaryKey)];
+                if (value) [pSelf.realm addOrUpdateObject:model]; // if has a primaryKey , it will be insert or update
+                else t();
             }
-            else [pSelf.realm addObject:model]; // if not , insert only
+            else t();
         });
     };
 }
