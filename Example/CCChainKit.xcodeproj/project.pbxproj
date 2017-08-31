@@ -33,6 +33,7 @@
 		70AE27321F57A3390030044C /* CCBridgeRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AE27301F57A3390030044C /* CCBridgeRouter.m */; };
 		70AE27361F57A4E80030044C /* CCNetworkMoniter.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AE27351F57A4E80030044C /* CCNetworkMoniter.m */; };
 		70AE27481F57F3270030044C /* UIFont+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AE27471F57F3270030044C /* UIFont+CCChain.m */; };
+		70AE274C1F57F9980030044C /* UIImageView+CCChain_WeakNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AE274B1F57F9980030044C /* UIImageView+CCChain_WeakNetwork.m */; };
 		70C8813B1F46E0B80007AD62 /* UIImagePickerController+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C8813A1F46E0B80007AD62 /* UIImagePickerController+CCChain.m */; };
 		70D63D171F3C361500945CA2 /* NSArray+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70D63CD41F3C361500945CA2 /* NSArray+CCChain.m */; };
 		70D63D181F3C361500945CA2 /* NSAttributedString+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70D63CD71F3C361500945CA2 /* NSAttributedString+CCChain.m */; };
@@ -121,6 +122,8 @@
 		70AE27351F57A4E80030044C /* CCNetworkMoniter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCNetworkMoniter.m; sourceTree = "<group>"; };
 		70AE27461F57F3270030044C /* UIFont+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+CCChain.h"; sourceTree = "<group>"; };
 		70AE27471F57F3270030044C /* UIFont+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+CCChain.m"; sourceTree = "<group>"; };
+		70AE274A1F57F9980030044C /* UIImageView+CCChain_WeakNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CCChain_WeakNetwork.h"; sourceTree = "<group>"; };
+		70AE274B1F57F9980030044C /* UIImageView+CCChain_WeakNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CCChain_WeakNetwork.m"; sourceTree = "<group>"; };
 		70C881391F46E0B80007AD62 /* UIImagePickerController+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImagePickerController+CCChain.h"; sourceTree = "<group>"; };
 		70C8813A1F46E0B80007AD62 /* UIImagePickerController+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImagePickerController+CCChain.m"; sourceTree = "<group>"; };
 		70D63CD31F3C361500945CA2 /* NSArray+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CCChain.h"; sourceTree = "<group>"; };
@@ -220,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				70AE27231F5798CE0030044C /* CCChainCustom.h */,
+				70AE27491F57F97D0030044C /* CCWeakNetImageView */,
 				70AE27331F57A4E80030044C /* CCNetworkMoniter */,
 				37D862871F507DED00417F5F /* CCEasyWebView */,
 			);
@@ -444,6 +448,15 @@
 				70AE27471F57F3270030044C /* UIFont+CCChain.m */,
 			);
 			path = UIFont;
+			sourceTree = "<group>";
+		};
+		70AE27491F57F97D0030044C /* CCWeakNetImageView */ = {
+			isa = PBXGroup;
+			children = (
+				70AE274A1F57F9980030044C /* UIImageView+CCChain_WeakNetwork.h */,
+				70AE274B1F57F9980030044C /* UIImageView+CCChain_WeakNetwork.m */,
+			);
+			path = CCWeakNetImageView;
 			sourceTree = "<group>";
 		};
 		70C881381F46E0960007AD62 /* UIImagePickerController */ = {
@@ -900,6 +913,7 @@
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MGJRouter/MGJRouter.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -907,6 +921,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MGJRouter.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -988,6 +1003,7 @@
 				6003F5A7195388D20070C39A /* CCViewController.m in Sources */,
 				70AE27361F57A4E80030044C /* CCNetworkMoniter.m in Sources */,
 				70D63D211F3C361500945CA2 /* CCRuntime.m in Sources */,
+				70AE274C1F57F9980030044C /* UIImageView+CCChain_WeakNetwork.m in Sources */,
 				70D63D181F3C361500945CA2 /* NSAttributedString+CCChain.m in Sources */,
 				70D63D251F3C361500945CA2 /* UIButton+CCChain.m in Sources */,
 				70D63D231F3C361500945CA2 /* UIAlertController+CCChain.m in Sources */,

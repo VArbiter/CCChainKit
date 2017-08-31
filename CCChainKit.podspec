@@ -84,7 +84,8 @@ Pod::Spec.new do |s|
     custom.dependency 'CCChainKit/CCData'
     custom.dependency 'AFNetworking/Reachability', '~> 3.1.0'
     custom.dependency 'AFNetworking/UIKit', '~> 3.1.0'
-    custom.frameworks = "WebKit" , "SystemConfiguration" , "CoreTelephony" , "MobileCoreServices"
+    custom.dependency 'SDWebImage', '~> 4.1.0'
+    custom.frameworks = "WebKit" , "SystemConfiguration" , "CoreTelephony" , "MobileCoreServices", "ImageIO"
   end
 
 end

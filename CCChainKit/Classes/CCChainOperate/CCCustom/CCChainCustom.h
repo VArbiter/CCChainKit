@@ -10,6 +10,7 @@
 #define CCChainCustom_h
 
     #import "CCEasyWebView.h"
+    #import "UIImageView+CCChain_WeakNetwork.h"
 
     #if !TARGET_OS_WATCH
         #import "CCNetworkMoniter.h"
