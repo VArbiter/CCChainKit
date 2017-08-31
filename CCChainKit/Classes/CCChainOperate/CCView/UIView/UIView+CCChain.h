@@ -30,7 +30,7 @@ CCEdgeInsets CCEdgeInsetsMake(CGFloat top , CGFloat left , CGFloat bottom , CGFl
 CCEdgeInsets CCMakeEdgeInsetsFrom(UIEdgeInsets insets);
 UIEdgeInsets UIMakeEdgeInsetsFrom(CCEdgeInsets insets);
 
-/// scaled width
+/// scaled width && height
 CGFloat CCScaleW(CGFloat w);
 CGFloat CCScaleH(CGFloat h);
 

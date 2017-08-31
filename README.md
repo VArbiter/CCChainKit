@@ -8,7 +8,17 @@
 
 #### 中文说明请[[点击这里](https://github.com/VArbiter/CCChainKit/blob/master/README_CN.md)]
 
-## What's New
+### What's New
+
+**2017-08-31 11:31:23**
+
+> remove custom struct (CCRect , CCSize ... etc)
+> 
+> make them as a **typedef** for system structs .
+> 
+> Why ? cause system will recognize a typedef value as its origin .
+> 
+> wanna go back , can't go back . should I ask for it ?
 
 **2017-08-10 15:03:41**
 
@@ -18,15 +28,15 @@
 > 
 > once get used to someone , forever changed for her .
 
-## Example
+### Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-## Requirements
+### Requirements
 
 Already done in pod spec.
 
-## Installation
+### Installation
 
 CCChainKit is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
@@ -35,10 +45,10 @@ it, simply add the following line to your Podfile:
 pod "CCChainKit"
 ```
 
-## Author
+### Author
 
 ElwinFrederick, elwinfrederick@163.com
 
-## License
+### License
 
 CCChainKit is available under the MIT license. See the LICENSE file for more info.
