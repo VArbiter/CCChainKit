@@ -35,6 +35,7 @@
 		70AE27481F57F3270030044C /* UIFont+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AE27471F57F3270030044C /* UIFont+CCChain.m */; };
 		70AE274C1F57F9980030044C /* UIImageView+CCChain_WeakNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AE274B1F57F9980030044C /* UIImageView+CCChain_WeakNetwork.m */; };
 		70AE27731F58023F0030044C /* UIImageView+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AE27721F58023F0030044C /* UIImageView+CCChain.m */; };
+		70AE27771F580A380030044C /* UILabel+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AE27761F580A380030044C /* UILabel+CCChain.m */; };
 		70C8813B1F46E0B80007AD62 /* UIImagePickerController+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C8813A1F46E0B80007AD62 /* UIImagePickerController+CCChain.m */; };
 		70D63D171F3C361500945CA2 /* NSArray+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70D63CD41F3C361500945CA2 /* NSArray+CCChain.m */; };
 		70D63D181F3C361500945CA2 /* NSAttributedString+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70D63CD71F3C361500945CA2 /* NSAttributedString+CCChain.m */; };
@@ -127,6 +128,8 @@
 		70AE274B1F57F9980030044C /* UIImageView+CCChain_WeakNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CCChain_WeakNetwork.m"; sourceTree = "<group>"; };
 		70AE27711F58023F0030044C /* UIImageView+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CCChain.h"; sourceTree = "<group>"; };
 		70AE27721F58023F0030044C /* UIImageView+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CCChain.m"; sourceTree = "<group>"; };
+		70AE27751F580A380030044C /* UILabel+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+CCChain.h"; sourceTree = "<group>"; };
+		70AE27761F580A380030044C /* UILabel+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+CCChain.m"; sourceTree = "<group>"; };
 		70C881391F46E0B80007AD62 /* UIImagePickerController+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImagePickerController+CCChain.h"; sourceTree = "<group>"; };
 		70C8813A1F46E0B80007AD62 /* UIImagePickerController+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImagePickerController+CCChain.m"; sourceTree = "<group>"; };
 		70D63CD31F3C361500945CA2 /* NSArray+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CCChain.h"; sourceTree = "<group>"; };
@@ -471,6 +474,15 @@
 			path = UIImageView;
 			sourceTree = "<group>";
 		};
+		70AE27741F580A240030044C /* UILabel */ = {
+			isa = PBXGroup;
+			children = (
+				70AE27751F580A380030044C /* UILabel+CCChain.h */,
+				70AE27761F580A380030044C /* UILabel+CCChain.m */,
+			);
+			path = UILabel;
+			sourceTree = "<group>";
+		};
 		70C881381F46E0960007AD62 /* UIImagePickerController */ = {
 			isa = PBXGroup;
 			children = (
@@ -669,6 +681,7 @@
 				70C881381F46E0960007AD62 /* UIImagePickerController */,
 				70AE27451F57F30D0030044C /* UIFont */,
 				70AE27701F5802300030044C /* UIImageView */,
+				70AE27741F580A240030044C /* UILabel */,
 			);
 			path = CCView;
 			sourceTree = "<group>";
@@ -1029,6 +1042,7 @@
 				70D63D1B1F3C361500945CA2 /* NSDictionary+CCChain.m in Sources */,
 				70D63D1A1F3C361500945CA2 /* NSDate+CCChain.m in Sources */,
 				70AE271B1F5798950030044C /* CCAuthorize.m in Sources */,
+				70AE27771F580A380030044C /* UILabel+CCChain.m in Sources */,
 				70AE27281F57A1CA0030044C /* CCMediator.m in Sources */,
 				70D63D1E1F3C361500945CA2 /* NSPredicate+CCChain.m in Sources */,
 				70AE27481F57F3270030044C /* UIFont+CCChain.m in Sources */,

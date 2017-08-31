@@ -142,6 +142,33 @@ CGFloat CCHScale(CGFloat h);
 @end
 
 #pragma mark - -----
+
+@interface UIView (CCChain_FitHeight)
+
+/// note: all the fit recalls ignores the text-indent .
+
+@property (nonatomic , copy , readonly) UIView *(^autoHeight)();
+
+/// system font size , default line break mode , system font size
+CGFloat CC_TEXT_HEIGHT_S(CGFloat fWidth , NSString *string);
+CGFloat CC_TEXT_HEIGHT_C(CGFloat fWidth ,
+                         NSString *string ,
+                         UIFont *font ,
+                         NSLineBreakMode mode ,
+                         CGFloat fCharacterSpacing);
+
+/// for attributed string , dafault line break mode , system font size
+CGFloat CC_TEXT_HEIGHT_A(CGFloat fWidth , NSAttributedString *aString);
+CGFloat CC_TEXT_HEIGHT_AS(CGFloat fWidth ,
+                          NSAttributedString *aString ,
+                          UIFont *font ,
+                          NSLineBreakMode mode ,
+                          CGFloat fLineSpacing ,
+                          CGFloat fCharacterSpacing);
+
+@end
+
+#pragma mark - -----
 #import "MBProgressHUD+CCChain.h"
 
 @interface UIView (CCChain_Hud)

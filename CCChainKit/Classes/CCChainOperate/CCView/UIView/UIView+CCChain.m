@@ -568,6 +568,63 @@ CGFloat CCHScale(CGFloat h) {
 
 #pragma mark - -----
 
+@implementation UIView (CCChain_FitHeight)
+
+#warning TODO >>>
+
+- (UIView *(^)())autoHeight {
+    __weak typeof(self) pSelf = self;
+    return ^UIView * {
+        if ([pSelf respondsToSelector:@selector(text)]) {
+            if ([pSelf respondsToSelector:@selector(lineBreakMode)]) {
+                NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+                [style setLineBreakMode:self lineBreakMode];
+                
+            }
+            
+            NSDictionary *dictionaryAttributes = @{ NSFontAttributeName : self.font,
+                                                    NSParagraphStyleAttributeName : style };
+            
+            return [stringValue boundingRectWithSize:CGSizeMake(floatWidth,
+                                                                [[UIScreen mainScreen] bounds].size.height)
+                                             options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin
+                                          attributes:dictionaryAttributes
+                                             context:nil].size.height
+        }
+        else if ([pSelf respondsToSelector:@selector(attributedText)]) {
+            
+        };
+        return pSelf;
+    };
+}
+
+CGFloat CC_TEXT_HEIGHT_S(CGFloat fWidth , NSString *string) {
+    
+}
+CGFloat CC_TEXT_HEIGHT_C(CGFloat fWidth ,
+                         NSString *string ,
+                         UIFont *font ,
+                         NSLineBreakMode mode ,
+                         CGFloat fCharacterSpacing) {
+    
+}
+
+CGFloat CC_TEXT_HEIGHT_A(CGFloat fWidth , NSAttributedString *aString) {
+    
+}
+CGFloat CC_TEXT_HEIGHT_AS(CGFloat fWidth ,
+                          NSAttributedString *aString ,
+                          UIFont *font ,
+                          NSLineBreakMode mode ,
+                          CGFloat fLineSpacing ,
+                          CGFloat fCharacterSpacing) {
+    
+}
+
+@end
+
+#pragma mark - -----
+
 @implementation UIView (CCChain_Hud)
 
 - (MBProgressHUD *(^)())hud {
