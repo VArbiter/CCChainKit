@@ -6,6 +6,8 @@
 
 [![Platform](https://img.shields.io/cocoapods/p/CCChainKit.svg?style=flat)](http://cocoapods.org/pods/CCChainKit)
 
+#### 中文说明请[[点击这里](https://github.com/VArbiter/CCChainKit/blob/master/README_CN.md)]
+
 ## What's New
 
 **2017-08-10 15:03:41**
