@@ -10,12 +10,6 @@
 
 @implementation UICollectionView (CCChain)
 
-+ (UICollectionView *(^)(CCRect, UICollectionViewFlowLayout *))commonS {
-    return ^UICollectionView *(CCRect r, UICollectionViewFlowLayout *l) {
-        return self.commonC(CGMakeRectFrom(r), l);
-    };
-}
-
 + (UICollectionView *(^)(CGRect, UICollectionViewFlowLayout *))commonC {
     return ^UICollectionView *(CGRect r , UICollectionViewFlowLayout *l) {
         UICollectionView *c = [[UICollectionView alloc] initWithFrame:r

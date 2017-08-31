@@ -13,7 +13,6 @@
 
 @property (nonatomic , class , copy , readonly) UIButton *(^common)();
 @property (nonatomic , class , copy , readonly) UIButton *(^commonS)(UIButtonType type);
-@property (nonatomic , copy , readonly) UIButton *(^frameS)(CCRect frame);
 @property (nonatomic , copy , readonly) UIButton *(^frameC)(CGRect frame);
 
 /// titles && images

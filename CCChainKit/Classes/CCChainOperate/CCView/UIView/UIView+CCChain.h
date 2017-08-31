@@ -8,37 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
-struct CCPoint {
-    CGFloat x , y;
-};
-typedef struct CCPoint CCPoint;
+typedef CGPoint CCPoint;
 CCPoint CCPointMake(CGFloat x , CGFloat y);
 CCPoint CCMakePointFrom(CGPoint point);
 CGPoint CGMakePointFrom(CCPoint point);
 
-struct CCSize {
-    CGFloat width , height;
-};
-typedef struct CCSize CCSize;
+typedef CGSize CCSize;
 CCSize CCSizeMake(CGFloat width , CGFloat height);
 CCSize CCMakeSizeFrom(CGSize size);
 CGSize CGMakeSizeFrom(CCSize size);
 
-struct CCRect {
-    CCPoint origin;
-    CCSize size;
-};
-typedef struct CCRect CCRect;
+typedef CGRect CCRect;
 CCRect CCRectMake(CGFloat x , CGFloat y , CGFloat width , CGFloat height);
 CCRect CCMakeRectFrom(CGRect rect);
 CGRect CGMakeRectFrom(CCRect rect);
 
 CGRect CGRectFull(); // main screen bounds .
 
-typedef struct CCEdgeInsets {
-    CGFloat top, left, bottom, right;
-} CCEdgeInsets;
-typedef struct CCEdgeInsets CCEdgeInsets;
+typedef UIEdgeInsets CCEdgeInsets;
 CCEdgeInsets CCEdgeInsetsMake(CGFloat top , CGFloat left , CGFloat bottom , CGFloat right);
 CCEdgeInsets CCMakeEdgeInsetsFrom(UIEdgeInsets insets);
 UIEdgeInsets UIMakeEdgeInsetsFrom(CCEdgeInsets insets);

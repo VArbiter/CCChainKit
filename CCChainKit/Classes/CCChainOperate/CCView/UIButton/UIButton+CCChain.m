@@ -46,12 +46,6 @@ static const char * _CC_UIBUTTON_CHAIN_CLICK_ASSOCIATE_KEY_ = "CC_UIBUTTON_CHAIN
     };
 }
 
-- (UIButton *(^)(CCRect))frameS {
-    __weak typeof(self) pSelf = self;
-    return ^UIButton *(CCRect r) {
-        return pSelf.frameC(CGMakeRectFrom(r));
-    };
-}
 - (UIButton *(^)(CGRect))frameC {
     __weak typeof(self) pSelf = self;
     return ^UIButton *(CGRect r) {

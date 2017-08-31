@@ -39,12 +39,6 @@ static const char * _CC_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY_ = "CC_UIVIEW_ASSOCIA
 
 @implementation UIControl (CCChain)
 
-+ (UIControl *(^)(CCRect))commonS {
-    return ^UIControl *(CCRect r) {
-         return self.commonC(CGMakeRectFrom(r));
-    };
-}
-
 + (UIControl *(^)(CGRect))commonC {
     return ^UIControl *(CGRect r) {
         UIControl *c = [[self alloc] initWithFrame:r];

@@ -11,7 +11,6 @@
 
 @interface UIControl (CCChain)
 
-@property (nonatomic , class , copy , readonly) UIControl *(^commonS)(CCRect frame);
 @property (nonatomic , class , copy , readonly) UIControl *(^commonC)(CGRect frame);
 
 /// actions , default is touchUpInside

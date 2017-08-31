@@ -11,7 +11,6 @@
 
 @interface UICollectionView (CCChain)
 
-@property (nonatomic , class , copy , readonly) UICollectionView *(^commonS)(CCRect frame, UICollectionViewFlowLayout *layout);
 @property (nonatomic , class , copy , readonly) UICollectionView *(^commonC)(CGRect frame, UICollectionViewFlowLayout *layout);
 
 @property (nonatomic , copy , readonly) UICollectionView *(^delegateT)(id delegate);
