@@ -7,15 +7,24 @@
 //
 
 #ifndef CCChainKit_h
-#define CCChainKit_h
+    #define CCChainKit_h
 
-    #import "NSObject+CCProtocol.h"
-
-    #import "CCCommon.h"
-    #import "CCSingleton.h"
-
+    #import "CCChainProtocol.h"
+    #import "CCChainCommon.h"
     #import "CCChianData.h"
     #import "CCChainView.h"
     #import "CCChainRuntime.h"
+
+    #ifdef _CCChainDataBase_
+        #import "CCChainDataBase.h"
+    #endif
+
+    #ifdef _CCChainRouter_
+        #import "CCChainRouter.h"
+    #endif
+
+    #ifdef _CCChainCustom_
+        #import "CCChainCustom.h"
+    #endif
 
 #endif /* CCChainKit_h */

@@ -16,13 +16,75 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'CCChainKit/Classes/**/*'
+  # s.source_files = 'CCChainKit/Classes/**/*'
 
   # s.resource_bundles = {
   #   'CCChainKit' => ['CCChainKit/Assets/*.png']
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  s.frameworks = "Foundation" , "UIKit" , "AssetsLibrary" , "Photos" , "CoreGraphics" , "QuartzCore" , "SystemConfiguration" , "CoreTelephony" , "MobileCoreServices"
-  s.dependency 'MBProgressHUD', '~> 1.0.0'
+  # s.frameworks = "Foundation"
+
+  s.default_subspec = 'CCDefault'
+
+  s.subspec 'CCDefault' do |defaultT|
+    defaultT.dependency 'CCChainKit/CCData'
+    defaultT.dependency 'CCChainKit/CCView'
+    defaultT.dependency 'CCChainKit/CCRuntime'
+  end
+
+  # preserve for future needs
+  s.subspec 'CCChainAssets' do |assets|
+    assets.resource_bundles = {
+      'CCChainKit' => ['CCChainKit/Classes/CCChainAssets/*']
+    }
+  end
+
+  s.subspec 'CCCommon' do |common|
+    common.source_files = 'CCChainKit/Classes/CCChainOperate/CCCommon/*'
+    common.frameworks = "Foundation", "UIKit", "AssetsLibrary" , "Photos" , "AVFoundation" ,
+  end
+
+  s.subspec 'CCProtocol' do |protocol|
+    protocol.source_files = 'CCChainKit/Classes/CCChainOperate/CCProtocol/*'
+    protocol.dependency 'CCChainKit/CCCommon'
+  end
+
+  s.subspec 'CCRuntime' do |runtime|
+    runtime.source_files = 'CChainKit/Classes/CCChainOperate/CCRuntime/*'
+  end
+
+  s.subspec 'CCDataBase' do |dataBase|
+    dataBase.source_files = 'CCChainKit/Classes/CCChainOperate/CCDataBase/*'
+    dataBase.dependency 'Realm', '~> 2.10.0'
+    dataBase.frameworks = "Foundation"
+  end
+
+  s.subspec 'CCRouter' do |router|
+    router.source_files = 'CCChainKit/Classes/CCChainOperate/CCRouter/*'
+    router.frameworks = "Foundation"
+    router.dependency 'MGJRouter', '~> 0.9.3'
+  end
+
+  s.subspec 'CCData' do |data|
+    data.source_files = 'CCChainKit/Classes/CCChainOperate/CCData/*'
+    data.dependency 'CCChainKit/CCProtocol'
+  end
+
+  s.subspec 'CCView' do |view|
+    view.source_files = 'CCChainKit/Classes/CCChainOperate/CCView/*'
+    view.frameworks = "CoreGraphics" , "QuartzCore"
+    view.dependency 'MBProgressHUD', '~> 1.0.0'
+    view.dependency 'CCChainKit/CCProtocol'
+  end
+
+  s.subspec 'CCCustom' do |custom|
+    custom.source_files = 'CCChainKit/Classes/CCChainOperate/CCCustom/*'
+    custom.dependency 'CCChainKit/CCView'
+    custom.dependency 'CCChainKit/CCData'
+    custom.dependency 'AFNetworking/Reachability', '~> 3.1.0'
+    custom.dependency 'AFNetworking/UIKit', '~> 3.1.0'
+    custom.frameworks = "WebKit" , "SystemConfiguration" , "CoreTelephony" , "MobileCoreServices"
+  end
+
 end

@@ -19,7 +19,7 @@ CCQueue CC_MAIN_QUEUE() {
     return dispatch_get_main_queue();
 }
 
-static CCRuntime *_instance = nil;
+static CCRuntime *__instance = nil;
 + (CCRuntime *(^)())runtime {
     return ^CCRuntime * {
         /*
@@ -27,12 +27,12 @@ static CCRuntime *_instance = nil;
         _instance = [[CCRuntime alloc] init];
         return _instance;
          */
-        if (_instance) return _instance;
+        if (__instance) return __instance;
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
-            _instance = [[CCRuntime alloc] init];
+            __instance = [[CCRuntime alloc] init];
         });
-        return _instance;
+        return __instance;
     };
 }
 /*
@@ -46,11 +46,11 @@ static CCRuntime *_instance = nil;
 }
 */
 - (id)copyWithZone:(NSZone *)zone {
-    return _instance;
+    return __instance;
 }
 
 - (id)mutableCopyWithZone:(NSZone *)zone {
-    return _instance;
+    return __instance;
 }
 
 

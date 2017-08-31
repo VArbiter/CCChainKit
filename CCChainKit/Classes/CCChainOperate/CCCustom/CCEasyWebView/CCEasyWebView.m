@@ -400,6 +400,9 @@
 }
 
 - (void)dealloc {
+#if DEBUG
+    NSLog(@"\n_CC_%@_DEALLOC_",NSStringFromClass(self.class));
+#endif
     [self.webView removeObserver:self
                       forKeyPath:@"estimatedProgress"
                          context:nil];
