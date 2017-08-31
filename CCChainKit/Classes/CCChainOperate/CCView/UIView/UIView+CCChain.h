@@ -100,10 +100,15 @@ CGFloat CCHScale(CGFloat h);
 @property (nonatomic , copy , readonly) UIView *(^bringToFront)(UIView *view);
 @property (nonatomic , copy , readonly) UIView *(^sendToBack)(UIView *view);
 
-/// color && cornerRadius
+/// enable / disable userinteraction
+@property (nonatomic , copy , readonly) UIView *(^enableT)();
+@property (nonatomic , copy , readonly) UIView *(^disableT)();
+
+/// color && cornerRadius && contentMode
 @property (nonatomic , copy , readonly) UIView *(^color)(UIColor *color);
 @property (nonatomic , copy , readonly) UIView *(^radius)(CGFloat radius , BOOL masks);
 @property (nonatomic , copy , readonly) UIView *(^edgeRound)(UIRectCorner rc , CGFloat radius);
+@property (nonatomic , copy , readonly) UIView *(^contentModeT)(UIViewContentMode mode);
 
 /// for gesture actions
 @property (nonatomic , copy , readonly) UIView *(^gesture)(UIGestureRecognizer *gr);

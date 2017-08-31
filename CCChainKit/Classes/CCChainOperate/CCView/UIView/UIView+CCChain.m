@@ -400,6 +400,22 @@ CGFloat CCHScale(CGFloat h) {
     };
 }
 
+- (UIView *(^)())enableT {
+    __weak typeof(self) pSelf = self;
+    return ^UIView * {
+        pSelf.userInteractionEnabled = YES;
+        return pSelf;
+    };
+}
+
+- (UIView *(^)())disableT {
+    __weak typeof(self) pSelf = self;
+    return ^UIView * {
+        pSelf.userInteractionEnabled = false;
+        return pSelf;
+    };
+}
+
 - (UIView *(^)(UIColor *))color {
     __weak typeof(self) pSelf = self;
     return ^UIView *(UIColor *c) {
@@ -427,6 +443,14 @@ CGFloat CCHScale(CGFloat h) {
         l.frame = pSelf.bounds;
         l.path = p.CGPath;
         pSelf.layer.mask = l;
+        return pSelf;
+    };
+}
+
+- (UIView *(^)(UIViewContentMode))contentModeT {
+    __weak typeof(self) pSelf = self;
+    return ^UIView *(UIViewContentMode m) {
+        pSelf.contentMode = m;
         return pSelf;
     };
 }

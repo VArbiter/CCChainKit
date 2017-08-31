@@ -21,5 +21,6 @@
     #import "UIGestureRecognizer+CCChain.h"
     #import "UIImage+CCChain.h"
     #import "UIImagePickerController+CCChain.h"
+    #import "UIFont+CCChain.h"
 
 #endif /* CCChainView_h */

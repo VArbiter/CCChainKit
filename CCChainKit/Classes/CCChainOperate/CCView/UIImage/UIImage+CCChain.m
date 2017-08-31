@@ -44,6 +44,13 @@
     };
 }
 
+- (UIImage *(^)())alwaysOriginal {
+    __weak typeof(self) pSelf = self;
+    return ^UIImage * {
+        return pSelf.rendering(UIImageRenderingModeAlwaysOriginal);
+    };
+}
+
 + (UIImage *(^)(UIColor *))colorS {
     return ^UIImage *(UIColor *c) {
         return self.colorC(c, CGSizeZero);

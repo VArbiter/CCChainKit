@@ -19,6 +19,7 @@
 
 @property (nonatomic , copy , readonly) UIImage *(^resizable)(UIEdgeInsets insets);
 @property (nonatomic , copy , readonly) UIImage *(^rendering)(UIImageRenderingMode);
+@property (nonatomic , copy , readonly) UIImage *(^alwaysOriginal)();
 
 /// generate a image with colors.
 @property (nonatomic , class , copy , readonly) UIImage *(^colorS)(UIColor *color);
