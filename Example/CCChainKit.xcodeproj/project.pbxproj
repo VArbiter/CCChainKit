@@ -161,7 +161,7 @@
 		70D63D121F3C361500945CA2 /* UIView+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CCChain.h"; sourceTree = "<group>"; };
 		70D63D131F3C361500945CA2 /* UIView+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CCChain.m"; sourceTree = "<group>"; };
 		70D63D2C1F3C362700945CA2 /* CCChainKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCChainKit.h; sourceTree = "<group>"; };
-		70D63D2D1F3C41A400945CA2 /* CCChianData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCChianData.h; sourceTree = "<group>"; };
+		70D63D2D1F3C41A400945CA2 /* CCChainData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCChainData.h; sourceTree = "<group>"; };
 		70D63D2E1F3C41B400945CA2 /* CCChainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCChainView.h; sourceTree = "<group>"; };
 		70D63D2F1F3C41F400945CA2 /* CCChainRuntime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCChainRuntime.h; sourceTree = "<group>"; };
 		70D63D311F3C4CC200945CA2 /* NSTimer+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+CCChain.h"; sourceTree = "<group>"; };
@@ -489,7 +489,7 @@
 		70D63CD11F3C361500945CA2 /* CCData */ = {
 			isa = PBXGroup;
 			children = (
-				70D63D2D1F3C41A400945CA2 /* CCChianData.h */,
+				70D63D2D1F3C41A400945CA2 /* CCChainData.h */,
 				70D63D301F3C4CB200945CA2 /* NSTimer */,
 				70D63CD21F3C361500945CA2 /* NSArray */,
 				70D63CD51F3C361500945CA2 /* NSAttributedString */,

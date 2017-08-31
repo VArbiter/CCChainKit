@@ -42,7 +42,7 @@ typedef size_t CCCount;
 
 CCQueue CC_MAIN_QUEUE();
 
-/// absolute singleton
+/// non-absolute singleton
 @property (nonatomic , class , copy , readonly) CCRuntime *(^runtime)();
 
 /// original selector , target selector

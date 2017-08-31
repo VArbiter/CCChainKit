@@ -1,13 +1,13 @@
 //
-//  CCChianData.h
+//  CCChainData.h
 //  CCChainKit
 //
 //  Created by Elwinfrederick on 10/08/2017.
 //  Copyright © 2017 ElwinFrederick. All rights reserved.
 //
 
-#ifndef CCChianData_h
-    #define CCChianData_h
+#ifndef CCChainData_h
+    #define CCChainData_h
 
     #import "NSObject+CCChain.h"
     #import "NSTimer+CCChain.h"

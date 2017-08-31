@@ -94,6 +94,18 @@
     #endif
 #endif
 
+#ifndef _CC_DETECT_DEALLOC_
+    #if _CC_DEBUG_MODE_
+        #define _CC_DETECT_DEALLOC_ \
+            - (void)dealloc { \
+                CCLog(@"_CC_%@_DEALLOC_", NSStringFromClass([self class])); \
+            }
+    #else
+        #define _CC_DETECT_DEALLOC_ /* */
+    #endif
+#endif
+
+
 /// returns uuid
 static NSString * _CC_UUID_;
 

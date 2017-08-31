@@ -11,7 +11,7 @@
 
     #import "CCChainProtocol.h"
     #import "CCChainCommon.h"
-    #import "CCChianData.h"
+    #import "CCChainData.h"
     #import "CCChainView.h"
     #import "CCChainRuntime.h"
 
