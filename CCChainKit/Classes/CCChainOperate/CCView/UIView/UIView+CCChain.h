@@ -33,7 +33,7 @@ CCRect CCRectMake(CGFloat x , CGFloat y , CGFloat width , CGFloat height);
 CCRect CCMakeRectFrom(CGRect rect);
 CGRect CGMakeRectFrom(CCRect rect);
 
-static inline CGRect CGRectFull();
+CGRect CGRectFull(); // main screen bounds .
 
 typedef struct CCEdgeInsets {
     CGFloat top, left, bottom, right;

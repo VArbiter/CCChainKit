@@ -58,7 +58,7 @@ CGRect CGMakeRectFrom(CCRect rect) {
                       rect.size.height);
 }
 
-static inline CGRect CGRectFull(){
+CGRect CGRectFull(){
     return UIScreen.mainScreen.bounds;
 }
 
