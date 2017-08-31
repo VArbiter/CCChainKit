@@ -23,7 +23,7 @@ static BOOL __isEnableLoading = YES;
         if (isStrong && __isEnableLoading) {
             [pSelf sd_setImageWithURL:u
                      placeholderImage:m
-                              options:SDWebImageRetryFailed | SDWebImageAllowInvalidSSLCertificates | SDWebImageScaleDownLargeImages | SDWebImageDelayPlaceholder];
+                              options:SDWebImageRetryFailed | SDWebImageAllowInvalidSSLCertificates | SDWebImageScaleDownLargeImages];
         };
         return pSelf;
     };
