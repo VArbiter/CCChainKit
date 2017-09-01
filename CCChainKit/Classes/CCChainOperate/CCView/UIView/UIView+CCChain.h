@@ -147,20 +147,25 @@ CGFloat CCHScale(CGFloat h);
 
 /// note: all the fit recalls ignores the text-indent .
 
-@property (nonatomic , copy , readonly) UIView *(^autoHeight)();
-
 /// system font size , default line break mode , system font size
-CGFloat CC_TEXT_HEIGHT_S(CGFloat fWidth , NSString *string);
+CGFloat CC_TEXT_HEIGHT_S(CGFloat fWidth ,
+                         CGFloat fEstimateHeight , // height that defualt to , if less than , return's it. (same below)
+                         NSString *string);
 CGFloat CC_TEXT_HEIGHT_C(CGFloat fWidth ,
+                         CGFloat fEstimateHeight ,
                          NSString *string ,
                          UIFont *font ,
-                         NSLineBreakMode mode ,
-                         CGFloat fCharacterSpacing);
+                         NSLineBreakMode mode);
 
-/// for attributed string , dafault line break mode , system font size
-CGFloat CC_TEXT_HEIGHT_A(CGFloat fWidth , NSAttributedString *aString);
+/// for attributed string , Using system attributed auto fit
+CGFloat CC_TEXT_HEIGHT_A(CGFloat fWidth ,
+                         CGFloat fEstimateHeight ,
+                         NSAttributedString *aString);
+
+/// using default for NSString
 CGFloat CC_TEXT_HEIGHT_AS(CGFloat fWidth ,
-                          NSAttributedString *aString ,
+                          CGFloat fEstimateHeight ,
+                          NSString *aString ,
                           UIFont *font ,
                           NSLineBreakMode mode ,
                           CGFloat fLineSpacing ,

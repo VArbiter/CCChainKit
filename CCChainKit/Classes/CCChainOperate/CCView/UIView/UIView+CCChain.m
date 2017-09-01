@@ -568,57 +568,58 @@ CGFloat CCHScale(CGFloat h) {
 
 #pragma mark - -----
 
-@implementation UIView (CCChain_FitHeight)
+@implementation UIView (CCChain_FitHeight) 
 
-#warning TODO >>>
-
-- (UIView *(^)())autoHeight {
-    __weak typeof(self) pSelf = self;
-    return ^UIView * {
-        if ([pSelf respondsToSelector:@selector(text)]) {
-            if ([pSelf respondsToSelector:@selector(lineBreakMode)]) {
-                NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
-                [style setLineBreakMode:self lineBreakMode];
-                
-            }
-            
-            NSDictionary *dictionaryAttributes = @{ NSFontAttributeName : self.font,
-                                                    NSParagraphStyleAttributeName : style };
-            
-            return [stringValue boundingRectWithSize:CGSizeMake(floatWidth,
-                                                                [[UIScreen mainScreen] bounds].size.height)
-                                             options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin
-                                          attributes:dictionaryAttributes
-                                             context:nil].size.height
-        }
-        else if ([pSelf respondsToSelector:@selector(attributedText)]) {
-            
-        };
-        return pSelf;
-    };
-}
-
-CGFloat CC_TEXT_HEIGHT_S(CGFloat fWidth , NSString *string) {
-    
+CGFloat CC_TEXT_HEIGHT_S(CGFloat fWidth , CGFloat fEstimateHeight , NSString *string) {
+    return CC_TEXT_HEIGHT_C(fWidth,
+                            fEstimateHeight ,
+                            string,
+                            [UIFont systemFontOfSize:UIFont.systemFontSize],
+                            NSLineBreakByWordWrapping);
 }
 CGFloat CC_TEXT_HEIGHT_C(CGFloat fWidth ,
+                         CGFloat fEstimateHeight ,
                          NSString *string ,
                          UIFont *font ,
-                         NSLineBreakMode mode ,
-                         CGFloat fCharacterSpacing) {
-    
+                         NSLineBreakMode mode) {
+    return CC_TEXT_HEIGHT_AS(fWidth,
+                             fEstimateHeight,
+                             string,
+                             font,
+                             mode,
+                             -1,
+                             -1);
 }
 
-CGFloat CC_TEXT_HEIGHT_A(CGFloat fWidth , NSAttributedString *aString) {
-    
+CGFloat CC_TEXT_HEIGHT_A(CGFloat fWidth , CGFloat fEstimateHeight , NSAttributedString *aString) {
+    CGRect rect = [aString boundingRectWithSize:(CGSize){fWidth , CGFLOAT_MAX}
+                                        options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin
+                                        context:nil];
+    return rect.size.height >= fEstimateHeight ? rect.size.height : fEstimateHeight;
 }
 CGFloat CC_TEXT_HEIGHT_AS(CGFloat fWidth ,
-                          NSAttributedString *aString ,
+                          CGFloat fEstimateHeight ,
+                          NSString *aString ,
                           UIFont *font ,
                           NSLineBreakMode mode ,
                           CGFloat fLineSpacing ,
                           CGFloat fCharacterSpacing) {
+    NSMutableParagraphStyle *style = NSMutableParagraphStyle.alloc.init;
+    style.lineBreakMode = mode;
+    if (fLineSpacing >= 0) style.lineSpacing = fLineSpacing;
+    NSMutableDictionary *d = NSMutableDictionary.dictionary;
+    [d setValue:style forKey:NSParagraphStyleAttributeName];
+    [d setValue:font forKey:NSFontAttributeName];
     
+    if (fCharacterSpacing >= 0) [d setValue:@(fCharacterSpacing) forKey:NSKernAttributeName];
+    
+    NSDictionary *dV = [NSDictionary dictionaryWithDictionary:d];
+    
+    CGRect rect = [aString boundingRectWithSize:(CGSize){fWidth , CGFLOAT_MAX}
+                                        options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin
+                                     attributes:dV
+                                        context:nil];
+    return rect.size.height >= fEstimateHeight ? rect.size.height : fEstimateHeight;
 }
 
 @end

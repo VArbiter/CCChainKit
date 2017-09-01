@@ -20,7 +20,7 @@
     __weak typeof(self) pSelf = self;
     return ^NSString *(id value) {
         if ([value isKindOfClass:NSString.class]) {
-            return [pSelf stringByAppendingString:(NSString *)value];
+            return ((NSString *)value).length > 0 ? [pSelf stringByAppendingString:(NSString *)value] : pSelf;
         }
         return [pSelf stringByAppendingString:[NSString stringWithFormat:@"%@",value]];
     };
@@ -30,7 +30,7 @@
     __weak typeof(self) pSelf = self;
     return ^NSString *(id value) {
         if ([value isKindOfClass:NSString.class]) {
-            return [pSelf stringByAppendingPathComponent:(NSString *)value];
+            return ((NSString *)value).length > 0 ? [pSelf stringByAppendingPathComponent:(NSString *)value] : pSelf;
         }
         return [pSelf stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",value]];
     };
