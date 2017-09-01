@@ -19,12 +19,12 @@
 /// also , as a reslution for some blocks can be run as params .
 - (instancetype) cc : (id (^)(id sameObject)) sameObject;
 
-/// just compare with 'end' ......
+/// just make it a pare with 'end' ......
 - (instancetype) begin ;
 /// if you don't want a return value and can't ignore unused warning ,
 /// and don't know how to silent a unused warning with clang ignore ,
 /// use the property to make sure that returns nothing .
-@property (nonatomic , readonly) void end;
+@property (nonatomic , copy , readonly) void (^endT)();
 
 /// intialize a value that definitly can't be nil
 + (instancetype) CC_Non_NULL : (void(^)(id value)) setting;

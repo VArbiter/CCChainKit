@@ -22,5 +22,9 @@
     #import "UIImage+CCChain.h"
     #import "UIImagePickerController+CCChain.h"
     #import "UIFont+CCChain.h"
+    #import "UIImageView+CCChain.h"
+    #import "UILabel+CCChain.h"
+    #import "UINavigationItem+CCChain.h"
+    #import "UIScrollView+CCChain.h"
 
 #endif /* CCChainView_h */

@@ -17,14 +17,17 @@
 @property (nonatomic , copy , readonly) UICollectionView *(^dataSourceT)(id dataSource);
 
 /// requires that nib name is equal to cell's idetifier .
-@property (nonatomic , copy , readonly) UICollectionView *(^registN)(NSString *sNib , NSBundle *bundle);
+@property (nonatomic , copy , readonly) UICollectionView *(^registNib)(NSString *sNib , NSBundle *bundle);
 /// requires that class name is equal to cell's idetifier .
-@property (nonatomic , copy , readonly) UICollectionView *(^registC)(Class clazz);
+@property (nonatomic , copy , readonly) UICollectionView *(^registCls)(Class clazz);
 
 /// for non-animated , only section 0 was available.
-@property (nonatomic , copy , readonly) UICollectionView *(^reload)(BOOL animated);
-@property (nonatomic , copy , readonly) UICollectionView *(^reloadS)(NSIndexSet *set , BOOL animated);
-@property (nonatomic , copy , readonly) UICollectionView *(^reloadI)(NSArray <NSIndexPath *> *array);
+/// note : false means reloading without hidden animations .
+/// note : if animated is setting to YES , only section 0 will be reloaded .
+/// note : if reloeded muti sections , using "reloadSections(NSIndexSet *, BOOL)" down below
+@property (nonatomic , copy , readonly) UICollectionView *(^reloading)(BOOL animated);
+@property (nonatomic , copy , readonly) UICollectionView *(^reloadSections)(NSIndexSet *set , BOOL animated);
+@property (nonatomic , copy , readonly) UICollectionView *(^reloadItems)(NSArray <NSIndexPath *> *array);
 
 @end
 
@@ -35,11 +38,8 @@
 @property (nonatomic , class , copy , readonly) UICollectionViewFlowLayout *(^common)();
 
 /// for default sizes
-@property (nonatomic , copy , readonly) UICollectionViewFlowLayout *(^itemSizeS)(CCSize size);
 @property (nonatomic , copy , readonly) UICollectionViewFlowLayout *(^itemSizeC)(CGSize size);
-@property (nonatomic , copy , readonly) UICollectionViewFlowLayout *(^sectionInsetS)(CCEdgeInsets insets);
 @property (nonatomic , copy , readonly) UICollectionViewFlowLayout *(^sectionInsetC)(UIEdgeInsets insets);
-@property (nonatomic , copy , readonly) UICollectionViewFlowLayout *(^headerSizeS)(CCSize insets);
 @property (nonatomic , copy , readonly) UICollectionViewFlowLayout *(^headerSizeC)(CGSize insets);
 
 @end

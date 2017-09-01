@@ -37,7 +37,7 @@
     };
 }
 
-- (UICollectionView *(^)(NSString *, NSBundle *))registN {
+- (UICollectionView *(^)(NSString *, NSBundle *))registNib {
     __weak typeof(self) pSelf = self;
     return ^UICollectionView *(NSString *s , NSBundle *b) {
         if (!b) b = NSBundle.mainBundle;
@@ -48,7 +48,7 @@ forCellWithReuseIdentifier:s];
     };
 }
 
-- (UICollectionView *(^)(__unsafe_unretained Class))registC {
+- (UICollectionView *(^)(__unsafe_unretained Class))registCls {
     __weak typeof(self) pSelf = self;
     return ^UICollectionView *(Class c) {
         [pSelf registerClass:c
@@ -57,17 +57,17 @@ forCellWithReuseIdentifier:s];
     };
 }
 
-- (UICollectionView *(^)(BOOL))reload {
+- (UICollectionView *(^)(BOOL))reloading {
     __weak typeof(self) pSelf = self;
     return ^UICollectionView *(BOOL b) {
         if (b) {
-            pSelf.reloadS([NSIndexSet indexSetWithIndex:0], b);
+            pSelf.reloadSections([NSIndexSet indexSetWithIndex:0], b);
         } else [pSelf reloadData];
         return pSelf;
     };
 }
 
-- (UICollectionView *(^)(NSIndexSet *, BOOL))reloadS {
+- (UICollectionView *(^)(NSIndexSet *, BOOL))reloadSections {
     __weak typeof(self) pSelf = self;
     return ^UICollectionView *(NSIndexSet *s , BOOL b) {
         if (b) {
@@ -90,7 +90,7 @@ forCellWithReuseIdentifier:s];
     };
 }
 
-- (UICollectionView *(^)(NSArray<NSIndexPath *> *))reloadI {
+- (UICollectionView *(^)(NSArray<NSIndexPath *> *))reloadItems {
     __weak typeof(self) pSelf = self;
     return ^UICollectionView *(NSArray<NSIndexPath *> *a) {
         [pSelf reloadItemsAtIndexPaths:(a ? a : @[])];
@@ -110,12 +110,6 @@ forCellWithReuseIdentifier:s];
     };
 }
 
-- (UICollectionViewFlowLayout *(^)(CCSize))itemSizeS {
-    __weak typeof(self) pSelf = self;
-    return ^UICollectionViewFlowLayout *(CCSize s) {
-        return pSelf.itemSizeC(CGMakeSizeFrom(s));
-    };
-}
 - (UICollectionViewFlowLayout *(^)(CGSize))itemSizeC {
     __weak typeof(self) pSelf = self;
     return ^UICollectionViewFlowLayout *(CGSize s) {
@@ -124,12 +118,6 @@ forCellWithReuseIdentifier:s];
     };
 }
 
-- (UICollectionViewFlowLayout *(^)(CCEdgeInsets))sectionInsetS {
-    __weak typeof(self) pSelf = self;
-    return ^UICollectionViewFlowLayout *(CCEdgeInsets s) {
-        return pSelf.sectionInsetC(UIMakeEdgeInsetsFrom(s));
-    };
-}
 - (UICollectionViewFlowLayout *(^)(UIEdgeInsets))sectionInsetC {
     __weak typeof(self) pSelf = self;
     return ^UICollectionViewFlowLayout *(UIEdgeInsets s) {
@@ -138,12 +126,6 @@ forCellWithReuseIdentifier:s];
     };
 }
 
-- (UICollectionViewFlowLayout *(^)(CCSize))headerSizeS{
-    __weak typeof(self) pSelf = self;
-    return ^UICollectionViewFlowLayout *(CCSize s) {
-        return pSelf.headerSizeC(CGMakeSizeFrom(s));
-    };
-}
 - (UICollectionViewFlowLayout *(^)(CGSize))headerSizeC {
     __weak typeof(self) pSelf = self;
     return ^UICollectionViewFlowLayout *(CGSize s) {
@@ -344,7 +326,7 @@ forCellWithReuseIdentifier:s];
 - (NSArray *(^)(UICollectionView *))reload {
     __weak typeof(self) pSelf = self;
     return ^NSArray *(UICollectionView *c) {
-        if (pSelf.count) c.reload(YES);
+        if (pSelf.count) c.reloading(YES);
         else [c reloadData];
         return pSelf;
     };
@@ -353,8 +335,8 @@ forCellWithReuseIdentifier:s];
 - (NSArray *(^)(UICollectionView *, NSIndexSet *))reloadSection {
     __weak typeof(self) pSelf = self;
     return ^NSArray *(UICollectionView *c , NSIndexSet *s) {
-        if (pSelf.count) c.reloadS(s, YES);
-        else c.reloadS(s, false);
+        if (pSelf.count) c.reloadSections(s, YES);
+        else c.reloadSections(s, false);
         return pSelf;
     };
 }

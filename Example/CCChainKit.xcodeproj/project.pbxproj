@@ -27,6 +27,8 @@
 		701404CF1F56979200830DAA /* CCRealmHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 701404CE1F56979200830DAA /* CCRealmHandler.m */; };
 		707A6FD11F59058100DEC5C3 /* UINavigationItem+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 707A6FD01F59058100DEC5C3 /* UINavigationItem+CCChain.m */; };
 		707A6FD51F590B4300DEC5C3 /* UIScrollView+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 707A6FD41F590B4300DEC5C3 /* UIScrollView+CCChain.m */; };
+		707A6FDA1F59131D00DEC5C3 /* UICollectionView+CCChain_Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 707A6FD91F59131D00DEC5C3 /* UICollectionView+CCChain_Refresh.m */; };
+		707A6FDD1F59132D00DEC5C3 /* UITableView+CCChain_Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 707A6FDC1F59132D00DEC5C3 /* UITableView+CCChain_Refresh.m */; };
 		70AE271B1F5798950030044C /* CCAuthorize.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AE27161F5798950030044C /* CCAuthorize.m */; };
 		70AE271C1F5798950030044C /* CCCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AE27191F5798950030044C /* CCCommon.m */; };
 		70AE27211F5798A60030044C /* NSObject+CCProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AE27201F5798A60030044C /* NSObject+CCProtocol.m */; };
@@ -108,6 +110,10 @@
 		707A6FD01F59058100DEC5C3 /* UINavigationItem+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+CCChain.m"; sourceTree = "<group>"; };
 		707A6FD31F590B4300DEC5C3 /* UIScrollView+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+CCChain.h"; sourceTree = "<group>"; };
 		707A6FD41F590B4300DEC5C3 /* UIScrollView+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+CCChain.m"; sourceTree = "<group>"; };
+		707A6FD81F59131D00DEC5C3 /* UICollectionView+CCChain_Refresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+CCChain_Refresh.h"; sourceTree = "<group>"; };
+		707A6FD91F59131D00DEC5C3 /* UICollectionView+CCChain_Refresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+CCChain_Refresh.m"; sourceTree = "<group>"; };
+		707A6FDB1F59132D00DEC5C3 /* UITableView+CCChain_Refresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+CCChain_Refresh.h"; sourceTree = "<group>"; };
+		707A6FDC1F59132D00DEC5C3 /* UITableView+CCChain_Refresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+CCChain_Refresh.m"; sourceTree = "<group>"; };
 		70AE27131F5796E20030044C /* CCChainDataBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCChainDataBase.h; sourceTree = "<group>"; };
 		70AE27151F5798950030044C /* CCAuthorize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAuthorize.h; sourceTree = "<group>"; };
 		70AE27161F5798950030044C /* CCAuthorize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCAuthorize.m; sourceTree = "<group>"; };
@@ -238,6 +244,8 @@
 				70AE27491F57F97D0030044C /* CCWeakNetImageView */,
 				70AE27331F57A4E80030044C /* CCNetworkMoniter */,
 				37D862871F507DED00417F5F /* CCEasyWebView */,
+				707A6FD61F5912FF00DEC5C3 /* UICollectionView */,
+				707A6FD71F5912FF00DEC5C3 /* UITableView */,
 			);
 			path = CCCustom;
 			sourceTree = "<group>";
@@ -386,6 +394,24 @@
 				707A6FD41F590B4300DEC5C3 /* UIScrollView+CCChain.m */,
 			);
 			path = UIScrollView;
+			sourceTree = "<group>";
+		};
+		707A6FD61F5912FF00DEC5C3 /* UICollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				707A6FD81F59131D00DEC5C3 /* UICollectionView+CCChain_Refresh.h */,
+				707A6FD91F59131D00DEC5C3 /* UICollectionView+CCChain_Refresh.m */,
+			);
+			path = UICollectionView;
+			sourceTree = "<group>";
+		};
+		707A6FD71F5912FF00DEC5C3 /* UITableView */ = {
+			isa = PBXGroup;
+			children = (
+				707A6FDB1F59132D00DEC5C3 /* UITableView+CCChain_Refresh.h */,
+				707A6FDC1F59132D00DEC5C3 /* UITableView+CCChain_Refresh.m */,
+			);
+			path = UITableView;
 			sourceTree = "<group>";
 		};
 		70AE27141F5798950030044C /* CCAuthorize */ = {
@@ -964,6 +990,7 @@
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MGJRouter/MGJRouter.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
@@ -972,6 +999,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MGJRouter.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
@@ -1064,6 +1092,7 @@
 				70AE27731F58023F0030044C /* UIImageView+CCChain.m in Sources */,
 				70AE27311F57A3390030044C /* CCMediator+CCBridgeAPI.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				707A6FDA1F59131D00DEC5C3 /* UICollectionView+CCChain_Refresh.m in Sources */,
 				70D63D221F3C361500945CA2 /* MBProgressHUD+CCChain.m in Sources */,
 				70D63D1B1F3C361500945CA2 /* NSDictionary+CCChain.m in Sources */,
 				70D63D1A1F3C361500945CA2 /* NSDate+CCChain.m in Sources */,
@@ -1076,6 +1105,7 @@
 				70D63D271F3C361500945CA2 /* UIColor+CCChain.m in Sources */,
 				70AE27321F57A3390030044C /* CCBridgeRouter.m in Sources */,
 				3780F2831F51EA6F009B5C8C /* WKWebView+CCChain.m in Sources */,
+				707A6FDD1F59132D00DEC5C3 /* UITableView+CCChain_Refresh.m in Sources */,
 				70D63D171F3C361500945CA2 /* NSArray+CCChain.m in Sources */,
 				701404CB1F5696C400830DAA /* CCRLMBaseModel.m in Sources */,
 				707A6FD11F59058100DEC5C3 /* UINavigationItem+CCChain.m in Sources */,
