@@ -25,6 +25,7 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		701404CB1F5696C400830DAA /* CCRLMBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 701404CA1F5696C400830DAA /* CCRLMBaseModel.m */; };
 		701404CF1F56979200830DAA /* CCRealmHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 701404CE1F56979200830DAA /* CCRealmHandler.m */; };
+		707A6FD11F59058100DEC5C3 /* UINavigationItem+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 707A6FD01F59058100DEC5C3 /* UINavigationItem+CCChain.m */; };
 		70AE271B1F5798950030044C /* CCAuthorize.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AE27161F5798950030044C /* CCAuthorize.m */; };
 		70AE271C1F5798950030044C /* CCCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AE27191F5798950030044C /* CCCommon.m */; };
 		70AE27211F5798A60030044C /* NSObject+CCProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AE27201F5798A60030044C /* NSObject+CCProtocol.m */; };
@@ -102,6 +103,8 @@
 		701404CA1F5696C400830DAA /* CCRLMBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCRLMBaseModel.m; sourceTree = "<group>"; };
 		701404CD1F56979200830DAA /* CCRealmHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRealmHandler.h; sourceTree = "<group>"; };
 		701404CE1F56979200830DAA /* CCRealmHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCRealmHandler.m; sourceTree = "<group>"; };
+		707A6FCF1F59058100DEC5C3 /* UINavigationItem+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+CCChain.h"; sourceTree = "<group>"; };
+		707A6FD01F59058100DEC5C3 /* UINavigationItem+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+CCChain.m"; sourceTree = "<group>"; };
 		70AE27131F5796E20030044C /* CCChainDataBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCChainDataBase.h; sourceTree = "<group>"; };
 		70AE27151F5798950030044C /* CCAuthorize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAuthorize.h; sourceTree = "<group>"; };
 		70AE27161F5798950030044C /* CCAuthorize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCAuthorize.m; sourceTree = "<group>"; };
@@ -170,8 +173,8 @@
 		70D63D0D1F3C361500945CA2 /* UIGestureRecognizer+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+CCChain.m"; sourceTree = "<group>"; };
 		70D63D0F1F3C361500945CA2 /* UIImage+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CCChain.h"; sourceTree = "<group>"; };
 		70D63D101F3C361500945CA2 /* UIImage+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CCChain.m"; sourceTree = "<group>"; };
-		70D63D121F3C361500945CA2 /* UIView+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+CCChain.h"; path = "UIView/UIView+CCChain.h"; sourceTree = "<group>"; };
-		70D63D131F3C361500945CA2 /* UIView+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+CCChain.m"; path = "UIView/UIView+CCChain.m"; sourceTree = "<group>"; };
+		70D63D121F3C361500945CA2 /* UIView+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CCChain.h"; sourceTree = "<group>"; };
+		70D63D131F3C361500945CA2 /* UIView+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CCChain.m"; sourceTree = "<group>"; };
 		70D63D2C1F3C362700945CA2 /* CCChainKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCChainKit.h; sourceTree = "<group>"; };
 		70D63D2D1F3C41A400945CA2 /* CCChainData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCChainData.h; sourceTree = "<group>"; };
 		70D63D2E1F3C41B400945CA2 /* CCChainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCChainView.h; sourceTree = "<group>"; };
@@ -362,6 +365,15 @@
 				701404CE1F56979200830DAA /* CCRealmHandler.m */,
 			);
 			path = CCRealmHandler;
+			sourceTree = "<group>";
+		};
+		707A6FCE1F59056300DEC5C3 /* UINavigationItem */ = {
+			isa = PBXGroup;
+			children = (
+				707A6FCF1F59058100DEC5C3 /* UINavigationItem+CCChain.h */,
+				707A6FD01F59058100DEC5C3 /* UINavigationItem+CCChain.m */,
+			);
+			path = UINavigationItem;
 			sourceTree = "<group>";
 		};
 		70AE27141F5798950030044C /* CCAuthorize */ = {
@@ -666,8 +678,6 @@
 			children = (
 				70D63D2E1F3C41B400945CA2 /* CCChainView.h */,
 				70D63D111F3C361500945CA2 /* UIView */,
-				70D63D121F3C361500945CA2 /* UIView+CCChain.h */,
-				70D63D131F3C361500945CA2 /* UIView+CCChain.m */,
 				3780F2801F51EA56009B5C8C /* WKWebView */,
 				70D63CF61F3C361500945CA2 /* MBProgressHud */,
 				70D63CF91F3C361500945CA2 /* UIAlertController */,
@@ -682,6 +692,7 @@
 				70AE27451F57F30D0030044C /* UIFont */,
 				70AE27701F5802300030044C /* UIImageView */,
 				70AE27741F580A240030044C /* UILabel */,
+				707A6FCE1F59056300DEC5C3 /* UINavigationItem */,
 			);
 			path = CCView;
 			sourceTree = "<group>";
@@ -770,6 +781,8 @@
 		70D63D111F3C361500945CA2 /* UIView */ = {
 			isa = PBXGroup;
 			children = (
+				70D63D121F3C361500945CA2 /* UIView+CCChain.h */,
+				70D63D131F3C361500945CA2 /* UIView+CCChain.m */,
 			);
 			path = UIView;
 			sourceTree = "<group>";
@@ -1051,6 +1064,7 @@
 				3780F2831F51EA6F009B5C8C /* WKWebView+CCChain.m in Sources */,
 				70D63D171F3C361500945CA2 /* NSArray+CCChain.m in Sources */,
 				701404CB1F5696C400830DAA /* CCRLMBaseModel.m in Sources */,
+				707A6FD11F59058100DEC5C3 /* UINavigationItem+CCChain.m in Sources */,
 				70C8813B1F46E0B80007AD62 /* UIImagePickerController+CCChain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
