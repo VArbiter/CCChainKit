@@ -16,6 +16,8 @@
 
 @interface UINavigationItem (CCChain_FixedSpace)
 
+// fixed UIBarButtonItem's offset
+/// note : given value must lesser than 0 , if not , will crash (already prevent it .)
 @property (nonatomic , copy , readonly) void (^leftOffset)(CGFloat fOffset , UIBarButtonItem *item);
 @property (nonatomic , copy , readonly) void (^rightOffset)(CGFloat fOffset , UIBarButtonItem *item);
 

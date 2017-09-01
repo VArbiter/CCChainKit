@@ -19,6 +19,7 @@
 - (void (^)(CGFloat, UIBarButtonItem *))leftOffset {
     __weak typeof(self) pSelf = self;
     return ^void (CGFloat f , UIBarButtonItem * v) {
+        if (f >= 0) return;
         UIBarButtonItem *itemBar = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
                                                                                  target:nil
                                                                                  action:nil];
@@ -31,6 +32,7 @@
 - (void (^)(CGFloat, UIBarButtonItem *))rightOffset {
     __weak typeof(self) pSelf = self;
     return ^void (CGFloat f , UIBarButtonItem * v) {
+        if (f >= 0) return;
         UIBarButtonItem *itemBar = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
                                                                                  target:nil
                                                                                  action:nil];
