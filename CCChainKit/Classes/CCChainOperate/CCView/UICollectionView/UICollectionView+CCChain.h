@@ -100,7 +100,15 @@
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 
 /// pre-fetching
-/// note: highly recommended to put prefetching in background thread , in other word , must 
+/// note: highly recommended to put prefetching in background thread , in other word , must
+/// note: pre-fetch is sort-of auto fit technics , therefore , these method (for dellegate it self)
+///     will not recalls for every time the collection view shows it cells .
+/// note: that is , if users scrolling slowly or stop to scroll , it will goes pre-fetch
+///     if fast , goes not .
+/// note: for canceling , when users interested in sth , or reverse it scroll directions ,
+///     or press to make system reponse an event , then , canceling was active .
+/// note: sometimes canceling was not used in actual.
+/// note: when canceling has recall values , maybe it's a subset of 'prefetchAt(void(^)(UICollectionView * , NSArray <NSIndexPath *> *))'
 
 @interface CCCollectionChainDataPrefetching : NSObject < UICollectionViewDataSourcePrefetching >
 
