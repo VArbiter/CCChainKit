@@ -17,6 +17,7 @@
         c.backgroundColor = UIColor.clearColor;
         c.showsVerticalScrollIndicator = false;
         c.showsHorizontalScrollIndicator = false;
+        c.prefetchingEnabled = YES;
         return c;
     };
 }
@@ -25,6 +26,7 @@
     __weak typeof(self) pSelf = self;
     return ^UICollectionView *(id v) {
         if (v) pSelf.delegate = v;
+        else pSelf.delegate = nil;
         return pSelf;
     };
 }
@@ -33,7 +35,26 @@
     __weak typeof(self) pSelf = self;
     return ^UICollectionView *(id v) {
         if (v) pSelf.dataSource = v;
+        else pSelf.dataSource = nil;
         return pSelf;
+    };
+}
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+- (UICollectionView *(^)(id))prefetchingT {
+    __weak typeof(self) pSelf = self;
+    return ^UICollectionView *(id d) {
+        if (d) pSelf.prefetchDataSource = d;
+        else pSelf.prefetchDataSource = nil;
+        return pSelf;
+    };
+}
+#endif
+
+- (UICollectionView *(^)(NSString *))registNibS {
+    __weak typeof(self) pSelf = self;
+    return ^UICollectionView *(NSString *s) {
+        return pSelf.registNib(s , nil);
     };
 }
 
@@ -95,6 +116,23 @@ forCellWithReuseIdentifier:s];
     return ^UICollectionView *(NSArray<NSIndexPath *> *a) {
         [pSelf reloadItemsAtIndexPaths:(a ? a : @[])];
         return pSelf;
+    };
+}
+
+- (__kindof UICollectionViewCell *(^)(NSString *, NSIndexPath *))deqCell {
+    __weak typeof(self) pSelf = self;
+    return ^__kindof UICollectionViewCell * (NSString *s , NSIndexPath *indexP) {
+        return [pSelf dequeueReusableCellWithReuseIdentifier:s
+                                                forIndexPath:indexP];
+    };
+}
+
+- (__kindof UICollectionReusableView *(^)(NSString *, NSString *, NSIndexPath *))deqReuseableView {
+    __weak typeof(self) pSelf = self;
+    return ^__kindof UICollectionReusableView *(NSString *reuse , NSString *sId , NSIndexPath *indexP) {
+        return [pSelf dequeueReusableSupplementaryViewOfKind:reuse
+                                         withReuseIdentifier:sId
+                                                forIndexPath:indexP];
     };
 }
 
@@ -342,3 +380,75 @@ forCellWithReuseIdentifier:s];
 }
 
 @end
+
+#pragma mark - -----
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+
+#import <objc/runtime.h>
+
+@interface CCCollectionChainDataPrefetching ()
+
+@property (nonatomic , assign) BOOL isDisableBackground ;
+@property (nonatomic , copy) void (^prefetching)(__kindof UICollectionView *, NSArray<NSIndexPath *> *);
+@property (nonatomic , copy) void (^canceling)(__kindof UICollectionView *, NSArray<NSIndexPath *> *);
+
+@property (nonatomic) dispatch_queue_t queue ;
+
+@end
+
+@implementation CCCollectionChainDataPrefetching
+
++ (CCCollectionChainDataPrefetching<UICollectionViewDataSourcePrefetching> *(^)())common {
+    return ^CCCollectionChainDataPrefetching<UICollectionViewDataSourcePrefetching> * {
+        CCCollectionChainDataPrefetching  <UICollectionViewDataSourcePrefetching> * v = [[CCCollectionChainDataPrefetching alloc] init];
+        v.isDisableBackground = false;
+        return v;
+    };
+}
+
+- (CCCollectionChainDataPrefetching *)disableBackgroundMode {
+    self.isDisableBackground = YES;
+    return self;
+}
+
+- (CCCollectionChainDataPrefetching *(^)(void (^)(__kindof UICollectionView *, NSArray<NSIndexPath *> *)))prefetchAt {
+    __weak typeof(self) pSelf = self;
+    return ^CCCollectionChainDataPrefetching *(void (^t)(__kindof UICollectionView *, NSArray<NSIndexPath *> *)) {
+        pSelf.prefetching = [t copy];
+        return pSelf;
+    };
+}
+
+- (CCCollectionChainDataPrefetching *(^)(void (^)(__kindof UICollectionView *, NSArray<NSIndexPath *> *)))cancelPrefetchAt {
+    __weak typeof(self) pSelf = self;
+    return ^CCCollectionChainDataPrefetching *(void (^t)(__kindof UICollectionView *, NSArray<NSIndexPath *> *)) {
+        pSelf.canceling = [t copy];
+        return pSelf;
+    };
+}
+
+- (void)collectionView:(UICollectionView *)collectionView prefetchItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths NS_AVAILABLE_IOS(10_0) {
+    if (!self.queue && !self.isDisableBackground) {
+        if (UIDevice.currentDevice.systemVersion.floatValue >= 8.f) {
+            self.queue = dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0);
+        }
+        else self.queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+    }
+    
+    if (!self.isDisableBackground) {
+        __weak typeof(self) pSelf = self;
+        dispatch_async(self.queue, ^{
+            if (pSelf.prefetching) pSelf.prefetching(collectionView, indexPaths);
+        });
+    }
+    else if (self.prefetching) self.prefetching(collectionView, indexPaths);
+}
+
+- (void)collectionView:(UICollectionView *)collectionView cancelPrefetchingForItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths  NS_AVAILABLE_IOS(10_0) {
+    if (self.canceling) self.canceling(collectionView , indexPaths);
+}
+
+@end
+
+#endif

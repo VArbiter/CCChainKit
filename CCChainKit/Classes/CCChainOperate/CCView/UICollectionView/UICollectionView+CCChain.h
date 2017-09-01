@@ -11,12 +11,19 @@
 
 @interface UICollectionView (CCChain)
 
+/// enable prefetchiong
 @property (nonatomic , class , copy , readonly) UICollectionView *(^commonC)(CGRect frame, UICollectionViewFlowLayout *layout);
 
 @property (nonatomic , copy , readonly) UICollectionView *(^delegateT)(id delegate);
 @property (nonatomic , copy , readonly) UICollectionView *(^dataSourceT)(id dataSource);
 
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+/// data source that pre-fetching
+@property (nonatomic , copy , readonly) UICollectionView *(^prefetchingT)(id prefetchDataSource);
+#endif
+
 /// requires that nib name is equal to cell's idetifier .
+@property (nonatomic , copy , readonly) UICollectionView *(^registNibS)(NSString *sNib); // default main bundle
 @property (nonatomic , copy , readonly) UICollectionView *(^registNib)(NSString *sNib , NSBundle *bundle);
 /// requires that class name is equal to cell's idetifier .
 @property (nonatomic , copy , readonly) UICollectionView *(^registCls)(Class clazz);
@@ -28,6 +35,11 @@
 @property (nonatomic , copy , readonly) UICollectionView *(^reloading)(BOOL animated);
 @property (nonatomic , copy , readonly) UICollectionView *(^reloadSections)(NSIndexSet *set , BOOL animated);
 @property (nonatomic , copy , readonly) UICollectionView *(^reloadItems)(NSArray <NSIndexPath *> *array);
+
+/// for cell that register in collection
+@property (nonatomic , copy , readonly) __kindof UICollectionViewCell *(^deqCell)(NSString *sIdentifier , NSIndexPath *indexPath);
+/// for reusable view
+@property (nonatomic , copy , readonly) __kindof UICollectionReusableView *(^deqReuseableView)(NSString *sElementKind , NSString *sIndentifier , NSIndexPath *indexPath);
 
 @end
 
@@ -82,3 +94,23 @@
 @property (nonatomic , copy , readonly) NSArray *(^reloadSection)(UICollectionView *collectionView , NSIndexSet *set);
 
 @end
+
+#pragma mark - -----
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+
+/// pre-fetching
+/// note: highly recommended to put prefetching in background thread , in other word , must 
+
+@interface CCCollectionChainDataPrefetching : NSObject < UICollectionViewDataSourcePrefetching >
+
+/// auto enable prefetch in background thread
+@property (nonatomic , class , copy , readonly) CCCollectionChainDataPrefetching < UICollectionViewDataSourcePrefetching > *(^common)();
+@property (nonatomic , readonly) CCCollectionChainDataPrefetching *disableBackgroundMode;
+
+@property (nonatomic , copy , readonly) CCCollectionChainDataPrefetching *(^prefetchAt)(void (^)(__kindof UICollectionView *collectionView , NSArray <NSIndexPath *> *array));
+@property (nonatomic , copy , readonly) CCCollectionChainDataPrefetching *(^cancelPrefetchAt)(void (^)(__kindof UICollectionView *collectionView , NSArray <NSIndexPath *> *array));
+
+@end
+
+#endif

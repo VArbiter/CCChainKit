@@ -36,6 +36,8 @@
         return CC_TYPE(UIView *, sameObject).leftS(1);
     }]); // not
     v.leftS(10); // crash , nil for block .
+    
+    CC(v).leftS(10).rightS(10).topS(10).bottomS(10).endT();
 }
 
 

@@ -47,6 +47,11 @@ CGFloat CCHScale(CGFloat h);
 @property (nonatomic , class , assign , readonly) CGFloat sWidth;
 @property (nonatomic , class , assign , readonly) CGFloat sHeight;
 
+/// close animation
+@property (nonatomic , class , copy , readonly) void (^disableAnimation)(void (^)());
+
+/// margin
+
 @property (nonatomic , assign) CGSize size;
 @property (nonatomic , assign) CGPoint origin;
 

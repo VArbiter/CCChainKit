@@ -346,6 +346,16 @@ CGFloat CCHScale(CGFloat h) {
 
 #pragma mark - Method (s)
 
++ (void (^)(void (^)()))disableAnimation {
+    return ^ (void (^t)()) {
+        if (t) {
+            [UIView setAnimationsEnabled:false];
+            t();
+            [UIView setAnimationsEnabled:YES];
+        }
+    };
+}
+
 + (UIView *(^)())fromXib {
     return ^UIView * {
         return UIView.fromXibB(nil);
