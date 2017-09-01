@@ -26,6 +26,7 @@
 		701404CB1F5696C400830DAA /* CCRLMBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 701404CA1F5696C400830DAA /* CCRLMBaseModel.m */; };
 		701404CF1F56979200830DAA /* CCRealmHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 701404CE1F56979200830DAA /* CCRealmHandler.m */; };
 		707A6FD11F59058100DEC5C3 /* UINavigationItem+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 707A6FD01F59058100DEC5C3 /* UINavigationItem+CCChain.m */; };
+		707A6FD51F590B4300DEC5C3 /* UIScrollView+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 707A6FD41F590B4300DEC5C3 /* UIScrollView+CCChain.m */; };
 		70AE271B1F5798950030044C /* CCAuthorize.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AE27161F5798950030044C /* CCAuthorize.m */; };
 		70AE271C1F5798950030044C /* CCCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AE27191F5798950030044C /* CCCommon.m */; };
 		70AE27211F5798A60030044C /* NSObject+CCProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AE27201F5798A60030044C /* NSObject+CCProtocol.m */; };
@@ -105,6 +106,8 @@
 		701404CE1F56979200830DAA /* CCRealmHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCRealmHandler.m; sourceTree = "<group>"; };
 		707A6FCF1F59058100DEC5C3 /* UINavigationItem+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+CCChain.h"; sourceTree = "<group>"; };
 		707A6FD01F59058100DEC5C3 /* UINavigationItem+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+CCChain.m"; sourceTree = "<group>"; };
+		707A6FD31F590B4300DEC5C3 /* UIScrollView+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+CCChain.h"; sourceTree = "<group>"; };
+		707A6FD41F590B4300DEC5C3 /* UIScrollView+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+CCChain.m"; sourceTree = "<group>"; };
 		70AE27131F5796E20030044C /* CCChainDataBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCChainDataBase.h; sourceTree = "<group>"; };
 		70AE27151F5798950030044C /* CCAuthorize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAuthorize.h; sourceTree = "<group>"; };
 		70AE27161F5798950030044C /* CCAuthorize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCAuthorize.m; sourceTree = "<group>"; };
@@ -374,6 +377,15 @@
 				707A6FD01F59058100DEC5C3 /* UINavigationItem+CCChain.m */,
 			);
 			path = UINavigationItem;
+			sourceTree = "<group>";
+		};
+		707A6FD21F590B2900DEC5C3 /* UIScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				707A6FD31F590B4300DEC5C3 /* UIScrollView+CCChain.h */,
+				707A6FD41F590B4300DEC5C3 /* UIScrollView+CCChain.m */,
+			);
+			path = UIScrollView;
 			sourceTree = "<group>";
 		};
 		70AE27141F5798950030044C /* CCAuthorize */ = {
@@ -693,6 +705,7 @@
 				70AE27701F5802300030044C /* UIImageView */,
 				70AE27741F580A240030044C /* UILabel */,
 				707A6FCE1F59056300DEC5C3 /* UINavigationItem */,
+				707A6FD21F590B2900DEC5C3 /* UIScrollView */,
 			);
 			path = CCView;
 			sourceTree = "<group>";
@@ -1054,6 +1067,7 @@
 				70D63D221F3C361500945CA2 /* MBProgressHUD+CCChain.m in Sources */,
 				70D63D1B1F3C361500945CA2 /* NSDictionary+CCChain.m in Sources */,
 				70D63D1A1F3C361500945CA2 /* NSDate+CCChain.m in Sources */,
+				707A6FD51F590B4300DEC5C3 /* UIScrollView+CCChain.m in Sources */,
 				70AE271B1F5798950030044C /* CCAuthorize.m in Sources */,
 				70AE27771F580A380030044C /* UILabel+CCChain.m in Sources */,
 				70AE27281F57A1CA0030044C /* CCMediator.m in Sources */,
