@@ -16,19 +16,19 @@ typedef NS_ENUM(unsigned long , CCAssociationPolicy) {
     CCAssociationPolicy_copy = 01403
 };
 
-typedef NS_ENUM(unsigned long , CCQueueQOS) {
-#if __IPHONE_OS_VERSION_MAX_ALLOWED < __IPHONE_8_0
-    CCQueueQOS_Default = 0,
-    CCQueueQOS_High = 2,
-    CCQueueQOS_Low = -2,
-    CCQueueQOS_Background = INT16_MIN
+typedef NS_ENUM(unsigned int , CCQueueQOS) {
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0
+    CCQueueQOS_Default = 0 , // default , not for programmer . use it when you have to reset a serial tasks .
+    CCQueueQOS_User_interaction , // user intercation , will finish as soon as possiable , DO NOT use it for large tasks !
+    CCQueueQOS_User_Initiated , // what's user expacted , DO NOT use it for large tasks !
+    CCQueueQOS_Utility , // recommended , (also availiable for large tasks)
+    CCQueueQOS_Background  , // background tasks .
+    CCQueueQOS_Unspecified  // unspecified , wait unit the system to specific one .
 #else
-    CCQueueQOS_User_interaction = 0x21 , // user intercation , will finish as soon as possiable , DO NOT use it for large tasks !
-    CCQueueQOS_User_Initiated = 0x19 , // what's user expacted , DO NOT use it for large tasks !
-    CCQueueQOS_Default = 0x15 , // default , not for programmer . use it when you have to reset a serial tasks .
-    CCQueueQOS_Utility = 0x11 , // recommended , (also availiable for large tasks)
-    CCQueueQOS_Background = 0x09 , // background tasks .
-    CCQueueQOS_Unspecified = 0x00 // unspecified , wait unit the system to specific one .
+    CCQueueQOS_Default = 0,
+    CCQueueQOS_High = 1,
+    CCQueueQOS_Low = 2,
+    CCQueueQOS_Background
 #endif
 };
 

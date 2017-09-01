@@ -178,7 +178,54 @@ static CCRuntime *__instance = nil;
     return ^CCQueue (CCQueueQOS qos){
         /// for unsigned long flags , what's DOCs told that , it use for reserves for future needs .
         /// thus , for now , it's always be 0 .
-        return dispatch_get_global_queue(qos, 0) ;
+        
+        unsigned int qos_t = 0x00; // equals nil / NIL / NULL
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < __IPHONE_8_0
+        switch (qos) {
+            case CCQueueQOS_Default:{
+                qos_t = DISPATCH_QUEUE_PRIORITY_DEFAULT;
+            }break;
+            case CCQueueQOS_High:{
+                qos_t = DISPATCH_QUEUE_PRIORITY_HIGH;
+            }break;
+            case CCQueueQOS_Low:{
+                qos_t = DISPATCH_QUEUE_PRIORITY_LOW;
+            }break;
+            case CCQueueQOS_Background:{
+                qos_t = DISPATCH_QUEUE_PRIORITY_BACKGROUND;
+            }break;
+                
+            default:{
+                qos_t = DISPATCH_QUEUE_PRIORITY_DEFAULT;
+            }break;
+        }
+#else
+        switch (qos) {
+            case CCQueueQOS_Default:{
+                qos_t = QOS_CLASS_DEFAULT;
+            }break;
+            case CCQueueQOS_User_interaction:{
+                qos_t = QOS_CLASS_USER_INTERACTIVE;
+            }break;
+            case CCQueueQOS_User_Initiated:{
+                qos_t = QOS_CLASS_USER_INITIATED;
+            }break;
+            case CCQueueQOS_Utility:{
+                qos_t = QOS_CLASS_UTILITY;
+            }break;
+            case CCQueueQOS_Background:{
+                qos_t = QOS_CLASS_BACKGROUND;
+            }break;
+            case CCQueueQOS_Unspecified:{
+                qos_t = QOS_CLASS_UNSPECIFIED;
+            }break;
+                
+            default:{
+                qos_t = QOS_CLASS_DEFAULT;
+            }break;
+        }
+#endif
+        return dispatch_get_global_queue(qos_t, 0) ;
     };
 }
 
