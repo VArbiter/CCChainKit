@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3780F2831F51EA6F009B5C8C /* WKWebView+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 3780F2821F51EA6F009B5C8C /* WKWebView+CCChain.m */; };
 		37D8628A1F507DFA00417F5F /* CCEasyWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D862891F507DFA00417F5F /* CCEasyWebView.m */; };
+		37DB8DB31F5AF7490088A3A5 /* CCProxyDealer.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DB8DB21F5AF7490088A3A5 /* CCProxyDealer.m */; };
 		4FB4DD77B5BA32B23EE5373F /* Pods_CCChainKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C097BD1F208A5060168ECC6A /* Pods_CCChainKit_Tests.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
@@ -84,6 +85,9 @@
 		3780F2821F51EA6F009B5C8C /* WKWebView+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebView+CCChain.m"; sourceTree = "<group>"; };
 		37D862881F507DFA00417F5F /* CCEasyWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEasyWebView.h; sourceTree = "<group>"; };
 		37D862891F507DFA00417F5F /* CCEasyWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCEasyWebView.m; sourceTree = "<group>"; };
+		37DB8DB11F5AF7490088A3A5 /* CCProxyDealer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCProxyDealer.h; sourceTree = "<group>"; };
+		37DB8DB21F5AF7490088A3A5 /* CCProxyDealer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCProxyDealer.m; sourceTree = "<group>"; };
+		37DB8DB41F5AFCD70088A3A5 /* CCProxyDealerMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProxyDealerMacro.h; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* CCChainKit_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCChainKit_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -260,6 +264,16 @@
 				37D862891F507DFA00417F5F /* CCEasyWebView.m */,
 			);
 			path = CCEasyWebView;
+			sourceTree = "<group>";
+		};
+		37DB8DB01F5AF7250088A3A5 /* NSProxy */ = {
+			isa = PBXGroup;
+			children = (
+				37DB8DB41F5AFCD70088A3A5 /* CCProxyDealerMacro.h */,
+				37DB8DB11F5AF7490088A3A5 /* CCProxyDealer.h */,
+				37DB8DB21F5AF7490088A3A5 /* CCProxyDealer.m */,
+			);
+			path = NSProxy;
 			sourceTree = "<group>";
 		};
 		6003F581195388D10070C39A = {
@@ -710,6 +724,7 @@
 			children = (
 				70D63D2F1F3C41F400945CA2 /* CCChainRuntime.h */,
 				70D63CF21F3C361500945CA2 /* NSObject */,
+				37DB8DB01F5AF7250088A3A5 /* NSProxy */,
 			);
 			path = CCRuntime;
 			sourceTree = "<group>";
@@ -1124,6 +1139,7 @@
 				701404CB1F5696C400830DAA /* CCRLMBaseModel.m in Sources */,
 				707A6FD11F59058100DEC5C3 /* UINavigationItem+CCChain.m in Sources */,
 				70C8813B1F46E0B80007AD62 /* UIImagePickerController+CCChain.m in Sources */,
+				37DB8DB31F5AF7490088A3A5 /* CCProxyDealer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

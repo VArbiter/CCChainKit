@@ -10,5 +10,6 @@
 #define CCChainRuntime_h
 
     #import "CCRuntime.h"
+    #import "CCProxyDealerMacro.h"
 
 #endif /* CCChainRuntime_h */

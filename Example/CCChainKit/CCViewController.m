@@ -14,6 +14,17 @@
 #import "NSObject+CCProtocol.h"
 #import "UIView+CCChain.h"
 
+#import "CCChainRuntime.h"
+
+#import <objc/runtime.h>
+
+@protocol CCChainP <NSObject>
+
+@end
+
+CC_PROXY_DEALER_INTERFACE(TEST,CCChainP)
+CC_PROXY_DEALER_IMPLEMENTATION(TEST)
+
 @interface CCViewController ()
 
 @property (nonatomic , copy) void (^test)(id t);
@@ -38,6 +49,8 @@
     v.leftS(10); // crash , nil for block .
     
     CC(v).leftS(10).rightS(10).topS(10).bottomS(10).endT();
+    
+    CCProxy_t_TEST.common.registMethods(@[]);
 }
 
 
