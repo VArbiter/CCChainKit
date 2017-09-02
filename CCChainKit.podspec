@@ -25,12 +25,22 @@ Pod::Spec.new do |s|
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = "Foundation"
 
-  s.default_subspec = 'CCDefault'
+  s.default_subspec = 'CCCore'
 
-  s.subspec 'CCDefault' do |defaultT|
-    defaultT.dependency 'CCChainKit/CCData'
-    defaultT.dependency 'CCChainKit/CCView'
-    defaultT.dependency 'CCChainKit/CCRuntime'
+  s.subspec 'CCCore' do |coreT|
+    coreT.dependency 'CCChainKit/CCData'
+    coreT.dependency 'CCChainKit/CCView'
+    coreT.dependency 'CCChainKit/CCRuntime'
+    coreT.dependency 'CCChainKit/CCChainAssets'
+  end
+
+  s.subspec 'CCFull' do |fullT|
+    fullT.dependency 'CCChainKit/CCCore'
+    fullT.dependency 'CCChainKit/CCDataBase'
+    fullT.dependency 'CCChainKit/CCRouter'
+    fullT.dependency 'CCChainKit/CCData'
+    fullT.dependency 'CCChainKit/CCView'
+    fullT.dependency 'CCChainKit/CCCustom'
   end
 
   # preserve for future needs
