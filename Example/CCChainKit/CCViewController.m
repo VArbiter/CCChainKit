@@ -22,10 +22,15 @@
 
 @end
 
-CC_PROXY_DEALER_INTERFACE(TEST,CCChainP)
+@protocol CCChainP_t <NSObject>
+
+@end
+
+
+CC_PROXY_DEALER_INTERFACE(TEST,CCChainP,CCChainP_t)
 CC_PROXY_DEALER_IMPLEMENTATION(TEST)
 
-@interface CCViewController ()
+@interface CCViewController () 
 
 @property (nonatomic , copy) void (^test)(id t);
 

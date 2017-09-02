@@ -31,11 +31,11 @@
 #ifndef CC_PROXY_DEALER_INTERFACE
     /// name , protocols that want to be simulated
 
-    #define CC_PROXY_DELEAR_PROTOCOL_HOLDER ...
-
-    #define CC_PROXY_DEALER_INTERFACE(_name_ , CC_PROXY_DELEAR_PROTOCOL_HOLDER) \
+    #define CC_PROXY_DEALER_INTERFACE(_name_ , ...) \
+    @protocol CCProxyHolderProtocol <NSObject> \
+    @end \
 \
-    @interface CCProxy_t_##_name_ : NSProxy < CC_PROXY_DELEAR_PROTOCOL_HOLDER > \
+    @interface CCProxy_t_##_name_ : NSProxy < CCProxyHolderProtocol , ##__VA_ARGS__ > \
         + (instancetype) common ; \
         @property (nonatomic , class , copy , readonly) CCProxy_t_##_name_ *(^commonR)(NSArray <id> * aTargets); \
         @property (nonatomic , copy , readonly) CCProxy_t_##_name_ *(^registMethods)(NSArray <id> * aTargets); \
