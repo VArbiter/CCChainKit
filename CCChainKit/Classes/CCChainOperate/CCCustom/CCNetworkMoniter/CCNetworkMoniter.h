@@ -35,9 +35,9 @@ typedef NS_ENUM(NSInteger , CCNetworkEnvironment) {
 
 @property (nonatomic , copy , readonly) CCNetworkEnvironment (^environmentType)();
 
-extern NSString * const _CC_NETWORK_STATUS_CHANGE_NOTIFICATION_ ;
-extern NSString * const _CC_NETWORK_STATUS_KEY_NEW_ ;
-extern NSString * const _CC_NETWORK_STATUS_KEY_OLD_ ;
+FOUNDATION_EXPORT NSString * const _CC_NETWORK_STATUS_CHANGE_NOTIFICATION_ ;
+FOUNDATION_EXPORT NSString * const _CC_NETWORK_STATUS_KEY_NEW_ ;
+FOUNDATION_EXPORT NSString * const _CC_NETWORK_STATUS_KEY_OLD_ ;
 
 @end
 

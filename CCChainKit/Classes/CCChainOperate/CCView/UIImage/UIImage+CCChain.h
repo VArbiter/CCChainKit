@@ -37,8 +37,8 @@
 
 @interface UIImage (CCChain_Gaussian)
 
-extern CGFloat _CC_GAUSSIAN_BLUR_VALUE_ ;
-extern CGFloat _CC_GAUSSIAN_BLUR_TINT_ALPHA_ ;
+FOUNDATION_EXPORT CGFloat _CC_GAUSSIAN_BLUR_VALUE_ ;
+FOUNDATION_EXPORT CGFloat _CC_GAUSSIAN_BLUR_TINT_ALPHA_ ;
 
 // for gaussian issues
 
@@ -67,7 +67,7 @@ typedef NS_ENUM(NSInteger , CCImageType) {
 
 @interface UIImage (CCChain_Data)
 
-extern CGFloat _CC_IMAGE_JPEG_COMPRESSION_QUALITY_SIZE_ ; // 400 kb
+FOUNDATION_EXPORT CGFloat _CC_IMAGE_JPEG_COMPRESSION_QUALITY_SIZE_ ; // 400 kb
 
 // available for PNG && JPEG
 
