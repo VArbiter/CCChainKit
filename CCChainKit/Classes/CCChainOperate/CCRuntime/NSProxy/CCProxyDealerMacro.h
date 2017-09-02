@@ -41,6 +41,10 @@
         @property (nonatomic , copy , readonly) CCProxy_t_##_name_ *(^registMethods)(NSArray <id> * aTargets); \
     @end
 
+#endif
+
+#ifndef CC_PROXY_DEALER_IMPLEMENTATION
+    /// name , it should be the name that passing though CC_PROXY_DEALER_INTERFACE.
     #define CC_PROXY_DEALER_IMPLEMENTATION(_name_) \
 \
     @interface CCProxy_t_##_name_  () \
@@ -105,3 +109,6 @@
 #endif
 
 #endif /* CCProxyDealerMacro_h */
+
+
+
