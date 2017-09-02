@@ -22,7 +22,9 @@
 @interface CCMenuView : UIView < CCMenuViewProtocol >
 
 /// show for frame , @[@{@"methodName" : @"showingTitle"}] ,
-/// note : it will show exclusive with same order that given by array .
+/// note : it will shown exclusive in that order you've given in array .
+/// note : when you give out the methodName , make sure that won't use by system .
+/// eg : copy -> error && crash , copyy -> correct
 @property (nonatomic , copy , readonly) CCMenuView *(^showT)(CGRect frame , NSArray <NSDictionary <NSString * , NSString *> *> * aTitles);
 
 /// dTotal : all methods and titles , sKey , sValue , index : current selected
