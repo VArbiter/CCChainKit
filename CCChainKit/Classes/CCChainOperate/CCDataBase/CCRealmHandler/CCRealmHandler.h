@@ -6,6 +6,8 @@
 //  Copyright © 2017 冯明庆. All rights reserved.
 //
 
+#if __has_include(<Realm/Realm.h>)
+
 #import <Foundation/Foundation.h>
 @import Realm;
 
@@ -57,3 +59,5 @@
 @property (nonatomic , copy , readonly) CCRealmHandler *(^notification)(void (^t)(RLMNotification n, RLMRealm *r));
 
 @end
+
+#endif

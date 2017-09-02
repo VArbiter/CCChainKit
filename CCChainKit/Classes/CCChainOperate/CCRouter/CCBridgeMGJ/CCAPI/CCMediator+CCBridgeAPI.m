@@ -10,6 +10,8 @@
 #import "CCMediator+CCBridgeAPI.h"
 #import "CCBridgeRouter.h"
 
+#if __has_include(<MGJRouter/MGJRouter.h>)
+
 @implementation CCMediator (CCBridgeAPI)
 
 + (void (^)(dispatch_block_t))fallback {
@@ -49,3 +51,5 @@
 }
 
 @end
+
+#endif

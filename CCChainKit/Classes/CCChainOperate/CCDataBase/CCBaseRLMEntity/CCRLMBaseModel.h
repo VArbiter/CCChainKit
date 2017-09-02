@@ -14,6 +14,8 @@
 /// 3. if an object deleted , and then do sth more , went crash .
 /// 4. that's why.
 
+#if __has_include(<Realm/Realm.h>)
+
 @interface CCRLMBaseModel : RLMObject
 
 + (instancetype) ccCommon ;
@@ -41,3 +43,5 @@
                                                 RLMCollectionChange * change,
                                                 NSError * error)) changeN ;
 @end
+
+#endif

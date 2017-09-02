@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#if __has_include(<MGJRouter/MGJRouter.h>)
+
 @interface CCBridgeRouter : NSObject
 
 @property (nonatomic , class , copy , readonly) CCBridgeRouter *(^shared)();
@@ -26,3 +28,5 @@
 @property (nonatomic , copy , readonly) id (^get)(NSString * , NSDictionary * , dispatch_block_t);
 
 @end
+
+#endif

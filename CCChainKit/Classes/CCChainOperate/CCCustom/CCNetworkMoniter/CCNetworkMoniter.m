@@ -8,6 +8,9 @@
 
 #import "CCNetworkMoniter.h"
 
+#if __has_include(<AFNetworking/AFNetworkReachabilityManager.h>) \
+    && __has_include(<AFNetworking/AFNetworkActivityIndicatorManager.h>)
+
 #import <AFNetworking/AFNetworkActivityIndicatorManager.h>
 #import <AFNetworking/AFNetworkReachabilityManager.h>
 
@@ -122,3 +125,5 @@ NSString * const _CC_NETWORK_STATUS_KEY_OLD_ = @"CC_NETWORK_STATUS_KEY_OLD";
 }
 
 @end
+
+#endif

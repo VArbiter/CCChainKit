@@ -6,6 +6,8 @@
 //  Copyright © 2017 冯明庆. All rights reserved.
 //
 
+#if __has_include(<Realm/Realm.h>)
+
 #import "CCRealmHandler.h"
 
 #import <objc/runtime.h>
@@ -379,3 +381,5 @@ static const char * _CC_RLM_NOTIFICATION_KEY_ = "_CC_RLM_NOTIFICATION_KEY_";
 }
 
 @end
+
+#endif

@@ -8,6 +8,8 @@
 
 #import "CCRLMBaseModel.h"
 
+#if __has_include(<Realm/Realm.h>)
+
 @interface CCRLMBaseModel ()
 
 // 即使是延展也会被储存
@@ -115,3 +117,5 @@ static RLMNotificationToken *__ccToken = nil;
 }
 
 @end
+
+#endif

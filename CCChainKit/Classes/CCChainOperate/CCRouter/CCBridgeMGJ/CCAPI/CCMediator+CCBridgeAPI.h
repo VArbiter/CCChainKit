@@ -8,6 +8,8 @@
 
 #import "CCMediator.h"
 
+#if __has_include(<MGJRouter/MGJRouter.h>)
+
 @interface CCMediator (CCBridgeAPI)
 
 /// for urls that can not be found
@@ -24,3 +26,5 @@
 @property (nonatomic , class , copy , readonly) id (^get)(NSString * , NSDictionary * , dispatch_block_t);
 
 @end
+
+#endif

@@ -9,5 +9,8 @@
 #ifndef CCChainDataBase_h
 #define CCChainDataBase_h
 
+    #import "CCRealmHandler.h"
+    #import "CCRLMBaseModel.h"
+
 
 #endif /* CCChainDataBase_h */

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#if __has_include(<SDWebImage/UIImageView+WebCache.h>)
+
 @interface UIImageView (CCChain_WeakNetwork)
 
 /// if network was not strong enough , stop loading web image .
@@ -18,3 +20,5 @@
 @property (nonatomic , class , copy , readonly) void (^enableLoading)(BOOL isEnable);
 
 @end
+
+#endif

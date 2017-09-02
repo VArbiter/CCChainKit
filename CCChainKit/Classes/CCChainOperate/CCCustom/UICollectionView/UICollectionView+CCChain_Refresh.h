@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#if __has_include(<MJRefresh/MJRefresh.h>)
+
 @import MJRefresh;
 
 @interface UICollectionView (CCChain_Refresh)
@@ -24,3 +26,5 @@
 @property (nonatomic , readonly) UICollectionView * (^loadingMore)(void (^loadMore)());
 
 @end
+
+#endif

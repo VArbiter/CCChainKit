@@ -8,6 +8,8 @@
 
 #import "CCBridgeRouter.h"
 
+#if __has_include(<MGJRouter/MGJRouter.h>)
+
 #import <MGJRouter/MGJRouter.h>
 
 @interface CCBridgeRouter () < NSCopying , NSMutableCopying >
@@ -137,3 +139,5 @@ static NSString * _CC_ROUTER_FALL_BACK_URL_ = @"loveCC://";
 }
 
 @end
+
+#endif

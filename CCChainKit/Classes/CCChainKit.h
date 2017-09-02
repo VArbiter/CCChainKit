@@ -9,22 +9,46 @@
 #ifndef CCChainKit_h
     #define CCChainKit_h
 
-    #import "CCChainProtocol.h"
-    #import "CCChainCommon.h"
-    #import "CCChainData.h"
-    #import "CCChainView.h"
-    #import "CCChainRuntime.h"
+    #if __has_include(<CCChainKit/CCChainKit.h>)
 
-    #ifdef _CCChainDataBase_
-        #import "CCChainDataBase.h"
-    #endif
+        #import <CCChainKit/CCChainProtocol.h>
+        #import <CCChainKit/CCChainCommon.h>
+        #import <CCChainKit/CCChainData.h>
+        #import <CCChainKit/CCChainView.h>
+        #import <CCChainKit/CCChainRuntime.h>
 
-    #ifdef _CCChainRouter_
-        #import "CCChainRouter.h"
-    #endif
+        #ifdef _CCChainDataBase_
+            #import <CCChainKit/CCChainDataBase.h>
+        #endif
 
-    #ifdef _CCChainCustom_
-        #import "CCChainCustom.h"
+        #ifdef _CCChainRouter_
+            #import <CCChainKit/CCChainRouter.h>
+        #endif
+
+        #ifdef _CCChainCustom_
+            #import <CCChainKit/CCChainCustom.h>
+        #endif
+
+    #else
+
+        #import "CCChainProtocol.h"
+        #import "CCChainCommon.h"
+        #import "CCChainData.h"
+        #import "CCChainView.h"
+        #import "CCChainRuntime.h"
+
+        #ifdef _CCChainDataBase_
+            #import "CCChainDataBase.h"
+        #endif
+
+        #ifdef _CCChainRouter_
+            #import "CCChainRouter.h"
+        #endif
+
+        #ifdef _CCChainCustom_
+            #import "CCChainCustom.h"
+        #endif
+
     #endif
 
 #endif /* CCChainKit_h */

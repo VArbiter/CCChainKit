@@ -8,6 +8,8 @@
 
 #import "UIImageView+CCChain_WeakNetwork.h"
 
+#if __has_include(<SDWebImage/UIImageView+WebCache.h>)
+
 #import "CCNetworkMoniter.h"
 
 @import SDWebImage;
@@ -36,3 +38,5 @@ static BOOL __isEnableLoading = YES;
 }
 
 @end
+
+#endif
