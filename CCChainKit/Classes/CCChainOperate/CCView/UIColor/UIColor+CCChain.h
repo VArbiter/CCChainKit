@@ -19,4 +19,6 @@
 /// generate a image that size equals (CGSize){1.f , 1.f}
 @property (nonatomic , copy , readonly) UIImage *(^image)();
 
+@property (nonatomic , class , readonly) UIColor * random ;
+
 @end

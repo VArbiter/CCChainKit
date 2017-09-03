@@ -55,4 +55,16 @@
     };
 }
 
++ (UIColor *)random {
+    CGFloat (^t)() = ^CGFloat {
+        return arc4random_uniform(256) / 255.0f;
+    };
+    
+    UIColor *c = [UIColor colorWithRed:t()
+                                 green:t()
+                                  blue:t()
+                                 alpha:1.f];
+    return c;
+}
+
 @end
