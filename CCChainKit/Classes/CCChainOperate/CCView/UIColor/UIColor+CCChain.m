@@ -41,6 +41,32 @@
     };
 }
 
++ (UIColor *(^)(NSString *))sHex {
+    return ^UIColor *(NSString *sHex) {
+        if (!sHex || ![sHex isKindOfClass:NSString.class] || sHex.length < 6) {
+            return self.clearColor;
+        }
+        if ([sHex hasPrefix:@"##"] || [sHex hasPrefix:@"0x"] || [sHex hasPrefix:@"0X"]) {
+            sHex = [sHex substringFromIndex:2];
+        }
+        else if ([sHex hasPrefix:@"#"]) sHex = [sHex substringFromIndex:1];
+        
+        if (sHex.length < 6) return self.clearColor;
+        sHex = sHex.uppercaseString;
+        
+        unsigned int r , g , b ;
+        
+        NSRange range = NSMakeRange(0, 2);
+        [[NSScanner scannerWithString:[sHex substringWithRange:range]] scanHexInt:&r];
+        range.location = 2 ;
+        [[NSScanner scannerWithString:[sHex substringWithRange:range]] scanHexInt:&g];
+        range.location = 4 ;
+        [[NSScanner scannerWithString:[sHex substringWithRange:range]] scanHexInt:&b];
+        
+        return self.RGB(r, g, b);
+    };
+}
+
 - (UIColor *(^)(CGFloat))alphaS {
     __weak typeof(self) pSelf = self;
     return ^UIColor *(CGFloat a) {

@@ -10,10 +10,15 @@
 
 @interface UIColor (CCChain)
 
+/// eg: 0xFFFFFF , 0x000000
 @property (nonatomic , class , copy , readonly) UIColor *(^hex)(int value);
 @property (nonatomic , class , copy , readonly) UIColor *(^hexA)(int value , double alpha);
 @property (nonatomic , class , copy , readonly) UIColor *(^RGB)(double r , double g , double b);
 @property (nonatomic , class , copy , readonly) UIColor *(^RGBA)(double r , double g , double b , double a);
+
+/// eg: @"0xFFFFFF" , @"##FFFFFF" , @"#FFFFFF" , @"0XFFFFFF"
+/// otherwise , returns clear color .
+@property (nonatomic , class , copy , readonly) UIColor *(^sHex)(NSString *sHex);
 
 @property (nonatomic , copy , readonly) UIColor *(^alphaS)(CGFloat alpha);
 /// generate a image that size equals (CGSize){1.f , 1.f}
