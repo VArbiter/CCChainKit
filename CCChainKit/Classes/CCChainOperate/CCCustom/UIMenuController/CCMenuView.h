@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-/// this file that makes UIMenuController's item can be manage && sorted .
+/// this file that makes UIMenuController's item can be managed && sorted .
 
 @class CCMenuView;
 
@@ -24,7 +24,7 @@
 /// show for frame , @[@{@"methodName" : @"showingTitle"}] ,
 /// note : it will shown exclusive in that order you've given in array .
 /// note : when you give out the methodName , make sure that won't use by system .
-/// eg : copy -> error && crash , copyy -> correct
+/// eg (for method name): copy -> error && crash , copyy -> correct
 @property (nonatomic , copy , readonly) CCMenuView *(^showT)(CGRect frame , NSArray <NSDictionary <NSString * , NSString *> *> * aTitles);
 
 /// dTotal : all methods and titles , sKey , sValue , index : current selected
