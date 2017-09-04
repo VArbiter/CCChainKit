@@ -67,7 +67,7 @@
 @property (nonatomic , copy , readonly) CCCollectionChainDelegate *(^didUnhigntedCell)(void(^)(UICollectionView *collectionView , NSIndexPath *indexPath)) ;
 @property (nonatomic , copy , readonly) CCCollectionChainDelegate *(^minimumLineSpacingInSection)(CGFloat (^)(UICollectionView *collectionView , UICollectionViewLayout *layout , NSInteger iSection)) ;
 @property (nonatomic , copy , readonly) CCCollectionChainDelegate *(^minimumInterItemSpacingInSection)(CGFloat (^)(UICollectionView *collectionView , UICollectionViewLayout *layout , NSInteger iSection)) ;
-@property (nonatomic , copy) CCCollectionChainDelegate *(^spacingBetweenSections)(UIEdgeInsets (^)(UICollectionView *collectionView , UICollectionViewLayout *layout , NSInteger iSection)) ;
+@property (nonatomic , copy , readonly) CCCollectionChainDelegate *(^spacingBetweenSections)(UIEdgeInsets (^)(UICollectionView *collectionView , UICollectionViewLayout *layout , NSInteger iSection)) ;
 
 @end
 
@@ -80,7 +80,7 @@
 @property (nonatomic , copy , readonly) CCCollectionChainDataSource *(^sections)(NSInteger (^)(UICollectionView *collectionView)) ;
 @property (nonatomic , copy , readonly) CCCollectionChainDataSource *(^itemsInSections)(NSInteger(^)(UICollectionView * collectionView , NSInteger iSections)) ;
 @property (nonatomic , copy , readonly) CCCollectionChainDataSource *(^identifierS)(NSString *(^)(UICollectionView * collectionView , NSIndexPath * indexPath)) ;
-@property (nonatomic , copy , readonly) CCCollectionChainDataSource *(^configCell)(UICollectionViewCell *(^)(UICollectionView * collectionView , UICollectionViewCell * cell , NSIndexPath * indexPath));
+@property (nonatomic , copy , readonly) CCCollectionChainDataSource *(^configCell)(__kindof UICollectionViewCell *(^)(UICollectionView * collectionView , UICollectionViewCell * tCell , NSIndexPath * indexPath));
 
 @end
 
