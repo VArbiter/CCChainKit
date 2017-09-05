@@ -90,7 +90,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'CCCustom' do |custom|
     custom.source_files = 'CCChainKit/Classes/CCChainOperate/CCCustom/*'
-    custom.dependency 'CCChainKit/CCDefault'
+    custom.dependency 'CCChainKit/CCCore'
     custom.dependency 'AFNetworking/Reachability', '~> 3.1.0'
     custom.dependency 'AFNetworking/UIKit', '~> 3.1.0'
     custom.dependency 'SDWebImage', '~> 4.1.0'
