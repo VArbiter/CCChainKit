@@ -25,6 +25,8 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
+		700C11931F5E2E7200915034 /* UITextField+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 700C11921F5E2E7200915034 /* UITextField+CCChain.m */; };
+		700C11961F5E32B900915034 /* UITextView+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 700C11951F5E32B900915034 /* UITextView+CCChain.m */; };
 		701404CB1F5696C400830DAA /* CCRLMBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 701404CA1F5696C400830DAA /* CCRLMBaseModel.m */; };
 		701404CF1F56979200830DAA /* CCRealmHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 701404CE1F56979200830DAA /* CCRealmHandler.m */; };
 		707A6FD11F59058100DEC5C3 /* UINavigationItem+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 707A6FD01F59058100DEC5C3 /* UINavigationItem+CCChain.m */; };
@@ -110,6 +112,10 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
+		700C11911F5E2E7200915034 /* UITextField+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+CCChain.h"; sourceTree = "<group>"; };
+		700C11921F5E2E7200915034 /* UITextField+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+CCChain.m"; sourceTree = "<group>"; };
+		700C11941F5E32B900915034 /* UITextView+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+CCChain.h"; sourceTree = "<group>"; };
+		700C11951F5E32B900915034 /* UITextView+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+CCChain.m"; sourceTree = "<group>"; };
 		701404C91F5696C400830DAA /* CCRLMBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRLMBaseModel.h; sourceTree = "<group>"; };
 		701404CA1F5696C400830DAA /* CCRLMBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCRLMBaseModel.m; sourceTree = "<group>"; };
 		701404CD1F56979200830DAA /* CCRealmHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRealmHandler.h; sourceTree = "<group>"; };
@@ -378,6 +384,24 @@
 				CA6284D8E20459080E3932EA /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		700C118F1F5E2E2A00915034 /* UITextField */ = {
+			isa = PBXGroup;
+			children = (
+				700C11911F5E2E7200915034 /* UITextField+CCChain.h */,
+				700C11921F5E2E7200915034 /* UITextField+CCChain.m */,
+			);
+			path = UITextField;
+			sourceTree = "<group>";
+		};
+		700C11901F5E2E2A00915034 /* UITextView */ = {
+			isa = PBXGroup;
+			children = (
+				700C11941F5E32B900915034 /* UITextView+CCChain.h */,
+				700C11951F5E32B900915034 /* UITextView+CCChain.m */,
+			);
+			path = UITextView;
 			sourceTree = "<group>";
 		};
 		701404C71F5696C400830DAA /* CCDataBase */ = {
@@ -773,6 +797,8 @@
 				707A6FCE1F59056300DEC5C3 /* UINavigationItem */,
 				707A6FD21F590B2900DEC5C3 /* UIScrollView */,
 				707A6FDE1F593AC600DEC5C3 /* UITableView */,
+				700C118F1F5E2E2A00915034 /* UITextField */,
+				700C11901F5E2E2A00915034 /* UITextView */,
 			);
 			path = CCView;
 			sourceTree = "<group>";
@@ -1134,6 +1160,7 @@
 				70AE27731F58023F0030044C /* UIImageView+CCChain.m in Sources */,
 				70AE27311F57A3390030044C /* CCMediator+CCBridgeAPI.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				700C11931F5E2E7200915034 /* UITextField+CCChain.m in Sources */,
 				707A6FDA1F59131D00DEC5C3 /* UICollectionView+CCChain_Refresh.m in Sources */,
 				375D89DF1F5B3E38001C37B0 /* CCMenuView.m in Sources */,
 				70D63D221F3C361500945CA2 /* MBProgressHUD+CCChain.m in Sources */,
@@ -1145,6 +1172,7 @@
 				70AE27281F57A1CA0030044C /* CCMediator.m in Sources */,
 				70D63D1E1F3C361500945CA2 /* NSPredicate+CCChain.m in Sources */,
 				70AE27481F57F3270030044C /* UIFont+CCChain.m in Sources */,
+				700C11961F5E32B900915034 /* UITextView+CCChain.m in Sources */,
 				70D63D271F3C361500945CA2 /* UIColor+CCChain.m in Sources */,
 				70AE27321F57A3390030044C /* CCBridgeRouter.m in Sources */,
 				3780F2831F51EA6F009B5C8C /* WKWebView+CCChain.m in Sources */,
