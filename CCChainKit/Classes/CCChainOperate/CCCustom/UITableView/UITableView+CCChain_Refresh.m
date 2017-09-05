@@ -8,10 +8,10 @@
 
 #import "UITableView+CCChain_Refresh.h"
 
-#if __has_include(<MJRefresh/MJRefresh.h>)
-
 #import "CCChainCommon.h"
 #import "NSObject+CCProtocol.h"
+
+#if __has_include(<MJRefresh/MJRefresh.h>)
 
 @implementation UITableView (CCChain_Refresh)
 

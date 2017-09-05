@@ -7,11 +7,10 @@
 //
 
 #import "UICollectionView+CCChain_Refresh.h"
+#import "NSObject+CCProtocol.h"
+#import "CCChainCommon.h"
 
 #if __has_include(<MJRefresh/MJRefresh.h>)
-
-#import "CCChainCommon.h"
-#import "NSObject+CCProtocol.h"
 
 @implementation UICollectionView (CCChain_Refresh)
 

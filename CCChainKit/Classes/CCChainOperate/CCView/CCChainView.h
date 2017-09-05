@@ -31,4 +31,8 @@
     #import "UITextView+CCChain.h"
     #import "UIViewController+CCChain.h"
 
+    // custom
+    #import "CCEasyWebView.h"
+    #import "CCMenuView.h"
+
 #endif /* CCChainView_h */

@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		375D89DF1F5B3E38001C37B0 /* CCMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 375D89DE1F5B3E38001C37B0 /* CCMenuView.m */; };
 		3780F2831F51EA6F009B5C8C /* WKWebView+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 3780F2821F51EA6F009B5C8C /* WKWebView+CCChain.m */; };
-		37D8628A1F507DFA00417F5F /* CCEasyWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D862891F507DFA00417F5F /* CCEasyWebView.m */; };
 		37DB8DB31F5AF7490088A3A5 /* CCProxyDealer.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DB8DB21F5AF7490088A3A5 /* CCProxyDealer.m */; };
 		4FB4DD77B5BA32B23EE5373F /* Pods_CCChainKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C097BD1F208A5060168ECC6A /* Pods_CCChainKit_Tests.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
@@ -28,6 +26,8 @@
 		700C11931F5E2E7200915034 /* UITextField+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 700C11921F5E2E7200915034 /* UITextField+CCChain.m */; };
 		700C11961F5E32B900915034 /* UITextView+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 700C11951F5E32B900915034 /* UITextView+CCChain.m */; };
 		700C119A1F5E3D7800915034 /* UIViewController+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 700C11991F5E3D7800915034 /* UIViewController+CCChain.m */; };
+		700C11A21F5E56D400915034 /* CCEasyWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 700C119E1F5E56D400915034 /* CCEasyWebView.m */; };
+		700C11A31F5E56D400915034 /* CCMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 700C11A11F5E56D400915034 /* CCMenuView.m */; };
 		701404CB1F5696C400830DAA /* CCRLMBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 701404CA1F5696C400830DAA /* CCRLMBaseModel.m */; };
 		701404CF1F56979200830DAA /* CCRealmHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 701404CE1F56979200830DAA /* CCRealmHandler.m */; };
 		707A6FD11F59058100DEC5C3 /* UINavigationItem+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 707A6FD01F59058100DEC5C3 /* UINavigationItem+CCChain.m */; };
@@ -85,12 +85,8 @@
 
 /* Begin PBXFileReference section */
 		2DDD8D1109EDCB35A1DAF804 /* Pods-CCChainKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCChainKit_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CCChainKit_Tests/Pods-CCChainKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		375D89DD1F5B3E38001C37B0 /* CCMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCMenuView.h; sourceTree = "<group>"; };
-		375D89DE1F5B3E38001C37B0 /* CCMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCMenuView.m; sourceTree = "<group>"; };
 		3780F2811F51EA6F009B5C8C /* WKWebView+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WKWebView+CCChain.h"; sourceTree = "<group>"; };
 		3780F2821F51EA6F009B5C8C /* WKWebView+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebView+CCChain.m"; sourceTree = "<group>"; };
-		37D862881F507DFA00417F5F /* CCEasyWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEasyWebView.h; sourceTree = "<group>"; };
-		37D862891F507DFA00417F5F /* CCEasyWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCEasyWebView.m; sourceTree = "<group>"; };
 		37DB8DB11F5AF7490088A3A5 /* CCProxyDealer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCProxyDealer.h; sourceTree = "<group>"; };
 		37DB8DB21F5AF7490088A3A5 /* CCProxyDealer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCProxyDealer.m; sourceTree = "<group>"; };
 		37DB8DB41F5AFCD70088A3A5 /* CCProxyDealerMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProxyDealerMacro.h; sourceTree = "<group>"; };
@@ -119,6 +115,10 @@
 		700C11951F5E32B900915034 /* UITextView+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+CCChain.m"; sourceTree = "<group>"; };
 		700C11981F5E3D7800915034 /* UIViewController+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CCChain.h"; sourceTree = "<group>"; };
 		700C11991F5E3D7800915034 /* UIViewController+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CCChain.m"; sourceTree = "<group>"; };
+		700C119D1F5E56D400915034 /* CCEasyWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEasyWebView.h; sourceTree = "<group>"; };
+		700C119E1F5E56D400915034 /* CCEasyWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCEasyWebView.m; sourceTree = "<group>"; };
+		700C11A01F5E56D400915034 /* CCMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCMenuView.h; sourceTree = "<group>"; };
+		700C11A11F5E56D400915034 /* CCMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCMenuView.m; sourceTree = "<group>"; };
 		701404C91F5696C400830DAA /* CCRLMBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRLMBaseModel.h; sourceTree = "<group>"; };
 		701404CA1F5696C400830DAA /* CCRLMBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCRLMBaseModel.m; sourceTree = "<group>"; };
 		701404CD1F56979200830DAA /* CCRealmHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRealmHandler.h; sourceTree = "<group>"; };
@@ -247,15 +247,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		375D89D91F5B3CE4001C37B0 /* UIMenuController */ = {
-			isa = PBXGroup;
-			children = (
-				375D89DD1F5B3E38001C37B0 /* CCMenuView.h */,
-				375D89DE1F5B3E38001C37B0 /* CCMenuView.m */,
-			);
-			path = UIMenuController;
-			sourceTree = "<group>";
-		};
 		3780F2801F51EA56009B5C8C /* WKWebView */ = {
 			isa = PBXGroup;
 			children = (
@@ -271,21 +262,10 @@
 				70AE27231F5798CE0030044C /* CCChainCustom.h */,
 				70AE27491F57F97D0030044C /* CCWeakNetImageView */,
 				70AE27331F57A4E80030044C /* CCNetworkMoniter */,
-				37D862871F507DED00417F5F /* CCEasyWebView */,
 				707A6FD61F5912FF00DEC5C3 /* UICollectionView */,
 				707A6FD71F5912FF00DEC5C3 /* UITableView */,
-				375D89D91F5B3CE4001C37B0 /* UIMenuController */,
 			);
 			path = CCCustom;
-			sourceTree = "<group>";
-		};
-		37D862871F507DED00417F5F /* CCEasyWebView */ = {
-			isa = PBXGroup;
-			children = (
-				37D862881F507DFA00417F5F /* CCEasyWebView.h */,
-				37D862891F507DFA00417F5F /* CCEasyWebView.m */,
-			);
-			path = CCEasyWebView;
 			sourceTree = "<group>";
 		};
 		37DB8DB01F5AF7250088A3A5 /* NSProxy */ = {
@@ -414,6 +394,33 @@
 				700C11991F5E3D7800915034 /* UIViewController+CCChain.m */,
 			);
 			path = UIViewController;
+			sourceTree = "<group>";
+		};
+		700C119B1F5E56D400915034 /* CCOriginalSustom */ = {
+			isa = PBXGroup;
+			children = (
+				700C119C1F5E56D400915034 /* CCEasyWebView */,
+				700C119F1F5E56D400915034 /* UIMenuController */,
+			);
+			path = CCOriginalSustom;
+			sourceTree = "<group>";
+		};
+		700C119C1F5E56D400915034 /* CCEasyWebView */ = {
+			isa = PBXGroup;
+			children = (
+				700C119D1F5E56D400915034 /* CCEasyWebView.h */,
+				700C119E1F5E56D400915034 /* CCEasyWebView.m */,
+			);
+			path = CCEasyWebView;
+			sourceTree = "<group>";
+		};
+		700C119F1F5E56D400915034 /* UIMenuController */ = {
+			isa = PBXGroup;
+			children = (
+				700C11A01F5E56D400915034 /* CCMenuView.h */,
+				700C11A11F5E56D400915034 /* CCMenuView.m */,
+			);
+			path = UIMenuController;
 			sourceTree = "<group>";
 		};
 		701404C71F5696C400830DAA /* CCDataBase */ = {
@@ -791,6 +798,7 @@
 			isa = PBXGroup;
 			children = (
 				70D63D2E1F3C41B400945CA2 /* CCChainView.h */,
+				700C119B1F5E56D400915034 /* CCOriginalSustom */,
 				70D63D111F3C361500945CA2 /* UIView */,
 				3780F2801F51EA56009B5C8C /* WKWebView */,
 				70D63CF61F3C361500945CA2 /* MBProgressHud */,
@@ -1150,6 +1158,7 @@
 				70D63D331F3C4CC200945CA2 /* NSTimer+CCChain.m in Sources */,
 				70D63D191F3C361500945CA2 /* NSBundle+CCChain.m in Sources */,
 				70D63D2A1F3C361500945CA2 /* UIImage+CCChain.m in Sources */,
+				700C11A21F5E56D400915034 /* CCEasyWebView.m in Sources */,
 				70D63D1C1F3C361500945CA2 /* NSNumber+CCChain.m in Sources */,
 				70D63D1D1F3C361500945CA2 /* NSObject+CCChain.m in Sources */,
 				70D63D2B1F3C361500945CA2 /* UIView+CCChain.m in Sources */,
@@ -1159,8 +1168,8 @@
 				70D63D281F3C361500945CA2 /* UIControl+CCChain.m in Sources */,
 				707A6FE11F593ADB00DEC5C3 /* UITableView+CCChain.m in Sources */,
 				70AE27211F5798A60030044C /* NSObject+CCProtocol.m in Sources */,
-				37D8628A1F507DFA00417F5F /* CCEasyWebView.m in Sources */,
 				70D63D241F3C361500945CA2 /* UIBarButtonItem+CCChain.m in Sources */,
+				700C11A31F5E56D400915034 /* CCMenuView.m in Sources */,
 				6003F5A7195388D20070C39A /* CCViewController.m in Sources */,
 				70AE27361F57A4E80030044C /* CCNetworkMoniter.m in Sources */,
 				70D63D211F3C361500945CA2 /* CCRuntime.m in Sources */,
@@ -1176,7 +1185,6 @@
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				700C11931F5E2E7200915034 /* UITextField+CCChain.m in Sources */,
 				707A6FDA1F59131D00DEC5C3 /* UICollectionView+CCChain_Refresh.m in Sources */,
-				375D89DF1F5B3E38001C37B0 /* CCMenuView.m in Sources */,
 				70D63D221F3C361500945CA2 /* MBProgressHUD+CCChain.m in Sources */,
 				70D63D1B1F3C361500945CA2 /* NSDictionary+CCChain.m in Sources */,
 				70D63D1A1F3C361500945CA2 /* NSDate+CCChain.m in Sources */,
