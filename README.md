@@ -1,4 +1,4 @@
-## CCChainKit
+# CCChainKit
 
 [![Version](https://img.shields.io/cocoapods/v/CCChainKit.svg?style=flat)](http://cocoapods.org/pods/CCChainKit)
 
