@@ -13,14 +13,14 @@ static const char * _CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY_ = "CC_UIGESTURERECOGN
 
 @interface UIGestureRecognizer (CCChain_Assit)
 
-- (void) ccGestureChainAction : (UIGestureRecognizer *) sender ;
+- (void) ccGestureChainAction : ( __kindof UIGestureRecognizer *) sender ;
 
 @end
 
 @implementation UIGestureRecognizer (CCChain_Assit)
 
-- (void)ccGestureChainAction:(UIGestureRecognizer *)sender {
-    UIGestureRecognizer *(^t)(UIGestureRecognizer *) = objc_getAssociatedObject(self, _CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY_);
+- (void)ccGestureChainAction:( __kindof UIGestureRecognizer *)sender {
+    UIGestureRecognizer *(^t)( __kindof UIGestureRecognizer *) = objc_getAssociatedObject(self, _CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY_);
     if (t) {
         if (NSThread.isMainThread) t(self);
         else {
@@ -38,17 +38,17 @@ static const char * _CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY_ = "CC_UIGESTURERECOGN
 
 @implementation UIGestureRecognizer (CCChain)
 
-- (UIGestureRecognizer *(^)(void (^)(UIGestureRecognizer *)))action {
+- ( __kindof UIGestureRecognizer *(^)(void (^)( __kindof UIGestureRecognizer *)))action {
     __weak typeof(self) pSelf = self;
-    return ^UIGestureRecognizer *(void(^t)(UIGestureRecognizer *g)) {
+    return ^ __kindof UIGestureRecognizer *(void(^t)( __kindof UIGestureRecognizer *g)) {
         if (t) objc_setAssociatedObject(pSelf, _CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY_, t, OBJC_ASSOCIATION_COPY_NONATOMIC);
         return pSelf;
     };
 }
 
-- (UIGestureRecognizer *(^)(id, void (^)(UIGestureRecognizer *)))target {
+- ( __kindof UIGestureRecognizer *(^)(id, void (^)( __kindof UIGestureRecognizer *)))target {
     __weak typeof(self) pSelf = self;
-    return ^UIGestureRecognizer * (id target, void (^t)(UIGestureRecognizer *)) {
+    return ^ __kindof UIGestureRecognizer * (id target, void (^t)( __kindof UIGestureRecognizer *)) {
         pSelf.action(t);
         [pSelf addTarget:target
                   action:@selector(ccGestureChainAction:)];

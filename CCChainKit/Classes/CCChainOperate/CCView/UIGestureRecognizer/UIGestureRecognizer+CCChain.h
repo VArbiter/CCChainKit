@@ -10,8 +10,8 @@
 
 @interface UIGestureRecognizer (CCChain)
 
-@property (nonatomic , copy , readonly) UIGestureRecognizer *(^action)(void(^t)(UIGestureRecognizer *gr));
-@property (nonatomic , copy , readonly) UIGestureRecognizer *(^target)(id target , void(^action)(UIGestureRecognizer *gr));
+@property (nonatomic , copy , readonly) __kindof UIGestureRecognizer *(^action)(void(^t)( __kindof UIGestureRecognizer *gr));
+@property (nonatomic , copy , readonly) __kindof UIGestureRecognizer *(^target)(id target , void(^action)( __kindof UIGestureRecognizer *gr));
 
 @end
 

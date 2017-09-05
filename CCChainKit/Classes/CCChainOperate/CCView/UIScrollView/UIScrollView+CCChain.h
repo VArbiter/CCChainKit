@@ -10,21 +10,21 @@
 
 @interface UIScrollView (CCChain)
 
-@property (nonatomic , class , copy , readonly) UIScrollView *(^common)(CGRect frame);
+@property (nonatomic , class , copy , readonly) __kindof UIScrollView *(^common)(CGRect frame);
 
-@property (nonatomic , copy , readonly) UIScrollView *(^contentSizeT)(CGSize size);
-@property (nonatomic , copy , readonly) UIScrollView *(^delegateT)(id delegate);
+@property (nonatomic , copy , readonly) __kindof UIScrollView *(^contentSizeT)(CGSize size);
+@property (nonatomic , copy , readonly) __kindof UIScrollView *(^delegateT)(id delegate);
 
-@property (nonatomic , copy , readonly) UIScrollView *(^animatedOffset)(CGPoint pOffset); // animated is YES .
-@property (nonatomic , copy , readonly) UIScrollView *(^animatedOffsetT)(CGPoint pOffset , BOOL isAnimated);
+@property (nonatomic , copy , readonly) __kindof UIScrollView *(^animatedOffset)(CGPoint pOffset); // animated is YES .
+@property (nonatomic , copy , readonly) __kindof UIScrollView *(^animatedOffsetT)(CGPoint pOffset , BOOL isAnimated);
 
-@property (nonatomic , readonly) UIScrollView * hideVerticalIndicator ;
-@property (nonatomic , readonly) UIScrollView * hideHorizontalIndicator ;
-@property (nonatomic , readonly) UIScrollView * disableBounces ;
-@property (nonatomic , readonly) UIScrollView * disableScroll ;
-@property (nonatomic , readonly) UIScrollView * disableScrollsToTop ;
+@property (nonatomic , readonly) __kindof UIScrollView * hideVerticalIndicator ;
+@property (nonatomic , readonly) __kindof UIScrollView * hideHorizontalIndicator ;
+@property (nonatomic , readonly) __kindof UIScrollView * disableBounces ;
+@property (nonatomic , readonly) __kindof UIScrollView * disableScroll ;
+@property (nonatomic , readonly) __kindof UIScrollView * disableScrollsToTop ;
 
-@property (nonatomic , readonly) UIScrollView * enablePaging ;
-@property (nonatomic , readonly) UIScrollView * enableDirectionLock ;
+@property (nonatomic , readonly) __kindof UIScrollView * enablePaging ;
+@property (nonatomic , readonly) __kindof UIScrollView * enableDirectionLock ;
 
 @end

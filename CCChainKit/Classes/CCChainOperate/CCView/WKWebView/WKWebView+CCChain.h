@@ -12,18 +12,18 @@
 
 @interface WKWebView (CCChain)
 
-@property (nonatomic , class , copy , readonly) WKWebView *(^common)(CGRect frame);
-@property (nonatomic , class , copy , readonly) WKWebView *(^commonC)(CGRect frame , WKWebViewConfiguration *configuration);
-@property (nonatomic , copy , readonly) WKWebView *(^navigationDelegateT)(id delegate);
+@property (nonatomic , class , copy , readonly) __kindof WKWebView *(^common)(CGRect frame);
+@property (nonatomic , class , copy , readonly) __kindof WKWebView *(^commonC)(CGRect frame , WKWebViewConfiguration *configuration);
+@property (nonatomic , copy , readonly) __kindof WKWebView *(^navigationDelegateT)(id delegate);
 
-@property (nonatomic , copy , readonly) WKWebView *(^script)(CCScriptMessageDelegate *delegate);
+@property (nonatomic , copy , readonly) __kindof WKWebView *(^script)(CCScriptMessageDelegate *delegate);
 
 /// Only "http://" && "https://" will be loaded online .
 /// others will be loading as HTML content .
-@property (nonatomic , copy , readonly) WKWebView *(^loading)(NSString *sLink , void (^)(WKNavigation *navigation));
+@property (nonatomic , copy , readonly) __kindof WKWebView *(^loading)(NSString *sLink , void (^)(WKNavigation *navigation));
 
-@property (nonatomic , copy , readonly) WKWebView *(^request)(NSString *sLink , void (^)(WKNavigation *navigation)); // loading as links
-@property (nonatomic , copy , readonly) WKWebView *(^content)(NSString *sContent , void (^)(WKNavigation *navigation)); // loading as HTML content
+@property (nonatomic , copy , readonly) __kindof WKWebView *(^request)(NSString *sLink , void (^)(WKNavigation *navigation)); // loading as links
+@property (nonatomic , copy , readonly) __kindof WKWebView *(^content)(NSString *sContent , void (^)(WKNavigation *navigation)); // loading as HTML content
 
 @end
 

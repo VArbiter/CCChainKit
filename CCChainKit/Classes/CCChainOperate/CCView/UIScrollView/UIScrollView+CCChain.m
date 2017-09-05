@@ -10,62 +10,62 @@
 
 @implementation UIScrollView (CCChain)
 
-+ (UIScrollView *(^)(CGRect))common {
-    return ^UIScrollView *(CGRect r) {
++ ( __kindof UIScrollView *(^)(CGRect))common {
+    return ^ __kindof UIScrollView *(CGRect r) {
         UIScrollView *v = [[UIScrollView alloc] initWithFrame:r];
         v.backgroundColor = UIColor.clearColor;
         return v;
     };
 }
 
-- (UIScrollView *(^)(CGSize))contentSizeT {
+- ( __kindof UIScrollView *(^)(CGSize))contentSizeT {
     __weak typeof(self) pSelf = self;
-    return ^UIScrollView *(CGSize size) {
+    return ^ __kindof UIScrollView *(CGSize size) {
         pSelf.contentSize = size;
         return pSelf;
     };
 }
 
-- (UIScrollView *(^)(id))delegateT {
+- ( __kindof UIScrollView *(^)(id))delegateT {
     __weak typeof(self) pSelf = self;
-    return ^UIScrollView *(id d) {
+    return ^ __kindof UIScrollView *(id d) {
         pSelf.delegate = d;
         return pSelf;
     };
 }
 
-- (UIScrollView *(^)(CGPoint))animatedOffset {
+- ( __kindof UIScrollView *(^)(CGPoint))animatedOffset {
     __weak typeof(self) pSelf = self;
-    return ^UIScrollView *(CGPoint p) {
+    return ^ __kindof UIScrollView *(CGPoint p) {
         return pSelf.animatedOffsetT(p , YES);
     };
 }
 
-- (UIScrollView *(^)(CGPoint, BOOL))animatedOffsetT {
+- ( __kindof UIScrollView *(^)(CGPoint, BOOL))animatedOffsetT {
     __weak typeof(self) pSelf = self;
-    return ^UIScrollView *(CGPoint p , BOOL b) {
+    return ^ __kindof UIScrollView *(CGPoint p , BOOL b) {
         [pSelf setContentOffset:p
                        animated:b];
         return pSelf;
     };
 }
 
-- (UIScrollView *)hideVerticalIndicator {
+- ( __kindof UIScrollView *)hideVerticalIndicator {
     self.showsVerticalScrollIndicator = false;
     return self;
 }
 
-- (UIScrollView *)hideHorizontalIndicator {
+- ( __kindof UIScrollView *)hideHorizontalIndicator {
     self.showsHorizontalScrollIndicator = false;
     return self;
 }
 
-- (UIScrollView *)disableBounces {
+- ( __kindof UIScrollView *)disableBounces {
     self.bounces = false;
     return self;
 }
 
-- (UIScrollView *)disableScroll {
+- ( __kindof UIScrollView *)disableScroll {
     self.scrollEnabled = false;
     return self;
 }

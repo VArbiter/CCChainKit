@@ -11,37 +11,37 @@
 
 @implementation UIAlertController (CCChain)
 
-+ (UIAlertController *(^)())common {
-    return ^UIAlertController * {
++ ( __kindof UIAlertController *(^)())common {
+    return ^ __kindof UIAlertController * {
         return self.commonS(UIAlertControllerStyleAlert);
     };
 }
-+ (UIAlertController *(^)(UIAlertControllerStyle))commonS {
-    return ^UIAlertController *(UIAlertControllerStyle s) {
++ ( __kindof UIAlertController *(^)(UIAlertControllerStyle))commonS {
+    return ^ __kindof UIAlertController *(UIAlertControllerStyle s) {
         return [UIAlertController alertControllerWithTitle:nil
                                                    message:nil
                                             preferredStyle:s];
     };
 }
 
-- (UIAlertController *(^)(NSString *))titleS {
+- ( __kindof UIAlertController *(^)(NSString *))titleS {
     __weak typeof(self) pSelf = self;
-    return ^UIAlertController *(NSString *s) {
+    return ^ __kindof UIAlertController *(NSString *s) {
         pSelf.title = s;
         return pSelf;
     };
 }
-- (UIAlertController *(^)(NSString *))messageS {
+- ( __kindof UIAlertController *(^)(NSString *))messageS {
     __weak typeof(self) pSelf = self;
-    return ^UIAlertController *(NSString *s) {
+    return ^ __kindof UIAlertController *(NSString *s) {
         pSelf.message = s;
         return pSelf;
     };
 }
 
-- (UIAlertController *(^)(CCAlertActionInfo *, void (^)(UIAlertAction *)))actionS {
+- ( __kindof UIAlertController *(^)(CCAlertActionInfo *, void (^)( __kindof UIAlertAction *)))actionS {
     __weak typeof(self) pSelf = self;
-    return ^UIAlertController *(CCAlertActionInfo *d, void (^t)(UIAlertAction *)) {
+    return ^ __kindof UIAlertController *(CCAlertActionInfo *d, void (^t)( __kindof UIAlertAction *)) {
         CCAlertActionEntity *m = [[CCAlertActionEntity alloc] init];
         m.sTitle = d[@"title"];
         m.style = (UIAlertActionStyle)[d[@"style"] integerValue];
@@ -54,9 +54,9 @@
         return pSelf;
     };
 }
-- (UIAlertController *(^)(NSArray<CCAlertActionInfo *> *, void (^)(UIAlertAction *, NSUInteger)))actionA {
+- ( __kindof UIAlertController *(^)(NSArray<CCAlertActionInfo *> *, void (^)( __kindof UIAlertAction *, NSUInteger)))actionA {
     __weak typeof(self) pSelf = self;
-    return ^UIAlertController *(NSArray<CCAlertActionInfo *> *a, void (^t)(UIAlertAction *, NSUInteger)) {
+    return ^ __kindof UIAlertController *(NSArray<CCAlertActionInfo *> *a, void (^t)( __kindof UIAlertAction *, NSUInteger)) {
         [a enumerateObjectsUsingBlock:^(CCAlertActionInfo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             CCAlertActionEntity *m = [[CCAlertActionEntity alloc] init];
             m.sTitle = obj[@"title"];

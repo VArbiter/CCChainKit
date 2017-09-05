@@ -10,16 +10,16 @@
 
 @interface UIImageView (CCChain)
 
-@property (nonatomic , class , copy , readonly) UIImageView *(^common)(CGRect frame);
-@property (nonatomic , copy , readonly) UIImageView *(^imageT)(UIImage *image);
+@property (nonatomic , class , copy , readonly) __kindof UIImageView *(^common)(CGRect frame);
+@property (nonatomic , copy , readonly) __kindof UIImageView *(^imageT)(UIImage *image);
 
-@property (nonatomic , copy , readonly) UIImageView *(^rendaring)(UIImageRenderingMode mode);
-@property (nonatomic , copy , readonly) UIImageView *(^capInsets)(UIEdgeInsets insets);
+@property (nonatomic , copy , readonly) __kindof UIImageView *(^rendaring)(UIImageRenderingMode mode);
+@property (nonatomic , copy , readonly) __kindof UIImageView *(^capInsets)(UIEdgeInsets insets);
 
 /// equals to rendaring(UIImageRenderingModeAlwaysOriginal)
-@property (nonatomic , copy , readonly) UIImageView *(^alwaysOriginal)();
+@property (nonatomic , copy , readonly) __kindof UIImageView *(^alwaysOriginal)();
 
-@property (nonatomic , copy , readonly) UIImageView *(^gussian)();
-@property (nonatomic , copy , readonly) UIImageView *(^gussianT)(CGFloat fBlur);
+@property (nonatomic , copy , readonly) __kindof UIImageView *(^gussian)();
+@property (nonatomic , copy , readonly) __kindof UIImageView *(^gussianT)(CGFloat fBlur);
 
 @end

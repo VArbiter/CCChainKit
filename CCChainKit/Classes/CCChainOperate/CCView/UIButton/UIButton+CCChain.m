@@ -13,14 +13,14 @@ static const char * _CC_UIBUTTON_CHAIN_CLICK_ASSOCIATE_KEY_ = "CC_UIBUTTON_CHAIN
 
 @interface UIButton (CCChain_Assit)
 
-- (void) ccButtonChainAction : (UIButton *) sender ;
+- (void) ccButtonChainAction : ( __kindof UIButton *) sender ;
 
 @end
 
 @implementation UIButton (CCChain_Assit)
 
-- (void) ccButtonChainAction : (UIButton *) sender {
-    void (^t)(UIButton *) = objc_getAssociatedObject(self, _CC_UIBUTTON_CHAIN_CLICK_ASSOCIATE_KEY_);
+- (void) ccButtonChainAction : ( __kindof UIButton *) sender {
+    void (^t)( __kindof UIButton *) = objc_getAssociatedObject(self, _CC_UIBUTTON_CHAIN_CLICK_ASSOCIATE_KEY_);
     if (t) {
         if (NSThread.isMainThread) t(sender);
         else dispatch_sync(dispatch_get_main_queue(), ^{
@@ -35,51 +35,51 @@ static const char * _CC_UIBUTTON_CHAIN_CLICK_ASSOCIATE_KEY_ = "CC_UIBUTTON_CHAIN
 
 @implementation UIButton (CCChain)
 
-+ (UIButton *(^)())common {
-    return ^UIButton * {
++ ( __kindof UIButton *(^)())common {
+    return ^ __kindof UIButton * {
         return self.commonS(UIButtonTypeCustom);
     };
 }
-+ (UIButton *(^)(UIButtonType))commonS {
-    return ^UIButton * (UIButtonType t) {
++ ( __kindof UIButton *(^)(UIButtonType))commonS {
+    return ^ __kindof UIButton * (UIButtonType t) {
         return [UIButton buttonWithType:t];
     };
 }
 
-- (UIButton *(^)(CGRect))frameC {
+- ( __kindof UIButton *(^)(CGRect))frameC {
     __weak typeof(self) pSelf = self;
-    return ^UIButton *(CGRect r) {
+    return ^ __kindof UIButton *(CGRect r) {
         pSelf.frame = r;
         return pSelf;
     };
 }
 
-- (UIButton *(^)(NSString *, UIControlState))titleS {
+- ( __kindof UIButton *(^)(NSString *, UIControlState))titleS {
     __weak typeof(self) pSelf = self;
-    return ^UIButton *(NSString *s , UIControlState t) {
+    return ^ __kindof UIButton *(NSString *s , UIControlState t) {
         [pSelf setTitle:s forState:t];
         return pSelf;
     };
 }
 
-- (UIButton *(^)(UIImage *, UIControlState))imageS {
+- ( __kindof UIButton *(^)(UIImage *, UIControlState))imageS {
     __weak typeof(self) pSelf = self;
-    return ^UIButton *(UIImage *m , UIControlState t) {
+    return ^ __kindof UIButton *(UIImage *m , UIControlState t) {
         [pSelf setImage:m forState:t];
         return pSelf;
     };
 }
 
-- (UIButton *(^)(void (^)(UIButton *)))actionS {
+- ( __kindof UIButton *(^)(void (^)( __kindof UIButton *)))actionS {
     __weak typeof(self) pSelf = self;
-    return ^UIButton *(void (^t)(UIButton *)) {
+    return ^ __kindof UIButton *(void (^t)(UIButton *)) {
         return pSelf.targetS(pSelf, t);
     };
 }
 
-- (UIButton *(^)(id, void (^)(UIButton *)))targetS {
+- ( __kindof UIButton *(^)(id, void (^)( __kindof UIButton *)))targetS {
     __weak typeof(self) pSelf = self;
-    return ^UIButton *(id t , void (^b)(UIButton *)) {
+    return ^ __kindof UIButton *(id t , void (^b)( __kindof UIButton *)) {
         objc_setAssociatedObject(pSelf, _CC_UIBUTTON_CHAIN_CLICK_ASSOCIATE_KEY_, b, OBJC_ASSOCIATION_COPY_NONATOMIC);
         [pSelf addTarget:t
                   action:@selector(ccButtonChainAction:)
@@ -88,9 +88,9 @@ static const char * _CC_UIBUTTON_CHAIN_CLICK_ASSOCIATE_KEY_ = "CC_UIBUTTON_CHAIN
     };
 }
 
-- (UIButton *(^)(id, SEL, UIControlEvents))custom {
+- ( __kindof UIButton *(^)(id, SEL, UIControlEvents))custom {
     __weak typeof(self) pSelf = self;
-    return ^UIButton *(id t, SEL s , UIControlEvents e) {
+    return ^ __kindof UIButton *(id t, SEL s , UIControlEvents e) {
         [pSelf addTarget:(t ? t : pSelf)
                   action:s
         forControlEvents:e];

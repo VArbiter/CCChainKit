@@ -10,8 +10,8 @@
 
 @implementation UITextView (CCChain)
 
-+ (UITextView *(^)(CGRect))common {
-    return ^UITextView *(CGRect r) {
++ ( __kindof UITextView *(^)(CGRect))common {
+    return ^ __kindof UITextView *(CGRect r) {
         UITextView *v = [[UITextView alloc] initWithFrame:r];
         v.layer.backgroundColor = UIColor.clearColor.CGColor;
         v.editable = YES;
@@ -20,18 +20,18 @@
     };
 }
 
-- (UITextView *(^)(id<UITextViewDelegate>))delegateT {
+- ( __kindof UITextView *(^)(id<UITextViewDelegate>))delegateT {
     __weak typeof(self) pSelf = self;
-    return ^UITextView *(id < UITextViewDelegate > d) {
+    return ^ __kindof UITextView *(id < UITextViewDelegate > d) {
         if (d) pSelf.delegate = d;
         else pSelf.delegate = nil;
         return pSelf;
     };
 }
 
-- (UITextView *(^)(UIEdgeInsets))containerInsets {
+- ( __kindof UITextView *(^)(UIEdgeInsets))containerInsets {
     __weak typeof(self) pSelf = self;
-    return ^UITextView *(UIEdgeInsets e) {
+    return ^ __kindof UITextView *(UIEdgeInsets e) {
         pSelf.textContainerInset = e;
         return pSelf;
     };

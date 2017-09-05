@@ -15,8 +15,8 @@
 
 @implementation UIImageView (CCChain)
 
-+ (UIImageView *(^)(CGRect))common {
-    return ^UIImageView *(CGRect r) {
++ ( __kindof UIImageView *(^)(CGRect))common {
+    return ^ __kindof UIImageView *(CGRect r) {
         UIImageView *v = [[UIImageView alloc] initWithFrame:r];
         v.backgroundColor = [UIColor clearColor];
         v.contentMode = UIViewContentModeScaleAspectFit;
@@ -24,48 +24,48 @@
     };
 }
 
-- (UIImageView *(^)(UIImage *))imageT {
+- ( __kindof UIImageView *(^)(UIImage *))imageT {
     __weak typeof(self) pSelf = self;
-    return ^UIImageView *(UIImage *image) {
+    return ^ __kindof UIImageView *(UIImage *image) {
         pSelf.image = image;
         return pSelf;
     };
 }
 
-- (UIImageView *(^)(UIImageRenderingMode))rendaring {
+- ( __kindof UIImageView *(^)(UIImageRenderingMode))rendaring {
     __weak typeof(self) pSelf = self;
-    return ^UIImageView *(UIImageRenderingMode mode) {
+    return ^ __kindof UIImageView *(UIImageRenderingMode mode) {
         [pSelf.image imageWithRenderingMode:mode];
         return pSelf;
     };
 }
 
-- (UIImageView *(^)(UIEdgeInsets))capInsets {
+- ( __kindof UIImageView *(^)(UIEdgeInsets))capInsets {
     __weak typeof(self) pSelf = self;
-    return ^UIImageView * (UIEdgeInsets insets) {
+    return ^ __kindof UIImageView * (UIEdgeInsets insets) {
         [pSelf.image resizableImageWithCapInsets:insets];
         return pSelf;
     };
 }
 
-- (UIImageView *(^)())alwaysOriginal {
+- ( __kindof UIImageView *(^)())alwaysOriginal {
     __weak typeof(self) pSelf = self;
-    return ^UIImageView * {
+    return ^ __kindof UIImageView * {
         return pSelf.rendaring(UIImageRenderingModeAlwaysOriginal);
     };
 }
 
-- (UIImageView *(^)())gussian {
+- ( __kindof UIImageView *(^)())gussian {
     __weak typeof(self) pSelf = self;
-    return ^UIImageView * {
+    return ^ __kindof UIImageView * {
         CC(pSelf.image).gaussianAcc();
         return pSelf;
     };
 }
 
-- (UIImageView *(^)(CGFloat))gussianT {
+- ( __kindof UIImageView *(^)(CGFloat))gussianT {
     __weak typeof(self) pSelf = self;
-    return ^UIImageView * (CGFloat f){
+    return ^ __kindof UIImageView * (CGFloat f){
         CC(pSelf.image).gaussianAccS(f);
         return pSelf;
     };

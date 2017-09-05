@@ -10,10 +10,10 @@
 
 @interface UIBarButtonItem (CCChain)
 
-@property (nonatomic , class , copy , readonly) UIBarButtonItem *(^common)();
-@property (nonatomic , copy , readonly) UIBarButtonItem *(^titleS)(NSString *sTitle);
-@property (nonatomic , copy , readonly) UIBarButtonItem *(^imageS)(UIImage *image);
-@property (nonatomic , copy , readonly) UIBarButtonItem *(^actionS)(void (^)(UIBarButtonItem *sender));
-@property (nonatomic , copy , readonly) UIBarButtonItem *(^targetS)(id target , void (^)(UIBarButtonItem *sender));
+@property (nonatomic , class , copy , readonly) __kindof UIBarButtonItem *(^common)();
+@property (nonatomic , copy , readonly) __kindof UIBarButtonItem *(^titleS)(NSString *sTitle);
+@property (nonatomic , copy , readonly) __kindof UIBarButtonItem *(^imageS)(UIImage *image);
+@property (nonatomic , copy , readonly) __kindof UIBarButtonItem *(^actionS)(void (^)( __kindof UIBarButtonItem *sender));
+@property (nonatomic , copy , readonly) __kindof UIBarButtonItem *(^targetS)(id target , void (^)( __kindof UIBarButtonItem *sender));
 
 @end

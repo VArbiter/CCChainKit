@@ -14,14 +14,14 @@
 
 @implementation UITableView (CCChain)
 
-+ (UITableView *(^)(CGRect))common {
-    return ^UITableView * (CGRect r) {
++ ( __kindof UITableView *(^)(CGRect))common {
+    return ^ __kindof UITableView * (CGRect r) {
         return self.commonC(r, UITableViewStylePlain);
     };
 }
 
-+ (UITableView *(^)(CGRect, UITableViewStyle))commonC {
-    return ^UITableView * (CGRect r , UITableViewStyle st) {
++ ( __kindof UITableView *(^)(CGRect, UITableViewStyle))commonC {
+    return ^ __kindof UITableView * (CGRect r , UITableViewStyle st) {
         UITableView *v  = [[UITableView alloc] initWithFrame:r
                                                        style:st];
         v.showsVerticalScrollIndicator = false;
@@ -34,18 +34,18 @@
     };
 }
 
-- (UITableView *(^)(id))delegateT {
+- ( __kindof UITableView *(^)(id))delegateT {
     __weak typeof(self) pSelf = self;
-    return ^UITableView * (id d) {
+    return ^ __kindof UITableView * (id d) {
         if (d) pSelf.delegate = d;
         else pSelf.delegate = nil;
         return pSelf;
     };
 }
 
-- (UITableView *(^)(id))dataSourceT {
+- ( __kindof UITableView *(^)(id))dataSourceT {
     __weak typeof(self) pSelf = self;
-    return ^UITableView *(id d) {
+    return ^ __kindof UITableView *(id d) {
         if (d) pSelf.dataSource = d;
         else pSelf.dataSource = nil;
         return pSelf;
@@ -53,9 +53,9 @@
 }
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
-- (UITableView *(^)(id))prefetchingT {
+- ( __kindof UITableView *(^)(id))prefetchingT {
     __weak typeof(self) pSelf = self;
-    return ^UITableView *(id d) {
+    return ^ __kindof UITableView *(id d) {
         if (d) pSelf.prefetchDataSource = d;
         else pSelf.prefetchDataSource = nil;
         return pSelf;
@@ -63,16 +63,16 @@
 }
 #endif
 
-- (UITableView *(^)(NSString *))registNibS {
+- ( __kindof UITableView *(^)(NSString *))registNibS {
     __weak typeof(self) pSelf = self;
-    return ^UITableView * (NSString *s) {
+    return ^ __kindof UITableView * (NSString *s) {
         return pSelf.registNib(s , nil);
     };
 }
 
-- (UITableView *(^)(NSString *, NSBundle *))registNib {
+- ( __kindof UITableView *(^)(NSString *, NSBundle *))registNib {
     __weak typeof(self) pSelf = self;
-    return ^UITableView *(NSString *s , NSBundle *b) {
+    return ^ __kindof UITableView *(NSString *s , NSBundle *b) {
         if (!b) b = NSBundle.mainBundle;
         [pSelf registerNib:[UINib nibWithNibName:s
                                           bundle:b]
@@ -81,25 +81,25 @@
     };
 }
 
-- (UITableView *(^)(__unsafe_unretained Class))registCls {
+- ( __kindof UITableView *(^)(__unsafe_unretained Class))registCls {
     __weak typeof(self) pSelf = self;
-    return ^UITableView *(Class cls) {
+    return ^ __kindof UITableView *(Class cls) {
         [pSelf registerClass:cls
       forCellReuseIdentifier:NSStringFromClass(cls)];
         return pSelf;
     };
 }
 
-- (UITableView *(^)(NSString *))registHeaderFooterNib {
+- ( __kindof UITableView *(^)(NSString *))registHeaderFooterNib {
     __weak typeof(self) pSelf = self;
-    return ^UITableView * (NSString *s) {
+    return ^ __kindof UITableView * (NSString *s) {
         return pSelf.registHeaderFooterNibS(s , nil);
     };
 }
 
-- (UITableView *(^)(NSString *, NSBundle *))registHeaderFooterNibS {
+- ( __kindof UITableView *(^)(NSString *, NSBundle *))registHeaderFooterNibS {
     __weak typeof(self) pSelf = self;
-    return ^UITableView *(NSString *s , NSBundle *b) {
+    return ^ __kindof UITableView *(NSString *s , NSBundle *b) {
         if (NSClassFromString(s) == UITableViewHeaderFooterView.class
             || [NSClassFromString(s) isSubclassOfClass:UITableViewHeaderFooterView.class]) {
             if (!b) b = NSBundle.mainBundle;
@@ -111,9 +111,9 @@
     };
 }
 
-- (UITableView *(^)(__unsafe_unretained Class))registHeaderFooterCls {
+- ( __kindof UITableView *(^)(__unsafe_unretained Class))registHeaderFooterCls {
     __weak typeof(self) pSelf = self;
-    return ^UITableView *(Class cls) {
+    return ^ __kindof UITableView *(Class cls) {
         if (cls == UITableViewHeaderFooterView.class
             || [cls isSubclassOfClass:UITableViewHeaderFooterView.class]){
             [pSelf registerClass:cls forHeaderFooterViewReuseIdentifier:NSStringFromClass(cls)];
@@ -122,9 +122,9 @@
     };
 }
 
-- (UITableView *(^)(void (^)()))updating {
+- ( __kindof UITableView *(^)(void (^)()))updating {
     __weak typeof(self) pSelf = self;
-    return ^UITableView *(void (^t)()) {
+    return ^ __kindof UITableView *(void (^t)()) {
         if (t) {
             [pSelf beginUpdates];
             t();
@@ -134,9 +134,9 @@
     };
 }
 
-- (UITableView *(^)(UITableViewRowAnimation))reloading {
+- ( __kindof UITableView *(^)(UITableViewRowAnimation))reloading {
     __weak typeof(self) pSelf = self;
-    return ^UITableView * (UITableViewRowAnimation anim) {
+    return ^ __kindof UITableView * (UITableViewRowAnimation anim) {
         if ((NSInteger)anim > 0 && anim != UITableViewRowAnimationNone) {
             return pSelf.reloadSectionsT([NSIndexSet indexSetWithIndex:0] , anim);
         }
@@ -145,9 +145,9 @@
     };
 }
 
-- (UITableView *(^)(NSIndexSet *, UITableViewRowAnimation))reloadSectionsT {
+- ( __kindof UITableView *(^)(NSIndexSet *, UITableViewRowAnimation))reloadSectionsT {
     __weak typeof(self) pSelf = self;
-    return ^UITableView *(NSIndexSet *set, UITableViewRowAnimation anim) {
+    return ^ __kindof UITableView *(NSIndexSet *set, UITableViewRowAnimation anim) {
         if (!set) return pSelf;
         if ((NSInteger)anim > 0 && anim != UITableViewRowAnimationNone) {
             [pSelf reloadSections:set
@@ -174,9 +174,9 @@
     };
 }
 
-- (UITableView *(^)(NSArray<NSIndexPath *> *, UITableViewRowAnimation))reloadItemsT {
+- ( __kindof UITableView *(^)(NSArray<NSIndexPath *> *, UITableViewRowAnimation))reloadItemsT {
     __weak typeof(self) pSelf = self;
-    return ^UITableView *(NSArray <NSIndexPath *> *a , UITableViewRowAnimation anim) {
+    return ^ __kindof UITableView *(NSArray <NSIndexPath *> *a , UITableViewRowAnimation anim) {
         if (a && a.count) {
             if ((NSInteger)anim > 0 && anim != UITableViewRowAnimationNone) {
                 [pSelf reloadRowsAtIndexPaths:a

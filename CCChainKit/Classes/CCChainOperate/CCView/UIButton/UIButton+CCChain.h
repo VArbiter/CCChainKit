@@ -11,19 +11,19 @@
 
 @interface UIButton (CCChain)
 
-@property (nonatomic , class , copy , readonly) UIButton *(^common)();
-@property (nonatomic , class , copy , readonly) UIButton *(^commonS)(UIButtonType type);
-@property (nonatomic , copy , readonly) UIButton *(^frameC)(CGRect frame);
+@property (nonatomic , class , copy , readonly) __kindof UIButton *(^common)();
+@property (nonatomic , class , copy , readonly) __kindof UIButton *(^commonS)(UIButtonType type);
+@property (nonatomic , copy , readonly) __kindof UIButton *(^frameC)(CGRect frame);
 
 /// titles && images
-@property (nonatomic , copy , readonly) UIButton *(^titleS)(NSString * sTitle , UIControlState state);
-@property (nonatomic , copy , readonly) UIButton *(^imageS)(UIImage * image , UIControlState state);
+@property (nonatomic , copy , readonly) __kindof UIButton *(^titleS)(NSString * sTitle , UIControlState state);
+@property (nonatomic , copy , readonly) __kindof UIButton *(^imageS)(UIImage * image , UIControlState state);
 
 /// actions , default is touchUpInside
-@property (nonatomic , copy , readonly) UIButton *(^actionS)(void (^)(UIButton *sender));
-@property (nonatomic , copy , readonly) UIButton *(^targetS)(id target , void (^)(UIButton *sender));
+@property (nonatomic , copy , readonly) __kindof UIButton *(^actionS)(void (^)( __kindof UIButton *sender));
+@property (nonatomic , copy , readonly) __kindof UIButton *(^targetS)(id target , void (^)( __kindof UIButton *sender));
 
 /// custom actions .
-@property (nonatomic , copy , readonly) UIButton *(^custom)(id target , SEL selector , UIControlEvents events);
+@property (nonatomic , copy , readonly) __kindof UIButton *(^custom)(id target , SEL selector , UIControlEvents events);
 
 @end

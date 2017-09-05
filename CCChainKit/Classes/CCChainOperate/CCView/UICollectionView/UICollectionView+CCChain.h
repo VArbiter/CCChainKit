@@ -12,29 +12,29 @@
 @interface UICollectionView (CCChain)
 
 /// enable prefetchiong
-@property (nonatomic , class , copy , readonly) UICollectionView *(^commonC)(CGRect frame, UICollectionViewFlowLayout *layout);
+@property (nonatomic , class , copy , readonly) __kindof UICollectionView *(^commonC)(CGRect frame, __kindof UICollectionViewFlowLayout *layout);
 
-@property (nonatomic , copy , readonly) UICollectionView *(^delegateT)(id delegate);
-@property (nonatomic , copy , readonly) UICollectionView *(^dataSourceT)(id dataSource);
+@property (nonatomic , copy , readonly) __kindof UICollectionView *(^delegateT)(id delegate);
+@property (nonatomic , copy , readonly) __kindof UICollectionView *(^dataSourceT)(id dataSource);
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 /// data source that pre-fetching
-@property (nonatomic , copy , readonly) UICollectionView *(^prefetchingT)(id prefetchDataSource);
+@property (nonatomic , copy , readonly) __kindof UICollectionView *(^prefetchingT)(id prefetchDataSource);
 #endif
 
 /// requires that nib name is equal to cell's idetifier .
-@property (nonatomic , copy , readonly) UICollectionView *(^registNibS)(NSString *sNib); // default main bundle
-@property (nonatomic , copy , readonly) UICollectionView *(^registNib)(NSString *sNib , NSBundle *bundle);
+@property (nonatomic , copy , readonly) __kindof UICollectionView *(^registNibS)(NSString *sNib); // default main bundle
+@property (nonatomic , copy , readonly) __kindof UICollectionView *(^registNib)(NSString *sNib , NSBundle *bundle);
 /// requires that class name is equal to cell's idetifier .
-@property (nonatomic , copy , readonly) UICollectionView *(^registCls)(Class clazz);
+@property (nonatomic , copy , readonly) __kindof UICollectionView *(^registCls)(Class clazz);
 
 /// for non-animated , only section 0 was available.
 /// note : false means reloading without hidden animations .
 /// note : if animated is setting to YES , only section 0 will be reloaded .
 /// note : if reloeded muti sections , using "reloadSections(NSIndexSet *, BOOL)" down below
-@property (nonatomic , copy , readonly) UICollectionView *(^reloading)(BOOL animated);
-@property (nonatomic , copy , readonly) UICollectionView *(^reloadSections)(NSIndexSet *set , BOOL animated);
-@property (nonatomic , copy , readonly) UICollectionView *(^reloadItems)(NSArray <NSIndexPath *> *array);
+@property (nonatomic , copy , readonly) __kindof UICollectionView *(^reloading)(BOOL animated);
+@property (nonatomic , copy , readonly) __kindof UICollectionView *(^reloadSections)(NSIndexSet *set , BOOL animated);
+@property (nonatomic , copy , readonly) __kindof UICollectionView *(^reloadItems)(NSArray <NSIndexPath *> *array);
 
 /// for cell that register in collection
 @property (nonatomic , copy , readonly) __kindof UICollectionViewCell *(^deqCell)(NSString *sIdentifier , NSIndexPath *indexPath);
@@ -47,12 +47,12 @@
 
 @interface UICollectionViewFlowLayout (CCChain)
 
-@property (nonatomic , class , copy , readonly) UICollectionViewFlowLayout *(^common)();
+@property (nonatomic , class , copy , readonly) __kindof UICollectionViewFlowLayout *(^common)();
 
 /// for default sizes
-@property (nonatomic , copy , readonly) UICollectionViewFlowLayout *(^itemSizeC)(CGSize size);
-@property (nonatomic , copy , readonly) UICollectionViewFlowLayout *(^sectionInsetC)(UIEdgeInsets insets);
-@property (nonatomic , copy , readonly) UICollectionViewFlowLayout *(^headerSizeC)(CGSize insets);
+@property (nonatomic , copy , readonly) __kindof UICollectionViewFlowLayout *(^itemSizeC)(CGSize size);
+@property (nonatomic , copy , readonly) __kindof UICollectionViewFlowLayout *(^sectionInsetC)(UIEdgeInsets insets);
+@property (nonatomic , copy , readonly) __kindof UICollectionViewFlowLayout *(^headerSizeC)(CGSize insets);
 
 @end
 

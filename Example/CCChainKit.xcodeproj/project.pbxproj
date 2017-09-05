@@ -27,6 +27,7 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		700C11931F5E2E7200915034 /* UITextField+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 700C11921F5E2E7200915034 /* UITextField+CCChain.m */; };
 		700C11961F5E32B900915034 /* UITextView+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 700C11951F5E32B900915034 /* UITextView+CCChain.m */; };
+		700C119A1F5E3D7800915034 /* UIViewController+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 700C11991F5E3D7800915034 /* UIViewController+CCChain.m */; };
 		701404CB1F5696C400830DAA /* CCRLMBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 701404CA1F5696C400830DAA /* CCRLMBaseModel.m */; };
 		701404CF1F56979200830DAA /* CCRealmHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 701404CE1F56979200830DAA /* CCRealmHandler.m */; };
 		707A6FD11F59058100DEC5C3 /* UINavigationItem+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 707A6FD01F59058100DEC5C3 /* UINavigationItem+CCChain.m */; };
@@ -116,6 +117,8 @@
 		700C11921F5E2E7200915034 /* UITextField+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+CCChain.m"; sourceTree = "<group>"; };
 		700C11941F5E32B900915034 /* UITextView+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+CCChain.h"; sourceTree = "<group>"; };
 		700C11951F5E32B900915034 /* UITextView+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+CCChain.m"; sourceTree = "<group>"; };
+		700C11981F5E3D7800915034 /* UIViewController+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CCChain.h"; sourceTree = "<group>"; };
+		700C11991F5E3D7800915034 /* UIViewController+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CCChain.m"; sourceTree = "<group>"; };
 		701404C91F5696C400830DAA /* CCRLMBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRLMBaseModel.h; sourceTree = "<group>"; };
 		701404CA1F5696C400830DAA /* CCRLMBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCRLMBaseModel.m; sourceTree = "<group>"; };
 		701404CD1F56979200830DAA /* CCRealmHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRealmHandler.h; sourceTree = "<group>"; };
@@ -402,6 +405,15 @@
 				700C11951F5E32B900915034 /* UITextView+CCChain.m */,
 			);
 			path = UITextView;
+			sourceTree = "<group>";
+		};
+		700C11971F5E3CCD00915034 /* UIViewController */ = {
+			isa = PBXGroup;
+			children = (
+				700C11981F5E3D7800915034 /* UIViewController+CCChain.h */,
+				700C11991F5E3D7800915034 /* UIViewController+CCChain.m */,
+			);
+			path = UIViewController;
 			sourceTree = "<group>";
 		};
 		701404C71F5696C400830DAA /* CCDataBase */ = {
@@ -799,6 +811,7 @@
 				707A6FDE1F593AC600DEC5C3 /* UITableView */,
 				700C118F1F5E2E2A00915034 /* UITextField */,
 				700C11901F5E2E2A00915034 /* UITextView */,
+				700C11971F5E3CCD00915034 /* UIViewController */,
 			);
 			path = CCView;
 			sourceTree = "<group>";
@@ -1157,6 +1170,7 @@
 				70D63D231F3C361500945CA2 /* UIAlertController+CCChain.m in Sources */,
 				70D63D1F1F3C361500945CA2 /* NSString+CCChain.m in Sources */,
 				70AE271C1F5798950030044C /* CCCommon.m in Sources */,
+				700C119A1F5E3D7800915034 /* UIViewController+CCChain.m in Sources */,
 				70AE27731F58023F0030044C /* UIImageView+CCChain.m in Sources */,
 				70AE27311F57A3390030044C /* CCMediator+CCBridgeAPI.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,

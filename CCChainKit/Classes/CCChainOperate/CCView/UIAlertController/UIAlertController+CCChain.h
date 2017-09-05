@@ -13,13 +13,13 @@ typedef NSDictionary CCAlertActionInfo;
 @interface UIAlertController (CCChain)
 
 /// init
-@property (nonatomic , class , copy , readonly) UIAlertController *(^common)(); // default alert
-@property (nonatomic , class , copy , readonly) UIAlertController *(^commonS)(UIAlertControllerStyle style);
+@property (nonatomic , class , copy , readonly) __kindof UIAlertController *(^common)(); // default alert
+@property (nonatomic , class , copy , readonly) __kindof UIAlertController *(^commonS)(UIAlertControllerStyle style);
 
-@property (nonatomic , copy , readonly) UIAlertController *(^titleS)(NSString *sTitle);
-@property (nonatomic , copy , readonly) UIAlertController *(^messageS)(NSString *sMessage);
-@property (nonatomic , copy , readonly) UIAlertController *(^actionS)(CCAlertActionInfo *d , void(^)(UIAlertAction *action));
-@property (nonatomic , copy , readonly) UIAlertController *(^actionA)(NSArray < CCAlertActionInfo *> *a , void(^)(UIAlertAction *action , NSUInteger index));
+@property (nonatomic , copy , readonly) __kindof UIAlertController *(^titleS)(NSString *sTitle);
+@property (nonatomic , copy , readonly) __kindof UIAlertController *(^messageS)(NSString *sMessage);
+@property (nonatomic , copy , readonly) __kindof UIAlertController *(^actionS)(CCAlertActionInfo *d , void(^)( __kindof UIAlertAction *action));
+@property (nonatomic , copy , readonly) __kindof UIAlertController *(^actionA)(NSArray < CCAlertActionInfo *> *a , void(^)( __kindof UIAlertAction *action , NSUInteger index));
 
 CCAlertActionInfo * CCAlertActionInfoMake(NSString * title, UIAlertActionStyle style) ;
 

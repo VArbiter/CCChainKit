@@ -13,14 +13,14 @@ static const char * _CC_UICONTROL_CHAIN_CLICK_ASSOCIATE_KEY_ = "CC_UICONTROL_CHA
 
 @interface UIButton (CCChain_Assit)
 
-- (void) ccControlChainAction : (UIControl *) sender ;
+- (void) ccControlChainAction : ( __kindof UIControl *) sender ;
 
 @end
 
 @implementation UIButton (CCChain_Assit)
 
-- (void) ccControlChainAction : (UIControl *) sender {
-    void (^t)(UIControl *) = objc_getAssociatedObject(self, _CC_UICONTROL_CHAIN_CLICK_ASSOCIATE_KEY_);
+- (void) ccControlChainAction : ( __kindof UIControl *) sender {
+    void (^t)( __kindof UIControl *) = objc_getAssociatedObject(self, _CC_UICONTROL_CHAIN_CLICK_ASSOCIATE_KEY_);
     if (t) {
         if (NSThread.isMainThread) t(sender);
         else dispatch_sync(dispatch_get_main_queue(), ^{
@@ -39,24 +39,24 @@ static const char * _CC_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY_ = "CC_UIVIEW_ASSOCIA
 
 @implementation UIControl (CCChain)
 
-+ (UIControl *(^)(CGRect))commonC {
-    return ^UIControl *(CGRect r) {
++ ( __kindof UIControl *(^)(CGRect))commonC {
+    return ^ __kindof UIControl *(CGRect r) {
         UIControl *c = [[self alloc] initWithFrame:r];
         c.userInteractionEnabled = YES;
         return c;
     };
 }
 
-- (UIControl *(^)(void (^)(UIControl *)))actionS {
+- ( __kindof UIControl *(^)(void (^)( __kindof UIControl *)))actionS {
     __weak typeof(self) pSelf = self;
-    return ^UIControl *(void (^t)(UIControl *)) {
+    return ^ __kindof UIControl *(void (^t)( __kindof UIControl *)) {
         return pSelf.targetS(pSelf, t);
     };
 }
 
-- (UIControl *(^)(id, void (^)(UIControl *)))targetS {
+- ( __kindof UIControl *(^)(id, void (^)( __kindof UIControl *)))targetS {
     __weak typeof(self) pSelf = self;
-    return ^UIControl *(id v , void (^t)(UIControl *)) {
+    return ^ __kindof UIControl *(id v , void (^t)( __kindof UIControl *)) {
         objc_setAssociatedObject(pSelf, _CC_UICONTROL_CHAIN_CLICK_ASSOCIATE_KEY_, t, OBJC_ASSOCIATION_COPY_NONATOMIC);
         [pSelf addTarget:t
                   action:@selector(ccControlChainAction:)
@@ -65,9 +65,9 @@ static const char * _CC_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY_ = "CC_UIVIEW_ASSOCIA
     };
 }
 
-- (UIControl *(^)(id, SEL, UIControlEvents))custom {
+- ( __kindof UIControl *(^)(id, SEL, UIControlEvents))custom {
     __weak typeof(self) pSelf = self;
-    return ^UIControl *(id v , SEL s , UIControlEvents e) {
+    return ^ __kindof UIControl *(id v , SEL s , UIControlEvents e) {
         [pSelf addTarget:(v ? v : pSelf)
                   action:s
         forControlEvents:e];
@@ -75,16 +75,9 @@ static const char * _CC_UIVIEW_ASSOCIATE_HITTEST_RIGHT_KEY_ = "CC_UIVIEW_ASSOCIA
     };
 }
 
-- (UIControl *(^)(CCEdgeInsets))increaseS {
+- ( __kindof UIControl *(^)(UIEdgeInsets))increaseC {
     __weak typeof(self) pSelf = self;
-    return ^UIControl *(CCEdgeInsets e) {
-        return pSelf.increaseC(UIMakeEdgeInsetsFrom(e));
-    };
-}
-
-- (UIControl *(^)(UIEdgeInsets))increaseC {
-    __weak typeof(self) pSelf = self;
-    return ^UIControl *(UIEdgeInsets insets) {
+    return ^ __kindof UIControl *(UIEdgeInsets insets) {
         objc_setAssociatedObject(pSelf, _CC_UIVIEW_ASSOCIATE_HITTEST_TOP_KEY_,
                                  @(insets.top), OBJC_ASSOCIATION_COPY_NONATOMIC);
         objc_setAssociatedObject(pSelf, _CC_UIVIEW_ASSOCIATE_HITTEST_LEFT_KEY_,

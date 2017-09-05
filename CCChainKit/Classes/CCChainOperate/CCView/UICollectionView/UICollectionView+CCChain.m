@@ -14,8 +14,8 @@
 
 @implementation UICollectionView (CCChain)
 
-+ (UICollectionView *(^)(CGRect, UICollectionViewFlowLayout *))commonC {
-    return ^UICollectionView *(CGRect r , UICollectionViewFlowLayout *l) {
++ ( __kindof UICollectionView *(^)(CGRect, __kindof UICollectionViewFlowLayout *))commonC {
+    return ^ __kindof UICollectionView *(CGRect r , __kindof UICollectionViewFlowLayout *l) {
         UICollectionView *c = [[UICollectionView alloc] initWithFrame:r
                                                  collectionViewLayout:l];
         c.backgroundColor = UIColor.clearColor;
@@ -30,18 +30,18 @@ forCellWithReuseIdentifier:_CC_COLLECTION_VIEW_HOLDER_ITEM_IDENTIFIER_];
     };
 }
 
-- (UICollectionView *(^)(id))delegateT {
+- ( __kindof UICollectionView *(^)(id))delegateT {
     __weak typeof(self) pSelf = self;
-    return ^UICollectionView *(id v) {
+    return ^ __kindof UICollectionView *(id v) {
         if (v) pSelf.delegate = v;
         else pSelf.delegate = nil;
         return pSelf;
     };
 }
 
-- (UICollectionView *(^)(id))dataSourceT {
+- ( __kindof UICollectionView *(^)(id))dataSourceT {
     __weak typeof(self) pSelf = self;
-    return ^UICollectionView *(id v) {
+    return ^ __kindof UICollectionView *(id v) {
         if (v) pSelf.dataSource = v;
         else pSelf.dataSource = nil;
         return pSelf;
@@ -49,9 +49,9 @@ forCellWithReuseIdentifier:_CC_COLLECTION_VIEW_HOLDER_ITEM_IDENTIFIER_];
 }
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
-- (UICollectionView *(^)(id))prefetchingT {
+- ( __kindof UICollectionView *(^)(id))prefetchingT {
     __weak typeof(self) pSelf = self;
-    return ^UICollectionView *(id d) {
+    return ^ __kindof UICollectionView *(id d) {
         if (d) pSelf.prefetchDataSource = d;
         else pSelf.prefetchDataSource = nil;
         return pSelf;
@@ -59,16 +59,16 @@ forCellWithReuseIdentifier:_CC_COLLECTION_VIEW_HOLDER_ITEM_IDENTIFIER_];
 }
 #endif
 
-- (UICollectionView *(^)(NSString *))registNibS {
+- ( __kindof UICollectionView *(^)(NSString *))registNibS {
     __weak typeof(self) pSelf = self;
-    return ^UICollectionView *(NSString *s) {
+    return ^ __kindof UICollectionView *(NSString *s) {
         return pSelf.registNib(s , nil);
     };
 }
 
-- (UICollectionView *(^)(NSString *, NSBundle *))registNib {
+- ( __kindof UICollectionView *(^)(NSString *, NSBundle *))registNib {
     __weak typeof(self) pSelf = self;
-    return ^UICollectionView *(NSString *s , NSBundle *b) {
+    return ^ __kindof UICollectionView *(NSString *s , NSBundle *b) {
         if (!b) b = NSBundle.mainBundle;
         [pSelf registerNib:[UINib nibWithNibName:s
                                           bundle:b]
@@ -77,18 +77,18 @@ forCellWithReuseIdentifier:s];
     };
 }
 
-- (UICollectionView *(^)(__unsafe_unretained Class))registCls {
+- ( __kindof UICollectionView *(^)(__unsafe_unretained Class))registCls {
     __weak typeof(self) pSelf = self;
-    return ^UICollectionView *(Class c) {
+    return ^ __kindof UICollectionView *(Class c) {
         [pSelf registerClass:c
   forCellWithReuseIdentifier:NSStringFromClass(c)];
         return pSelf;
     };
 }
 
-- (UICollectionView *(^)(BOOL))reloading {
+- ( __kindof UICollectionView *(^)(BOOL))reloading {
     __weak typeof(self) pSelf = self;
-    return ^UICollectionView *(BOOL b) {
+    return ^ __kindof UICollectionView *(BOOL b) {
         if (b) {
             pSelf.reloadSections([NSIndexSet indexSetWithIndex:0], b);
         } else [pSelf reloadData];
@@ -96,9 +96,9 @@ forCellWithReuseIdentifier:s];
     };
 }
 
-- (UICollectionView *(^)(NSIndexSet *, BOOL))reloadSections {
+- ( __kindof UICollectionView *(^)(NSIndexSet *, BOOL))reloadSections {
     __weak typeof(self) pSelf = self;
-    return ^UICollectionView *(NSIndexSet *s , BOOL b) {
+    return ^ __kindof UICollectionView *(NSIndexSet *s , BOOL b) {
         if (b) {
             [pSelf reloadSections:s];
         } else {
@@ -119,9 +119,9 @@ forCellWithReuseIdentifier:s];
     };
 }
 
-- (UICollectionView *(^)(NSArray<NSIndexPath *> *))reloadItems {
+- ( __kindof UICollectionView *(^)(NSArray<NSIndexPath *> *))reloadItems {
     __weak typeof(self) pSelf = self;
-    return ^UICollectionView *(NSArray<NSIndexPath *> *a) {
+    return ^ __kindof UICollectionView *(NSArray<NSIndexPath *> *a) {
         [pSelf reloadItemsAtIndexPaths:(a ? a : @[])];
         return pSelf;
     };

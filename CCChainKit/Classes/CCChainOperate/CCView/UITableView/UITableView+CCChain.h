@@ -11,38 +11,38 @@
 @interface UITableView (CCChain)
 
 /// default plain.
-@property (nonatomic , class , copy , readonly) UITableView *(^common)(CGRect frame);
-@property (nonatomic , class , copy , readonly) UITableView *(^commonC)(CGRect frame , UITableViewStyle style);
+@property (nonatomic , class , copy , readonly) __kindof UITableView *(^common)(CGRect frame);
+@property (nonatomic , class , copy , readonly) __kindof UITableView *(^commonC)(CGRect frame , UITableViewStyle style);
 
-@property (nonatomic , copy , readonly) UITableView *(^delegateT)(id delegate);
-@property (nonatomic , copy , readonly) UITableView *(^dataSourceT)(id dataSource);
+@property (nonatomic , copy , readonly) __kindof UITableView *(^delegateT)(id delegate);
+@property (nonatomic , copy , readonly) __kindof UITableView *(^dataSourceT)(id dataSource);
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 /// data source that pre-fetching
-@property (nonatomic , copy , readonly) UITableView *(^prefetchingT)(id prefetchDataSource);
+@property (nonatomic , copy , readonly) __kindof UITableView *(^prefetchingT)(id prefetchDataSource);
 #endif
 
 /// requires that nib name is equal to cell's idetifier .
-@property (nonatomic , copy , readonly) UITableView *(^registNibS)(NSString *sNib); // default main bundle
-@property (nonatomic , copy , readonly) UITableView *(^registNib)(NSString *sNib , NSBundle *bundle);
+@property (nonatomic , copy , readonly) __kindof UITableView *(^registNibS)(NSString *sNib); // default main bundle
+@property (nonatomic , copy , readonly) __kindof UITableView *(^registNib)(NSString *sNib , NSBundle *bundle);
 /// requires that class name is equal to cell's idetifier .
-@property (nonatomic , copy , readonly) UITableView *(^registCls)(Class clazz);
+@property (nonatomic , copy , readonly) __kindof UITableView *(^registCls)(Class clazz);
 
-@property (nonatomic , copy , readonly) UITableView *(^registHeaderFooterNib)(NSString *sNib); // default main bundle
-@property (nonatomic , copy , readonly) UITableView *(^registHeaderFooterNibS)(NSString *sNib , NSBundle *bundle);
-@property (nonatomic , copy , readonly) UITableView *(^registHeaderFooterCls)(Class cls);
+@property (nonatomic , copy , readonly) __kindof UITableView *(^registHeaderFooterNib)(NSString *sNib); // default main bundle
+@property (nonatomic , copy , readonly) __kindof UITableView *(^registHeaderFooterNibS)(NSString *sNib , NSBundle *bundle);
+@property (nonatomic , copy , readonly) __kindof UITableView *(^registHeaderFooterCls)(Class cls);
 
 /// wrapper of "beginUpdates" && "endUpdates"
-@property (nonatomic , copy , readonly) UITableView *(^updating)(void (^t)());
+@property (nonatomic , copy , readonly) __kindof UITableView *(^updating)(void (^t)());
 
 /// for non-animated , only section 0 was available.
 /// note : UITableViewRowAnimationNone means reloading without hidden animations .
 /// note : if animated is set to -1 , equals to reloadData.
 /// note : if reloeded muti sections , using "reloadSections(NSIndexSet *, UITableViewRowAnimation)" down below
-@property (nonatomic , copy , readonly) UITableView *(^reloading)(UITableViewRowAnimation animated);
+@property (nonatomic , copy , readonly) __kindof UITableView *(^reloading)(UITableViewRowAnimation animated);
 
 /// note : if animated is set to -2 , UIView will close all animations during reloading.
-@property (nonatomic , copy , readonly) UITableView *(^reloadSectionsT)(NSIndexSet *set , UITableViewRowAnimation animated);
-@property (nonatomic , copy , readonly) UITableView *(^reloadItemsT)(NSArray <NSIndexPath *> *array , UITableViewRowAnimation animted);
+@property (nonatomic , copy , readonly) __kindof UITableView *(^reloadSectionsT)(NSIndexSet *set , UITableViewRowAnimation animated);
+@property (nonatomic , copy , readonly) __kindof UITableView *(^reloadItemsT)(NSArray <NSIndexPath *> *array , UITableViewRowAnimation animted);
 
 @property (nonatomic , copy , readonly) __kindof UITableViewCell *(^deqCell)(NSString *sIdentifier);
 /// for cell that register in tableView

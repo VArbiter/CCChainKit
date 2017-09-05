@@ -12,8 +12,8 @@
 
 @implementation UILabel (CCChain)
 
-+ (UILabel *(^)(CGRect))common {
-    return ^UILabel *(CGRect r) {
++ ( __kindof UILabel *(^)(CGRect))common {
+    return ^ __kindof UILabel *(CGRect r) {
         UILabel *label = [[UILabel alloc] initWithFrame:r];
         label.numberOfLines = 0;
         label.textAlignment = NSTextAlignmentLeft;
@@ -24,9 +24,9 @@
     };
 }
 
-- (UILabel *(^)(CGFloat))autoHeight {
+- ( __kindof UILabel *(^)(CGFloat))autoHeight {
     __weak typeof(self) pSelf = self;
-    return ^UILabel * (CGFloat fE){
+    return ^ __kindof UILabel * (CGFloat fE){
         if (pSelf.attributedText
             && pSelf.attributedText.length) return pSelf.attributedTextHeight(fE);
         if (pSelf.text && pSelf.text.length) return pSelf.textHeight(fE);
@@ -34,9 +34,9 @@
     };
 }
 
-- (UILabel *(^)(CGFloat))attributedTextHeight {
+- ( __kindof UILabel *(^)(CGFloat))attributedTextHeight {
     __weak typeof(self) pSelf = self;
-    return ^UILabel *(CGFloat fE) {
+    return ^ __kindof UILabel *(CGFloat fE) {
         pSelf.height = CC_TEXT_HEIGHT_A(pSelf.width,
                                         fE,
                                         pSelf.attributedText);
@@ -44,9 +44,9 @@
     };
 }
 
-- (UILabel *(^)(CGFloat))textHeight {
+- ( __kindof UILabel *(^)(CGFloat))textHeight {
     __weak typeof(self) pSelf = self;
-    return ^UILabel *(CGFloat fE) {
+    return ^ __kindof UILabel *(CGFloat fE) {
         pSelf.height = CC_TEXT_HEIGHT_C(pSelf.width,
                                         fE,
                                         pSelf.text,

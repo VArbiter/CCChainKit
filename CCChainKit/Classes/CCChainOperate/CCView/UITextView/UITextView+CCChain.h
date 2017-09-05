@@ -11,8 +11,8 @@
 @interface UITextView (CCChain)
 
 /// default , selectable = false
-@property (nonatomic , class , copy , readonly) UITextView *(^common)(CGRect r);
-@property (nonatomic , copy , readonly) UITextView *(^delegateT)(id <UITextViewDelegate> delegate) ;
-@property (nonatomic , copy , readonly) UITextView *(^containerInsets)(UIEdgeInsets insets);
+@property (nonatomic , class , copy , readonly) __kindof UITextView *(^common)(CGRect r);
+@property (nonatomic , copy , readonly) __kindof UITextView *(^delegateT)(id <UITextViewDelegate> delegate) ;
+@property (nonatomic , copy , readonly) __kindof UITextView *(^containerInsets)(UIEdgeInsets insets);
 
 @end

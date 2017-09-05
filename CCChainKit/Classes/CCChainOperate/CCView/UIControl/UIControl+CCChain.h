@@ -11,17 +11,16 @@
 
 @interface UIControl (CCChain)
 
-@property (nonatomic , class , copy , readonly) UIControl *(^commonC)(CGRect frame);
+@property (nonatomic , class , copy , readonly) __kindof UIControl *(^commonC)(CGRect frame);
 
 /// actions , default is touchUpInside
-@property (nonatomic , copy , readonly) UIControl *(^actionS)(void (^)(UIControl *sender));
-@property (nonatomic , copy , readonly) UIControl *(^targetS)(id target , void (^)(UIControl *sender));
+@property (nonatomic , copy , readonly) __kindof UIControl *(^actionS)(void (^)( __kindof UIControl *sender));
+@property (nonatomic , copy , readonly) __kindof UIControl *(^targetS)(id target , void (^)( __kindof UIControl *sender));
 
 /// custom actions .
-@property (nonatomic , copy , readonly) UIControl *(^custom)(id target , SEL selector , UIControlEvents events);
+@property (nonatomic , copy , readonly) __kindof UIControl *(^custom)(id target , SEL selector , UIControlEvents events);
 
 /// increase trigger rect .
-@property (nonatomic , copy , readonly) UIControl *(^increaseS)(CCEdgeInsets insets);
-@property (nonatomic , copy , readonly) UIControl *(^increaseC)(UIEdgeInsets insets);
+@property (nonatomic , copy , readonly) __kindof UIControl *(^increaseC)(UIEdgeInsets insets);
 
 @end

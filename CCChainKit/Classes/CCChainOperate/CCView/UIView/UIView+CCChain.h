@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+FOUNDATION_EXPORT CGFloat const _CC_DEFAULT_ANIMATION_COMMON_DURATION_;
+
 typedef CGPoint CCPoint;
 CCPoint CCPointMake(CGFloat x , CGFloat y);
 CCPoint CCMakePointFrom(CGPoint point);
@@ -40,7 +42,7 @@ CGFloat CCHScale(CGFloat h);
 
 @interface UIView (CCChain)
 
-@property (nonatomic , class , copy , readonly) UIView *(^common)(CCRect frame);
+@property (nonatomic , class , copy , readonly) __kindof UIView *(^common)(CCRect frame);
 
 /// set width && height for calculating , default : 750 , 1334
 @property (nonatomic , class , copy , readonly) void(^scaleSet)(CGFloat w , CGFloat h);
@@ -77,72 +79,72 @@ CGFloat CCHScale(CGFloat h);
 @property (nonatomic , assign) CGFloat right;
 
 /// an easy way to margin
-@property (nonatomic , copy , readonly) UIView *(^sizeS)(CGSize size);
-@property (nonatomic , copy , readonly) UIView *(^originS)(CGPoint origin);
+@property (nonatomic , copy , readonly) __kindof UIView *(^sizeS)(CGSize size);
+@property (nonatomic , copy , readonly) __kindof UIView *(^originS)(CGPoint origin);
 
-@property (nonatomic , copy , readonly) UIView *(^widthS)(CGFloat width);
-@property (nonatomic , copy , readonly) UIView *(^heightS)(CGFloat height);
+@property (nonatomic , copy , readonly) __kindof UIView *(^widthS)(CGFloat width);
+@property (nonatomic , copy , readonly) __kindof UIView *(^heightS)(CGFloat height);
 
-@property (nonatomic , copy , readonly) UIView *(^xS)(CGFloat x);
-@property (nonatomic , copy , readonly) UIView *(^yS)(CGFloat y);
+@property (nonatomic , copy , readonly) __kindof UIView *(^xS)(CGFloat x);
+@property (nonatomic , copy , readonly) __kindof UIView *(^yS)(CGFloat y);
 
-@property (nonatomic , copy , readonly) UIView *(^centerXs)(CGFloat centerX);
-@property (nonatomic , copy , readonly) UIView *(^centerYs)(CGFloat centerY);
+@property (nonatomic , copy , readonly) __kindof UIView *(^centerXs)(CGFloat centerX);
+@property (nonatomic , copy , readonly) __kindof UIView *(^centerYs)(CGFloat centerY);
 
-@property (nonatomic , copy , readonly) UIView *(^topS)(CGFloat top);
-@property (nonatomic , copy , readonly) UIView *(^leftS)(CGFloat left);
-@property (nonatomic , copy , readonly) UIView *(^bottomS)(CGFloat bottom);
-@property (nonatomic , copy , readonly) UIView *(^rightS)(CGFloat right);
+@property (nonatomic , copy , readonly) __kindof UIView *(^topS)(CGFloat top);
+@property (nonatomic , copy , readonly) __kindof UIView *(^leftS)(CGFloat left);
+@property (nonatomic , copy , readonly) __kindof UIView *(^bottomS)(CGFloat bottom);
+@property (nonatomic , copy , readonly) __kindof UIView *(^rightS)(CGFloat right);
 
 /// for xibs
-@property (nonatomic , class , copy , readonly) UIView *(^fromXib)();
-@property (nonatomic , class , copy , readonly) UIView *(^fromXibC)(Class c);
-@property (nonatomic , class , copy , readonly) UIView *(^fromXibB)(NSBundle *bundle);
+@property (nonatomic , class , copy , readonly) __kindof UIView *(^fromXib)();
+@property (nonatomic , class , copy , readonly) __kindof UIView *(^fromXibC)(Class c);
+@property (nonatomic , class , copy , readonly) __kindof UIView *(^fromXibB)(NSBundle *bundle);
 
 /// add && remove (return itself)
-@property (nonatomic , copy , readonly) UIView *(^addSub)(UIView *view);
-@property (nonatomic , copy , readonly) void (^removeFrom)(void(^t)(UIView *viewSuper));
-@property (nonatomic , copy , readonly) UIView *(^bringToFront)(UIView *view);
-@property (nonatomic , copy , readonly) UIView *(^sendToBack)(UIView *view);
+@property (nonatomic , copy , readonly) __kindof UIView *(^addSub)( __kindof UIView *view);
+@property (nonatomic , copy , readonly) void (^removeFrom)(void(^t)(__kindof UIView *viewSuper));
+@property (nonatomic , copy , readonly) __kindof UIView *(^bringToFront)( __kindof UIView *view);
+@property (nonatomic , copy , readonly) __kindof UIView *(^sendToBack)( __kindof UIView *view);
 
 /// enable / disable userinteraction
-@property (nonatomic , copy , readonly) UIView *(^enableT)();
-@property (nonatomic , copy , readonly) UIView *(^disableT)();
+@property (nonatomic , copy , readonly) __kindof UIView *(^enableT)();
+@property (nonatomic , copy , readonly) __kindof UIView *(^disableT)();
 
 /// color && cornerRadius && contentMode
-@property (nonatomic , copy , readonly) UIView *(^color)(UIColor *color);
-@property (nonatomic , copy , readonly) UIView *(^radius)(CGFloat radius , BOOL masks);
-@property (nonatomic , copy , readonly) UIView *(^edgeRound)(UIRectCorner rc , CGFloat radius);
-@property (nonatomic , copy , readonly) UIView *(^contentModeT)(UIViewContentMode mode);
+@property (nonatomic , copy , readonly) __kindof UIView *(^color)(UIColor *color);
+@property (nonatomic , copy , readonly) __kindof UIView *(^radius)(CGFloat radius , BOOL masks);
+@property (nonatomic , copy , readonly) __kindof UIView *(^edgeRound)(UIRectCorner rc , CGFloat radius);
+@property (nonatomic , copy , readonly) __kindof UIView *(^contentModeT)(UIViewContentMode mode);
 
 /// for gesture actions
-@property (nonatomic , copy , readonly) UIView *(^gesture)(UIGestureRecognizer *gr);
-@property (nonatomic , copy , readonly) UIView *(^tap)(void(^t)(UIView *v , UITapGestureRecognizer *gr));
-@property (nonatomic , copy , readonly) UIView *(^tapC)(NSInteger iCount , void(^t)(UIView *v , UITapGestureRecognizer *gr));
-@property (nonatomic , copy , readonly) UIView *(^press)(void(^t)(UIView *v , UILongPressGestureRecognizer *gr));
-@property (nonatomic , copy , readonly) UIView *(^pressC)(CGFloat fSeconds , void(^t)(UIView *v , UILongPressGestureRecognizer *gr));
+@property (nonatomic , copy , readonly) __kindof UIView *(^gesture)( __kindof UIGestureRecognizer *gr);
+@property (nonatomic , copy , readonly) __kindof UIView *(^tap)(void(^t)( __kindof UIView *v , __kindof UITapGestureRecognizer *gr));
+@property (nonatomic , copy , readonly) __kindof UIView *(^tapC)(NSInteger iCount , void(^t)( __kindof UIView *v , __kindof UITapGestureRecognizer *gr));
+@property (nonatomic , copy , readonly) __kindof UIView *(^press)(void(^t)(__kindof UIView *v , __kindof UILongPressGestureRecognizer *gr));
+@property (nonatomic , copy , readonly) __kindof UIView *(^pressC)(CGFloat fSeconds , void(^t)(__kindof UIView *v , __kindof UILongPressGestureRecognizer *gr));
 
 @end
 
 #pragma mark - -----
-@import WebKit;
+@class WKWebView;
 
 @interface UIView (CCChain_Force)
 
 // if it's not the same type for force transfer ,
 // this property will return it self .
 
-@property (nonatomic , readonly) UILabel * asUILabel;
-@property (nonatomic , readonly) UIScrollView * asUIScrollView;
-@property (nonatomic , readonly) UITableView * asUITableView;
-@property (nonatomic , readonly) UICollectionView * asUICollectionView;
-@property (nonatomic , readonly) UIImageView * asUIImageView;
-@property (nonatomic , readonly) WKWebView * asWKWebView;
-@property (nonatomic , readonly) UIButton * asUIButton;
-@property (nonatomic , readonly) UIControl * asUIControl;
-@property (nonatomic , readonly) UITextView * asUITextView;
-@property (nonatomic , readonly) UITextField * asUITextField;
-@property (nonatomic , readonly) UIProgressView * asUIProgressView;
+@property (nonatomic , readonly) __kindof UILabel * asUILabel;
+@property (nonatomic , readonly) __kindof UIScrollView * asUIScrollView;
+@property (nonatomic , readonly) __kindof UITableView * asUITableView;
+@property (nonatomic , readonly) __kindof UICollectionView * asUICollectionView;
+@property (nonatomic , readonly) __kindof UIImageView * asUIImageView;
+@property (nonatomic , readonly) __kindof WKWebView * asWKWebView;
+@property (nonatomic , readonly) __kindof UIButton * asUIButton;
+@property (nonatomic , readonly) __kindof UIControl * asUIControl;
+@property (nonatomic , readonly) __kindof UITextView * asUITextView;
+@property (nonatomic , readonly) __kindof UITextField * asUITextField;
+@property (nonatomic , readonly) __kindof UIProgressView * asUIProgressView;
 
 @end
 

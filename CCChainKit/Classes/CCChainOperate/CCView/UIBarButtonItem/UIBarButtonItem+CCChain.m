@@ -13,14 +13,14 @@ static const char * _CC_UIBARBUTTONITEM_CLICK_ASSOCIATE_KEY_ = "CC_UIBARBUTTONIT
 
 @interface UIBarButtonItem (CCChain_Assit)
 
-- (void) ccBarButtonItemChainAction : (UIBarButtonItem *) sender ;
+- (void) ccBarButtonItemChainAction : ( __kindof UIBarButtonItem *) sender ;
 
 @end
 
 @implementation UIBarButtonItem (CCChain_Assit)
 
-- (void) ccBarButtonItemChainAction : (UIBarButtonItem *) sender {
-    void (^t)(UIBarButtonItem *) = objc_getAssociatedObject(self, _CC_UIBARBUTTONITEM_CLICK_ASSOCIATE_KEY_);
+- (void) ccBarButtonItemChainAction : ( __kindof UIBarButtonItem *) sender {
+    void (^t)( __kindof UIBarButtonItem *) = objc_getAssociatedObject(self, _CC_UIBARBUTTONITEM_CLICK_ASSOCIATE_KEY_);
     if (t) {
         if (NSThread.isMainThread) {
             t(sender);
@@ -37,13 +37,13 @@ static const char * _CC_UIBARBUTTONITEM_CLICK_ASSOCIATE_KEY_ = "CC_UIBARBUTTONIT
 
 @implementation UIBarButtonItem (CCChain)
 
-+ (UIBarButtonItem *(^)())common {
++ ( __kindof UIBarButtonItem *(^)())common {
     return ^UIBarButtonItem * {
         return UIBarButtonItem.alloc.init;
     };
 }
 
-- (UIBarButtonItem *(^)(NSString *))titleS {
+- ( __kindof UIBarButtonItem *(^)(NSString *))titleS {
     __weak typeof(self) pSelf = self;
     return ^UIBarButtonItem * (NSString *s){
         [pSelf setTitle:s];
@@ -51,7 +51,7 @@ static const char * _CC_UIBARBUTTONITEM_CLICK_ASSOCIATE_KEY_ = "CC_UIBARBUTTONIT
     };
 }
 
-- (UIBarButtonItem *(^)(UIImage *))imageS {
+- ( __kindof UIBarButtonItem *(^)(UIImage *))imageS {
     __weak typeof(self) pSelf = self;
     return ^UIBarButtonItem * (UIImage *image){
         [pSelf setImage:image];
@@ -59,17 +59,17 @@ static const char * _CC_UIBARBUTTONITEM_CLICK_ASSOCIATE_KEY_ = "CC_UIBARBUTTONIT
     };
 }
 
-- (UIBarButtonItem *(^)(void (^)(UIBarButtonItem *)))actionS {
+- ( __kindof UIBarButtonItem *(^)(void (^)( __kindof UIBarButtonItem *)))actionS {
     __weak typeof(self) pSelf = self;
-    return ^UIBarButtonItem *(void (^t)(UIBarButtonItem *)) {
+    return ^ __kindof UIBarButtonItem *(void (^t)( __kindof UIBarButtonItem *)) {
         if (t) pSelf.targetS(pSelf, t);
         return pSelf;
     };
 }
 
-- (UIBarButtonItem *(^)(id, void (^)(UIBarButtonItem *)))targetS {
+- ( __kindof UIBarButtonItem *(^)(id, void (^)( __kindof UIBarButtonItem *)))targetS {
     __weak typeof(self) pSelf = self;
-    return ^UIBarButtonItem *(id t , void (^b)(UIBarButtonItem *)) {
+    return ^ __kindof UIBarButtonItem *(id t , void (^b)( __kindof UIBarButtonItem *)) {
         if (b) objc_setAssociatedObject(pSelf, _CC_UIBARBUTTONITEM_CLICK_ASSOCIATE_KEY_, b, OBJC_ASSOCIATION_COPY_NONATOMIC);
         [pSelf setTarget:t];
         [pSelf setAction:@selector(ccBarButtonItemChainAction:)];

@@ -10,43 +10,43 @@
 
 @implementation MBProgressHUD (CCChain)
 
-+ (MBProgressHUD *(^)())initC {
-    return ^MBProgressHUD * {
++ ( __kindof MBProgressHUD *(^)())initC {
+    return ^ __kindof MBProgressHUD * {
         return MBProgressHUD.initS(nil);
     };
 }
-+ (MBProgressHUD *(^)(UIView *))initS {
-    return ^MBProgressHUD *(UIView *v) {
++ ( __kindof MBProgressHUD *(^)(UIView *))initS {
+    return ^ __kindof MBProgressHUD *(UIView *v) {
         if (!v) v = UIApplication.sharedApplication.keyWindow;
         if (!v) v = UIApplication.sharedApplication.delegate.window;
         return [MBProgressHUD showHUDAddedTo:v
                                     animated:YES].simple().enable();
     };
 }
-+ (MBProgressHUD *(^)())generate {
-    return ^MBProgressHUD *{
++ ( __kindof MBProgressHUD *(^)())generate {
+    return ^ __kindof MBProgressHUD *{
         return MBProgressHUD.generateS(nil);
     };
 }
-+ (MBProgressHUD *(^)(UIView *))generateS {
-    return ^MBProgressHUD *(UIView *v){
++ ( __kindof MBProgressHUD *(^)(UIView *))generateS {
+    return ^ __kindof MBProgressHUD *(UIView *v){
         if (!v) v = UIApplication.sharedApplication.keyWindow;
         if (!v) v = UIApplication.sharedApplication.delegate.window;
         return [[MBProgressHUD alloc] initWithView:v].simple().disableT();
     };
 }
 
-- (MBProgressHUD *(^)())enable {
+- ( __kindof MBProgressHUD *(^)())enable {
     __weak typeof(self) pSelf = self;
-    return ^MBProgressHUD * {
+    return ^ __kindof MBProgressHUD * {
         pSelf.userInteractionEnabled = false;
         return pSelf;
     };
 }
 
-- (MBProgressHUD *(^)())disableT {
+- ( __kindof MBProgressHUD *(^)())disableT {
     __weak typeof(self) pSelf = self;
-    return ^MBProgressHUD * {
+    return ^ __kindof MBProgressHUD * {
         pSelf.userInteractionEnabled = YES;
         return pSelf;
     };
@@ -64,9 +64,9 @@
     };
 }
 
-- (MBProgressHUD *(^)())show {
+- ( __kindof MBProgressHUD *(^)())show {
     __weak typeof(self) pSelf = self;
-    return ^MBProgressHUD *() {
+    return ^ __kindof MBProgressHUD *() {
         if (NSThread.isMainThread) [pSelf showAnimated:YES];
         else dispatch_sync(dispatch_get_main_queue(), ^{
             [pSelf showAnimated:YES];
@@ -93,39 +93,39 @@
     };
 }
 
-- (MBProgressHUD *(^)())indicatorD {
+- ( __kindof MBProgressHUD *(^)())indicatorD {
     __weak typeof(self) pSelf = self;
-    return ^MBProgressHUD * {
+    return ^ __kindof MBProgressHUD * {
         pSelf.mode = MBProgressHUDModeIndeterminate;
         return pSelf;
     };
 }
-- (MBProgressHUD *(^)())simple {
+- ( __kindof MBProgressHUD *(^)())simple {
     __weak typeof(self) pSelf = self;
-    return ^MBProgressHUD * {
+    return ^ __kindof MBProgressHUD * {
         pSelf.mode = MBProgressHUDModeText;
         return pSelf;
     };
 }
 
-- (MBProgressHUD *(^)(NSString *))title {
+- ( __kindof MBProgressHUD *(^)(NSString *))title {
     __weak typeof(self) pSelf = self;
-    return ^MBProgressHUD * (NSString *t){
+    return ^ __kindof MBProgressHUD * (NSString *t){
         pSelf.label.text = t;
         return pSelf;
     };
 }
-- (MBProgressHUD *(^)(NSString *))message {
+- ( __kindof MBProgressHUD *(^)(NSString *))message {
     __weak typeof(self) pSelf = self;
-    return ^MBProgressHUD *(NSString *m) {
+    return ^ __kindof MBProgressHUD *(NSString *m) {
         pSelf.detailsLabel.text = m;
         return pSelf;
     };
 }
 
-- (MBProgressHUD *(^)(CCHudChainType))type {
+- ( __kindof MBProgressHUD *(^)(CCHudChainType))type {
     __weak typeof(self) pSelf = self;
-    return ^MBProgressHUD *(CCHudChainType t) {
+    return ^ __kindof MBProgressHUD *(CCHudChainType t) {
         NSDictionary *d = @{@(CCHudChainTypeLight) : ^{
                                 pSelf.contentColor = UIColor.blackColor;
                             },
@@ -148,9 +148,9 @@
     };
 }
 
-- (MBProgressHUD *(^)(CGFloat))delay {
+- ( __kindof MBProgressHUD *(^)(CGFloat))delay {
     __weak typeof(self) pSelf = self;
-    return ^MBProgressHUD * (CGFloat f) {
+    return ^ __kindof MBProgressHUD * (CGFloat f) {
         dispatch_time_t t = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(f * NSEC_PER_SEC));
         dispatch_after(t, dispatch_get_main_queue(), ^{
             pSelf.show();
@@ -159,25 +159,25 @@
     };
 }
 
-- (MBProgressHUD *(^)(NSTimeInterval))grace {
+- ( __kindof MBProgressHUD *(^)(NSTimeInterval))grace {
     __weak typeof(self) pSelf = self;
-    return ^MBProgressHUD *(NSTimeInterval i) {
+    return ^ __kindof MBProgressHUD *(NSTimeInterval i) {
         pSelf.graceTime = i;
         return pSelf;
     };
 }
 
-- (MBProgressHUD *(^)(NSTimeInterval))min {
+- ( __kindof MBProgressHUD *(^)(NSTimeInterval))min {
     __weak typeof(self) pSelf = self;
-    return ^MBProgressHUD *(NSTimeInterval i) {
+    return ^ __kindof MBProgressHUD *(NSTimeInterval i) {
         pSelf.minShowTime = i;
         return pSelf;
     };
 }
 
-- (MBProgressHUD *(^)(void (^)()))complete {
+- ( __kindof MBProgressHUD *(^)(void (^)()))complete {
     __weak typeof(self) pSelf = self;
-    return ^MBProgressHUD * (void (^t)()) {
+    return ^ __kindof MBProgressHUD * (void (^t)()) {
         pSelf.completionBlock = t;
         return pSelf;
     };

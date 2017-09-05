@@ -11,6 +11,7 @@
 
 static CGFloat _CC_DEFAULT_SCALE_WIDTH_ = 750.f;
 static CGFloat _CC_DEFAULT_SCALE_HEIGHT_ = 1334.f;
+CGFloat const _CC_DEFAULT_ANIMATION_COMMON_DURATION_ = .3f;
 
 #pragma mark - Struct
 CCPoint CCPointMake(CGFloat x , CGFloat y) {
@@ -107,8 +108,8 @@ CGFloat CCHScale(CGFloat h) {
     };
 }
 
-+ (UIView *(^)(CCRect))common {
-    return ^UIView *(CCRect r) {
++ ( __kindof UIView *(^)(CCRect))common {
+    return ^ __kindof UIView *(CCRect r) {
         CGRect g = CGRectMake(r.origin.x, r.origin.y, r.size.width, r.size.height);
         return [[UIView alloc] initWithFrame:g];
     };
@@ -255,90 +256,90 @@ CGFloat CCHScale(CGFloat h) {
 }
 
 #pragma mark - Margin
-- (UIView *(^)(CGSize))sizeS {
+- ( __kindof UIView *(^)(CGSize))sizeS {
     __weak typeof(self) pSelf = self;
-    return ^UIView *(CGSize s) {
+    return ^ __kindof UIView *(CGSize s) {
         pSelf.size = s;
         return pSelf;
     };
 }
-- (UIView *(^)(CGPoint))originS {
+- ( __kindof UIView *(^)(CGPoint))originS {
     __weak typeof(self) pSelf = self;
-    return ^UIView *(CGPoint p) {
+    return ^ __kindof UIView *(CGPoint p) {
         pSelf.origin = p;
         return pSelf;
     };
 }
 
-- (UIView *(^)(CGFloat))widthS {
+- ( __kindof UIView *(^)(CGFloat))widthS {
     __weak typeof(self) pSelf = self;
-    return ^UIView *(CGFloat w) {
+    return ^ __kindof UIView *(CGFloat w) {
         pSelf.width = w;
         return pSelf;
     };
 }
-- (UIView *(^)(CGFloat))heightS {
+- ( __kindof UIView *(^)(CGFloat))heightS {
     __weak typeof(self) pSelf = self;
-    return ^UIView *(CGFloat h) {
+    return ^ __kindof UIView *(CGFloat h) {
         pSelf.height = h;
         return pSelf;
     };
 }
 
-- (UIView *(^)(CGFloat))yS {
+- ( __kindof UIView *(^)(CGFloat))yS {
     __weak typeof(self) pSelf = self;
-    return ^UIView *(CGFloat y) {
+    return ^ __kindof UIView *(CGFloat y) {
         pSelf.y = y;
         return pSelf;
     };
 }
-- (UIView *(^)(CGFloat))xS {
+- ( __kindof UIView *(^)(CGFloat))xS {
     __weak typeof(self) pSelf = self;
-    return ^UIView *(CGFloat x) {
+    return ^ __kindof UIView *(CGFloat x) {
         pSelf.x = x;
         return pSelf;
     };
 }
 
-- (UIView *(^)(CGFloat))centerXs {
+- ( __kindof UIView *(^)(CGFloat))centerXs {
     __weak typeof(self) pSelf = self;
-    return ^UIView *(CGFloat centerX) {
+    return ^ __kindof UIView *(CGFloat centerX) {
         pSelf.centerX = centerX;
         return pSelf;
     };
 }
-- (UIView *(^)(CGFloat))centerYs {
+- ( __kindof UIView *(^)(CGFloat))centerYs {
     __weak typeof(self) pSelf = self;
-    return ^UIView *(CGFloat centerY) {
+    return ^ __kindof UIView *(CGFloat centerY) {
         pSelf.centerY = centerY;
         return pSelf;
     };
 }
 
-- (UIView *(^)(CGFloat))topS {
+- ( __kindof UIView *(^)(CGFloat))topS {
     __weak typeof(self) pSelf = self;
-    return ^UIView *(CGFloat top) {
+    return ^ __kindof UIView *(CGFloat top) {
         pSelf.top = top;
         return pSelf;
     };
 }
-- (UIView *(^)(CGFloat))leftS {
+- ( __kindof UIView *(^)(CGFloat))leftS {
     __weak typeof(self) pSelf = self;
-    return ^UIView *(CGFloat left) {
+    return ^ __kindof UIView *(CGFloat left) {
         pSelf.left = left;
         return pSelf;
     };
 }
-- (UIView *(^)(CGFloat))bottomS {
+- ( __kindof UIView *(^)(CGFloat))bottomS {
     __weak typeof(self) pSelf = self;
-    return ^UIView *(CGFloat bottom) {
+    return ^ __kindof UIView *(CGFloat bottom) {
         pSelf.bottom = bottom;
         return pSelf;
     };
 }
-- (UIView *(^)(CGFloat))rightS {
+- ( __kindof UIView *(^)(CGFloat))rightS {
     __weak typeof(self) pSelf = self;
-    return ^UIView *(CGFloat right) {
+    return ^ __kindof UIView *(CGFloat right) {
         pSelf.right = right;
         return pSelf;
     };
@@ -356,21 +357,21 @@ CGFloat CCHScale(CGFloat h) {
     };
 }
 
-+ (UIView *(^)())fromXib {
-    return ^UIView * {
++ ( __kindof UIView *(^)())fromXib {
+    return ^ __kindof UIView * {
         return UIView.fromXibB(nil);
     };
 }
 
-+ (UIView *(^)(__unsafe_unretained Class))fromXibC {
-    return ^UIView * (Class c){
++ ( __kindof UIView *(^)(__unsafe_unretained Class))fromXibC {
+    return ^ __kindof UIView * (Class c){
         NSBundle *b = [NSBundle bundleForClass:c];
         return UIView.fromXibB(b);
     };
 }
 
-+ (UIView *(^)(NSBundle *))fromXibB {
-    return ^UIView *(NSBundle *b) {
++ ( __kindof UIView *(^)(NSBundle *))fromXibB {
+    return ^ __kindof UIView *(NSBundle *b) {
         if (!b) b = NSBundle.mainBundle;
         return [[b loadNibNamed:NSStringFromClass(self)
                           owner:nil
@@ -378,74 +379,74 @@ CGFloat CCHScale(CGFloat h) {
     };
 }
 
-- (UIView *(^)(UIView *))addSub {
+- ( __kindof UIView *(^)( __kindof UIView *))addSub {
     __weak typeof(self) pSelf = self;
-    return ^UIView *(UIView *v) {
+    return ^ __kindof UIView *( __kindof UIView *v) {
         [pSelf addSubview:v];
         return pSelf;
     };
 }
 
-- (void (^)(void (^)(UIView *)))removeFrom {
+- (void (^)(void (^)( __kindof UIView *)))removeFrom {
     __weak typeof(self) pSelf = self;
-    return ^(void (^t)(UIView *)) {
+    return ^(void (^t)( __kindof UIView *)) {
         if (t) t(pSelf.superview);
         [pSelf removeFromSuperview];
     };
 }
 
-- (UIView *(^)(UIView *))bringToFront {
+- ( __kindof UIView *(^)( __kindof UIView *))bringToFront {
     __weak typeof(self) pSelf = self;
-    return ^UIView *(UIView *v) {
+    return ^ __kindof UIView *( __kindof UIView *v) {
         [pSelf bringSubviewToFront:v];
         return pSelf;
     };
 }
 
-- (UIView *(^)(UIView *))sendToBack {
+- ( __kindof UIView *(^)( __kindof UIView *))sendToBack {
     __weak typeof(self) pSelf = self;
-    return ^UIView *(UIView *v) {
+    return ^ __kindof UIView *( __kindof UIView *v) {
         [pSelf sendSubviewToBack:v];
         return pSelf;
     };
 }
 
-- (UIView *(^)())enableT {
+- ( __kindof UIView *(^)())enableT {
     __weak typeof(self) pSelf = self;
-    return ^UIView * {
+    return ^ __kindof UIView * {
         pSelf.userInteractionEnabled = YES;
         return pSelf;
     };
 }
 
-- (UIView *(^)())disableT {
+- ( __kindof UIView *(^)())disableT {
     __weak typeof(self) pSelf = self;
-    return ^UIView * {
+    return ^ __kindof UIView * {
         pSelf.userInteractionEnabled = false;
         return pSelf;
     };
 }
 
-- (UIView *(^)(UIColor *))color {
+- ( __kindof UIView *(^)(UIColor *))color {
     __weak typeof(self) pSelf = self;
-    return ^UIView *(UIColor *c) {
+    return ^ __kindof UIView *(UIColor *c) {
         pSelf.backgroundColor = c;
         return pSelf;
     };
 }
 
-- (UIView *(^)(CGFloat, BOOL))radius {
+- ( __kindof UIView *(^)(CGFloat, BOOL))radius {
     __weak typeof(self) pSelf = self;
-    return ^UIView *(CGFloat f , BOOL b) {
+    return ^ __kindof UIView *(CGFloat f , BOOL b) {
         pSelf.layer.cornerRadius = f;
         pSelf.layer.masksToBounds = b;
         return pSelf;
     };
 }
 
-- (UIView *(^)(UIRectCorner, CGFloat))edgeRound {
+- ( __kindof UIView *(^)(UIRectCorner, CGFloat))edgeRound {
     __weak typeof(self) pSelf = self;
-    return ^UIView *(UIRectCorner rc , CGFloat f) {
+    return ^ __kindof UIView *(UIRectCorner rc , CGFloat f) {
         UIBezierPath *p = [UIBezierPath bezierPathWithRoundedRect:pSelf.bounds
                                                 byRoundingCorners:rc
                                                       cornerRadii:CGSizeMake(CCScaleW(f), CCScaleH(f))];
@@ -457,17 +458,17 @@ CGFloat CCHScale(CGFloat h) {
     };
 }
 
-- (UIView *(^)(UIViewContentMode))contentModeT {
+- ( __kindof UIView *(^)(UIViewContentMode))contentModeT {
     __weak typeof(self) pSelf = self;
-    return ^UIView *(UIViewContentMode m) {
+    return ^ __kindof UIView *(UIViewContentMode m) {
         pSelf.contentMode = m;
         return pSelf;
     };
 }
 
-- (UIView *(^)(UIGestureRecognizer *))gesture {
+- ( __kindof UIView *(^)( __kindof UIGestureRecognizer *))gesture {
     __weak typeof(self) pSelf = self;
-    return ^UIView *(UIGestureRecognizer *gr) {
+    return ^ __kindof UIView *( __kindof UIGestureRecognizer *gr) {
         if (gr) {
             pSelf.userInteractionEnabled = YES;
             [pSelf addGestureRecognizer:gr];
@@ -476,14 +477,14 @@ CGFloat CCHScale(CGFloat h) {
     };
 }
 
-- (UIView *(^)(void (^)(UIView *, UITapGestureRecognizer *)))tap {
+- ( __kindof UIView *(^)(void (^)( __kindof UIView *, __kindof  UITapGestureRecognizer *)))tap {
     __weak typeof(self) pSelf = self;
     return ^UIView *(void (^t)(UIView *, UITapGestureRecognizer *)) {
         return pSelf.tapC(1, t);
     };
 }
 
-- (UIView *(^)(NSInteger, void (^)(UIView *, UITapGestureRecognizer *)))tapC {
+- ( __kindof UIView *(^)(NSInteger, void (^)( __kindof UIView *, __kindof UITapGestureRecognizer *)))tapC {
     __weak typeof(self) pSelf = self;
     return ^UIView *(NSInteger i, void(^t)(UIView * , UITapGestureRecognizer *)) {
         return pSelf.gesture(UITapGestureRecognizer.common().tapC(i, ^(UIGestureRecognizer *tapGR) {
@@ -492,16 +493,16 @@ CGFloat CCHScale(CGFloat h) {
     };
 }
 
-- (UIView *(^)(void (^)(UIView *, UILongPressGestureRecognizer *)))press {
+- ( __kindof UIView *(^)(void (^)( __kindof UIView *, __kindof UILongPressGestureRecognizer *)))press {
     __weak typeof(self) pSelf = self;
-    return ^UIView *(void (^t)(UIView *, UILongPressGestureRecognizer *)) {
+    return ^ __kindof UIView *(void (^t)( __kindof UIView *, __kindof UILongPressGestureRecognizer *)) {
         return pSelf.pressC(.5f, t);
     };
 }
 
-- (UIView *(^)(CGFloat, void (^)(UIView *, UILongPressGestureRecognizer *)))pressC {
+- ( __kindof UIView *(^)(CGFloat, void (^)( __kindof UIView *, __kindof UILongPressGestureRecognizer *)))pressC {
     __weak typeof(self) pSelf = self;
-    return ^UIView *(CGFloat f, void (^t)(UIView *, UILongPressGestureRecognizer *)) {
+    return ^ __kindof UIView *(CGFloat f, void (^t)( __kindof UIView *, __kindof UILongPressGestureRecognizer *)) {
         return pSelf.gesture(UILongPressGestureRecognizer.common().pressC(f, ^(UIGestureRecognizer *pressGR) {
             if (t) t(pSelf , (UILongPressGestureRecognizer *) pressGR);
         }));
@@ -515,59 +516,61 @@ CGFloat CCHScale(CGFloat h) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wincompatible-pointer-types"
 
+@import WebKit;
+
 @implementation UIView (CCChain_Force)
 
-- (UILabel *)asUILabel {
+- ( __kindof UILabel *)asUILabel {
     if ([self isKindOfClass:UILabel.class]) return (UILabel *) self;
     return self;
 }
 
-- (UIScrollView *)asUIScrollView {
+- ( __kindof UIScrollView *)asUIScrollView {
     if ([self isKindOfClass:UIScrollView.class]) return (UIScrollView *) self;
     return self;
 }
 
-- (UITableView *)asUITableView {
+- ( __kindof UITableView *)asUITableView {
     if ([self isKindOfClass:UITableView.class]) return (UITableView *) self;
     return self;
 }
 
-- (UICollectionView *)asUICollectionView {
+- ( __kindof UICollectionView *)asUICollectionView {
     if ([self isKindOfClass:UICollectionView.class]) return (UICollectionView *) self;
     return self;
 }
 
-- (UIImageView *)asUIImageView {
+- ( __kindof UIImageView *)asUIImageView {
     if ([self isKindOfClass:UIImageView.class]) return (UIImageView *) self;
     return self;
 }
 
-- (WKWebView *)asWKWebView {
+- ( __kindof WKWebView *)asWKWebView {
     if ([self isKindOfClass:WKWebView.class]) return (WKWebView *) self;
     return self;
 }
 
-- (UIButton *)asUIButton {
+- ( __kindof UIButton *)asUIButton {
     if ([self isKindOfClass:UIButton.class]) return (UIButton *) self;
     return self;
 }
 
-- (UIControl *)asUIControl {
+- ( __kindof UIControl *)asUIControl {
     if ([self isKindOfClass:UIControl.class]) return (UIControl *) self;
     return self;
 }
 
-- (UITextView *)asUITextView {
+- ( __kindof UITextView *)asUITextView {
     if ([self isKindOfClass:UITextView.class]) return (UITextView *) self;
     return self;
 }
 
-- (UITextField *)asUITextField {
+- ( __kindof UITextField *)asUITextField {
     if ([self isKindOfClass:UITextField.class]) return (UITextField *) self;
     return self;
 }
 
-- (UIProgressView *)asUIProgressView {
+- ( __kindof UIProgressView *)asUIProgressView {
     if ([self isKindOfClass:UIProgressView.class]) return (UIProgressView *) self;
     return self;
 }

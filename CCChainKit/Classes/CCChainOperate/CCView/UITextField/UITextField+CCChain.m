@@ -10,8 +10,8 @@
 
 @implementation UITextField (CCChain)
 
-+ (UITextField *(^)(CGRect))common {
-    return ^UITextField *(CGRect r) {
++ ( __kindof UITextField *(^)(CGRect))common {
+    return ^ __kindof UITextField *(CGRect r) {
         UITextField *v = [[UITextField alloc] initWithFrame:r];
         v.clearsOnBeginEditing = YES;
         v.clearButtonMode = UITextFieldViewModeWhileEditing ;
@@ -19,18 +19,18 @@
     };
 }
 
-- (UITextField *(^)(id<UITextFieldDelegate>))delegateT {
+- ( __kindof UITextField *(^)(id<UITextFieldDelegate>))delegateT {
     __weak typeof(self) pSelf = self;
-    return ^UITextField *(id<UITextFieldDelegate> d) {
+    return ^ __kindof UITextField *(id<UITextFieldDelegate> d) {
         if (d) pSelf.delegate = d;
         else pSelf.delegate = nil;
         return pSelf;
     };
 }
 
-- (UITextField *(^)(NSDictionary<NSString *,id> *, NSString *))placeHolder {
+- ( __kindof UITextField *(^)(NSDictionary<NSString *,id> *, NSString *))placeHolder {
     __weak typeof(self) pSelf = self;
-    return ^UITextField *(NSDictionary<NSString *,id> *d, NSString *s) {
+    return ^ __kindof UITextField *(NSDictionary<NSString *,id> *d, NSString *s) {
         if (![s isKindOfClass:NSString.class] || !s || !s.length) return pSelf;
         NSAttributedString *sAttr = [[NSAttributedString alloc] initWithString:s
                                                                     attributes:d];
@@ -39,9 +39,9 @@
     };
 }
 
-- (UITextField *(^)(UIImage *, UITextFieldViewMode))rightViewT {
+- ( __kindof UITextField *(^)(UIImage *, UITextFieldViewMode))rightViewT {
     __weak typeof(self) pSelf = self;
-    return ^UITextField * (UIImage *image , UITextFieldViewMode mode) {
+    return ^ __kindof UITextField * (UIImage *image , UITextFieldViewMode mode) {
         image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         UIImageView *v = [[UIImageView alloc] initWithImage:image];
         v.contentMode = UIViewContentModeScaleAspectFit;
@@ -52,9 +52,9 @@
     };
 }
 
-- (UITextField *(^)(UIImage *, UITextFieldViewMode))leftViewT {
+- ( __kindof UITextField *(^)(UIImage *, UITextFieldViewMode))leftViewT {
     __weak typeof(self) pSelf = self;
-    return ^UITextField *(UIImage *image , UITextFieldViewMode mode) {
+    return ^ __kindof UITextField *(UIImage *image , UITextFieldViewMode mode) {
         image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         UIImageView *v = [[UIImageView alloc] initWithImage:image];
         v.contentMode = UIViewContentModeScaleAspectFit;
