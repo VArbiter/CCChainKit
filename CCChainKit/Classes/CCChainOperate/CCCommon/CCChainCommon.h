@@ -13,5 +13,4 @@
     #import "CCSingleton.h"
     #import "CCAuthorize.h"
 
-
 #endif /* CCChainCommon_h */

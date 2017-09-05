@@ -19,5 +19,6 @@
     #import "NSNumber+CCChain.h"
     #import "NSPredicate+CCChain.h"
     #import "NSString+CCChain.h"
+    #import "NSFileManager+CCChain.h"
 
 #endif /* CCChianData_h */
