@@ -26,5 +26,9 @@
     #import "UILabel+CCChain.h"
     #import "UINavigationItem+CCChain.h"
     #import "UIScrollView+CCChain.h"
+    #import "UITableView+CCChain.h"
+    #import "UITextField+CCChain.h"
+    #import "UITextView+CCChain.h"
+    #import "UIViewController+CCChain.h"
 
 #endif /* CCChainView_h */
