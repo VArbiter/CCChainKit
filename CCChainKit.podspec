@@ -45,9 +45,9 @@ Pod::Spec.new do |s|
 
   # preserve for future needs
   s.subspec 'CCChainAssets' do |assets|
-    assets.resource_bundles = {
-      'CCChainKit' => ['CCChainKit/Classes/CCChainAssets/*']
-    }
+    # assets.resource_bundles = {
+    #   'CCChainKit' => ['CCChainKit/Classes/CCChainAssets/*']
+    # }
   end
 
   s.subspec 'CCCommon' do |common|
@@ -61,7 +61,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'CCRuntime' do |runtime|
-    runtime.source_files = 'CChainKit/Classes/CCChainOperate/CCRuntime/*'
+    runtime.source_files = 'CCChainKit/Classes/CCChainOperate/CCRuntime/*'
   end
 
   s.subspec 'CCDataBase' do |dataBase|
