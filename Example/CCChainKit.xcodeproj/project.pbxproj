@@ -28,6 +28,7 @@
 		700C119A1F5E3D7800915034 /* UIViewController+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 700C11991F5E3D7800915034 /* UIViewController+CCChain.m */; };
 		700C11A21F5E56D400915034 /* CCEasyWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 700C119E1F5E56D400915034 /* CCEasyWebView.m */; };
 		700C11A31F5E56D400915034 /* CCMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 700C11A11F5E56D400915034 /* CCMenuView.m */; };
+		700C11A71F5E6B3300915034 /* NSFileManager+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 700C11A61F5E6B3300915034 /* NSFileManager+CCChain.m */; };
 		701404CB1F5696C400830DAA /* CCRLMBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 701404CA1F5696C400830DAA /* CCRLMBaseModel.m */; };
 		701404CF1F56979200830DAA /* CCRealmHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 701404CE1F56979200830DAA /* CCRealmHandler.m */; };
 		707A6FD11F59058100DEC5C3 /* UINavigationItem+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 707A6FD01F59058100DEC5C3 /* UINavigationItem+CCChain.m */; };
@@ -119,6 +120,8 @@
 		700C119E1F5E56D400915034 /* CCEasyWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCEasyWebView.m; sourceTree = "<group>"; };
 		700C11A01F5E56D400915034 /* CCMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCMenuView.h; sourceTree = "<group>"; };
 		700C11A11F5E56D400915034 /* CCMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCMenuView.m; sourceTree = "<group>"; };
+		700C11A51F5E6B3300915034 /* NSFileManager+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+CCChain.h"; sourceTree = "<group>"; };
+		700C11A61F5E6B3300915034 /* NSFileManager+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+CCChain.m"; sourceTree = "<group>"; };
 		701404C91F5696C400830DAA /* CCRLMBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRLMBaseModel.h; sourceTree = "<group>"; };
 		701404CA1F5696C400830DAA /* CCRLMBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCRLMBaseModel.m; sourceTree = "<group>"; };
 		701404CD1F56979200830DAA /* CCRealmHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRealmHandler.h; sourceTree = "<group>"; };
@@ -423,6 +426,15 @@
 			path = UIMenuController;
 			sourceTree = "<group>";
 		};
+		700C11A41F5E6B1A00915034 /* NSFileManager */ = {
+			isa = PBXGroup;
+			children = (
+				700C11A51F5E6B3300915034 /* NSFileManager+CCChain.h */,
+				700C11A61F5E6B3300915034 /* NSFileManager+CCChain.m */,
+			);
+			path = NSFileManager;
+			sourceTree = "<group>";
+		};
 		701404C71F5696C400830DAA /* CCDataBase */ = {
 			isa = PBXGroup;
 			children = (
@@ -671,6 +683,7 @@
 			isa = PBXGroup;
 			children = (
 				70D63D2D1F3C41A400945CA2 /* CCChainData.h */,
+				700C11A41F5E6B1A00915034 /* NSFileManager */,
 				70D63D301F3C4CB200945CA2 /* NSTimer */,
 				70D63CD21F3C361500945CA2 /* NSArray */,
 				70D63CD51F3C361500945CA2 /* NSAttributedString */,
@@ -1190,6 +1203,7 @@
 				70D63D1A1F3C361500945CA2 /* NSDate+CCChain.m in Sources */,
 				707A6FD51F590B4300DEC5C3 /* UIScrollView+CCChain.m in Sources */,
 				70AE271B1F5798950030044C /* CCAuthorize.m in Sources */,
+				700C11A71F5E6B3300915034 /* NSFileManager+CCChain.m in Sources */,
 				70AE27771F580A380030044C /* UILabel+CCChain.m in Sources */,
 				70AE27281F57A1CA0030044C /* CCMediator.m in Sources */,
 				70D63D1E1F3C361500945CA2 /* NSPredicate+CCChain.m in Sources */,
