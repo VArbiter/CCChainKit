@@ -29,7 +29,7 @@
 **Note**
 > when install , default is `CCCore` , `CCCore` contains 
 > 
-> `CCCommon` (Macros) , `CCProtocol` (Protocol) , `CCData` (NS Family), `CCView` (UI Family), `CCRuntime` (objc/ runtime associate), `CCChainAssets` (preserve for future needs)
+> `CCCommon` (Macros) , `CCProtocol` (Protocol) , `CCData` (NS Family), `CCView` (UI Family), `CCRuntime` (objc/ runtime associate)
 > 
 > when you wanna get to Full , install with `"CCChainKit/CCFull"` (note: `CCFull` had dependend on other vendors.)
 
@@ -38,7 +38,7 @@
 > 
 > CCFull : Full chains . a abstract collection .
 > 
-> CCChainAssets : Assets collection , preserve for future needs .
+> CCChainAssets : Assets collection , preserve for future needs . (not available for now).
 > 
 > CCCommon : Macros && Common tools .
 > 

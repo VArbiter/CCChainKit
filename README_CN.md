@@ -27,7 +27,7 @@
 **须知**
 > 安装时 , 默认是 `CCCore` , `CCCore` 包含 
 > 
-> `CCCommon` (宏) , `CCProtocol` (协议) , `CCData` (NS 族群), `CCView` (UI 族群), `CCRuntime` (objc/ runtime 相关), `CCChainAssets` (将来可能会使用)
+> `CCCommon` (宏) , `CCProtocol` (协议) , `CCData` (NS 族群), `CCView` (UI 族群), `CCRuntime` (objc/ runtime 相关)
 > 
 > 如果想安装全部 , 安装`"CCChainKit/CCFull"` (须知 : `CCFull` 依赖了一些第三方)
 
@@ -36,7 +36,7 @@
 > 
 > CCFull : 全部 , 子库的抽象集合
 > 
-> CCChainAssets : 资源集合 , 为未来使用所保留
+> CCChainAssets : 资源集合 , 为未来使用所保留 . 目前未启用
 > 
 > CCCommon : 宏和公共工具
 > 

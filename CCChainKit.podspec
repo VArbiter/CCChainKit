@@ -31,7 +31,7 @@ Pod::Spec.new do |s|
     coreT.dependency 'CCChainKit/CCData'
     coreT.dependency 'CCChainKit/CCView'
     coreT.dependency 'CCChainKit/CCRuntime'
-    coreT.dependency 'CCChainKit/CCChainAssets'
+    # coreT.dependency 'CCChainKit/CCChainAssets'
   end
 
   s.subspec 'CCFull' do |fullT|
@@ -44,11 +44,11 @@ Pod::Spec.new do |s|
   end
 
   # preserve for future needs
-  s.subspec 'CCChainAssets' do |assets|
+  # s.subspec 'CCChainAssets' do |assets|
     # assets.resource_bundles = {
     #   'CCChainKit' => ['CCChainKit/Classes/CCChainAssets/*']
     # }
-  end
+  # end
 
   s.subspec 'CCCommon' do |common|
     common.source_files = 'CCChainKit/Classes/CCChainOperate/CCCommon/*'
