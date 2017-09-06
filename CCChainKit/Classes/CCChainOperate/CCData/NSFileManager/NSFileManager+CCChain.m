@@ -96,6 +96,20 @@ NSInteger const _CC_FILE_HASH_DEFAULT_CHUNK_SIZE_ = 1024 * 8;
         return e ? 0 : [dictionaryInfo[NSFileSize] longLongValue];
     };
 }
+- (unsigned long long (^)(NSString *))folderSizeT {
+    __weak typeof(self) pSelf = self;
+    return ^unsigned long long (NSString *s) {
+        if (!s || !s.length) return 0;
+        if (!pSelf.isDirectoryT(s)) return pSelf.fileSizeT(s);
+        NSEnumerator * enumeratorFiles = [[pSelf subpathsAtPath:s] objectEnumerator];
+        NSString * sFileName = nil;
+        unsigned long long folderSize = 0;
+        while ((sFileName = [enumeratorFiles nextObject]) != nil) {
+            folderSize += pSelf.fileSizeT([s stringByAppendingPathComponent:sFileName]);
+        }
+        return folderSize;
+    };
+}
 
 - (NSString *(^)(NSString *))MD5Auto {
     __weak typeof(self) pSelf = self;

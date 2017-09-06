@@ -28,6 +28,8 @@ FOUNDATION_EXPORT NSInteger const _CC_FILE_HASH_DEFAULT_CHUNK_SIZE_;
 /// note : in iOS (for bytes) , 1G = pow(10, 9) , 1Mb = pow(10, 6) , 1Kb = pow(10, 3)
 /// note : highly recommend put it in a sub thread . (if sPath point at a directory)
 @property (nonatomic , copy , readonly) unsigned long long (^fileSizeT)(NSString *sPath);
+/// if path is definitly a folder .
+@property (nonatomic , copy , readonly) unsigned long long (^folderSizeT)(NSString *sPath);
 
 /// note : if self is a folder or not valued path at all , returns @"" 
 @property (nonatomic , copy , readonly) NSString *(^MD5Auto)(NSString *sPath);
