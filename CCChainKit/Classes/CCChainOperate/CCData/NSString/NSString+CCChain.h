@@ -14,7 +14,6 @@
 
 @property (nonatomic , copy , readonly) NSString *(^s)(id value) ; // append string
 @property (nonatomic , copy , readonly) NSString *(^p)(id value) ; // append path
-@property (nonatomic , copy , readonly) NSString *(^timeSince1970)(NSTimeInterval interval); // yyyy-MM-dd HH:mm
 
 /// break has the topest priority .
 @property (nonatomic , class , copy , readonly) NSString *(^mergeC)(BOOL isBreak , BOOL isSpace , NSArray <NSString *> * array) ;
@@ -28,19 +27,19 @@
 
 @property (nonatomic , copy , readonly) NSMutableAttributedString *(^colorAttribute)(UIColor *color);
 
-@property (nonatomic , assign , readonly) NSInteger toInteger ;
-@property (nonatomic , assign , readonly) long long toLonglong ;
-@property (nonatomic , assign , readonly) int toInt;
-@property (nonatomic , assign , readonly) BOOL toBool ;
-@property (nonatomic , assign , readonly) float toFloat ;
-@property (nonatomic , assign , readonly) double toDouble ;
+@property (nonatomic , readonly) NSInteger toInteger ;
+@property (nonatomic , readonly) long long toLonglong ;
+@property (nonatomic , readonly) int toInt;
+@property (nonatomic , readonly) BOOL toBool ;
+@property (nonatomic , readonly) float toFloat ;
+@property (nonatomic , readonly) double toDouble ;
 
-@property (nonatomic , strong , readonly) NSDecimalNumber * toDecimal; // only numbers .
-@property (nonatomic , strong , readonly) NSMutableAttributedString * toAttribute;
-@property (nonatomic , strong , readonly) NSDate * toDate; // yyyy-MM-dd HH:mm
+@property (nonatomic , readonly) NSDecimalNumber * toDecimal; // only numbers .
+@property (nonatomic , readonly) NSMutableAttributedString * toAttribute;
+@property (nonatomic , readonly) NSDate * toDate; // yyyy-MM-dd HH:mm
 
 @property (nonatomic , copy , readonly) NSString *(^timeStick)(BOOL isNeedSpace) ;
-@property (nonatomic , copy , readonly) NSString *timeStickP ; // yyyy-MM-dd HH:mm
-@property (nonatomic , copy , readonly) NSString *md5 ;
+@property (nonatomic , readonly) NSString *timeStickP ; // yyyy-MM-dd HH:mm
+@property (nonatomic , readonly) NSString *md5 ;
 
 @end

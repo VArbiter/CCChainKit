@@ -91,6 +91,12 @@ CGFloat CCScaleW(CGFloat w) {
 CGFloat CCScaleH(CGFloat h) {
     return h / _CC_DEFAULT_SCALE_HEIGHT_ * UIScreen.mainScreen.bounds.size.height;
 }
+CGPoint CCScaleOrigin(CGPoint origin) {
+    return CGPointMake(CCScaleW(origin.x), CCScaleH(origin.y));
+}
+CGSize CCScaleSize(CGSize size) {
+    return CGSizeMake(CCScaleW(size.width), CCScaleH(size.height));
+}
 
 CGFloat CCWScale(CGFloat w) {
     return w / _CC_DEFAULT_SCALE_WIDTH_;
@@ -132,24 +138,6 @@ CGFloat CCHScale(CGFloat h) {
 }
 - (CGPoint)origin {
     return self.frame.origin;
-}
-
-- (void)setSizeC:(CCSize)sizeC {
-    CGRect frame = self.frame;
-    frame.size = CGSizeMake(sizeC.width, sizeC.height);
-    self.frame = frame;
-}
-- (CCSize)sizeC {
-    return (CCSize){self.frame.size.width , self.frame.size.height};
-}
-
-- (void)setOriginC:(CCPoint)originC{
-    CGRect frame = self.frame;
-    frame.origin = CGPointMake(originC.x, originC.y);
-    self.frame = frame;
-}
-- (CCPoint)originC {
-    return (CCPoint){self.frame.origin.x , self.frame.origin.y};
 }
 
 - (void)setWidth:(CGFloat)width{
@@ -382,7 +370,7 @@ CGFloat CCHScale(CGFloat h) {
 - ( __kindof UIView *(^)( __kindof UIView *))addSub {
     __weak typeof(self) pSelf = self;
     return ^ __kindof UIView *( __kindof UIView *v) {
-        [pSelf addSubview:v];
+        if (v) [pSelf addSubview:v];
         return pSelf;
     };
 }
@@ -391,14 +379,14 @@ CGFloat CCHScale(CGFloat h) {
     __weak typeof(self) pSelf = self;
     return ^(void (^t)( __kindof UIView *)) {
         if (t) t(pSelf.superview);
-        [pSelf removeFromSuperview];
+        if (pSelf.superview) [pSelf removeFromSuperview];
     };
 }
 
 - ( __kindof UIView *(^)( __kindof UIView *))bringToFront {
     __weak typeof(self) pSelf = self;
     return ^ __kindof UIView *( __kindof UIView *v) {
-        [pSelf bringSubviewToFront:v];
+        if (v && [pSelf.subviews containsObject:v]) [pSelf bringSubviewToFront:v];
         return pSelf;
     };
 }
@@ -406,7 +394,27 @@ CGFloat CCHScale(CGFloat h) {
 - ( __kindof UIView *(^)( __kindof UIView *))sendToBack {
     __weak typeof(self) pSelf = self;
     return ^ __kindof UIView *( __kindof UIView *v) {
-        [pSelf sendSubviewToBack:v];
+        if (v && [pSelf.subviews containsObject:v]) [pSelf sendSubviewToBack:v];
+        return pSelf;
+    };
+}
+
+- (__kindof UIView *(^)())makeToFront {
+    __weak typeof(self) pSelf = self;
+    return ^__kindof UIView * {
+        if (pSelf.superview) {
+            [pSelf.superview bringSubviewToFront:pSelf];
+        }
+        return pSelf;
+    };
+}
+
+- (__kindof UIView *(^)())makeToBack {
+    __weak typeof(self) pSelf = self;
+    return ^__kindof UIView * {
+        if (pSelf.superview) {
+            [pSelf.superview sendSubviewToBack:pSelf];
+        }
         return pSelf;
     };
 }
@@ -430,7 +438,7 @@ CGFloat CCHScale(CGFloat h) {
 - ( __kindof UIView *(^)(UIColor *))color {
     __weak typeof(self) pSelf = self;
     return ^ __kindof UIView *(UIColor *c) {
-        pSelf.backgroundColor = c;
+        pSelf.layer.backgroundColor = c ? c.CGColor : UIColor.clearColor.CGColor;
         return pSelf;
     };
 }
@@ -633,25 +641,6 @@ CGFloat CC_TEXT_HEIGHT_AS(CGFloat fWidth ,
                                      attributes:dV
                                         context:nil];
     return rect.size.height >= fEstimateHeight ? rect.size.height : fEstimateHeight;
-}
-
-@end
-
-#pragma mark - -----
-
-@implementation UIView (CCChain_Hud)
-
-- (MBProgressHUD *(^)())hud {
-    __weak typeof(self) pSelf = self;
-    return ^MBProgressHUD * {
-        return UIView.hudC(pSelf);
-    };
-}
-
-+ (MBProgressHUD *(^)(UIView *))hudC {
-    return ^MBProgressHUD * (UIView *v){
-        return MBProgressHUD.initS(v);
-    };
 }
 
 @end

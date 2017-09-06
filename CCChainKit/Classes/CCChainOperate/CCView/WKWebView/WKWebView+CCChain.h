@@ -14,9 +14,9 @@
 
 @property (nonatomic , class , copy , readonly) __kindof WKWebView *(^common)(CGRect frame);
 @property (nonatomic , class , copy , readonly) __kindof WKWebView *(^commonC)(CGRect frame , WKWebViewConfiguration *configuration);
-@property (nonatomic , copy , readonly) __kindof WKWebView *(^navigationDelegateT)(id delegate);
+@property (nonatomic , copy , readonly) __kindof WKWebView *(^navigationDelegateT)(id <WKNavigationDelegate> delegate);
 
-@property (nonatomic , copy , readonly) __kindof WKWebView *(^script)(CCScriptMessageDelegate *delegate);
+@property (nonatomic , copy , readonly) __kindof WKWebView *(^script)(CCScriptMessageDelegate *delegate , NSString *sKey);
 
 /// Only "http://" && "https://" will be loaded online .
 /// others will be loading as HTML content .

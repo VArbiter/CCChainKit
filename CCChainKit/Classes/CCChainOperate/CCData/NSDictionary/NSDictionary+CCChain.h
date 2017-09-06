@@ -17,6 +17,7 @@
 @interface NSMutableDictionary (CCChain)
 
 @property (nonatomic , copy , readonly) NSMutableDictionary *(^set)(id key , id value);
+/// set key && value with observer
 @property (nonatomic , copy , readonly) NSMutableDictionary *(^setO)(id key , id value);
 
 // add it before do any other operations .

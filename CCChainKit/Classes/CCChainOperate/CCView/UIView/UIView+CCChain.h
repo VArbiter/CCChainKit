@@ -32,9 +32,11 @@ CCEdgeInsets CCEdgeInsetsMake(CGFloat top , CGFloat left , CGFloat bottom , CGFl
 CCEdgeInsets CCMakeEdgeInsetsFrom(UIEdgeInsets insets);
 UIEdgeInsets UIMakeEdgeInsetsFrom(CCEdgeInsets insets);
 
-/// scaled width && height
+/// scaled width && height && origin && size
 CGFloat CCScaleW(CGFloat w);
 CGFloat CCScaleH(CGFloat h);
+CGPoint CCScaleOrigin(CGPoint origin);
+CGSize CCScaleSize(CGSize size);
 
 /// length scale
 CGFloat CCWScale(CGFloat w);
@@ -56,9 +58,6 @@ CGFloat CCHScale(CGFloat h);
 
 @property (nonatomic , assign) CGSize size;
 @property (nonatomic , assign) CGPoint origin;
-
-@property (nonatomic , assign) CCSize sizeC;
-@property (nonatomic , assign) CCPoint originC;
 
 @property (nonatomic , assign) CGFloat width;
 @property (nonatomic , assign) CGFloat height;
@@ -106,6 +105,9 @@ CGFloat CCHScale(CGFloat h);
 @property (nonatomic , copy , readonly) void (^removeFrom)(void(^t)(__kindof UIView *viewSuper));
 @property (nonatomic , copy , readonly) __kindof UIView *(^bringToFront)( __kindof UIView *view);
 @property (nonatomic , copy , readonly) __kindof UIView *(^sendToBack)( __kindof UIView *view);
+/// bring or send with it's self .
+@property (nonatomic , copy , readonly) __kindof UIView *(^makeToFront)();
+@property (nonatomic , copy , readonly) __kindof UIView *(^makeToBack)();
 
 /// enable / disable userinteraction
 @property (nonatomic , copy , readonly) __kindof UIView *(^enableT)();
@@ -177,15 +179,5 @@ CGFloat CC_TEXT_HEIGHT_AS(CGFloat fWidth ,
                           NSLineBreakMode mode ,
                           CGFloat fLineSpacing ,
                           CGFloat fCharacterSpacing);
-
-@end
-
-#pragma mark - -----
-#import "MBProgressHUD+CCChain.h"
-
-@interface UIView (CCChain_Hud)
-
-@property (nonatomic , copy , readonly) MBProgressHUD *(^hud)();
-@property (nonatomic , class , copy , readonly) MBProgressHUD *(^hudC)(UIView *view);
 
 @end

@@ -79,12 +79,12 @@ Pod::Spec.new do |s|
   s.subspec 'CCData' do |data|
     data.source_files = 'CCChainKit/Classes/CCChainOperate/CCData/*'
     data.dependency 'CCChainKit/CCProtocol'
+    data.frameworks "MobileCoreServices"
   end
 
   s.subspec 'CCView' do |view|
     view.source_files = 'CCChainKit/Classes/CCChainOperate/CCView/*'
     view.frameworks = "CoreGraphics" , "QuartzCore"
-    view.dependency 'MBProgressHUD', '~> 1.0.0'
     view.dependency 'CCChainKit/CCProtocol'
   end
 
@@ -95,6 +95,7 @@ Pod::Spec.new do |s|
     custom.dependency 'AFNetworking/UIKit', '~> 3.1.0'
     custom.dependency 'SDWebImage', '~> 4.1.0'
     custom.dependency 'MJRefresh', '~> 3.1.12'
+    custom.dependency 'MBProgressHUD', '~> 1.0.0'
     custom.frameworks = "WebKit" , "SystemConfiguration" , "CoreTelephony" , "MobileCoreServices", "ImageIO"
   end
 

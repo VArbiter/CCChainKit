@@ -14,7 +14,6 @@
 
 @end
 
-
 #pragma mark - -----------------------------------------------------------------
 
 typedef NS_ENUM(NSInteger, CCArrayChangeType) {
@@ -33,6 +32,8 @@ typedef struct CCArrayChangeInfo CCArrayChangeInfo;
 
 @property (nonatomic , copy , readonly) NSMutableArray *(^type)(NSString *clazz);
 @property (nonatomic , copy , readonly) NSMutableArray *(^append)(id value);
+/// if value is an collection , decided to add objects from it or use collection as a complete object .
+/// note : only for value is an array kind .
 @property (nonatomic , copy , readonly) NSMutableArray *(^appendE)(id value , BOOL isExpand);
 @property (nonatomic , copy , readonly) NSMutableArray *(^remove)(id value);
 @property (nonatomic , copy , readonly) NSMutableArray *(^removeAll)(BOOL (^t)(BOOL isCompare , id obj));

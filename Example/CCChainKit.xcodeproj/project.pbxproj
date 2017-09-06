@@ -31,6 +31,9 @@
 		700C11A71F5E6B3300915034 /* NSFileManager+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 700C11A61F5E6B3300915034 /* NSFileManager+CCChain.m */; };
 		701404CB1F5696C400830DAA /* CCRLMBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 701404CA1F5696C400830DAA /* CCRLMBaseModel.m */; };
 		701404CF1F56979200830DAA /* CCRealmHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 701404CE1F56979200830DAA /* CCRealmHandler.m */; };
+		7034D6C11F5FD00F0005D1E1 /* NSURL+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D6C01F5FD00F0005D1E1 /* NSURL+CCChain.m */; };
+		7034D6C41F5FD0220005D1E1 /* NSURLRequest+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D6C31F5FD0220005D1E1 /* NSURLRequest+CCChain.m */; };
+		7034D6D41F5FE8E30005D1E1 /* MBProgressHUD+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 7034D6D31F5FE8E30005D1E1 /* MBProgressHUD+CCChain.m */; };
 		707A6FD11F59058100DEC5C3 /* UINavigationItem+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 707A6FD01F59058100DEC5C3 /* UINavigationItem+CCChain.m */; };
 		707A6FD51F590B4300DEC5C3 /* UIScrollView+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 707A6FD41F590B4300DEC5C3 /* UIScrollView+CCChain.m */; };
 		707A6FDA1F59131D00DEC5C3 /* UICollectionView+CCChain_Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 707A6FD91F59131D00DEC5C3 /* UICollectionView+CCChain_Refresh.m */; };
@@ -58,7 +61,6 @@
 		70D63D1E1F3C361500945CA2 /* NSPredicate+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70D63CE91F3C361500945CA2 /* NSPredicate+CCChain.m */; };
 		70D63D1F1F3C361500945CA2 /* NSString+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70D63CEC1F3C361500945CA2 /* NSString+CCChain.m */; };
 		70D63D211F3C361500945CA2 /* CCRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 70D63CF41F3C361500945CA2 /* CCRuntime.m */; };
-		70D63D221F3C361500945CA2 /* MBProgressHUD+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70D63CF81F3C361500945CA2 /* MBProgressHUD+CCChain.m */; };
 		70D63D231F3C361500945CA2 /* UIAlertController+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70D63CFB1F3C361500945CA2 /* UIAlertController+CCChain.m */; };
 		70D63D241F3C361500945CA2 /* UIBarButtonItem+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70D63CFE1F3C361500945CA2 /* UIBarButtonItem+CCChain.m */; };
 		70D63D251F3C361500945CA2 /* UIButton+CCChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 70D63D011F3C361500945CA2 /* UIButton+CCChain.m */; };
@@ -126,6 +128,12 @@
 		701404CA1F5696C400830DAA /* CCRLMBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCRLMBaseModel.m; sourceTree = "<group>"; };
 		701404CD1F56979200830DAA /* CCRealmHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRealmHandler.h; sourceTree = "<group>"; };
 		701404CE1F56979200830DAA /* CCRealmHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCRealmHandler.m; sourceTree = "<group>"; };
+		7034D6BF1F5FD00F0005D1E1 /* NSURL+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+CCChain.h"; sourceTree = "<group>"; };
+		7034D6C01F5FD00F0005D1E1 /* NSURL+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+CCChain.m"; sourceTree = "<group>"; };
+		7034D6C21F5FD0220005D1E1 /* NSURLRequest+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+CCChain.h"; sourceTree = "<group>"; };
+		7034D6C31F5FD0220005D1E1 /* NSURLRequest+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+CCChain.m"; sourceTree = "<group>"; };
+		7034D6D21F5FE8E30005D1E1 /* MBProgressHUD+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+CCChain.h"; sourceTree = "<group>"; };
+		7034D6D31F5FE8E30005D1E1 /* MBProgressHUD+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+CCChain.m"; sourceTree = "<group>"; };
 		707A6FCF1F59058100DEC5C3 /* UINavigationItem+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+CCChain.h"; sourceTree = "<group>"; };
 		707A6FD01F59058100DEC5C3 /* UINavigationItem+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+CCChain.m"; sourceTree = "<group>"; };
 		707A6FD31F590B4300DEC5C3 /* UIScrollView+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+CCChain.h"; sourceTree = "<group>"; };
@@ -186,8 +194,6 @@
 		70D63CEC1F3C361500945CA2 /* NSString+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CCChain.m"; sourceTree = "<group>"; };
 		70D63CF31F3C361500945CA2 /* CCRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRuntime.h; sourceTree = "<group>"; };
 		70D63CF41F3C361500945CA2 /* CCRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCRuntime.m; sourceTree = "<group>"; };
-		70D63CF71F3C361500945CA2 /* MBProgressHUD+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+CCChain.h"; sourceTree = "<group>"; };
-		70D63CF81F3C361500945CA2 /* MBProgressHUD+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+CCChain.m"; sourceTree = "<group>"; };
 		70D63CFA1F3C361500945CA2 /* UIAlertController+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+CCChain.h"; sourceTree = "<group>"; };
 		70D63CFB1F3C361500945CA2 /* UIAlertController+CCChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+CCChain.m"; sourceTree = "<group>"; };
 		70D63CFD1F3C361500945CA2 /* UIBarButtonItem+CCChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+CCChain.h"; sourceTree = "<group>"; };
@@ -263,6 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				70AE27231F5798CE0030044C /* CCChainCustom.h */,
+				7034D6D11F5FE8E30005D1E1 /* MBProgressHud */,
 				70AE27491F57F97D0030044C /* CCWeakNetImageView */,
 				70AE27331F57A4E80030044C /* CCNetworkMoniter */,
 				707A6FD61F5912FF00DEC5C3 /* UICollectionView */,
@@ -461,6 +468,33 @@
 				701404CE1F56979200830DAA /* CCRealmHandler.m */,
 			);
 			path = CCRealmHandler;
+			sourceTree = "<group>";
+		};
+		7034D6BD1F5FCFF80005D1E1 /* NSURL */ = {
+			isa = PBXGroup;
+			children = (
+				7034D6BF1F5FD00F0005D1E1 /* NSURL+CCChain.h */,
+				7034D6C01F5FD00F0005D1E1 /* NSURL+CCChain.m */,
+			);
+			path = NSURL;
+			sourceTree = "<group>";
+		};
+		7034D6BE1F5FCFF80005D1E1 /* NSURLRequest */ = {
+			isa = PBXGroup;
+			children = (
+				7034D6C21F5FD0220005D1E1 /* NSURLRequest+CCChain.h */,
+				7034D6C31F5FD0220005D1E1 /* NSURLRequest+CCChain.m */,
+			);
+			path = NSURLRequest;
+			sourceTree = "<group>";
+		};
+		7034D6D11F5FE8E30005D1E1 /* MBProgressHud */ = {
+			isa = PBXGroup;
+			children = (
+				7034D6D21F5FE8E30005D1E1 /* MBProgressHUD+CCChain.h */,
+				7034D6D31F5FE8E30005D1E1 /* MBProgressHUD+CCChain.m */,
+			);
+			path = MBProgressHud;
 			sourceTree = "<group>";
 		};
 		707A6FCE1F59056300DEC5C3 /* UINavigationItem */ = {
@@ -694,6 +728,8 @@
 				70D63CE41F3C361500945CA2 /* NSObject */,
 				70D63CE71F3C361500945CA2 /* NSPredicate */,
 				70D63CEA1F3C361500945CA2 /* NSString */,
+				7034D6BD1F5FCFF80005D1E1 /* NSURL */,
+				7034D6BE1F5FCFF80005D1E1 /* NSURLRequest */,
 			);
 			path = CCData;
 			sourceTree = "<group>";
@@ -814,7 +850,6 @@
 				700C119B1F5E56D400915034 /* CCOriginalSustom */,
 				70D63D111F3C361500945CA2 /* UIView */,
 				3780F2801F51EA56009B5C8C /* WKWebView */,
-				70D63CF61F3C361500945CA2 /* MBProgressHud */,
 				70D63CF91F3C361500945CA2 /* UIAlertController */,
 				70D63CFC1F3C361500945CA2 /* UIBarButtonItem */,
 				70D63CFF1F3C361500945CA2 /* UIButton */,
@@ -835,15 +870,6 @@
 				700C11971F5E3CCD00915034 /* UIViewController */,
 			);
 			path = CCView;
-			sourceTree = "<group>";
-		};
-		70D63CF61F3C361500945CA2 /* MBProgressHud */ = {
-			isa = PBXGroup;
-			children = (
-				70D63CF71F3C361500945CA2 /* MBProgressHUD+CCChain.h */,
-				70D63CF81F3C361500945CA2 /* MBProgressHUD+CCChain.m */,
-			);
-			path = MBProgressHud;
 			sourceTree = "<group>";
 		};
 		70D63CF91F3C361500945CA2 /* UIAlertController */ = {
@@ -1179,6 +1205,8 @@
 				6003F59E195388D20070C39A /* CCAppDelegate.m in Sources */,
 				70D63D261F3C361500945CA2 /* UICollectionView+CCChain.m in Sources */,
 				70D63D281F3C361500945CA2 /* UIControl+CCChain.m in Sources */,
+				7034D6C41F5FD0220005D1E1 /* NSURLRequest+CCChain.m in Sources */,
+				7034D6D41F5FE8E30005D1E1 /* MBProgressHUD+CCChain.m in Sources */,
 				707A6FE11F593ADB00DEC5C3 /* UITableView+CCChain.m in Sources */,
 				70AE27211F5798A60030044C /* NSObject+CCProtocol.m in Sources */,
 				70D63D241F3C361500945CA2 /* UIBarButtonItem+CCChain.m in Sources */,
@@ -1193,12 +1221,12 @@
 				70D63D1F1F3C361500945CA2 /* NSString+CCChain.m in Sources */,
 				70AE271C1F5798950030044C /* CCCommon.m in Sources */,
 				700C119A1F5E3D7800915034 /* UIViewController+CCChain.m in Sources */,
+				7034D6C11F5FD00F0005D1E1 /* NSURL+CCChain.m in Sources */,
 				70AE27731F58023F0030044C /* UIImageView+CCChain.m in Sources */,
 				70AE27311F57A3390030044C /* CCMediator+CCBridgeAPI.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				700C11931F5E2E7200915034 /* UITextField+CCChain.m in Sources */,
 				707A6FDA1F59131D00DEC5C3 /* UICollectionView+CCChain_Refresh.m in Sources */,
-				70D63D221F3C361500945CA2 /* MBProgressHUD+CCChain.m in Sources */,
 				70D63D1B1F3C361500945CA2 /* NSDictionary+CCChain.m in Sources */,
 				70D63D1A1F3C361500945CA2 /* NSDate+CCChain.m in Sources */,
 				707A6FD51F590B4300DEC5C3 /* UIScrollView+CCChain.m in Sources */,

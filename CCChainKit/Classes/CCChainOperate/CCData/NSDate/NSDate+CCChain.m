@@ -8,50 +8,52 @@
 
 #import "NSDate+CCChain.h"
 
-#import "NSObject+CCChain.h"
-
 @implementation NSDate (CCChain)
-- (NSDate *(^)())firstWeekDayInThisMonth {
+- (NSInteger (^)())firstWeekDayInThisMonth {
     __weak typeof(self) pSelf = self;
-    return ^NSDate *() {
+    return ^NSInteger {
         NSCalendar *calendar = [NSCalendar currentCalendar];
         [calendar setFirstWeekday:1];//1.Sun. 2.Mon. 3.Thes. 4.Wed. 5.Thur. 6.Fri. 7.Sat.
         NSDateComponents *comp = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay)
-                                             fromDate:self];
+                                             fromDate:pSelf];
         [comp setDay:1];
         NSDate *firstDayOfMonthDate = [calendar dateFromComponents:comp];
         
-        pSelf.bridge = ^id{
-            return calendar;
-        };
-        
-        return firstDayOfMonthDate;
+        NSUInteger firstWeekday = [calendar ordinalityOfUnit:NSCalendarUnitWeekday
+                                                      inUnit:NSCalendarUnitWeekOfMonth
+                                                     forDate:firstDayOfMonthDate];
+        return firstWeekday - 1;
     };
 }
 
-- (NSDate *(^)())weekDay {
+- (NSInteger (^)())weekDay {
     __weak typeof(self) pSelf = self;
-    return ^NSDate *() {
-        pSelf.bridge = ^id{
-            return @((pSelf.firstWeekDayInThisMonth().toInt + pSelf.day().toInt - 1) % 7);
-        };
-        return pSelf;
+    return ^NSInteger () {
+        return (pSelf.firstWeekDayInThisMonth() + pSelf.day() - 1) % 7;
     };
 }
 
-- (NSDate *(^)())day {
+- (NSInteger (^)())day {
     __weak typeof(self) pSelf = self;
-    return ^NSDate *() {
-        pSelf.bridge = ^id{
-            return [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay)
-                                                   fromDate:pSelf];
-        };
-        return pSelf;
+    return ^NSInteger {
+        NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay)
+                                                                       fromDate:pSelf];
+        return [components day];
+    };
+}
+
+- (NSString *(^)(NSTimeInterval))timeSince1970 {
+    return ^NSString *(NSTimeInterval interval) {
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970:interval];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"yyyy-MM-dd HH:mm";
+        NSString *string = [formatter stringFromDate:date];
+        return string;
     };
 }
 
 - (NSString *)toWeek {
-    switch (self.weekDay().toInt) {
+    switch (self.weekDay()) {
         case 1:{
             return @"1";
         }break;
@@ -78,28 +80,6 @@
             return @"0";
         }break;
     }
-}
-
-- (NSUInteger) toInt {
-    id value = nil;
-    if (self.bridge) {
-        value = self.bridge();
-    }
-    
-    if ([value isKindOfClass:NSCalendar.class]) {
-        NSUInteger firstWeekday = [(NSCalendar *)value ordinalityOfUnit:NSCalendarUnitWeekday
-                                                                 inUnit:NSCalendarUnitWeekOfMonth
-                                                                forDate:self];
-        return firstWeekday - 1;
-    }
-    if ([value isKindOfClass:NSDateComponents.class]) {
-        return [(NSDateComponents *)value day];
-    }
-    if ([value isKindOfClass:NSNumber.class]) {
-        return [value integerValue];
-    }
-    
-    return -1;
 }
 
 - (NSString *)toString {

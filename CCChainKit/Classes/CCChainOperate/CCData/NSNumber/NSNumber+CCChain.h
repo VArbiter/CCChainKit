@@ -18,7 +18,8 @@
 
 @interface NSDecimalNumber (CCChain)
 
-@property (nonatomic , copy , readonly) NSString *(^round)(); // default after two points .
+/// default two after point .
+@property (nonatomic , copy , readonly) NSString *(^round)();
 @property (nonatomic , copy , readonly) NSString *(^roundAfter)(short point);
 @property (nonatomic , copy , readonly) NSString *(^roundAfterM)(short point , NSRoundingMode mode);
 

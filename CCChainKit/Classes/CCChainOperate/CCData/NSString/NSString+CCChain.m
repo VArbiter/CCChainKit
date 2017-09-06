@@ -36,16 +36,6 @@
     };
 }
 
-- (NSString *(^)(NSTimeInterval))timeSince1970 {
-    return ^NSString *(NSTimeInterval interval) {
-        NSDate *date = [NSDate dateWithTimeIntervalSince1970:interval];
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        formatter.dateFormat = @"yyyy-MM-dd HH:mm";
-        NSString *string = [formatter stringFromDate:date];
-        return string;
-    };
-}
-
 - (NSMutableAttributedString *(^)(UIColor *))colorAttribute {
     __weak typeof(self) pSelf = self;
     return ^NSMutableAttributedString *(UIColor *color) {

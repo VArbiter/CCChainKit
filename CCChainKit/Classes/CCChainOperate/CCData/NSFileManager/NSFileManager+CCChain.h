@@ -50,6 +50,7 @@ FOUNDATION_EXPORT NSInteger const _CC_FILE_HASH_DEFAULT_CHUNK_SIZE_;
 
 /// note : highly recommend put it in a sub thread . (if self point at a directory)
 @property (nonatomic , readonly) unsigned long long fileSizeT ;
+@property (nonatomic , readonly) unsigned long long folderSizeT ;
 
 @property (nonatomic , copy , readonly) BOOL (^moveTo)(NSString *sDestination);
 

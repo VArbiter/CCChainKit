@@ -15,9 +15,9 @@
     return ^NSMutableAttributedString *(UIColor *color , NSString *string) {
         if (string.isStringValued) {
             return [[NSMutableAttributedString alloc] initWithString:string
-                                                          attributes:@{NSForegroundColorAttributeName : color}];;
+                                                          attributes:@{NSForegroundColorAttributeName : color}];
         }
-        return nil;
+        return [[NSMutableAttributedString alloc] initWithString:@""];
     };
 }
 

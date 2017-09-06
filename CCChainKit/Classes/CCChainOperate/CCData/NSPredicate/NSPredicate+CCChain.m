@@ -11,8 +11,11 @@
 @implementation NSPredicate (CCChain)
 
 + (NSPredicate *(^)(NSString *))common {
-    return ^NSPredicate *(NSString *regex) {
-        return [NSPredicate predicateWithFormat:regex];
+    return ^NSPredicate *(NSString *sRegex) {
+        if ([sRegex isKindOfClass:NSString.class] && sRegex && sRegex.length) {
+            return [NSPredicate predicateWithFormat:sRegex];
+        }
+        return [NSPredicate predicateWithFormat:@""];
     };
 }
 

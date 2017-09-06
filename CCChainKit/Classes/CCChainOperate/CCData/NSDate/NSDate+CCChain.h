@@ -10,13 +10,16 @@
 
 @interface NSDate (CCChain)
 
-@property (nonatomic , strong , readonly) NSDate *(^firstWeekDayInThisMonth)();
-@property (nonatomic , strong , readonly) NSDate *(^weekDay)();
-@property (nonatomic , strong , readonly) NSDate *(^day)();
+@property (nonatomic , copy , readonly) NSInteger (^firstWeekDayInThisMonth)();
+@property (nonatomic , copy , readonly) NSInteger (^weekDay)();
+@property (nonatomic , copy , readonly) NSInteger (^day)();
 
-@property (nonatomic , copy , readonly) NSString * toWeek;
+/// yyyy-MM-dd HH:mm
+@property (nonatomic , class , copy , readonly) NSString *(^timeSince1970)(NSTimeInterval interval);
 
-@property (nonatomic , copy , readonly) NSString * toString;
-@property (nonatomic , assign , readonly) NSUInteger toInt;
+// returns current week day ,@return @"1" , @"2" ...
+@property (nonatomic , readonly) NSString * toWeek;
+
+@property (nonatomic , readonly) NSString * toString;
 
 @end

@@ -32,7 +32,7 @@
         }
         return @"";
     }
-    return nil;
+    return @"";
 }
 
 - (NSArray *)isArrayValued {
@@ -45,7 +45,7 @@
         }
         return @[].mutableCopy;
     }
-    return nil;
+    return @[];
 }
 
 - (NSDictionary *)isDictionaryValued {
@@ -59,7 +59,7 @@
         }
         return @{}.mutableCopy;
     }
-    return nil;
+    return @{};
 }
 
 - (NSDecimalNumber *)isDecimalValued {
@@ -71,7 +71,7 @@
         }
         return [NSDecimalNumber decimalNumberWithString:@"0"];
     }
-    return nil;
+    return [NSDecimalNumber decimalNumberWithString:@"0"];
 }
 
 - (BOOL)isNull {

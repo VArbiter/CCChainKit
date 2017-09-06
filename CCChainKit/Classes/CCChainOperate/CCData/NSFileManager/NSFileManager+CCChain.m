@@ -227,7 +227,7 @@ NSInteger const _CC_FILE_HASH_DEFAULT_CHUNK_SIZE_ = 1024 * 8;
         CFStringRef sContentRef = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension,
                                                                         (__bridge CFStringRef)(sExtension),
                                                                         NULL);
-        return CFBridgingRelease(sContentRef); // hanled to arc
+        return CFBridgingRelease(sContentRef); // hanleded to arc
     };
 }
 
@@ -253,6 +253,9 @@ NSInteger const _CC_FILE_HASH_DEFAULT_CHUNK_SIZE_ = 1024 * 8;
 
 - (unsigned long long)fileSizeT {
     return NSFileManager.defaultManager.fileSizeT(self);
+}
+- (unsigned long long)folderSizeT {
+    return NSFileManager.defaultManager.folderSizeT(self);
 }
 
 - (BOOL (^)(NSString *))moveTo {

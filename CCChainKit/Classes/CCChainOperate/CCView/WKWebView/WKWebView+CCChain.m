@@ -32,19 +32,24 @@
     };
 }
 
-- ( __kindof WKWebView *(^)(id))navigationDelegateT {
+- ( __kindof WKWebView *(^)(id<WKNavigationDelegate>))navigationDelegateT {
     __weak typeof(self) pSelf = self;
-    return ^WKWebView * (id d) {
+    return ^WKWebView * (id<WKNavigationDelegate> d) {
         if (d) pSelf.navigationDelegate = d;
         return pSelf;
     };
 }
 
-- ( __kindof WKWebView *(^)(CCScriptMessageDelegate *))script {
+- (__kindof WKWebView *(^)(CCScriptMessageDelegate *, NSString *))script {
     __weak typeof(self) pSelf = self;
-    return ^ __kindof WKWebView *(CCScriptMessageDelegate * d) {
-        if (d) d.scriptDelegate = d;
-        else d.scriptDelegate = nil;
+    return ^ __kindof WKWebView *(CCScriptMessageDelegate * d , NSString *s) {
+        if (d && s) {
+            [self.configuration.userContentController addScriptMessageHandler:d
+                                                                         name:s];
+        }
+        else if (s && s.length) {
+            [self.configuration.userContentController removeScriptMessageHandlerForName:s];
+        }
         return pSelf;
     };
 }

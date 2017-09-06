@@ -183,5 +183,23 @@
     };
 }
 
+@end
+
+#pragma mark - -----
+
+@implementation UIView (CCChain_Hud)
+
+- (MBProgressHUD *(^)())hud {
+    __weak typeof(self) pSelf = self;
+    return ^MBProgressHUD * {
+        return UIView.hudC(pSelf);
+    };
+}
+
++ (MBProgressHUD *(^)(UIView *))hudC {
+    return ^MBProgressHUD * (UIView *v){
+        return MBProgressHUD.initS(v);
+    };
+}
 
 @end
