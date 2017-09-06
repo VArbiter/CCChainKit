@@ -21,7 +21,9 @@
         c.backgroundColor = UIColor.clearColor;
         c.showsVerticalScrollIndicator = false;
         c.showsHorizontalScrollIndicator = false;
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
         c.prefetchingEnabled = YES;
+#endif
         
         [c registerClass:UICollectionViewCell.class
 forCellWithReuseIdentifier:_CC_COLLECTION_VIEW_HOLDER_ITEM_IDENTIFIER_];
@@ -30,18 +32,18 @@ forCellWithReuseIdentifier:_CC_COLLECTION_VIEW_HOLDER_ITEM_IDENTIFIER_];
     };
 }
 
-- ( __kindof UICollectionView *(^)(id))delegateT {
+- ( __kindof UICollectionView *(^)(id <UICollectionViewDelegateFlowLayout>))delegateT {
     __weak typeof(self) pSelf = self;
-    return ^ __kindof UICollectionView *(id v) {
+    return ^ __kindof UICollectionView *(id <UICollectionViewDelegateFlowLayout> v) {
         if (v) pSelf.delegate = v;
         else pSelf.delegate = nil;
         return pSelf;
     };
 }
 
-- ( __kindof UICollectionView *(^)(id))dataSourceT {
+- ( __kindof UICollectionView *(^)(id <UICollectionViewDataSource>))dataSourceT {
     __weak typeof(self) pSelf = self;
-    return ^ __kindof UICollectionView *(id v) {
+    return ^ __kindof UICollectionView *(id <UICollectionViewDataSource> v) {
         if (v) pSelf.dataSource = v;
         else pSelf.dataSource = nil;
         return pSelf;
@@ -49,9 +51,9 @@ forCellWithReuseIdentifier:_CC_COLLECTION_VIEW_HOLDER_ITEM_IDENTIFIER_];
 }
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
-- ( __kindof UICollectionView *(^)(id))prefetchingT {
+- ( __kindof UICollectionView *(^)(id <UICollectionViewDataSourcePrefetching>))prefetchingT {
     __weak typeof(self) pSelf = self;
-    return ^ __kindof UICollectionView *(id d) {
+    return ^ __kindof UICollectionView *(id <UICollectionViewDataSourcePrefetching> d) {
         if (d) pSelf.prefetchDataSource = d;
         else pSelf.prefetchDataSource = nil;
         return pSelf;
@@ -150,31 +152,31 @@ forCellWithReuseIdentifier:s];
 
 @implementation UICollectionViewFlowLayout (CCChain)
 
-+ (UICollectionViewFlowLayout *(^)())common {
-    return ^UICollectionViewFlowLayout * {
++ (__kindof UICollectionViewFlowLayout *(^)())common {
+    return ^__kindof UICollectionViewFlowLayout * {
         return UICollectionViewFlowLayout.alloc.init;
     };
 }
 
-- (UICollectionViewFlowLayout *(^)(CGSize))itemSizeC {
+- (__kindof UICollectionViewFlowLayout *(^)(CGSize))itemSizeC {
     __weak typeof(self) pSelf = self;
-    return ^UICollectionViewFlowLayout *(CGSize s) {
+    return ^__kindof UICollectionViewFlowLayout *(CGSize s) {
         pSelf.itemSize = s;
         return pSelf;
     };
 }
 
-- (UICollectionViewFlowLayout *(^)(UIEdgeInsets))sectionInsetC {
+- (__kindof UICollectionViewFlowLayout *(^)(UIEdgeInsets))sectionInsetC {
     __weak typeof(self) pSelf = self;
-    return ^UICollectionViewFlowLayout *(UIEdgeInsets s) {
+    return ^__kindof UICollectionViewFlowLayout *(UIEdgeInsets s) {
         pSelf.sectionInset = s;
         return pSelf;
     };
 }
 
-- (UICollectionViewFlowLayout *(^)(CGSize))headerSizeC {
+- (__kindof UICollectionViewFlowLayout *(^)(CGSize))headerSizeC {
     __weak typeof(self) pSelf = self;
-    return ^UICollectionViewFlowLayout *(CGSize s) {
+    return ^__kindof UICollectionViewFlowLayout *(CGSize s) {
         pSelf.headerReferenceSize = s;
         return pSelf;
     };

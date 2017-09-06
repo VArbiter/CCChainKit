@@ -11,15 +11,15 @@
 
 @interface UICollectionView (CCChain)
 
-/// enable prefetchiong
+/// auto enable prefetchiong if support
 @property (nonatomic , class , copy , readonly) __kindof UICollectionView *(^commonC)(CGRect frame, __kindof UICollectionViewFlowLayout *layout);
 
-@property (nonatomic , copy , readonly) __kindof UICollectionView *(^delegateT)(id delegate);
-@property (nonatomic , copy , readonly) __kindof UICollectionView *(^dataSourceT)(id dataSource);
+@property (nonatomic , copy , readonly) __kindof UICollectionView *(^delegateT)(id <UICollectionViewDelegateFlowLayout> delegate);
+@property (nonatomic , copy , readonly) __kindof UICollectionView *(^dataSourceT)(id <UICollectionViewDataSource> dataSource);
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 /// data source that pre-fetching
-@property (nonatomic , copy , readonly) __kindof UICollectionView *(^prefetchingT)(id prefetchDataSource);
+@property (nonatomic , copy , readonly) __kindof UICollectionView *(^prefetchingT)(id <UICollectionViewDataSourcePrefetching> prefetchDataSource);
 #endif
 
 /// requires that nib name is equal to cell's idetifier .
