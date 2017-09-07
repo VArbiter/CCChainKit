@@ -189,8 +189,8 @@ forCellWithReuseIdentifier:s];
 @interface CCCollectionChainDelegate ()
 
 @property (nonatomic , copy) BOOL (^blockDidSelect)(UICollectionView * , NSIndexPath *) ;
-@property (nonatomic , copy) void (^blockDidHightedCell)(UICollectionView * , NSIndexPath *) ;
-@property (nonatomic , copy) void (^blockDidUnhigntedCell)(UICollectionView * , NSIndexPath *) ;
+@property (nonatomic , copy) void (^blockDidHighlight)(UICollectionView * , NSIndexPath *) ;
+@property (nonatomic , copy) void (^blockDidUnHighlight)(UICollectionView * , NSIndexPath *) ;
 @property (nonatomic , copy) CGFloat (^blockMinimumLineSpacingInSection)(UICollectionView * , UICollectionViewLayout * , NSInteger ) ;
 @property (nonatomic , copy) CGFloat (^blockMinimumInterItemSpacingInSection)(UICollectionView * , UICollectionViewLayout * , NSInteger ) ;
 @property (nonatomic , copy) UIEdgeInsets (^blockSpacingBetweenSections)(UICollectionView * , UICollectionViewLayout * , NSInteger ) ;
@@ -214,18 +214,18 @@ forCellWithReuseIdentifier:s];
     };
 }
 
-- (CCCollectionChainDelegate *(^)(void (^)(UICollectionView *, NSIndexPath *)))didHightedCell {
+- (CCCollectionChainDelegate *(^)(void (^)(UICollectionView *, NSIndexPath *)))didHighlight {
     __weak typeof(self) pSelf = self;
     return ^CCCollectionChainDelegate *(void (^t)(UICollectionView *, NSIndexPath *)) {
-        if (t) pSelf.blockDidHightedCell = [t copy];
+        if (t) pSelf.blockDidHighlight  = [t copy];
         return pSelf;
     };
 }
 
-- (CCCollectionChainDelegate *(^)(void (^)(UICollectionView *, NSIndexPath *)))didUnhigntedCell {
+- (CCCollectionChainDelegate *(^)(void (^)(UICollectionView *, NSIndexPath *)))didUnHighlight {
     __weak typeof(self) pSelf = self;
     return ^CCCollectionChainDelegate *(void (^t)(UICollectionView *, NSIndexPath *)) {
-        if (t) pSelf.blockDidUnhigntedCell = [t copy];
+        if (t) pSelf.blockDidUnHighlight = [t copy];
         return pSelf;
     };
 }
@@ -264,12 +264,12 @@ forCellWithReuseIdentifier:s];
     }
 }
 - (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.blockDidHightedCell)
-        self.blockDidHightedCell(collectionView, indexPath);
+    if (self.blockDidHighlight)
+        self.blockDidHighlight(collectionView, indexPath);
 }
 - (void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.blockDidUnhigntedCell)
-        self.blockDidUnhigntedCell(collectionView, indexPath);
+    if (self.blockDidUnHighlight)
+        self.blockDidUnHighlight(collectionView, indexPath);
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(nonnull UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
     return self.blockMinimumLineSpacingInSection ? self.blockMinimumLineSpacingInSection(collectionView , collectionViewLayout , section) : .0f;

@@ -63,8 +63,8 @@
 @property (nonatomic , class , copy , readonly) CCCollectionChainDelegate < UICollectionViewDelegateFlowLayout > *(^common)();
 
 @property (nonatomic , copy , readonly) CCCollectionChainDelegate *(^didSelect)(BOOL (^)(UICollectionView *collectionView , NSIndexPath *indexPath)) ;
-@property (nonatomic , copy , readonly) CCCollectionChainDelegate *(^didHightedCell)(void(^)(UICollectionView *collectionView , NSIndexPath *indexPath)) ;
-@property (nonatomic , copy , readonly) CCCollectionChainDelegate *(^didUnhigntedCell)(void(^)(UICollectionView *collectionView , NSIndexPath *indexPath)) ;
+@property (nonatomic , copy , readonly) CCCollectionChainDelegate *(^didHighlight)(void(^)(UICollectionView *collectionView , NSIndexPath *indexPath)) ;
+@property (nonatomic , copy , readonly) CCCollectionChainDelegate *(^didUnHighlight)(void(^)(UICollectionView *collectionView , NSIndexPath *indexPath)) ;
 @property (nonatomic , copy , readonly) CCCollectionChainDelegate *(^minimumLineSpacingInSection)(CGFloat (^)(UICollectionView *collectionView , UICollectionViewLayout *layout , NSInteger iSection)) ;
 @property (nonatomic , copy , readonly) CCCollectionChainDelegate *(^minimumInterItemSpacingInSection)(CGFloat (^)(UICollectionView *collectionView , UICollectionViewLayout *layout , NSInteger iSection)) ;
 @property (nonatomic , copy , readonly) CCCollectionChainDelegate *(^spacingBetweenSections)(UIEdgeInsets (^)(UICollectionView *collectionView , UICollectionViewLayout *layout , NSInteger iSection)) ;
