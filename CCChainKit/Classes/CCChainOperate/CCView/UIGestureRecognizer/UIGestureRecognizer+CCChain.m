@@ -114,3 +114,52 @@ static const char * _CC_UIGESTURERECOGNIZER_ASSOCIATE_KEY_ = "CC_UIGESTURERECOGN
 }
 
 @end
+
+#pragma mark - -----
+
+@implementation UIView (CCChain_Gesture_Actions)
+
+- ( __kindof UIView *(^)( __kindof UIGestureRecognizer *))gesture {
+    __weak typeof(self) pSelf = self;
+    return ^ __kindof UIView *( __kindof UIGestureRecognizer *gr) {
+        if (gr) {
+            pSelf.userInteractionEnabled = YES;
+            [pSelf addGestureRecognizer:gr];
+        }
+        return pSelf;
+    };
+}
+
+- ( __kindof UIView *(^)(void (^)( __kindof UIView *, __kindof  UITapGestureRecognizer *)))tap {
+    __weak typeof(self) pSelf = self;
+    return ^UIView *(void (^t)(UIView *, UITapGestureRecognizer *)) {
+        return pSelf.tapC(1, t);
+    };
+}
+
+- ( __kindof UIView *(^)(NSInteger, void (^)( __kindof UIView *, __kindof UITapGestureRecognizer *)))tapC {
+    __weak typeof(self) pSelf = self;
+    return ^UIView *(NSInteger i, void(^t)(UIView * , UITapGestureRecognizer *)) {
+        return pSelf.gesture(UITapGestureRecognizer.common().tapC(i, ^(UIGestureRecognizer *tapGR) {
+            if (t) t(pSelf , (UITapGestureRecognizer *)tapGR);
+        }));
+    };
+}
+
+- ( __kindof UIView *(^)(void (^)( __kindof UIView *, __kindof UILongPressGestureRecognizer *)))press {
+    __weak typeof(self) pSelf = self;
+    return ^ __kindof UIView *(void (^t)( __kindof UIView *, __kindof UILongPressGestureRecognizer *)) {
+        return pSelf.pressC(.5f, t);
+    };
+}
+
+- ( __kindof UIView *(^)(CGFloat, void (^)( __kindof UIView *, __kindof UILongPressGestureRecognizer *)))pressC {
+    __weak typeof(self) pSelf = self;
+    return ^ __kindof UIView *(CGFloat f, void (^t)( __kindof UIView *, __kindof UILongPressGestureRecognizer *)) {
+        return pSelf.gesture(UILongPressGestureRecognizer.common().pressC(f, ^(UIGestureRecognizer *pressGR) {
+            if (t) t(pSelf , (UILongPressGestureRecognizer *) pressGR);
+        }));
+    };
+}
+
+@end

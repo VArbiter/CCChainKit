@@ -28,3 +28,12 @@
 @property (nonatomic , copy , readonly) NSMutableAttributedString *(^attributeS)(NSDictionary * attr);
 
 @end
+
+#pragma mark - -----
+
+@interface NSString (CCChain_AttributedString)
+
+@property (nonatomic , readonly) NSMutableAttributedString * toAttribute;
+@property (nonatomic , copy , readonly) NSMutableAttributedString *(^colorAttribute)(UIColor *color);
+
+@end

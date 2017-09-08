@@ -51,28 +51,6 @@
     };
 }
 
-+ (UIImage *(^)(UIColor *))colorS {
-    return ^UIImage *(UIColor *c) {
-        return self.colorC(c, CGSizeZero);
-    };
-}
-
-+ (UIImage *(^)(UIColor *, CGSize))colorC {
-    return ^UIImage *(UIColor *c , CGSize s) {
-        if (s.width <= .0f) s.width = 1.f;
-        if (s.height <= .0f) s.height = 1.f;
-        
-        CGRect rect = (CGRect){CGPointZero, s};
-        UIGraphicsBeginImageContext(rect.size);
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        CGContextSetFillColorWithColor(context, c.CGColor);
-        CGContextFillRect(context, rect);
-        UIImage *imageGenerate = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        return imageGenerate;
-    };
-}
-
 + (UIImage *(^)(__unsafe_unretained Class, NSString *))bundle {
     return ^UIImage *(Class c , NSString *s) {
         NSBundle *b = [NSBundle bundleForClass:c];
@@ -109,7 +87,8 @@
 @end
 
 #pragma mark - -----
-#import <Accelerate/Accelerate.h>
+@import Accelerate;
+@import CoreImage;
 
 CGFloat _CC_GAUSSIAN_BLUR_VALUE_ = .1f;
 CGFloat _CC_GAUSSIAN_BLUR_TINT_ALPHA_ = .25f;
@@ -392,30 +371,94 @@ CGFloat _CC_IMAGE_JPEG_COMPRESSION_QUALITY_SIZE_ = 400.f;
 
 - (CCImageType)type {
     NSData *data = [self copy];
-    if (!data) return CCImageTypeUnknow;
+    if (!data) return CCImageType_Unknow;
     
     UInt8 c = 0;
     [data getBytes:&c length:1];
     switch (c) {
-        case 0xFF:
-            return CCImageTypeJPEG;
-        case 0x89:
-            return CCImageTypePNG;
-        case 0x47:
-            return CCImageTypeGif;
+        case 0xFF: return CCImageType_JPEG;
+        case 0x89: return CCImageType_PNG;
+        case 0x47: return CCImageType_Gif;
         case 0x49:
-        case 0x4D:
-            return CCImageTypeTiff;
-        case 0x52:
+        case 0x4D: return CCImageType_Tiff;
+        case 0x52:{
             if (data.length < 12) {
-                return CCImageTypeUnknow;
+                return CCImageType_Unknow;
             }
+            // 0x52 == 'R' , and R is Riff for WEBP
+            NSString *s = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(0, 12)]
+                                                encoding:NSASCIIStringEncoding];
+            if ([s hasPrefix:@"RIFF"] && [s hasSuffix:@"WEBP"]) {
+                return CCImageType_WebP;
+            }
+        }
             
         default:
-            return CCImageTypeUnknow;
+            return CCImageType_Unknow;
             break;
     }
-    return CCImageTypeUnknow;
+    return CCImageType_Unknow;
+}
+
+@end
+
+#pragma mark - -----
+#import "CCCommon.h"
+#import "NSObject+CCProtocol.h"
+
+@implementation UIImageView (CCChain_Gaussian)
+
+- ( __kindof UIImageView *(^)())gussian {
+    __weak typeof(self) pSelf = self;
+    return ^ __kindof UIImageView * {
+        pSelf.image = [pSelf.image cc:^id(id sameObject) {
+            return CC_TYPE(UIImage *, sameObject).gaussianAcc();
+        }];
+        return pSelf;
+    };
+}
+
+- ( __kindof UIImageView *(^)(CGFloat))gussianT {
+    __weak typeof(self) pSelf = self;
+    return ^ __kindof UIImageView * (CGFloat f){
+        pSelf.image = [pSelf.image cc:^id(id sameObject) {
+            return CC_TYPE(UIImage *, sameObject).gaussianAccS(f);
+        }];
+        return pSelf;
+    };
+}
+
+@end
+
+#pragma mark - -----
+
+@implementation UIImageView (CCChain_Image)
+
+- ( __kindof UIImageView *(^)(UIImageRenderingMode))rendaring {
+    __weak typeof(self) pSelf = self;
+    return ^ __kindof UIImageView *(UIImageRenderingMode mode) {
+        pSelf.image = [pSelf.image cc:^id(id sameObject) {
+            return CC_TYPE(UIImage *, sameObject).rendering(mode);
+        }];
+        return pSelf;
+    };
+}
+
+- ( __kindof UIImageView *(^)(UIEdgeInsets))capInsets {
+    __weak typeof(self) pSelf = self;
+    return ^ __kindof UIImageView * (UIEdgeInsets insets) {
+        pSelf.image = [pSelf.image cc:^id(id sameObject) {
+            return CC_TYPE(UIImage *, sameObject).resizable(insets);
+        }];
+        return pSelf;
+    };
+}
+
+- ( __kindof UIImageView *(^)())alwaysOriginal {
+    __weak typeof(self) pSelf = self;
+    return ^ __kindof UIImageView * {
+        return pSelf.rendaring(UIImageRenderingModeAlwaysOriginal);
+    };
 }
 
 

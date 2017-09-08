@@ -32,43 +32,4 @@
     };
 }
 
-- ( __kindof UIImageView *(^)(UIImageRenderingMode))rendaring {
-    __weak typeof(self) pSelf = self;
-    return ^ __kindof UIImageView *(UIImageRenderingMode mode) {
-        [pSelf.image imageWithRenderingMode:mode];
-        return pSelf;
-    };
-}
-
-- ( __kindof UIImageView *(^)(UIEdgeInsets))capInsets {
-    __weak typeof(self) pSelf = self;
-    return ^ __kindof UIImageView * (UIEdgeInsets insets) {
-        [pSelf.image resizableImageWithCapInsets:insets];
-        return pSelf;
-    };
-}
-
-- ( __kindof UIImageView *(^)())alwaysOriginal {
-    __weak typeof(self) pSelf = self;
-    return ^ __kindof UIImageView * {
-        return pSelf.rendaring(UIImageRenderingModeAlwaysOriginal);
-    };
-}
-
-- ( __kindof UIImageView *(^)())gussian {
-    __weak typeof(self) pSelf = self;
-    return ^ __kindof UIImageView * {
-        CC(pSelf.image).gaussianAcc();
-        return pSelf;
-    };
-}
-
-- ( __kindof UIImageView *(^)(CGFloat))gussianT {
-    __weak typeof(self) pSelf = self;
-    return ^ __kindof UIImageView * (CGFloat f){
-        CC(pSelf.image).gaussianAccS(f);
-        return pSelf;
-    };
-}
-
 @end

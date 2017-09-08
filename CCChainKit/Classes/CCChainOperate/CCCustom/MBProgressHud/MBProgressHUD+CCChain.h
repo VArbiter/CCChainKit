@@ -26,7 +26,7 @@ typedef NS_ENUM(NSInteger , CCHudChainType) {
 @property (nonatomic , class , copy , readonly) __kindof MBProgressHUD *(^generate)();
 @property (nonatomic , class , copy , readonly) __kindof MBProgressHUD *(^generateS)(UIView *v);
 
-/// for userInteraction
+/// for block interact for user operate action .
 @property (nonatomic , copy , readonly) __kindof MBProgressHUD *(^enable)() ;
 @property (nonatomic , copy , readonly) __kindof MBProgressHUD *(^disableT)() ;
 
@@ -59,5 +59,6 @@ typedef NS_ENUM(NSInteger , CCHudChainType) {
 
 @property (nonatomic , copy , readonly) MBProgressHUD *(^hud)();
 @property (nonatomic , class , copy , readonly) MBProgressHUD *(^hudC)(UIView *view);
+@property (nonatomic , readonly) MBProgressHUD *asMBProgressHUD;
 
 @end

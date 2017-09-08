@@ -202,4 +202,14 @@
     };
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wincompatible-pointer-types"
+
+- (MBProgressHUD *)asMBProgressHUD {
+    if (self && [self isKindOfClass:MBProgressHUD.class]) return (MBProgressHUD *)self;
+    return self;
+}
+
+#pragma clang diagnostic pop
+
 @end

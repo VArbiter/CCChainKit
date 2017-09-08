@@ -101,7 +101,7 @@
     };
 }
 
-- (UIImagePickerController *(^)())cancel {
+- (UIImagePickerController *(^)(void (^)()))cancel {
     __weak typeof(self) pSelf = self;
     return ^UIImagePickerController * (void (^t)()){
         objc_setAssociatedObject(pSelf, "_CC_IMAGE_PICKER_USER_DID_CANCEL_", t, OBJC_ASSOCIATION_COPY_NONATOMIC);

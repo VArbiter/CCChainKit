@@ -119,13 +119,6 @@ CGFloat CCHScale(CGFloat h);
 @property (nonatomic , copy , readonly) __kindof UIView *(^edgeRound)(UIRectCorner rc , CGFloat radius);
 @property (nonatomic , copy , readonly) __kindof UIView *(^contentModeT)(UIViewContentMode mode);
 
-/// for gesture actions
-@property (nonatomic , copy , readonly) __kindof UIView *(^gesture)( __kindof UIGestureRecognizer *gr);
-@property (nonatomic , copy , readonly) __kindof UIView *(^tap)(void(^t)( __kindof UIView *v , __kindof UITapGestureRecognizer *gr));
-@property (nonatomic , copy , readonly) __kindof UIView *(^tapC)(NSInteger iCount , void(^t)( __kindof UIView *v , __kindof UITapGestureRecognizer *gr));
-@property (nonatomic , copy , readonly) __kindof UIView *(^press)(void(^t)(__kindof UIView *v , __kindof UILongPressGestureRecognizer *gr));
-@property (nonatomic , copy , readonly) __kindof UIView *(^pressC)(CGFloat fSeconds , void(^t)(__kindof UIView *v , __kindof UILongPressGestureRecognizer *gr));
-
 @end
 
 #pragma mark - -----

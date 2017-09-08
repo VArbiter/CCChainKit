@@ -10,7 +10,6 @@
 
 #import "NSObject+CCChain.h"
 #import "NSPredicate+CCChain.h"
-#import "NSAttributedString+CCChain.h"
 
 #import <CommonCrypto/CommonDigest.h>
 
@@ -33,13 +32,6 @@
             return ((NSString *)value).length > 0 ? [pSelf stringByAppendingPathComponent:(NSString *)value] : pSelf;
         }
         return [pSelf stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",value]];
-    };
-}
-
-- (NSMutableAttributedString *(^)(UIColor *))colorAttribute {
-    __weak typeof(self) pSelf = self;
-    return ^NSMutableAttributedString *(UIColor *color) {
-        return pSelf.toAttribute.color(color);
     };
 }
 

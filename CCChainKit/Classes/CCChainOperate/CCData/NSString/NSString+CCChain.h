@@ -25,8 +25,6 @@
 /// key , strings file , bundle , comment
 @property (nonatomic , class , copy , readonly) NSString *(^localizeS)(NSString * sKey , NSString * sStrings , NSBundle * bundle , NSString *sComment );
 
-@property (nonatomic , copy , readonly) NSMutableAttributedString *(^colorAttribute)(UIColor *color);
-
 @property (nonatomic , readonly) NSInteger toInteger ;
 @property (nonatomic , readonly) long long toLonglong ;
 @property (nonatomic , readonly) int toInt;
@@ -35,7 +33,6 @@
 @property (nonatomic , readonly) double toDouble ;
 
 @property (nonatomic , readonly) NSDecimalNumber * toDecimal; // only numbers .
-@property (nonatomic , readonly) NSMutableAttributedString * toAttribute;
 @property (nonatomic , readonly) NSDate * toDate; // yyyy-MM-dd HH:mm
 
 @property (nonatomic , copy , readonly) NSString *(^timeStick)(BOOL isNeedSpace) ;

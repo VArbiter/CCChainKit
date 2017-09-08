@@ -7,7 +7,6 @@
 //
 
 #import "UIColor+CCChain.h"
-#import "UIImage+CCChain.h"
 
 @implementation UIColor (CCChain)
 
@@ -91,6 +90,34 @@
                                   blue:t()
                                  alpha:1.f];
     return c;
+}
+
+@end
+
+#pragma mark - -----
+
+@implementation UIImage (CCChain_Color)
+
++ (UIImage *(^)(UIColor *))colorS {
+    return ^UIImage *(UIColor *c) {
+        return self.colorC(c, CGSizeZero);
+    };
+}
+
++ (UIImage *(^)(UIColor *, CGSize))colorC {
+    return ^UIImage *(UIColor *c , CGSize s) {
+        if (s.width <= .0f) s.width = 1.f;
+        if (s.height <= .0f) s.height = 1.f;
+        
+        CGRect rect = (CGRect){CGPointZero, s};
+        UIGraphicsBeginImageContext(rect.size);
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        CGContextSetFillColorWithColor(context, c.CGColor);
+        CGContextFillRect(context, rect);
+        UIImage *imageGenerate = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        return imageGenerate;
+    };
 }
 
 @end

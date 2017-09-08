@@ -36,3 +36,16 @@
 @property (nonatomic , copy , readonly) UILongPressGestureRecognizer *(^pressC)(CGFloat fSeconds , void(^)(UIGestureRecognizer *pressGR));
 
 @end
+
+#pragma mark - -----
+
+@interface UIView (CCChain_Gesture_Actions)
+
+/// for gesture actions
+@property (nonatomic , copy , readonly) __kindof UIView *(^gesture)( __kindof UIGestureRecognizer *gr);
+@property (nonatomic , copy , readonly) __kindof UIView *(^tap)(void(^t)( __kindof UIView *v , __kindof UITapGestureRecognizer *gr));
+@property (nonatomic , copy , readonly) __kindof UIView *(^tapC)(NSInteger iCount , void(^t)( __kindof UIView *v , __kindof UITapGestureRecognizer *gr));
+@property (nonatomic , copy , readonly) __kindof UIView *(^press)(void(^t)(__kindof UIView *v , __kindof UILongPressGestureRecognizer *gr));
+@property (nonatomic , copy , readonly) __kindof UIView *(^pressC)(CGFloat fSeconds , void(^t)(__kindof UIView *v , __kindof UILongPressGestureRecognizer *gr));
+
+@end

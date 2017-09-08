@@ -27,3 +27,13 @@
 @property (nonatomic , class , readonly) UIColor * random ;
 
 @end
+
+#pragma mark - -----
+
+@interface UIImage (CCChain_Color)
+
+/// generate a image with colors.
+@property (nonatomic , class , copy , readonly) UIImage *(^colorS)(UIColor *color);
+@property (nonatomic , class , copy , readonly) UIImage *(^colorC)(UIColor *color , CGSize size);
+
+@end

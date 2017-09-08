@@ -89,3 +89,20 @@
 }
 
 @end
+
+#pragma mark - -----
+
+@implementation NSString (CCChain_AttributedString)
+
+- (NSMutableAttributedString *)toAttribute {
+    return [[NSMutableAttributedString alloc] initWithString:self.isStringValued];
+}
+
+- (NSMutableAttributedString *(^)(UIColor *))colorAttribute {
+    __weak typeof(self) pSelf = self;
+    return ^NSMutableAttributedString *(UIColor *color) {
+        return pSelf.toAttribute.color(color);
+    };
+}
+
+@end

@@ -8,13 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger , CCImagePickerShowType) {
-    CCImagePickerShowTypeNone = 0 ,
-    CCImagePickerShowTypeCamera ,
-    CCImagePickerShowTypeLibrary ,
-    CCImagePickerShowTypeAlbum
-};
-
 typedef NS_OPTIONS(NSInteger , CCImageSaveType) {
     CCImageSaveTypeNone = 1 << 0 , // 1 save nothing , if options contains none , will ignore other save types
     CCImageSaveTypeOriginal = 1 << 1, // 2
@@ -41,7 +34,7 @@ typedef NS_OPTIONS(NSInteger , CCImageSaveType) {
 /// save specific type of images
 @property (nonatomic , copy , readonly) UIImagePickerController *(^save)(CCImageSaveType type);
 /// if user cancelled
-@property (nonatomic , copy , readonly) UIImagePickerController *(^cancel)();
+@property (nonatomic , copy , readonly) UIImagePickerController *(^cancel)(void (^)());
 /// if an error on saving process
 @property (nonatomic , copy , readonly) UIImagePickerController *(^errorIn)(void (^)(NSError *error));
 
