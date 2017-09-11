@@ -12,5 +12,6 @@
     #import "CCCommon.h"
     #import "CCSingleton.h"
     #import "CCAuthorize.h"
+    #import "CCAdvanceMacro.h"
 
 #endif /* CCChainCommon_h */

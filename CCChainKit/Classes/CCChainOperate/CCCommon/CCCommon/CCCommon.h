@@ -105,7 +105,6 @@
     #endif
 #endif
 
-
 /// returns uuid
 static NSString * _CC_UUID_;
 
