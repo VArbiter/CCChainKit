@@ -191,15 +191,15 @@
 
 @implementation UIView (CCChain_Hud)
 
-- (MBProgressHUD *(^)())hud {
+- (__kindof MBProgressHUD *(^)())hud {
     __weak typeof(self) pSelf = self;
-    return ^MBProgressHUD * {
+    return ^__kindof MBProgressHUD * {
         return UIView.hudC(pSelf);
     };
 }
 
-+ (MBProgressHUD *(^)(UIView *))hudC {
-    return ^MBProgressHUD * (UIView *v){
++ (__kindof MBProgressHUD *(^)(UIView *))hudC {
+    return ^__kindof MBProgressHUD * (UIView *v){
         return MBProgressHUD.initS(v);
     };
 }
@@ -207,7 +207,7 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wincompatible-pointer-types"
 
-- (MBProgressHUD *)asMBProgressHUD {
+- (__kindof MBProgressHUD *)asMBProgressHUD {
     if (self && [self isKindOfClass:MBProgressHUD.class]) return (MBProgressHUD *)self;
     return self;
 }

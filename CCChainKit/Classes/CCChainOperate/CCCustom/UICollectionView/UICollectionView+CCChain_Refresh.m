@@ -14,34 +14,34 @@
 
 @implementation UICollectionView (CCChain_Refresh)
 
-- (UICollectionView *) endLoading {
+- ( __kindof UICollectionView *) endLoading {
     CC(self).endRefresh.endLoading.endT();
     return self;
 }
 
-- (UICollectionView *)endRefresh {
+- ( __kindof UICollectionView *)endRefresh {
     [self.mj_header endRefreshing];
     return self;
 }
 
-- (UICollectionView *)endLoadMore {
+- ( __kindof UICollectionView *)endLoadMore {
     [self.mj_footer endRefreshing];
     return self;
 }
 
-- (UICollectionView *)resetLoadingStatus {
+- ( __kindof UICollectionView *)resetLoadingStatus {
     [self.mj_footer resetNoMoreData];
     return self;
 }
 
-- (UICollectionView *)noMoreData {
+- ( __kindof UICollectionView *)noMoreData {
     [self.mj_footer endRefreshingWithNoMoreData];
     return self;
 }
 
-- (UICollectionView *(^)(void (^)()))refreshing {
+- ( __kindof UICollectionView *(^)(void (^)()))refreshing {
     __weak typeof(self) pSelf = self;
-    return ^UICollectionView *(void (^t)()) {
+    return ^ __kindof UICollectionView *(void (^t)()) {
         [pSelf.mj_header beginRefreshingWithCompletionBlock:^{
             if (t) t();
         }];
@@ -49,9 +49,9 @@
     };
 }
 
-- (UICollectionView *(^)(void (^)()))loadingMore {
+- ( __kindof UICollectionView *(^)(void (^)()))loadingMore {
     __weak typeof(self) pSelf = self;
-    return ^UICollectionView *(void (^t)()) {
+    return ^ __kindof UICollectionView *(void (^t)()) {
         [pSelf.mj_footer beginRefreshingWithCompletionBlock:^{
             if (t) t();
         }];

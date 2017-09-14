@@ -8,7 +8,7 @@
 
 #if __has_include(<MBProgressHUD/MBProgressHUD.h>)
 
-#import <MBProgressHUD/MBProgressHUD.h>
+@import MBProgressHUD;
 
 typedef NS_ENUM(NSInteger , CCHudChainType) {
     CCHudChainTypeNone = 0 ,
@@ -59,9 +59,9 @@ typedef NS_ENUM(NSInteger , CCHudChainType) {
 
 @interface UIView (CCChain_Hud)
 
-@property (nonatomic , copy , readonly) MBProgressHUD *(^hud)();
-@property (nonatomic , class , copy , readonly) MBProgressHUD *(^hudC)(UIView *view);
-@property (nonatomic , readonly) MBProgressHUD *asMBProgressHUD;
+@property (nonatomic , copy , readonly) __kindof MBProgressHUD *(^hud)();
+@property (nonatomic , class , copy , readonly) __kindof MBProgressHUD *(^hudC)(UIView *view);
+@property (nonatomic , readonly) __kindof MBProgressHUD *asMBProgressHUD;
 
 @end
 

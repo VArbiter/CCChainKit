@@ -15,34 +15,34 @@
 
 @implementation UITableView (CCChain_Refresh)
 
-- (UITableView *) endLoading {
+- ( __kindof UITableView *) endLoading {
     CC(self).endRefresh.endLoading.endT();
     return self;
 }
 
-- (UITableView *)endRefresh {
+- ( __kindof UITableView *)endRefresh {
     [self.mj_header endRefreshing];
     return self;
 }
 
-- (UITableView *)endLoadMore {
+- ( __kindof UITableView *)endLoadMore {
     [self.mj_footer endRefreshing];
     return self;
 }
 
-- (UITableView *)resetLoadingStatus {
+- ( __kindof UITableView *)resetLoadingStatus {
     [self.mj_footer resetNoMoreData];
     return self;
 }
 
-- (UITableView *)noMoreData {
+- ( __kindof UITableView *)noMoreData {
     [self.mj_footer endRefreshingWithNoMoreData];
     return self;
 }
 
-- (UITableView *(^)(void (^)()))refreshing {
+- ( __kindof UITableView *(^)(void (^)()))refreshing {
     __weak typeof(self) pSelf = self;
-    return ^UITableView *(void (^t)()) {
+    return ^ __kindof UITableView *(void (^t)()) {
         [pSelf.mj_header beginRefreshingWithCompletionBlock:^{
             if (t) t();
         }];
@@ -50,9 +50,9 @@
     };
 }
 
-- (UITableView *(^)(void (^)()))loadingMore {
+- ( __kindof UITableView *(^)(void (^)()))loadingMore {
     __weak typeof(self) pSelf = self;
-    return ^UITableView *(void (^t)()) {
+    return ^ __kindof UITableView *(void (^t)()) {
         [pSelf.mj_footer beginRefreshingWithCompletionBlock:^{
             if (t) t();
         }];

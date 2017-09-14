@@ -15,15 +15,15 @@
 @interface UICollectionView (CCChain_Refresh)
 
 /// equals : endRefresh + endLoadMore
-@property (nonatomic , readonly) UICollectionView * endLoading ;
-@property (nonatomic , readonly) UICollectionView * endRefresh ;
-@property (nonatomic , readonly) UICollectionView * endLoadMore ;
+@property (nonatomic , readonly) __kindof UICollectionView * endLoading ;
+@property (nonatomic , readonly) __kindof UICollectionView * endRefresh ;
+@property (nonatomic , readonly) __kindof UICollectionView * endLoadMore ;
 
-@property (nonatomic , readonly) UICollectionView * resetLoadingStatus ;
-@property (nonatomic , readonly) UICollectionView * noMoreData ;
+@property (nonatomic , readonly) __kindof UICollectionView * resetLoadingStatus ;
+@property (nonatomic , readonly) __kindof UICollectionView * noMoreData ;
 
-@property (nonatomic , readonly) UICollectionView * (^refreshing)(void (^refresh)());
-@property (nonatomic , readonly) UICollectionView * (^loadingMore)(void (^loadMore)());
+@property (nonatomic , readonly) __kindof UICollectionView * (^refreshing)(void (^refresh)());
+@property (nonatomic , readonly) __kindof UICollectionView * (^loadingMore)(void (^loadMore)());
 
 @end
 

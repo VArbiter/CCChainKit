@@ -15,15 +15,15 @@
 @interface UITableView (CCChain_Refresh)
 
 /// equals : endRefresh + endLoadMore
-@property (nonatomic , readonly) UITableView * endLoading ;
-@property (nonatomic , readonly) UITableView * endRefresh ;
-@property (nonatomic , readonly) UITableView * endLoadMore ;
+@property (nonatomic , readonly) __kindof UITableView * endLoading ;
+@property (nonatomic , readonly) __kindof UITableView * endRefresh ;
+@property (nonatomic , readonly) __kindof UITableView * endLoadMore ;
 
-@property (nonatomic , readonly) UITableView * resetLoadingStatus ;
-@property (nonatomic , readonly) UITableView * noMoreData ;
+@property (nonatomic , readonly) __kindof UITableView * resetLoadingStatus ;
+@property (nonatomic , readonly) __kindof UITableView * noMoreData ;
 
-@property (nonatomic , readonly) UITableView * (^refreshing)(void (^refresh)());
-@property (nonatomic , readonly) UITableView * (^loadingMore)(void (^loadMore)());
+@property (nonatomic , readonly) __kindof UITableView * (^refreshing)(void (^refresh)());
+@property (nonatomic , readonly) __kindof UITableView * (^loadingMore)(void (^loadMore)());
 
 @end
 
