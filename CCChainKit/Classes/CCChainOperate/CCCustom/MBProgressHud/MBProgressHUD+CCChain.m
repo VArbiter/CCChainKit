@@ -8,6 +8,8 @@
 
 #import "MBProgressHUD+CCChain.h"
 
+#if __has_include(<MBProgressHUD/MBProgressHUD.h>)
+
 @implementation MBProgressHUD (CCChain)
 
 + ( __kindof MBProgressHUD *(^)())initC {
@@ -213,3 +215,5 @@
 #pragma clang diagnostic pop
 
 @end
+
+#endif

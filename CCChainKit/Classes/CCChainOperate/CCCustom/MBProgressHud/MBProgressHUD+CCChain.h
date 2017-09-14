@@ -6,6 +6,8 @@
 //  Copyright © 2017 冯明庆. All rights reserved.
 //
 
+#if __has_include(<MBProgressHUD/MBProgressHUD.h>)
+
 #import <MBProgressHUD/MBProgressHUD.h>
 
 typedef NS_ENUM(NSInteger , CCHudChainType) {
@@ -62,3 +64,5 @@ typedef NS_ENUM(NSInteger , CCHudChainType) {
 @property (nonatomic , readonly) MBProgressHUD *asMBProgressHUD;
 
 @end
+
+#endif
