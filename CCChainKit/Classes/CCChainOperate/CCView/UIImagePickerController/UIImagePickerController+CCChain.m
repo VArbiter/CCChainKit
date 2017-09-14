@@ -38,10 +38,20 @@
             if (t) t();
             return pSelf;
         }
-        pSelf.sourceType = UIImagePickerControllerSourceTypeCamera;
-        pSelf.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
-        pSelf.showsCameraControls = YES;
-        return pSelf;
+        if (_CC_IS_SIMULATOR_) {
+            NSLog(@"\n \
+                  Simulator is not support camera . \n \
+                  UIImagePickerController will change \"sourceType\" \
+                  \t from \"UIImagePickerControllerSourceTypeCamera\" \
+                  \t to \"UIImagePickerControllerSourceTypePhotoLibrary\". \n");
+            return pSelf.photoLibraryT(t);
+        }
+        else {
+            pSelf.sourceType = UIImagePickerControllerSourceTypeCamera;
+            pSelf.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
+            pSelf.showsCameraControls = YES;
+            return pSelf;
+        }
     };
 }
 

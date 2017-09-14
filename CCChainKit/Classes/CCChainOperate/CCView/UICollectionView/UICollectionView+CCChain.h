@@ -80,7 +80,7 @@
 @property (nonatomic , copy , readonly) CCCollectionChainDataSource *(^sections)(NSInteger (^)(UICollectionView *collectionView)) ;
 @property (nonatomic , copy , readonly) CCCollectionChainDataSource *(^itemsInSections)(NSInteger(^)(UICollectionView * collectionView , NSInteger iSections)) ;
 @property (nonatomic , copy , readonly) CCCollectionChainDataSource *(^identifierS)(NSString *(^)(UICollectionView * collectionView , NSIndexPath * indexPath)) ;
-@property (nonatomic , copy , readonly) CCCollectionChainDataSource *(^configCell)(__kindof UICollectionViewCell *(^)(UICollectionView * collectionView , UICollectionViewCell * tCell , NSIndexPath * indexPath));
+@property (nonatomic , copy , readonly) CCCollectionChainDataSource *(^configCell)(__kindof UICollectionViewCell *(^)(UICollectionView * collectionView , __kindof UICollectionViewCell * tCell , NSIndexPath * indexPath));
 
 @end
 

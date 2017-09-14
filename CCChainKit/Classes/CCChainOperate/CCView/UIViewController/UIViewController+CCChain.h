@@ -10,7 +10,7 @@
 
 @interface UIViewController (CCChain)
 
-/// remove all animated for pushing && presenting .
+/// remove all animated for pushing && presenting && adding && removing
 @property (nonatomic , copy , readonly) __kindof UIViewController *disableAnimated;
 @property (nonatomic , copy , readonly) __kindof UIViewController *enableAnimated;
 
@@ -33,6 +33,8 @@
 
 @property (nonatomic , copy , readonly) __kindof UIViewController *(^present)(__kindof UIViewController *vc);
 @property (nonatomic , copy , readonly) __kindof UIViewController *(^presentT)(__kindof UIViewController *vc , void(^complete)());
+/// clear color == backgroundColor
+@property (nonatomic , copy , readonly) __kindof UIViewController *(^presentClearT)(__kindof UIViewController *vc , void(^complete)());
 
 /// deafult enable animated , fade in , fade out .
 @property (nonatomic , copy , readonly) __kindof UIViewController *(^addViewFrom)(__kindof UIViewController *vc , CGFloat fAnimatedDuration);

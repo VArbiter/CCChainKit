@@ -154,7 +154,7 @@ static NSArray *__arrayKeys = nil;
 - (CCMenuView *(^)(CGRect, NSArray<NSDictionary<NSString *,NSString *> *> *))showT {
     __weak typeof(self) pSelf = self;
     return ^CCMenuView *(CGRect r, NSArray<NSDictionary<NSString *,NSString *> *> * a) {
-        if (self.menuController.isMenuVisible || !a.count) return pSelf;
+        if (pSelf.menuController.isMenuVisible || !a.count) return pSelf;
         
         NSMutableArray *akeys = [NSMutableArray array];
         [a enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -162,11 +162,10 @@ static NSArray *__arrayKeys = nil;
                 [akeys addObject:obj.allKeys.firstObject];
             }
         }];
-        self.class.arrayKeys = akeys;
+        pSelf.class.arrayKeys = akeys;
         
-        [self.arrayMenuItem removeAllObjects];
+        [pSelf.arrayMenuItem removeAllObjects];
         
-        __weak typeof(self) pSelf = self;
         [a enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSString *sKey = obj.allKeys.firstObject;
             NSString *sValue = obj.allValues.firstObject;
@@ -192,12 +191,12 @@ static NSArray *__arrayKeys = nil;
             }
         }];
         
-        self.menuController.menuItems = self.arrayMenuItem;
-        [self becomeFirstResponder];
-        [self.menuController setTargetRect:r
-                                    inView:pSelf];
-        [self.menuController setMenuVisible:YES
-                                   animated:YES];
+        pSelf.menuController.menuItems = pSelf.arrayMenuItem;
+        [pSelf becomeFirstResponder];
+        [pSelf.menuController setTargetRect:r
+                                     inView:pSelf];
+        [pSelf.menuController setMenuVisible:YES
+                                    animated:YES];
         return pSelf;
     };
 }

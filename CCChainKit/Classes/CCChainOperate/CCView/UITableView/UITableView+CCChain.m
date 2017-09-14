@@ -337,7 +337,7 @@
 @property (nonatomic , copy) NSInteger (^blockSections)(UITableView *);
 @property (nonatomic , copy) NSInteger (^blockRowsInSections)(UITableView *  , NSInteger );
 @property (nonatomic , copy) NSString * (^blockCellIdentifier)(UITableView * , NSIndexPath *) ;
-@property (nonatomic , copy) UITableViewCell * (^blockConfigCell)(UITableView * , UITableViewCell * , NSIndexPath *) ;
+@property (nonatomic , copy) __kindof UITableViewCell * (^blockConfigCell)(UITableView * , __kindof UITableViewCell * , NSIndexPath *) ;
 
 @end
 
@@ -371,9 +371,9 @@
         return pSelf;
     };
 }
-- (CCTableChainDataSource *(^)(__kindof UITableViewCell *(^)(UITableView *, UITableViewCell *, NSIndexPath *)))configCell {
+- (CCTableChainDataSource *(^)(__kindof UITableViewCell *(^)(UITableView *, __kindof UITableViewCell *, NSIndexPath *)))configCell {
     __weak typeof(self) pSelf = self;
-    return ^CCTableChainDataSource *(__kindof UITableViewCell *(^t)(UITableView *, UITableViewCell *, NSIndexPath *)) {
+    return ^CCTableChainDataSource *(__kindof UITableViewCell *(^t)(UITableView *, __kindof UITableViewCell *, NSIndexPath *)) {
         pSelf.blockConfigCell = [t copy];
         return pSelf;
     };

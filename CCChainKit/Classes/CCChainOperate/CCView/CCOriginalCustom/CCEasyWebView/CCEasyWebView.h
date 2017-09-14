@@ -21,7 +21,8 @@
 
 // a chain bridge for WKNavigationDelegate
 
-@property (nonatomic , copy , readonly) CCEasyWebView *(^authChallenge)(BOOL isWithoutAnyDoubt); // default is YES
+/// default is YES , allow all challenges .
+@property (nonatomic , copy , readonly) CCEasyWebView *(^authChallenge)(BOOL isWithoutAnyDoubt);
 
 /// if webview receive a auth challenge
 /// note : if not implemented 'dealAuthChallenge' ,
@@ -33,7 +34,7 @@
 /// if decidedByUser was implemented .
 /// then the choice of whether trust a certificate or not , was decided by users .
 /// note : use modal to presented a alertcontroller .
-@property (nonatomic , copy , readonly) CCEasyWebView *(^decidedByUser)(void (^alert)(UIAlertController *controller));
+@property (nonatomic , copy , readonly) CCEasyWebView *(^decidedByUser)(NSString *sAppName , void (^alert)(UIAlertController *controller));
 
 @property (nonatomic , copy , readonly) CCEasyWebView *(^policyForAction)(WKNavigationActionPolicy(^decision)(WKNavigationAction * action));
 @property (nonatomic , copy , readonly) CCEasyWebView *(^policyForResponse)(WKNavigationResponsePolicy(^decisionR)(WKNavigationResponse *response));

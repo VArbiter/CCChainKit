@@ -15,6 +15,7 @@
 @property (nonatomic , strong) WKUserContentController *userContentController ;
 @property (nonatomic , strong) CCScriptMessageDelegate *messageDelegate ;
 
+@property (nonatomic , copy) NSString *sAppName ;
 @property (nonatomic , assign) BOOL isTrustWithoutAnyDoubt;
 @property (nonatomic , copy) void (^challenge)(WKWebView *webView ,
                 NSURLAuthenticationChallenge * challenge,
@@ -99,10 +100,13 @@
     };
 }
 
-- (CCEasyWebView *(^)(void (^)(UIAlertController *)))decidedByUser {
+- (CCEasyWebView *(^)(NSString *, void (^)(UIAlertController *)))decidedByUser{
     __weak typeof(self) pSelf = self;
-    return ^CCEasyWebView *(void (^t)(UIAlertController *)) {
-        if (t) pSelf.alertS = [t copy];
+    return ^CCEasyWebView *(NSString *s , void (^t)(UIAlertController *)) {
+        if (t) {
+            pSelf.sAppName = s;
+            pSelf.alertS = [t copy];
+        }
         return pSelf;
     };
 }
@@ -192,7 +196,7 @@
 - (CCEasyWebView *(^)(void (^)(double)))loadingProgress {
     __weak typeof(self) pSelf = self;
     return ^CCEasyWebView *(void (^t)(double)) {
-        pSelf.progress = [t copy];
+        if (t) pSelf.progress = [t copy];
         return pSelf;
     };
 }
@@ -248,9 +252,9 @@
                 SecCertificateRef certRef = SecTrustGetCertificateAtIndex(secTrustRef, 0);
                 CFStringRef cfCertSummaryRef =  SecCertificateCopySubjectSummary(certRef);
                 NSString *certSummary = (NSString *)CFBridgingRelease(cfCertSummaryRef);
-                NSString *title = @"该服务器无法验证";
+                NSString *title = @"This server can not be trusted.";
                 
-                NSString *message = [NSString stringWithFormat:@" 是否通过来自%@标识为 %@证书为%@的验证. \n%@" , @"我的app",hostName,certSummary, errorStr];
+                NSString *message = [NSString stringWithFormat:@"receive a host challenge %@ from %@ , certificate summary : %@ .\n%@" , hostName , self.sAppName , certSummary , errorStr];
                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
                 [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel"
                                                                     style:UIAlertActionStyleDefault

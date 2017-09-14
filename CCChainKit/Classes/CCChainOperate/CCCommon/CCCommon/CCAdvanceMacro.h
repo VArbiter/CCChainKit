@@ -63,9 +63,9 @@ static void CC_ON_EXIT_BLOCK(__strong void(^*block)(void)) {
 /// used to decorate the c-functions (c-functions only)
 /// excute after main was finished .
 /// note : if specific '_priority_' , the functions will execute in the level you gave (and counted constructor).
-#ifndef CC_VERY_LAST_END
-    #define CC_VERY_LAST_END __attribute__((destructor))
-    #define CC_VERY_LAST_END_PRIORITY(_priority_) __attribute__((destructor(##_priority_)))
+#ifndef CC_DEAD_LAST_END
+    #define CC_DEAD_LAST_END __attribute__((destructor))
+    #define CC_DEAD_LAST_END_PRIORITY(_priority_) __attribute__((destructor(##_priority_)))
 #endif
 
 /// for c-type functions that not required to have a return value .

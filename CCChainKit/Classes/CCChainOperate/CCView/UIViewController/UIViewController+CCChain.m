@@ -106,11 +106,12 @@
 
 - (__kindof UIViewController *(^)( __kindof UIViewController *, BOOL)) pushS {
     __weak typeof(self) pSelf = self;
-    return ^__kindof UIViewController *(__kindof UIViewController *vc , BOOL b) {
+    return ^__kindof UIViewController *(__kindof UIViewController *vc , BOOL isHide) {
         if (!vc || ![vc isKindOfClass:UIViewController.class]) return pSelf;
         if (pSelf.navigationController) {
             id o = objc_getAssociatedObject(pSelf, "_CC_CHAIN_CONTROLLER_DISABLE_ANIMATED_");
             BOOL b = o ? [o boolValue] : YES;
+            vc.hidesBottomBarWhenPushed = isHide;
             [pSelf.navigationController pushViewController:vc
                                                   animated:b];
             return pSelf;
@@ -133,8 +134,24 @@
         if (!vc || ![vc isKindOfClass:UIViewController.class]) return pSelf;
         id o = objc_getAssociatedObject(pSelf, "_CC_CHAIN_CONTROLLER_DISABLE_ANIMATED_");
         BOOL b = o ? [o boolValue] : YES;
-        [pSelf presentViewController:vc animated:b completion:t];
+        // solve the delay problem .
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [pSelf presentViewController:vc
+                                animated:b
+                              completion:t];
+        });
         return pSelf;
+    };
+}
+
+- (__kindof UIViewController *(^)(__kindof UIViewController *, void (^)()))presentClearT {
+    __weak typeof(self) pSelf = self;
+    return ^__kindof UIViewController *(__kindof UIViewController *vc , void (^t)()) {
+        if (!vc || ![vc isKindOfClass:UIViewController.class]) return pSelf;
+        vc.providesPresentationContextTransitionStyle = YES;
+        vc.definesPresentationContext = YES;
+        [vc setModalPresentationStyle:UIModalPresentationOverCurrentContext];
+        return pSelf.presentT(vc , t);
     };
 }
 

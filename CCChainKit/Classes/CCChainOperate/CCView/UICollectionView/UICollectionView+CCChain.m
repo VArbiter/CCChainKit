@@ -297,7 +297,7 @@ forCellWithReuseIdentifier:s];
 @property (nonatomic , copy) NSInteger (^blockSections)(UICollectionView *) ;
 @property (nonatomic , copy) NSInteger (^blockItemsInSections)(UICollectionView *  , NSInteger ) ;
 @property (nonatomic , copy) NSString *(^blockCellIdentifier)(UICollectionView *  , NSIndexPath * ) ;
-@property (nonatomic , copy) UICollectionViewCell *(^blockConfigCell)(UICollectionView *  , UICollectionViewCell *  , NSIndexPath * );
+@property (nonatomic , copy) __kindof UICollectionViewCell *(^blockConfigCell)(UICollectionView *  , __kindof UICollectionViewCell *  , NSIndexPath * );
 
 @end
 
@@ -334,9 +334,9 @@ forCellWithReuseIdentifier:s];
     };
 }
 
-- (CCCollectionChainDataSource *(^)(__kindof UICollectionViewCell *(^)(UICollectionView *, UICollectionViewCell *, NSIndexPath *)))configCell {
+- (CCCollectionChainDataSource *(^)(__kindof UICollectionViewCell *(^)(UICollectionView *, __kindof UICollectionViewCell *, NSIndexPath *)))configCell {
     __weak typeof(self) pSelf = self;
-    return ^CCCollectionChainDataSource *(__kindof UICollectionViewCell *(^t)(UICollectionView *, UICollectionViewCell *, NSIndexPath *)) {
+    return ^CCCollectionChainDataSource *(__kindof UICollectionViewCell *(^t)(UICollectionView *, __kindof UICollectionViewCell *, NSIndexPath *)) {
         if (t) pSelf.blockConfigCell = [t copy];
         return pSelf;
     };

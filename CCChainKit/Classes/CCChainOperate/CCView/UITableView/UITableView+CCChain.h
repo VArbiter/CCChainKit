@@ -75,7 +75,7 @@
 @property (nonatomic , copy , readonly) CCTableChainDataSource *(^sections)(NSInteger (^)(UITableView *tableView));
 @property (nonatomic , copy , readonly) CCTableChainDataSource *(^rowsInSections)(NSInteger (^)(UITableView * tableView , NSInteger iSection));
 @property (nonatomic , copy , readonly) CCTableChainDataSource *(^cellIdentifier)(NSString *(^)(UITableView *tableView , NSIndexPath *indexPath));
-@property (nonatomic , copy , readonly) CCTableChainDataSource *(^configCell)(__kindof UITableViewCell *(^)(UITableView *tableView , UITableViewCell *tCell , NSIndexPath *indexPath));
+@property (nonatomic , copy , readonly) CCTableChainDataSource *(^configCell)(__kindof UITableViewCell *(^)(UITableView *tableView , __kindof UITableViewCell *tCell , NSIndexPath *indexPath));
 
 @end
 
