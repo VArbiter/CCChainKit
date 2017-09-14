@@ -10,8 +10,6 @@
 
 #if __has_include(<MGJRouter/MGJRouter.h>)
 
-#import <MGJRouter/MGJRouter.h>
-
 @interface CCBridgeRouter () < NSCopying , NSMutableCopying >
 
 @property (nonatomic , copy , readonly) NSString *(^format)(NSString *);

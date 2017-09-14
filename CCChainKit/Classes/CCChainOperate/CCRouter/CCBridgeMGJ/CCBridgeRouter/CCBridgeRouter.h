@@ -10,6 +10,8 @@
 
 #if __has_include(<MGJRouter/MGJRouter.h>)
 
+@import MGJRouter;
+
 @interface CCBridgeRouter : NSObject
 
 @property (nonatomic , class , copy , readonly) CCBridgeRouter *(^shared)();
