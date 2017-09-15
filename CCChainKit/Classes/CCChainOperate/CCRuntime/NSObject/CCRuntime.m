@@ -14,7 +14,7 @@ CCQueue CC_MAIN_QUEUE() {
     return dispatch_get_main_queue();
 }
 
-@interface CCRuntime () /*< NSCopying , NSMutableCopying >*/
+@interface CCRuntime ()
 
 @end
 
@@ -23,11 +23,6 @@ CCQueue CC_MAIN_QUEUE() {
 static CCRuntime *__instance = nil;
 + (CCRuntime *(^)())runtime {
     return ^CCRuntime * {
-        /*
-        if (_instance) return _instance;
-        _instance = [[CCRuntime alloc] init];
-        return _instance;
-         */
         if (__instance) return __instance;
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
@@ -36,24 +31,6 @@ static CCRuntime *__instance = nil;
         return __instance;
     };
 }
-/*
-+ (instancetype)allocWithZone:(struct _NSZone *)zone {
-    if (_instance) return _instance;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _instance = [[super allocWithZone:zone] init];
-    });
-    return _instance;
-}
-- (id)copyWithZone:(NSZone *)zone {
-    return __instance;
-}
-
-- (id)mutableCopyWithZone:(NSZone *)zone {
-    return __instance;
-}
- */
-
 
 - (CCRuntime *(^)(SEL, SEL))swizz {
     __weak typeof(self) pSelf = self;
