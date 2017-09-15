@@ -246,6 +246,9 @@ static const char * _CC_RLM_NOTIFICATION_KEY_ = "_CC_RLM_NOTIFICATION_KEY_";
 }
 
 - (CCRealmHandler *(^)(NSString *))destory {
+#if !DEBUG
+    __weak typeof(self) pSelf = self;
+#endif
     return ^CCRealmHandler * (NSString *base){
         // still default configuration
         RLMRealmConfiguration *c = [RLMRealmConfiguration defaultConfiguration];
@@ -267,10 +270,10 @@ static const char * _CC_RLM_NOTIFICATION_KEY_ = "_CC_RLM_NOTIFICATION_KEY_";
 #if DEBUG
                 @throw @"delete Error .";
 #else
-                void (^b)(BOOL) = objc_getAssociatedObject(self, _CC_RLM_SUCCEED_KEY_);
+                void (^b)(BOOL) = objc_getAssociatedObject(pSelf, _CC_RLM_SUCCEED_KEY_);
                 if (b) {b(error ? false : YES);}
                 if (error) {
-                    void (^e)(NSError *) = objc_getAssociatedObject(self, _CC_RLM_ERROR_KEY_);
+                    void (^e)(NSError *) = objc_getAssociatedObject(pSelf, _CC_RLM_ERROR_KEY_);
                     if (e) {e(error);}
                 }
 #endif
