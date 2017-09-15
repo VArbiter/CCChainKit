@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'CCChainKit'
-  s.version          = '0.2.0'
+  s.version          = '0.2.1'
   s.summary          = 'CCChainKit.'
 
   s.description      = <<-DESC
@@ -28,6 +28,7 @@ Pod::Spec.new do |s|
   s.default_subspec = 'CCCore'
 
   s.subspec 'CCCore' do |coreT|
+    coreT.source_files = 'CCChainKit/Classes/*.h'
     coreT.dependency 'CCChainKit/CCData'
     coreT.dependency 'CCChainKit/CCView'
     coreT.dependency 'CCChainKit/CCRuntime'

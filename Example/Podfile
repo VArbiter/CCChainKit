@@ -2,7 +2,7 @@ platform :ios, '8.0'
 
 target 'CCChainKit_Example' do
     use_frameworks!
-#  pod 'CCChainKit', :path => '../'
+  pod 'CCChainKit/CCFull', :path => '../'
 
     pod 'MBProgressHUD', '~> 1.0.0'
     
