@@ -10,102 +10,114 @@
 
 #if __has_include(<MGJRouter/MGJRouter.h>)
 
+NSString * const _CC_ROUTER_PARAMS_URL_ = @"CC_ROUTER_PARAMS_URL";
+NSString * const _CC_ROUTER_PARAMS_COMPLETION_ = @"CC_ROUTER_PARAMS_COMPLETION";
+NSString * const _CC_ROUTER_PARAMS_USER_INFO_ = @"CC_ROUTER_PARAMS_USER_INFO";
+NSString * const _CC_ROUTER_FALL_BACK_URL_ = @"loveCC://";
+
 @interface CCBridgeRouter () < NSCopying , NSMutableCopying >
 
 @property (nonatomic , copy , readonly) NSString *(^format)(NSString *);
-@property (nonatomic , copy , readonly) NSString *(^append)(NSString *);
+
+@property (nonatomic , copy , readonly) NSDictionary *(^transferMGJ)(NSDictionary *d) ;
 
 @end
 
-static CCBridgeRouter *_router = nil;
-static NSString * _CC_ROUTER_FALL_BACK_URL_ = @"loveCC://";
+static CCBridgeRouter *__router = nil;
 
 @implementation CCBridgeRouter
 
 + (CCBridgeRouter *(^)())shared {
     return ^CCBridgeRouter * {
-        if (_router) return _router;
-        _router = [[CCBridgeRouter alloc] init];
-        return _router;
+        if (__router) return __router;
+        __router = [[CCBridgeRouter alloc] init];
+        return __router;
     };
 }
 
 + (instancetype)allocWithZone:(struct _NSZone *)zone {
-    if (_router) return _router;
+    if (__router) return __router;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _router = [super allocWithZone:zone];
+        __router = [super allocWithZone:zone];
     });
-    return _router;
+    return __router;
 }
 
 - (id)copyWithZone:(NSZone *)zone {
-    return _router;
+    return __router;
 }
 - (id)mutableCopyWithZone:(NSZone *)zone {
-    return _router;
+    return __router;
 }
 
 #pragma mark - 
 
-- (void (^)(dispatch_block_t))fallback {
-    return ^(dispatch_block_t t) {
+- (CCBridgeRouter * (^)(dispatch_block_t))fallback {
+    __weak typeof(self) pSelf = self;
+    return ^CCBridgeRouter *(dispatch_block_t t) {
         [MGJRouter registerURLPattern:_CC_ROUTER_FALL_BACK_URL_ toHandler:^(NSDictionary *routerParameters) {
             if (t) t();
         }];
+        return pSelf;
     };
 }
 
-- (void (^)(NSString *, id , void(^)(NSDictionary *)))regist {
+- (CCBridgeRouter * (^)(NSString * , void(^)(NSDictionary *)))regist {
     __weak typeof(self) pSelf = self;
-    return ^(NSString *url , id b, void(^t)(NSDictionary *)) {
-        if (b) pSelf.object(url, ^id (id value){
-            return b;
-        });
+    return ^CCBridgeRouter *(NSString *url , void(^t)(NSDictionary *)) {
         [MGJRouter registerURLPattern:pSelf.format(url) toHandler:^(NSDictionary *routerParameters) {
-            if (t) t(routerParameters[MGJRouterParameterUserInfo]);
+            if (t) t(pSelf.transferMGJ(routerParameters));
         }];
+        return pSelf;
     };
 }
 
-- (void (^)(NSString * , dispatch_block_t))call {
+- (CCBridgeRouter * (^)(NSString * , dispatch_block_t))call {
     __weak typeof(self) pSelf = self;
-    return ^(NSString *url , dispatch_block_t t) {
+    return ^CCBridgeRouter *(NSString *url , dispatch_block_t t) {
         if ([MGJRouter canOpenURL:pSelf.format(url)]) {
             [MGJRouter openURL:pSelf.format(url)];
         } else if (t) t();
+        return pSelf;
     };
 }
 
-- (void (^)(NSString *, id, void(^)(id), dispatch_block_t))callP {
+- (CCBridgeRouter * (^)(NSString *, id, dispatch_block_t))callP {
     __weak typeof(self) pSelf = self;
-    return ^(NSString *url , id p , void(^c)(id) , dispatch_block_t f) {
+    return ^CCBridgeRouter *(NSString *url , id p , dispatch_block_t f) {
         if (![MGJRouter canOpenURL:pSelf.format(url)]) {
             if (f) f();
-            return ;
+            return pSelf;
         }
         
         [MGJRouter openURL:pSelf.format(url) withUserInfo:p completion:nil];
-        if (c) c(pSelf.get(url, nil, ^{
-            if (f) f();
-        }));
+        return pSelf;
     };
 }
 
-- (void (^)(NSString *, id (^)(id)))object {
+- (CCBridgeRouter * (^)(NSString *, id (^)(id)))object {
     __weak typeof(self) pSelf = self;
-    return ^(NSString *url , id (^t)(id)) {
-        [MGJRouter registerURLPattern:pSelf.append(pSelf.format(url)) toObjectHandler:^id(NSDictionary *routerParameters) {
-            if (t) return t(routerParameters[MGJRouterParameterUserInfo]);
+    return ^CCBridgeRouter *(NSString *url , id (^t)(id)) {
+        [MGJRouter registerURLPattern:pSelf.format(url) toObjectHandler:^id(NSDictionary *routerParameters) {
+            if (t) return t(pSelf.transferMGJ(routerParameters));
             return nil;
         }];
+        return pSelf;
     };
 }
 
-- (id (^)(NSString *, NSDictionary *, dispatch_block_t))get {
+- (id (^)(NSString *, dispatch_block_t))get {
+    __weak typeof(self) pSelf = self;
+    return ^id (NSString *url , dispatch_block_t t) {
+        return pSelf.getP(url, nil, t);
+    };
+}
+
+- (id (^)(NSString *, NSDictionary *, dispatch_block_t))getP {
     __weak typeof(self) pSelf = self;
     return ^id (NSString *url , NSDictionary * p, dispatch_block_t t) {
-        id v = [MGJRouter objectForURL:pSelf.append(pSelf.format(url)) withUserInfo:p];
+        id v = [MGJRouter objectForURL:pSelf.format(url) withUserInfo:p];
         if (v) return v;
         else if (t) t();
         return nil;
@@ -129,10 +141,13 @@ static NSString * _CC_ROUTER_FALL_BACK_URL_ = @"loveCC://";
     };
 }
 
-- (NSString *(^)(NSString *))append {
-    return ^NSString *(NSString * s) {
-        if (s) return [s stringByAppendingString:@"/cc_append_object"];
-        return [s stringByAppendingString:@""];
+- (NSDictionary *(^)(NSDictionary *))transferMGJ {
+    return ^NSDictionary *(NSDictionary *d) {
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        [dict setValue:d[MGJRouterParameterURL] forKey:_CC_ROUTER_PARAMS_URL_];
+        [dict setValue:d[MGJRouterParameterCompletion] forKey:_CC_ROUTER_PARAMS_COMPLETION_];
+        [dict setValue:d[MGJRouterParameterUserInfo] forKey:_CC_ROUTER_PARAMS_USER_INFO_];
+        return dict;
     };
 }
 

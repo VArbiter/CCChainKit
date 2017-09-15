@@ -17,17 +17,24 @@
 @property (nonatomic , class , copy , readonly) CCBridgeRouter *(^shared)();
 
 /// fallBack
-@property (nonatomic , copy , readonly) void(^fallback)(dispatch_block_t);
-/// url , binding , params
-@property (nonatomic , copy , readonly) void(^regist)(NSString * , id , void (^)(NSDictionary *dValue));
+@property (nonatomic , copy , readonly) CCBridgeRouter *(^fallback)(dispatch_block_t);
+/// url  , actions
+@property (nonatomic , copy , readonly) CCBridgeRouter *(^regist)(NSString * , void (^)(NSDictionary *dValue));
 /// url , fallback
-@property (nonatomic , copy , readonly) void(^call)(NSString * , dispatch_block_t);
-/// url , params , userinfo , fallback
-@property (nonatomic , copy , readonly) void(^callP)(NSString * , id , void(^)(id value) , dispatch_block_t);
+@property (nonatomic , copy , readonly) CCBridgeRouter *(^call)(NSString * , dispatch_block_t);
+/// url , userinfo , fallback
+@property (nonatomic , copy , readonly) CCBridgeRouter *(^callP)(NSString * , id , dispatch_block_t);
 /// url , value
-@property (nonatomic , copy , readonly) void(^object)(NSString * , id (^)(id value));
+@property (nonatomic , copy , readonly) CCBridgeRouter *(^object)(NSString * , id (^)(id value));
+/// url , fallback
+@property (nonatomic , copy , readonly) id (^get)(NSString * , dispatch_block_t);
 /// url , params , fallback
-@property (nonatomic , copy , readonly) id (^get)(NSString * , NSDictionary * , dispatch_block_t);
+@property (nonatomic , copy , readonly) id (^getP)(NSString * , NSDictionary * , dispatch_block_t);
+
+FOUNDATION_EXPORT NSString * const _CC_ROUTER_PARAMS_URL_;
+FOUNDATION_EXPORT NSString * const _CC_ROUTER_PARAMS_COMPLETION_;
+FOUNDATION_EXPORT NSString * const _CC_ROUTER_PARAMS_USER_INFO_;
+FOUNDATION_EXPORT NSString * const _CC_ROUTER_FALL_BACK_URL_ ;
 
 @end
 
