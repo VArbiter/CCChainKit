@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'CCChainKit'
-  s.version          = '0.2.1'
+  s.version          = '0.2.0'
   s.summary          = 'CCChainKit.'
 
   s.description      = <<-DESC
