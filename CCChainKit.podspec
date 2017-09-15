@@ -52,45 +52,45 @@ Pod::Spec.new do |s|
   # end
 
   s.subspec 'CCCommon' do |common|
-    common.source_files = 'CCChainKit/Classes/CCChainOperate/CCCommon/*'
+    common.source_files = 'CCChainKit/Classes/CCChainOperate/CCCommon/**/*'
     common.frameworks = "Foundation", "UIKit", "AssetsLibrary" , "Photos" , "AVFoundation"
   end
 
   s.subspec 'CCProtocol' do |protocol|
-    protocol.source_files = 'CCChainKit/Classes/CCChainOperate/CCProtocol/*'
+    protocol.source_files = 'CCChainKit/Classes/CCChainOperate/CCProtocol/**/*'
     protocol.dependency 'CCChainKit/CCCommon'
   end
 
   s.subspec 'CCRuntime' do |runtime|
-    runtime.source_files = 'CCChainKit/Classes/CCChainOperate/CCRuntime/*'
+    runtime.source_files = 'CCChainKit/Classes/CCChainOperate/CCRuntime/**/*'
   end
 
   s.subspec 'CCDataBase' do |dataBase|
-    dataBase.source_files = 'CCChainKit/Classes/CCChainOperate/CCDataBase/*'
+    dataBase.source_files = 'CCChainKit/Classes/CCChainOperate/CCDataBase/**/*'
     dataBase.dependency 'Realm', '~> 2.10.0'
     dataBase.frameworks = "Foundation"
   end
 
   s.subspec 'CCRouter' do |router|
-    router.source_files = 'CCChainKit/Classes/CCChainOperate/CCRouter/*'
+    router.source_files = 'CCChainKit/Classes/CCChainOperate/CCRouter/**/*'
     router.frameworks = "Foundation"
     router.dependency 'MGJRouter', '~> 0.9.3'
   end
 
   s.subspec 'CCData' do |data|
-    data.source_files = 'CCChainKit/Classes/CCChainOperate/CCData/*'
+    data.source_files = 'CCChainKit/Classes/CCChainOperate/CCData/**/*'
     data.dependency 'CCChainKit/CCProtocol'
     data.frameworks = "MobileCoreServices"
   end
 
   s.subspec 'CCView' do |view|
-    view.source_files = 'CCChainKit/Classes/CCChainOperate/CCView/*'
+    view.source_files = 'CCChainKit/Classes/CCChainOperate/CCView/**/*'
     view.frameworks = "CoreGraphics" , "QuartzCore"
     view.dependency 'CCChainKit/CCProtocol'
   end
 
   s.subspec 'CCCustom' do |custom|
-    custom.source_files = 'CCChainKit/Classes/CCChainOperate/CCCustom/*'
+    custom.source_files = 'CCChainKit/Classes/CCChainOperate/CCCustom/**/*'
     custom.dependency 'CCChainKit/CCCore'
     custom.dependency 'AFNetworking/Reachability', '~> 3.1.0'
     custom.dependency 'AFNetworking/UIKit', '~> 3.1.0'
