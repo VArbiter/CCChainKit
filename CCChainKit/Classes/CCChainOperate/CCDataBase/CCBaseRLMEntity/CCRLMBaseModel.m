@@ -12,9 +12,6 @@
 
 @interface CCRLMBaseModel ()
 
-// 即使是延展也会被储存
-// 协议拓展的可读写也会被作为实例变量进行储存 ,
-// 也需要在忽略中声明
 @property (nonatomic , copy) NSString * specificBase ;
 
 @end
@@ -24,29 +21,8 @@ static RLMNotificationToken *__ccToken = nil;
 @implementation CCRLMBaseModel
 
 + (NSArray<NSString *> *)ignoredProperties {
-    return @[@"specificBase",@"ccToken"]; // 忽略可存储属性
+    return @[@"specificBase",@"ccToken"];
 }
-
-/*
-+ (NSDictionary<NSString *,RLMPropertyDescriptor *> *)linkingObjectsProperties {
-    // 反向关系补充
-    return @{@"这个类中哪个属性被声明为RLMLinkingObjects" : [RLMPropertyDescriptor descriptorWithClass:NSClassFromString(@"关联的类名")propertyName:@"关联类中哪个集合存放这个类的属性"]};
-}
-
-+ (NSString *)primaryKey {
-    return @"主键";
-}
-
-+ (NSArray<NSString *> *)requiredProperties {
-    // 设置这个 , 无值直接崩溃 , 所以要结合默认值一起使用
-    // 后期赋值 为 nil / NULL 仍然会崩溃 .
-    return @[@"非空属性集合"]; 
-}
-
-+ (NSDictionary *)defaultPropertyValues {
-    return @{@"非空字段" : @"默认值"};
-}
- */
 
 + (instancetype) ccCommon {
     return CCRealmHandler.shared.dictionary(self, nil);
@@ -93,7 +69,7 @@ static RLMNotificationToken *__ccToken = nil;
 + (RLMResults *) ccAll : (NSString *) specificDataBase {
     return CCRealmHandler.shared.specific(specificDataBase).all(self);
 }
-/// 针对这个类中所有元素添加通知
+
 + (CCRealmHandler *) ccNotification : (NSString *) specificDataBase
                              change : (void (^)(RLMResults * , RLMCollectionChange * , NSError * )) changeN {
     if (__ccToken) {
@@ -102,9 +78,9 @@ static RLMNotificationToken *__ccToken = nil;
     }
     __ccToken = [[self ccAll:specificDataBase] addNotificationBlock:^(RLMResults * _Nullable results, RLMCollectionChange * _Nullable change, NSError * _Nullable error) {
         if (changeN) {
-            // change.insertions; // 插入
-            // change.deletions; // 删除
-            // change.modifications; // 更改
+            // change.insertions; // insert
+            // change.deletions; // delete
+            // change.modifications; // change
             changeN(results , change , error);
         }
     }];

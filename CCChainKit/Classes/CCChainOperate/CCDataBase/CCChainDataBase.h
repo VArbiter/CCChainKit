@@ -12,5 +12,4 @@
     #import "CCRealmHandler.h"
     #import "CCRLMBaseModel.h"
 
-
 #endif /* CCChainDataBase_h */

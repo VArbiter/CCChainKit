@@ -8,7 +8,7 @@
 
 #import "CCProxyDealer.h"
 
-#ifdef _CC_PROXY_DELER_PROTOCOL_
+#ifdef _CC_PROXY_DELER_PROTOCOL_TEST_EXAMPLE_
 #import <objc/runtime.h>
 
 @interface CCProxyDealer ()

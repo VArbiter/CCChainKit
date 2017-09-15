@@ -176,7 +176,7 @@ static const char * _CC_RLM_NOTIFICATION_KEY_ = "_CC_RLM_NOTIFICATION_KEY_";
     __weak typeof(self) pSelf = self;
     return ^CCRealmHandler *(id model) {
         if (![[model class] isSubclassOfClass:[RLMObject class]]) return pSelf;
-        return CCRealmHandler.shared.operate(^{
+        return pSelf.operate(^{
             void (^t)() = ^ {
                 [pSelf.realm addObject:model]; // if not , insert only
             };
@@ -208,7 +208,7 @@ static const char * _CC_RLM_NOTIFICATION_KEY_ = "_CC_RLM_NOTIFICATION_KEY_";
             NSString *pk = [[model class] performSelector:@selector(primaryKey)];
             RLMResults *r = [[model class] objectsWhere:[NSString stringWithFormat:@"%@ = %@" ,pk , [model valueForKeyPath:pk]]];
             if (r.count > 0) {
-                CCRealmHandler.shared.operate(^{
+                return CCRealmHandler.shared.operate(^{
                     [pSelf.realm deleteObjects:r];
                 });
             }
@@ -217,9 +217,9 @@ static const char * _CC_RLM_NOTIFICATION_KEY_ = "_CC_RLM_NOTIFICATION_KEY_";
     };
 }
 
-- (CCRealmHandler *(^)(NSArray<RLMObject *> *))deleteA {
+- (CCRealmHandler *(^)(NSArray<__kindof RLMObject *> *))deleteA {
     __weak typeof(self) pSelf = self;
-    return ^CCRealmHandler *(NSArray<RLMObject *> *a) {
+    return ^CCRealmHandler *(NSArray<__kindof RLMObject *> *a) {
         return CCRealmHandler.shared.operate(^{
             [pSelf.realm deleteObjects:a];
         });
@@ -229,7 +229,7 @@ static const char * _CC_RLM_NOTIFICATION_KEY_ = "_CC_RLM_NOTIFICATION_KEY_";
 - (CCRealmHandler *(^)(__unsafe_unretained Class))deleteAC {
     __weak typeof(self) pSelf = self;
     return ^CCRealmHandler *(Class clazz) {
-        if (![clazz isSubclassOfClass:[RLMObject class]]) return pSelf;
+        if (![clazz isKindOfClass:[RLMObject class]]) return pSelf;
         return CCRealmHandler.shared.operate(^{
             [pSelf.realm deleteObjects:[clazz allObjects]];
         });

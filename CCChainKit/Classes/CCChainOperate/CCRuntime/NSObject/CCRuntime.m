@@ -8,16 +8,17 @@
 
 #import "CCRuntime.h"
 #import <objc/runtime.h>
-
-@interface CCRuntime () < NSCopying , NSMutableCopying >
-
-@end
-
-@implementation CCRuntime
+#import <pthread.h>
 
 CCQueue CC_MAIN_QUEUE() {
     return dispatch_get_main_queue();
 }
+
+@interface CCRuntime () /*< NSCopying , NSMutableCopying >*/
+
+@end
+
+@implementation CCRuntime
 
 static CCRuntime *__instance = nil;
 + (CCRuntime *(^)())runtime {
@@ -30,7 +31,7 @@ static CCRuntime *__instance = nil;
         if (__instance) return __instance;
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
-            __instance = [[CCRuntime alloc] init];
+            __instance = [[self alloc] init];
         });
         return __instance;
     };
@@ -44,7 +45,6 @@ static CCRuntime *__instance = nil;
     });
     return _instance;
 }
-*/
 - (id)copyWithZone:(NSZone *)zone {
     return __instance;
 }
@@ -52,15 +52,16 @@ static CCRuntime *__instance = nil;
 - (id)mutableCopyWithZone:(NSZone *)zone {
     return __instance;
 }
+ */
 
 
 - (CCRuntime *(^)(SEL, SEL))swizz {
     __weak typeof(self) pSelf = self;
     return ^CCRuntime *(SEL os , SEL ts) {
-        Method om = class_getInstanceMethod(self.class, os);
-        Method tm = class_getInstanceMethod(self.class, ts);
-        if (class_addMethod(self.class,os,method_getImplementation(tm),method_getTypeEncoding(tm))) {
-            class_replaceMethod(self.class,ts,method_getImplementation(om),method_getTypeEncoding(om));
+        Method om = class_getInstanceMethod(pSelf.class, os);
+        Method tm = class_getInstanceMethod(pSelf.class, ts);
+        if (class_addMethod(pSelf.class,os,method_getImplementation(tm),method_getTypeEncoding(tm))) {
+            class_replaceMethod(pSelf.class,ts,method_getImplementation(om),method_getTypeEncoding(om));
         }
         else method_exchangeImplementations(om, tm);
         return pSelf;
@@ -125,7 +126,10 @@ static CCRuntime *__instance = nil;
     __weak typeof(self) pSelf = self;
     return ^CCRuntime *(CCQueue q, void (^t)()) {
         if (!q) return pSelf;
-        dispatch_sync(q ? q : dispatch_queue_create("love.cc.love.home", NULL), t);
+        if (pthread_main_np() != 0) {
+            if (t) t();
+        }
+        else dispatch_sync(q ? q : dispatch_queue_create("love.cc.love.home", NULL), t);
         return pSelf;
     };
 }
@@ -157,6 +161,13 @@ static CCRuntime *__instance = nil;
 - (id (^)(id, const void *))getAssociate {
     return ^CCRuntime * (id o, const void *k){
         return objc_getAssociatedObject(o, k);
+    };
+}
+- (CCRuntime *(^)(id, const void *, void (^)(id)))getAssociateT {
+    __weak typeof(self) pSelf = self;
+    return ^CCRuntime *(id o , const void *k , void (^t)(id)) {
+        if (t) t(pSelf.getAssociate(o , k));
+        return pSelf;
     };
 }
 
@@ -237,6 +248,19 @@ static CCRuntime *__instance = nil;
 
 @dynamic group;
 @dynamic queue;
+
+- (void)setGroup:(CCGroup)group {
+    objc_setAssociatedObject(self, "_CC_RUNTIME_ASSOCIATE_GROUP_ACTION_GROUP_", group, OBJC_ASSOCIATION_ASSIGN);
+}
+- (CCGroup)group {
+    return objc_getAssociatedObject(self, "_CC_RUNTIME_ASSOCIATE_GROUP_ACTION_GROUP_");
+}
+- (void)setQueue:(CCQueue)queue {
+    objc_setAssociatedObject(self, "_CC_RUNTIME_ASSOCIATE_GROUP_ACTION_QUEUE_", queue, OBJC_ASSOCIATION_ASSIGN);
+}
+- (CCQueue)queue {
+    return objc_getAssociatedObject(self, "_CC_RUNTIME_ASSOCIATE_GROUP_ACTION_QUEUE_");
+}
 
 CCGroup CC_GROUP_INIT() {
     return dispatch_group_create();

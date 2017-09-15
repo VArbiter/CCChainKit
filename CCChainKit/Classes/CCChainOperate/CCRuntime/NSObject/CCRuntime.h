@@ -17,15 +17,14 @@ typedef NS_ENUM(unsigned long , CCAssociationPolicy) {
 };
 
 typedef NS_ENUM(unsigned int , CCQueueQOS) {
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0
     CCQueueQOS_Default = 0 , // default , not for programmer . use it when you have to reset a serial tasks .
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0
     CCQueueQOS_User_interaction , // user intercation , will finish as soon as possiable , DO NOT use it for large tasks !
     CCQueueQOS_User_Initiated , // what's user expacted , DO NOT use it for large tasks !
     CCQueueQOS_Utility , // recommended , (also availiable for large tasks)
     CCQueueQOS_Background  , // background tasks .
     CCQueueQOS_Unspecified  // unspecified , wait unit the system to specific one .
 #else
-    CCQueueQOS_Default = 0,
     CCQueueQOS_High = 1,
     CCQueueQOS_Low = 2,
     CCQueueQOS_Background
@@ -38,9 +37,9 @@ typedef dispatch_source_t CCSource;
 typedef dispatch_time_t CCTime;
 typedef size_t CCCount;
 
-@interface CCRuntime : NSObject
-
 CCQueue CC_MAIN_QUEUE();
+
+@interface CCRuntime : NSObject
 
 /// non-absolute singleton
 @property (nonatomic , class , copy , readonly) CCRuntime *(^runtime)();
@@ -67,6 +66,7 @@ CCQueue CC_MAIN_QUEUE();
 @property (nonatomic , copy , readonly) CCRuntime *(^setAssociate)(id object , const void *key , id value , CCAssociationPolicy policy);
 /// equals to objc_getAssociatedObject
 @property (nonatomic , copy , readonly) id (^getAssociate)(id object , const void *key);
+@property (nonatomic , copy , readonly) CCRuntime *(^getAssociateT)(id object , const void *key , void (^)(id t));
 
 @end
 
@@ -94,7 +94,7 @@ CCGroup CC_GROUP_INIT();
 
 /// return a new object of CCRuntime , not the shared instance .
 @property (nonatomic , class , copy , readonly) CCRuntime *(^groupG)(CCGroup group , CCQueue queue);
-/// actions for group
+/// actions for group , can deploy it for muti times
 @property (nonatomic , copy , readonly) CCRuntime *(^groupAction)(void (^actions)());
 /// when all group actions finished
 @property (nonatomic , copy , readonly) CCRuntime *(^notifyG)(CCQueue queue , void(^finish)());

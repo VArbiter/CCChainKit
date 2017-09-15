@@ -22,21 +22,28 @@
 + (instancetype) ccCommonD : (NSDictionary *) dictionary ;
 + (instancetype) ccCommonA : (NSArray *) array ;
 
-- (instancetype) ccSpecific : (NSString *) specificDataBase ; //  default : defalut
-+ (CCRealmHandler *) ccOperate : (void (^)()) transaction ; // in transaction
+///  default : defalut
+- (instancetype) ccSpecific : (NSString *) specificDataBase ;
+/// in transaction
++ (CCRealmHandler *) ccOperate : (void (^)()) transaction ;
+/// specific database in transaction
 + (CCRealmHandler *) ccOperate : (NSString *) specificDataBase
-                   transaction : (void (^)()) transaction ; // specific database in transaction
+                   transaction : (void (^)()) transaction ;
 - (CCRealmHandler *) ccSave ;
 
 // when a delete complete , do sth more like reloading data (prevent crash)
 
-- (CCRealmHandler *) ccDeleteT ; // delete an object according to object
-- (CCRealmHandler *) ccDeleteS ; // delete an object according to primarykey
+/// delete an object according to object
+- (CCRealmHandler *) ccDeleteT ;
+/// delete an object according to primarykey
+- (CCRealmHandler *) ccDeleteS ;
 + (CCRealmHandler *) ccDeleteArray : (NSString *) specificDataBase
                              array : (NSArray <CCRLMBaseModel *> *) array ;
-+ (CCRealmHandler *) ccDeleteAll : (NSString *) specificDataBase ; /// delete all data in a class
+/// delete all data in a class
++ (CCRealmHandler *) ccDeleteAll : (NSString *) specificDataBase ;
 
-+ (RLMResults *) ccAll : (NSString *) specificDataBase ; // all results
+/// all results
++ (RLMResults *) ccAll : (NSString *) specificDataBase ;
 /// add a notification to all objects in this class
 + (CCRealmHandler *) ccNotification : (NSString *) specificDataBase
                              change : (void (^)(RLMResults * results,
