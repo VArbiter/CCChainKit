@@ -79,7 +79,7 @@ Pod::Spec.new do |s|
   s.subspec 'CCData' do |data|
     data.source_files = 'CCChainKit/Classes/CCChainOperate/CCData/*'
     data.dependency 'CCChainKit/CCProtocol'
-    data.frameworks "MobileCoreServices"
+    data.frameworks = "MobileCoreServices"
   end
 
   s.subspec 'CCView' do |view|
