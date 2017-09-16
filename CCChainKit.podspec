@@ -86,7 +86,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'CCView' do |view|
     view.source_files = 'CCChainKit/Classes/CCChainOperate/CCView/**/*'
-    view.frameworks = "CoreGraphics" , "QuartzCore" , "WebKit"
+    view.frameworks = "CoreGraphics" , "QuartzCore" , "WebKit" ,"Accelerate" , "CoreImage"
     view.dependency 'CCChainKit/CCProtocol'
     view.dependency 'CCChainKit/CCCommon'
   end
