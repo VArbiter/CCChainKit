@@ -86,7 +86,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'CCView' do |view|
     view.source_files = 'CCChainKit/Classes/CCChainOperate/CCView/**/*'
-    view.frameworks = "CoreGraphics" , "QuartzCore"
+    view.frameworks = "CoreGraphics" , "QuartzCore" , "WebKit"
     view.dependency 'CCChainKit/CCProtocol'
     view.dependency 'CCChainKit/CCCommon'
   end
@@ -99,7 +99,7 @@ Pod::Spec.new do |s|
     custom.dependency 'SDWebImage', '~> 4.1.0'
     custom.dependency 'MJRefresh', '~> 3.1.12'
     custom.dependency 'MBProgressHUD', '~> 1.0.0'
-    custom.frameworks = "WebKit" , "SystemConfiguration" , "CoreTelephony" , "MobileCoreServices", "ImageIO"
+    custom.frameworks = "SystemConfiguration" , "CoreTelephony" , "MobileCoreServices", "ImageIO"
   end
 
 end
