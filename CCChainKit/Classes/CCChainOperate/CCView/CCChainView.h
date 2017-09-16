@@ -11,7 +11,6 @@
 
     #import "UIView+CCChain.h"
     #import "WKWebView+CCChain.h"
-    #import "MBProgressHUD+CCChain.h"
     #import "UIAlertController+CCChain.h"
     #import "UIBarButtonItem+CCChain.h"
     #import "UIButton+CCChain.h"
