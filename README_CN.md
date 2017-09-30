@@ -1,5 +1,7 @@
 # CCChainKit
 
+#### 以 Objective-C 为 iOS 书写的一些链式操作 .
+
 [![Version](https://img.shields.io/cocoapods/v/CCChainKit.svg?style=flat)](http://cocoapods.org/pods/CCChainKit)
 
 [![License](https://img.shields.io/cocoapods/l/CCChainKit.svg?style=flat)](http://cocoapods.org/pods/CCChainKit)
