@@ -8,6 +8,12 @@
 
 ### 提示
 
+**当前版本 0.2.1**
+
+> pod 'CCChainKit' , '~> 0.2.1' // 默认是 CCCore
+> 
+> > pod 'CCChainKit/CCFull' , '~> 0.2.1' . 如果你想安装整个 Kit.
+
 **警告**
 
 > 所有的链式操作全部以 block 为开始和结尾 .
@@ -27,7 +33,7 @@
 **须知**
 > 安装时 , 默认是 `CCCore` , `CCCore` 包含 
 > 
-> `CCCommon` (宏) , `CCProtocol` (协议) , `CCData` (NS 族群), `CCView` (UI 族群), `CCRuntime` (objc/ runtime 相关)
+> > `CCCommon` (宏) , `CCProtocol` (协议) , `CCData` (NS 族群), `CCView` (UI 族群), `CCRuntime` (objc/ runtime 相关)
 > 
 > 如果想安装全部 , 安装`"CCChainKit/CCFull"` (须知 : `CCFull` 依赖了一些第三方)
 
@@ -108,7 +114,7 @@ pod "CCChainKit"
 
 ### 作者
 
-Elwin Frederick, [elwinfrederick@163.com](elwinfrederick@163.com)
+**Elwin Frederick, [elwinfrederick@163.com](elwinfrederick@163.com)**
 
 ### 授权
 

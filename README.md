@@ -1,5 +1,7 @@
 # CCChainKit
 
+#### Some categories in chain actions for iOS in Objective-C .
+
 [![Version](https://img.shields.io/cocoapods/v/CCChainKit.svg?style=flat)](http://cocoapods.org/pods/CCChainKit)
 
 [![License](https://img.shields.io/cocoapods/l/CCChainKit.svg?style=flat)](http://cocoapods.org/pods/CCChainKit)
@@ -9,6 +11,12 @@
 #### 中文说明请[[点击这里](https://github.com/VArbiter/CCChainKit/blob/master/README_CN.md)]
 
 ### Note
+
+**Current Version 0.2.1**
+
+> pod 'CCChainKit' , '~> 0.2.1' // default is CCCore
+> 
+> > pod 'CCChainKit/CCFull' , '~> 0.2.1' . if you wanna install the whole Kit .
 
 **Warning**
 
@@ -29,7 +37,7 @@
 **Note**
 > when install , default is `CCCore` , `CCCore` contains 
 > 
-> `CCCommon` (Macros) , `CCProtocol` (Protocol) , `CCData` (NS Family), `CCView` (UI Family), `CCRuntime` (objc/ runtime associate)
+> > `CCCommon` (Macros) , `CCProtocol` (Protocol) , `CCData` (NS Family), `CCView` (UI Family), `CCRuntime` (objc/ runtime associate)
 > 
 > when you wanna get to Full , install with `"CCChainKit/CCFull"` (note: `CCFull` had dependend on other vendors.)
 
@@ -111,7 +119,7 @@ pod "CCChainKit"
 
 ### Author
 
-ElwinFrederick, elwinfrederick@163.com
+**ElwinFrederick, [elwinfrederick@163.com](elwinfrederick@163.com)**
 
 ### License
 
