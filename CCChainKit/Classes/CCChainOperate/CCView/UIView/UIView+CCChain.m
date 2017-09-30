@@ -225,6 +225,19 @@ CGFloat CCHScale(CGFloat h) {
     return self.frame.origin.x + self.frame.size.width;
 }
 
+- (CGFloat)inTop {
+    return .0f;
+}
+- (CGFloat)inLeft {
+    return .0f;
+}
+- (CGFloat)inBottom {
+    return self.frame.size.height;
+}
+- (CGFloat)inRight {
+    return self.frame.size.width;
+}
+
 + (CGFloat)sWidth {
     return UIScreen.mainScreen.bounds.size.width;
 }

@@ -77,6 +77,11 @@ CGFloat CCHScale(CGFloat h);
 @property (nonatomic , assign) CGFloat bottom;
 @property (nonatomic , assign) CGFloat right;
 
+@property (nonatomic , assign , readonly) CGFloat inTop;
+@property (nonatomic , assign , readonly) CGFloat inLeft;
+@property (nonatomic , assign , readonly) CGFloat inBottom;
+@property (nonatomic , assign , readonly) CGFloat inRight;
+
 /// an easy way to margin
 @property (nonatomic , copy , readonly) __kindof UIView *(^sizeS)(CGSize size);
 @property (nonatomic , copy , readonly) __kindof UIView *(^originS)(CGPoint origin);
