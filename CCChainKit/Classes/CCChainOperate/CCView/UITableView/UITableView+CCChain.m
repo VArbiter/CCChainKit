@@ -56,8 +56,10 @@
 - ( __kindof UITableView *(^)(id))prefetchingT {
     __weak typeof(self) pSelf = self;
     return ^ __kindof UITableView *(id d) {
-        if (d) pSelf.prefetchDataSource = d;
-        else pSelf.prefetchDataSource = nil;
+        if (UIDevice.currentDevice.systemVersion.floatValue >= 10.f) {
+            if (d) pSelf.prefetchDataSource = d;
+            else pSelf.prefetchDataSource = nil;
+        }
         return pSelf;
     };
 }
