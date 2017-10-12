@@ -11,13 +11,13 @@
 
 static const char * _CC_UICONTROL_CHAIN_CLICK_ASSOCIATE_KEY_ = "CC_UICONTROL_CHAIN_CLICK_ASSOCIATE_KEY";
 
-@interface UIButton (CCChain_Assit)
+@interface UIControl (CCChain_Assit)
 
 - (void) ccControlChainAction : ( __kindof UIControl *) sender ;
 
 @end
 
-@implementation UIButton (CCChain_Assit)
+@implementation UIControl (CCChain_Assit)
 
 - (void) ccControlChainAction : ( __kindof UIControl *) sender {
     void (^t)( __kindof UIControl *) = objc_getAssociatedObject(self, _CC_UICONTROL_CHAIN_CLICK_ASSOCIATE_KEY_);

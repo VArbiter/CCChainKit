@@ -13,7 +13,6 @@
 
 @property (nonatomic , class , copy , readonly) __kindof UIButton *(^common)();
 @property (nonatomic , class , copy , readonly) __kindof UIButton *(^commonS)(UIButtonType type);
-@property (nonatomic , copy , readonly) __kindof UIButton *(^frameC)(CGRect frame);
 
 /// titles && images
 @property (nonatomic , copy , readonly) __kindof UIButton *(^titleS)(NSString * sTitle , UIControlState state);

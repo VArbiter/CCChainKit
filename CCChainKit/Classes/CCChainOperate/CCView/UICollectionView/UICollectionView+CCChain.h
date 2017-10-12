@@ -69,6 +69,12 @@
 @property (nonatomic , copy , readonly) CCCollectionChainDelegate *(^minimumInterItemSpacingInSection)(CGFloat (^)(UICollectionView *collectionView , UICollectionViewLayout *layout , NSInteger iSection)) ;
 @property (nonatomic , copy , readonly) CCCollectionChainDelegate *(^spacingBetweenSections)(UIEdgeInsets (^)(UICollectionView *collectionView , UICollectionViewLayout *layout , NSInteger iSection)) ;
 
+@property (nonatomic , copy , readonly) CCCollectionChainDelegate *(^didScroll)(void (^)(__kindof UIScrollView *scrollView));
+@property (nonatomic , copy , readonly) CCCollectionChainDelegate *(^willBeginDecelerating)(void (^)(__kindof UIScrollView *scrollView));
+@property (nonatomic , copy , readonly) CCCollectionChainDelegate *(^didEndDecelerating)(void (^)(__kindof UIScrollView *scrollView));
+@property (nonatomic , copy , readonly) CCCollectionChainDelegate *(^shouldScrollToTop)(BOOL (^)(__kindof UIScrollView *scrollView));
+@property (nonatomic , copy , readonly) CCCollectionChainDelegate *(^didScrollToTop)(void (^)(__kindof UIScrollView *scrollView));
+
 @end
 
 #pragma mark - -----

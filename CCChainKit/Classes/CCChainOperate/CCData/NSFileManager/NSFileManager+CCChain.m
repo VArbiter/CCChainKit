@@ -73,7 +73,7 @@ NSInteger const _CC_FILE_HASH_DEFAULT_CHUNK_SIZE_ = 1024 * 8;
     __weak typeof(self) pSelf = self;
     return ^BOOL (NSString *sFrom , NSString *sTo) {
         if (!sFrom || !sFrom.length
-            || !sTo || sTo.length) return false;
+            || !sTo || !sTo.length) return false;
         if (pSelf.isDirectoryT(sFrom)) return false;
         if (!pSelf.isDirectoryT(sTo)) return false;
         if (!pSelf.existsT(sFrom)) return false;

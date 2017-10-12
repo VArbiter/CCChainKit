@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#ifndef CC_IMAGE_B
+    #define CC_IMAGE_B(_value_) UIImage.bundle(self.class , (_value_))
+#endif
+
 @interface UIImage (CCChain)
 
 /// for image size && width

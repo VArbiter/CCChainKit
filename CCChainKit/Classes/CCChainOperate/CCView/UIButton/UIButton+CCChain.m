@@ -46,14 +46,6 @@ static const char * _CC_UIBUTTON_CHAIN_CLICK_ASSOCIATE_KEY_ = "CC_UIBUTTON_CHAIN
     };
 }
 
-- ( __kindof UIButton *(^)(CGRect))frameC {
-    __weak typeof(self) pSelf = self;
-    return ^ __kindof UIButton *(CGRect r) {
-        pSelf.frame = r;
-        return pSelf;
-    };
-}
-
 - ( __kindof UIButton *(^)(NSString *, UIControlState))titleS {
     __weak typeof(self) pSelf = self;
     return ^ __kindof UIButton *(NSString *s , UIControlState t) {

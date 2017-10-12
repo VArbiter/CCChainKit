@@ -30,6 +30,14 @@
         v.backgroundColor = UIColor.clearColor;
         [v registerClass:UITableViewCell.class
   forCellReuseIdentifier:_CC_TABLE_VIEW_HOLDER_CELL_IDENTIFIER_];
+        
+        // for shaking problem under iOS 11 . rewrite them when needed .
+        if (UIDevice.currentDevice.systemVersion.floatValue >= 11.f) {
+            v.estimatedRowHeight = 0;
+            v.estimatedSectionHeaderHeight = 0;
+            v.estimatedSectionFooterHeight = 0;
+        }
+        
         return v;
     };
 }
@@ -235,12 +243,18 @@
 
 @interface CCTableChainDelegate ()
 
-@property (nonatomic , copy) CGFloat (^blockCellHeight)(UITableView *  , NSIndexPath *) ;
-@property (nonatomic , copy) CGFloat (^blockSectionHeaderHeight)(UITableView *  , NSInteger ) ;
-@property (nonatomic , copy) UIView *(^blockSectionHeader)(UITableView * , NSInteger ) ;
-@property (nonatomic , copy) CGFloat (^blockSectionFooterHeight)(UITableView *  , NSInteger ) ;
-@property (nonatomic , copy) UIView *(^blockSectionFooter)(UITableView * , NSInteger ) ;
-@property (nonatomic , copy) BOOL (^blockDidSelect)(UITableView * , NSIndexPath *) ;
+@property (nonatomic , copy) CGFloat (^blockCellHeight)(__kindof UITableView *  , NSIndexPath *) ;
+@property (nonatomic , copy) CGFloat (^blockSectionHeaderHeight)(__kindof UITableView *  , NSInteger ) ;
+@property (nonatomic , copy) UIView *(^blockSectionHeader)(__kindof UITableView * , NSInteger ) ;
+@property (nonatomic , copy) CGFloat (^blockSectionFooterHeight)(__kindof UITableView *  , NSInteger ) ;
+@property (nonatomic , copy) UIView *(^blockSectionFooter)(__kindof UITableView * , NSInteger ) ;
+@property (nonatomic , copy) BOOL (^blockDidSelect)(__kindof UITableView * , NSIndexPath *) ;
+
+@property (nonatomic , copy) void (^bDidScroll)(__kindof UIScrollView *scrollView);
+@property (nonatomic , copy) void (^bWillBeginDecelerating)(__kindof UIScrollView *scrollView);
+@property (nonatomic , copy) void (^bDidEndDecelerating)(__kindof UIScrollView *scrollView);
+@property (nonatomic , copy) BOOL (^bShouldScrollToTop)(__kindof UIScrollView *scrollView);
+@property (nonatomic , copy) void (^bDidScrollToTop)(__kindof UIScrollView *scrollView);
 
 @end
 
@@ -253,50 +267,86 @@
     };
 }
 
-- (CCTableChainDelegate *(^)(CGFloat (^)(UITableView *, NSIndexPath *)))cellHeight {
+- (CCTableChainDelegate *(^)(CGFloat (^)(__kindof UITableView *, NSIndexPath *)))cellHeight {
     __weak typeof(self) pSelf = self;
-    return ^CCTableChainDelegate *(CGFloat (^t)(UITableView *, NSIndexPath *)) {
+    return ^CCTableChainDelegate *(CGFloat (^t)(__kindof UITableView *, NSIndexPath *)) {
         pSelf.blockCellHeight = [t copy];
         return pSelf;
     };
 }
 
-- (CCTableChainDelegate *(^)(CGFloat (^)(UITableView *, NSInteger)))sectionHeaderHeight {
+- (CCTableChainDelegate *(^)(CGFloat (^)(__kindof UITableView *, NSInteger)))sectionHeaderHeight {
     __weak typeof(self) pSelf = self;
-    return ^CCTableChainDelegate *(CGFloat (^t)(UITableView *, NSInteger)) {
+    return ^CCTableChainDelegate *(CGFloat (^t)(__kindof UITableView *, NSInteger)) {
         pSelf.blockSectionHeaderHeight = [t copy];
         return pSelf;
     };
 }
 
-- (CCTableChainDelegate *(^)(UIView *(^)(UITableView *, NSInteger)))sectionHeader {
+- (CCTableChainDelegate *(^)(__kindof UIView *(^)(__kindof UITableView *, NSInteger)))sectionHeader {
     __weak typeof(self) pSelf = self;
-    return ^CCTableChainDelegate *(UIView *(^t)(UITableView *, NSInteger)) {
+    return ^CCTableChainDelegate *(__kindof UIView *(^t)(__kindof UITableView *, NSInteger)) {
         pSelf.blockSectionHeader = [t copy];
         return pSelf;
     };
 }
 
-- (CCTableChainDelegate *(^)(CGFloat (^)(UITableView *, NSInteger)))sectionFooterHeight {
+- (CCTableChainDelegate *(^)(CGFloat (^)(__kindof UITableView *, NSInteger)))sectionFooterHeight {
     __weak typeof(self) pSelf = self;
-    return ^CCTableChainDelegate *(CGFloat (^t)(UITableView *, NSInteger)) {
+    return ^CCTableChainDelegate *(CGFloat (^t)(__kindof UITableView *, NSInteger)) {
         pSelf.blockSectionFooterHeight = [t copy];
         return pSelf;
     };
 }
 
-- (CCTableChainDelegate *(^)(UIView *(^)(UITableView *, NSInteger)))sectionFooter {
+- (CCTableChainDelegate *(^)(__kindof UIView *(^)(__kindof UITableView *, NSInteger)))sectionFooter {
     __weak typeof(self) pSelf = self;
-    return ^CCTableChainDelegate *(UIView *(^t)(UITableView *, NSInteger)) {
+    return ^CCTableChainDelegate *(__kindof UIView *(^t)(__kindof UITableView *, NSInteger)) {
         pSelf.blockSectionFooter = [t copy];
         return pSelf;
     };
 }
 
-- (CCTableChainDelegate *(^)(BOOL (^)(UITableView *, NSIndexPath *)))didSelect {
+- (CCTableChainDelegate *(^)(BOOL (^)(__kindof UITableView *, NSIndexPath *)))didSelect {
     __weak typeof(self) pSelf = self;
-    return ^CCTableChainDelegate *(BOOL (^t)(UITableView *, NSIndexPath *)) {
+    return ^CCTableChainDelegate *(BOOL (^t)(__kindof UITableView *, NSIndexPath *)) {
         pSelf.blockDidSelect = [t copy];
+        return pSelf;
+    };
+}
+
+- (CCTableChainDelegate *(^)(void (^)(__kindof UIScrollView *)))didScroll {
+    __weak typeof(self) pSelf = self;
+    return ^CCTableChainDelegate *(void (^t)(__kindof UIScrollView *)) {
+        pSelf.bDidScroll = [t copy];
+        return pSelf;
+    };
+}
+- (CCTableChainDelegate *(^)(void (^)(__kindof UIScrollView *)))willBeginDecelerating {
+    __weak typeof(self) pSelf = self;
+    return ^CCTableChainDelegate *(void (^t)(__kindof UIScrollView *)) {
+        pSelf.bWillBeginDecelerating = [t copy];
+        return pSelf;
+    };
+}
+- (CCTableChainDelegate *(^)(void (^)(__kindof UIScrollView *)))didEndDecelerating {
+    __weak typeof(self) pSelf = self;
+    return ^CCTableChainDelegate *(void (^t)(__kindof UIScrollView *)) {
+        pSelf.bDidEndDecelerating = [t copy];
+        return pSelf;
+    };
+}
+- (CCTableChainDelegate *(^)(BOOL (^)(__kindof UIScrollView *)))shouldScrollToTop {
+    __weak typeof(self) pSelf = self;
+    return ^CCTableChainDelegate *(BOOL (^t)(__kindof UIScrollView *)) {
+        pSelf.bShouldScrollToTop = [t copy];
+        return pSelf;
+    };
+}
+- (CCTableChainDelegate *(^)(void (^)(__kindof UIScrollView *)))didScrollToTop {
+    __weak typeof(self) pSelf = self;
+    return ^CCTableChainDelegate *(void (^t)(__kindof UIScrollView *)) {
+        pSelf.bDidScrollToTop = [t copy];
         return pSelf;
     };
 }
@@ -322,6 +372,26 @@
             [tableView deselectRowAtIndexPath:indexPath animated:false];
         }
     }
+}
+
+#pragma mark - ----- UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (self.bDidScroll) self.bDidScroll(scrollView);
+}
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
+    if (self.bWillBeginDecelerating) self.bWillBeginDecelerating(scrollView);
+}
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    if (self.bDidEndDecelerating) self.bDidEndDecelerating(scrollView);
+}
+
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView {
+    if (self.bShouldScrollToTop) return self.bShouldScrollToTop(scrollView);
+    return YES;
+}
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView {
+    if (self.bDidScrollToTop) self.bDidScrollToTop(scrollView);
 }
 
 - (void)dealloc {

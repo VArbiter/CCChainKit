@@ -57,12 +57,18 @@
 
 @property (nonatomic , class , copy , readonly) CCTableChainDelegate < UITableViewDelegate > *(^common)();
 
-@property (nonatomic , copy , readonly) CCTableChainDelegate *(^cellHeight)(CGFloat (^)(UITableView * tableView , NSIndexPath *indexPath));
-@property (nonatomic , copy , readonly) CCTableChainDelegate *(^sectionHeaderHeight)(CGFloat (^)(UITableView * tableView , NSInteger iSection));
-@property (nonatomic , copy , readonly) CCTableChainDelegate *(^sectionHeader)(UIView *(^)(UITableView *tableView , NSInteger iSection));
-@property (nonatomic , copy , readonly) CCTableChainDelegate *(^sectionFooterHeight)(CGFloat (^)(UITableView * tableView , NSInteger iSection));
-@property (nonatomic , copy , readonly) CCTableChainDelegate *(^sectionFooter)(UIView *(^)(UITableView *tableView , NSInteger iSection));
-@property (nonatomic , copy , readonly) CCTableChainDelegate *(^didSelect)(BOOL (^)(UITableView *tableView , NSIndexPath *indexPath));
+@property (nonatomic , copy , readonly) CCTableChainDelegate *(^cellHeight)(CGFloat (^)(__kindof UITableView * tableView , NSIndexPath *indexPath));
+@property (nonatomic , copy , readonly) CCTableChainDelegate *(^sectionHeaderHeight)(CGFloat (^)(__kindof UITableView * tableView , NSInteger iSection));
+@property (nonatomic , copy , readonly) CCTableChainDelegate *(^sectionHeader)(__kindof UIView *(^)(__kindof UITableView *tableView , NSInteger iSection));
+@property (nonatomic , copy , readonly) CCTableChainDelegate *(^sectionFooterHeight)(CGFloat (^)(__kindof UITableView * tableView , NSInteger iSection));
+@property (nonatomic , copy , readonly) CCTableChainDelegate *(^sectionFooter)(__kindof UIView *(^)(__kindof UITableView *tableView , NSInteger iSection));
+@property (nonatomic , copy , readonly) CCTableChainDelegate *(^didSelect)(BOOL (^)(__kindof UITableView *tableView , NSIndexPath *indexPath));
+
+@property (nonatomic , copy , readonly) CCTableChainDelegate *(^didScroll)(void (^)(__kindof UIScrollView *scrollView));
+@property (nonatomic , copy , readonly) CCTableChainDelegate *(^willBeginDecelerating)(void (^)(__kindof UIScrollView *scrollView));
+@property (nonatomic , copy , readonly) CCTableChainDelegate *(^didEndDecelerating)(void (^)(__kindof UIScrollView *scrollView));
+@property (nonatomic , copy , readonly) CCTableChainDelegate *(^shouldScrollToTop)(BOOL (^)(__kindof UIScrollView *scrollView));
+@property (nonatomic , copy , readonly) CCTableChainDelegate *(^didScrollToTop)(void (^)(__kindof UIScrollView *scrollView));
 
 @end
 
@@ -72,10 +78,10 @@
 
 @property (nonatomic , class , copy , readonly) CCTableChainDataSource < UITableViewDataSource > *(^common)();
 
-@property (nonatomic , copy , readonly) CCTableChainDataSource *(^sections)(NSInteger (^)(UITableView *tableView));
-@property (nonatomic , copy , readonly) CCTableChainDataSource *(^rowsInSections)(NSInteger (^)(UITableView * tableView , NSInteger iSection));
-@property (nonatomic , copy , readonly) CCTableChainDataSource *(^cellIdentifier)(NSString *(^)(UITableView *tableView , NSIndexPath *indexPath));
-@property (nonatomic , copy , readonly) CCTableChainDataSource *(^configCell)(__kindof UITableViewCell *(^)(UITableView *tableView , __kindof UITableViewCell *tCell , NSIndexPath *indexPath));
+@property (nonatomic , copy , readonly) CCTableChainDataSource *(^sections)(NSInteger (^)(__kindof UITableView *tableView));
+@property (nonatomic , copy , readonly) CCTableChainDataSource *(^rowsInSections)(NSInteger (^)(__kindof UITableView * tableView , NSInteger iSection));
+@property (nonatomic , copy , readonly) CCTableChainDataSource *(^cellIdentifier)(NSString *(^)(__kindof UITableView *tableView , NSIndexPath *indexPath));
+@property (nonatomic , copy , readonly) CCTableChainDataSource *(^configCell)(__kindof UITableViewCell *(^)(__kindof UITableView *tableView , __kindof UITableViewCell *tCell , NSIndexPath *indexPath));
 
 @end
 
@@ -85,8 +91,8 @@
 
 @interface NSArray (CCChain_Table_Refresh)
 
-@property (nonatomic , copy , readonly) NSArray *(^reload)(UITableView *tableView);
-@property (nonatomic , copy , readonly) NSArray *(^reloadSection)(UITableView *tableView , NSIndexSet *set);
+@property (nonatomic , copy , readonly) NSArray *(^reload)(__kindof UITableView *tableView);
+@property (nonatomic , copy , readonly) NSArray *(^reloadSection)(__kindof UITableView *tableView , NSIndexSet *set);
 
 @end
 

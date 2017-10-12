@@ -83,6 +83,7 @@ CGFloat CCHScale(CGFloat h);
 @property (nonatomic , assign , readonly) CGFloat inRight;
 
 /// an easy way to margin
+@property (nonatomic , copy , readonly) __kindof UIView *(^frameS)(CGRect frame);
 @property (nonatomic , copy , readonly) __kindof UIView *(^sizeS)(CGSize size);
 @property (nonatomic , copy , readonly) __kindof UIView *(^originS)(CGPoint origin);
 
@@ -94,6 +95,7 @@ CGFloat CCHScale(CGFloat h);
 
 @property (nonatomic , copy , readonly) __kindof UIView *(^centerXs)(CGFloat centerX);
 @property (nonatomic , copy , readonly) __kindof UIView *(^centerYs)(CGFloat centerY);
+@property (nonatomic , copy , readonly) __kindof UIView *(^centerT)(CGPoint center);
 
 @property (nonatomic , copy , readonly) __kindof UIView *(^topS)(CGFloat top);
 @property (nonatomic , copy , readonly) __kindof UIView *(^leftS)(CGFloat left);
@@ -145,6 +147,7 @@ CGFloat CCHScale(CGFloat h);
 @property (nonatomic , readonly) __kindof UITextView * asUITextView;
 @property (nonatomic , readonly) __kindof UITextField * asUITextField;
 @property (nonatomic , readonly) __kindof UIProgressView * asUIProgressView;
+@property (nonatomic , readonly) __kindof UIVisualEffectView * asUIVisualEffectView;
 
 @end
 

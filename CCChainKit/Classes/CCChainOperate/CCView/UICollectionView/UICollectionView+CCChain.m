@@ -197,6 +197,12 @@ forCellWithReuseIdentifier:s];
 @property (nonatomic , copy) CGFloat (^blockMinimumInterItemSpacingInSection)(UICollectionView * , UICollectionViewLayout * , NSInteger ) ;
 @property (nonatomic , copy) UIEdgeInsets (^blockSpacingBetweenSections)(UICollectionView * , UICollectionViewLayout * , NSInteger ) ;
 
+@property (nonatomic , copy) void (^bDidScroll)(__kindof UIScrollView *scrollView);
+@property (nonatomic , copy) void (^bWillBeginDecelerating)(__kindof UIScrollView *scrollView);
+@property (nonatomic , copy) void (^bDidEndDecelerating)(__kindof UIScrollView *scrollView);
+@property (nonatomic , copy) BOOL (^bShouldScrollToTop)(__kindof UIScrollView *scrollView);
+@property (nonatomic , copy) void (^bDidScrollToTop)(__kindof UIScrollView *scrollView);
+
 @end
 
 @implementation CCCollectionChainDelegate
@@ -256,6 +262,42 @@ forCellWithReuseIdentifier:s];
     };
 }
 
+- (CCCollectionChainDelegate *(^)(void (^)(__kindof UIScrollView *)))didScroll {
+    __weak typeof(self) pSelf = self;
+    return ^CCCollectionChainDelegate *(void (^t)(__kindof UIScrollView *)) {
+        pSelf.bDidScroll = [t copy];
+        return pSelf;
+    };
+}
+- (CCCollectionChainDelegate *(^)(void (^)(__kindof UIScrollView *)))willBeginDecelerating {
+    __weak typeof(self) pSelf = self;
+    return ^CCCollectionChainDelegate *(void (^t)(__kindof UIScrollView *)) {
+        pSelf.bWillBeginDecelerating = [t copy];
+        return pSelf;
+    };
+}
+- (CCCollectionChainDelegate *(^)(void (^)(__kindof UIScrollView *)))didEndDecelerating {
+    __weak typeof(self) pSelf = self;
+    return ^CCCollectionChainDelegate *(void (^t)(__kindof UIScrollView *)) {
+        pSelf.bDidEndDecelerating = [t copy];
+        return pSelf;
+    };
+}
+- (CCCollectionChainDelegate *(^)(BOOL (^)(__kindof UIScrollView *)))shouldScrollToTop {
+    __weak typeof(self) pSelf = self;
+    return ^CCCollectionChainDelegate *(BOOL (^t)(__kindof UIScrollView *)) {
+        pSelf.bShouldScrollToTop = [t copy];
+        return pSelf;
+    };
+}
+- (CCCollectionChainDelegate *(^)(void (^)(__kindof UIScrollView *)))didScrollToTop {
+    __weak typeof(self) pSelf = self;
+    return ^CCCollectionChainDelegate *(void (^t)(__kindof UIScrollView *)) {
+        pSelf.bDidScrollToTop = [t copy];
+        return pSelf;
+    };
+}
+
 #pragma mark - UICollectionViewDelegateFlowLayout
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -282,6 +324,26 @@ forCellWithReuseIdentifier:s];
 }
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return self.blockSpacingBetweenSections ? self.blockSpacingBetweenSections(collectionView , collectionViewLayout , section) : UIEdgeInsetsZero ;
+}
+
+#pragma mark - ----- UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (self.bDidScroll) self.bDidScroll(scrollView);
+}
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
+    if (self.bWillBeginDecelerating) self.bWillBeginDecelerating(scrollView);
+}
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    if (self.bDidEndDecelerating) self.bDidEndDecelerating(scrollView);
+}
+
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView {
+    if (self.bShouldScrollToTop) return self.bShouldScrollToTop(scrollView);
+    return YES;
+}
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView {
+    if (self.bDidScrollToTop) self.bDidScrollToTop(scrollView);
 }
 
 - (void)dealloc {

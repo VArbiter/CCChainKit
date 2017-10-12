@@ -256,6 +256,13 @@ CGFloat CCHScale(CGFloat h) {
 }
 
 #pragma mark - Margin
+- ( __kindof UIView *(^)(CGRect))frameC {
+    __weak typeof(self) pSelf = self;
+    return ^ __kindof UIView *(CGRect r) {
+        pSelf.frame = r;
+        return pSelf;
+    };
+}
 - ( __kindof UIView *(^)(CGSize))sizeS {
     __weak typeof(self) pSelf = self;
     return ^ __kindof UIView *(CGSize s) {
@@ -312,6 +319,13 @@ CGFloat CCHScale(CGFloat h) {
     __weak typeof(self) pSelf = self;
     return ^ __kindof UIView *(CGFloat centerY) {
         pSelf.centerY = centerY;
+        return pSelf;
+    };
+}
+- ( __kindof UIView *(^)(CGPoint))centerT {
+    __weak typeof(self) pSelf = self;
+    return ^ __kindof UIView *(CGPoint p) {
+        pSelf.center = p;
         return pSelf;
     };
 }
@@ -549,6 +563,11 @@ CGFloat CCHScale(CGFloat h) {
 
 - ( __kindof UIProgressView *)asUIProgressView {
     if ([self isKindOfClass:UIProgressView.class]) return (UIProgressView *) self;
+    return self;
+}
+
+- ( __kindof UIVisualEffectView *)asUIVisualEffectView {
+    if ([self isKindOfClass:UIVisualEffectView.class]) return (UIVisualEffectView *) self;
     return self;
 }
 
